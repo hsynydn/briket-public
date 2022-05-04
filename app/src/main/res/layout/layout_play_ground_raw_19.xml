@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_vertical_19"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_gravity="center">
+
+    <View
+        android:id="@+id/View19_00"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@color/black" />
+
+    <View
+        android:id="@+id/View19_01"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@color/black" />
+
+    <View
+        android:id="@+id/View19_02"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@color/black" />
+
+    <View
+        android:id="@+id/View19_03"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@color/black" />
+
+    <View
+        android:id="@+id/View19_04"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@color/black" />
+
+    <View
+        android:id="@+id/View19_05"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@color/black" />
+
+    <View
+        android:id="@+id/View19_06"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@color/black" />
+
+    <View
+        android:id="@+id/View19_07"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@color/black" />
+
+    <View
+        android:id="@+id/View19_08"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@color/black" />
+
+    <View
+        android:id="@+id/View19_09"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@color/black" />
+
+    <View
+        android:id="@+id/View19_10"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@color/black" />
+
+    <View
+        android:id="@+id/View19_11"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@color/black" />
+</LinearLayout>

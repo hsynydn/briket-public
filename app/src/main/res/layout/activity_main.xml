@@ -1,0 +1,1938 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/layout_general"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View00_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="#FF9800" />
+
+            <View
+                android:id="@+id/View00_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View00_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View00_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View00_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View00_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View00_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View00_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View00_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View00_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View00_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View00_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View01_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View01_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View01_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View01_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View01_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View01_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View01_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View01_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View01_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View01_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View01_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View01_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View02_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View02_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View02_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View02_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View02_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View02_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View02_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View02_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View02_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View02_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View02_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View02_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View03_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View03_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View03_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View03_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View03_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View03_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View03_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View03_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View03_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View03_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View03_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View03_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View04_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View04_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View04_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View04_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View04_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View04_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View04_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View04_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View04_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View04_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View04_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View04_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View05_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View05_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View05_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View05_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View05_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View05_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View05_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View05_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View05_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View05_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View05_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View05_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View06_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View06_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View06_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View06_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View06_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View06_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View06_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View06_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View06_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View06_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View06_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View06_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View07_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View07_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View07_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View07_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View07_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View07_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View07_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View07_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View07_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View07_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View07_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View07_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View08_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View08_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View08_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View08_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View08_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View08_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View08_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View08_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View08_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View08_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View08_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View08_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View09_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View09_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View09_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View09_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View09_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View09_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View09_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View09_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View09_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View09_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View09_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View09_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View10_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View10_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View10_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View10_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View10_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View10_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View10_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View10_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="#FF9800" />
+
+            <View
+                android:id="@+id/View10_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View10_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View10_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View10_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View11_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View11_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View11_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View11_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View11_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View11_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="#FF9800" />
+
+            <View
+                android:id="@+id/View11_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="#FF9800" />
+
+            <View
+                android:id="@+id/View11_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="#FF9800" />
+
+            <View
+                android:id="@+id/View11_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View11_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View11_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View11_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View12_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View12_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View12_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View12_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View12_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View12_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View12_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View12_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View12_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View12_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View12_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View12_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View13_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View13_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View13_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View13_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View13_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View13_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View13_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View13_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View13_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View13_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View13_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View13_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View14_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View14_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View14_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View14_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View14_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View14_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View14_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View14_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View14_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View14_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View14_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View14_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View15_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View15_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View15_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View15_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View15_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View15_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View15_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View15_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View15_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View15_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View15_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View15_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View16_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View16_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View16_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View16_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View16_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View16_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View16_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View16_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View16_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View16_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View16_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View16_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View17_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View17_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View17_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View17_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View17_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View17_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View17_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View17_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View17_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View17_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View17_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View17_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View18_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View18_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View18_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View18_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View18_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View18_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View18_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View18_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View18_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View18_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View18_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View18_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View19_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View19_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View19_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View19_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View19_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View19_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View19_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View19_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View19_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View19_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View19_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View19_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View20_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View20_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View20_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View20_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View20_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View20_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View20_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View20_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View20_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View20_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View20_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View20_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/purple_700" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View21_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View21_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View21_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View21_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View21_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View21_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View21_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View21_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View21_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View21_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View21_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View21_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/purple_700" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View22_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View22_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/purple_200" />
+
+            <View
+                android:id="@+id/View22_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View22_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View22_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View22_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View22_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View22_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View22_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View22_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View22_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View22_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/purple_700" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <View
+                android:id="@+id/View23_00"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/purple_200" />
+
+            <View
+                android:id="@+id/View23_01"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/purple_200" />
+
+            <View
+                android:id="@+id/View23_02"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/purple_200" />
+
+            <View
+                android:id="@+id/View23_03"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View23_04"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View23_05"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View23_06"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View23_07"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View23_08"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View23_09"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View23_10"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/black" />
+
+            <View
+                android:id="@+id/View23_11"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@color/purple_700" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

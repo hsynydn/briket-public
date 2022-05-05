@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/shape.xml" value="0.21776315789473685" />
+        <entry key="app/src/main/res/layout-w936dp/layout_play_1.xml" value="0.246484375" />
+        <entry key="app/src/main/res/layout-w936dp/layout_play_ground_raw_1.xml" value="0.25625" />
+        <entry key="app/src/main/res/layout-w936dp/play_screen_1.xml" value="0.246484375" />
+        <entry key="app/src/main/res/layout-w936dp/play_screen_up.xml" value="0.246484375" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_main_screen.xml" value="0.32864583333333336" />
+        <entry key="app/src/main/res/layout/layout.xml" value="0.29212962962962963" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_0.xml" value="0.18297101449275363" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_1.xml" value="0.2075657894736842" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_10.xml" value="0.29212962962962963" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_11.xml" value="0.29212962962962963" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_12.xml" value="0.29212962962962963" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_13.xml" value="0.29212962962962963" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_14.xml" value="0.29212962962962963" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_15.xml" value="0.29212962962962963" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_16.xml" value="0.29212962962962963" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_17.xml" value="0.29212962962962963" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_18.xml" value="0.29212962962962963" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_19.xml" value="0.29212962962962963" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_2.xml" value="0.29212962962962963" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_20.xml" value="0.29212962962962963" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_21.xml" value="0.29212962962962963" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_22.xml" value="0.29212962962962963" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_23.xml" value="0.29212962962962963" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_3.xml" value="0.29212962962962963" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_4.xml" value="0.29212962962962963" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_5.xml" value="0.29212962962962963" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_6.xml" value="0.29212962962962963" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_7.xml" value="0.29212962962962963" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_8.xml" value="0.29212962962962963" />
+        <entry key="app/src/main/res/layout/layout_play_ground_raw_9.xml" value="0.29212962962962963" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

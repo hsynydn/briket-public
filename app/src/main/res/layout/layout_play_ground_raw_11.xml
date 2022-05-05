@@ -10,95 +10,95 @@
         android:id="@+id/View11_00"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        
-        android:background="@color/white"
+        android:layout_weight="0.83"
+        android:background="@drawable/shape"
          />
 
     <ImageView
         android:id="@+id/View11_01"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        
-        android:background="@color/white"
+        android:layout_weight="0.83"
+        android:background="@drawable/shape"
          />
 
     <ImageView
         android:id="@+id/View11_02"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        
-        android:background="@color/white"
+        android:layout_weight="0.83"
+        android:background="@drawable/shape"
          />
 
     <ImageView
         android:id="@+id/View11_03"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        
-        android:background="@color/white"
+        android:layout_weight="0.83"
+        android:background="@drawable/shape"
          />
 
     <ImageView
         android:id="@+id/View11_04"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        
-        android:background="@color/white"
+        android:layout_weight="0.83"
+        android:background="@drawable/shape"
          />
 
     <ImageView
         android:id="@+id/View11_05"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        
-        android:background="@color/white"
+        android:layout_weight="0.83"
+        android:background="@drawable/shape"
          />
 
     <ImageView
         android:id="@+id/View11_06"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        
-        android:background="@color/white"
+        android:layout_weight="0.83"
+        android:background="@drawable/shape"
          />
 
     <ImageView
         android:id="@+id/View11_07"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        
-        android:background="@color/white"
+        android:layout_weight="0.83"
+        android:background="@drawable/shape"
          />
 
     <ImageView
         android:id="@+id/View11_08"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        
-        android:background="@color/white"
+        android:layout_weight="0.83"
+        android:background="@drawable/shape"
          />
 
     <ImageView
         android:id="@+id/View11_09"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        
-        android:background="@color/white"
+        android:layout_weight="0.83"
+        android:background="@drawable/shape"
          />
 
     <ImageView
         android:id="@+id/View11_10"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        
-        android:background="@color/white"
+        android:layout_weight="0.83"
+        android:background="@drawable/shape"
          />
 
     <ImageView
         android:id="@+id/View11_11"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        
-        android:background="@color/white"
+        android:layout_weight="0.83"
+        android:background="@drawable/shape"
          />
 </LinearLayout>

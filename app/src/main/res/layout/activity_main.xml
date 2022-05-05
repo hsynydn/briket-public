@@ -11,7 +11,9 @@
         android:id="@+id/layout_general"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="30dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="120dp"
         android:layout_gravity="bottom"
         android:gravity="left"
         android:orientation="vertical">
@@ -125,7 +127,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                app:srcCompat="@color/teal_700" />
+                android:background="@android:color/transparent"
+                android:src="@drawable/fall" />
 
             <ImageButton
                 android:id="@+id/rotate_button"
@@ -133,7 +136,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                app:srcCompat="@color/design_default_color_error" />
+                android:background="@android:color/transparent"
+                android:src="@drawable/refresh" />
 
         </LinearLayout>
 
@@ -142,8 +146,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/shape">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -180,8 +183,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/shape">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/game_over"

@@ -52,18 +52,28 @@ public class DisplayUnitController
             ImageView view = gridPane.get(linear_index);
 
             if(cell.isSet()){
-//                view.setBackgroundColor(cell.getColor());
                 try {
-                    view.setImageResource(R.drawable.brick_red);
+                    switch (cell.getColor()){
+                        case COLOR_ORANGE:
+                            view.setImageResource(R.drawable.shape_orange);
+                            break;
+                        case COLOR_BLUE:
+                            view.setImageResource(R.drawable.shape_blue);
+                            break;
+                        case COLOR_GREEN:
+                            view.setImageResource(R.drawable.shape_green);
+                            break;
+                        case COLOR_RED:
+                            view.setImageResource(R.drawable.shape_pinky);
+                            break;
+                    }
+
                 }catch (Exception e){
                     Log.i(TAG, "Exception caught ── " + e.toString());
                 }
-                Log.i(TAG, "view.setImageResource(R.drawable.brick_red)");
             }else{
-                Log.i(TAG, "view.setImageResource(0)");
-//                view.setBackgroundColor(0xFFFFFFFF);
                 try {
-                    view.setImageResource(0);
+                    view.setImageResource(R.drawable.shape);
                 }catch (Exception e){
                     Log.i(TAG, "Exception caught ── " + e.toString());
                 }
@@ -99,6 +109,22 @@ public class DisplayUnitController
 
     public void visibleGameOver(){
         gameOver.setVisibility(View.VISIBLE);
+    }
+
+    public void moveRight(){
+
+    }
+
+    public void moveLeft(){
+
+    }
+
+    public void moveDown(){
+
+    }
+
+    public void rotate(){
+
     }
 }
 

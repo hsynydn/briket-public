@@ -8,6 +8,7 @@ import android.util.Log;
 import com.example.hmessenger.R;
 
 import java.io.IOException;
+import java.security.PublicKey;
 import java.util.Timer;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -20,6 +21,7 @@ public class Game {
 
     ScheduledExecutorService service;
     ScheduledFuture scheduledFuture;
+    private static int sch_counter = 0;
 
     protected Grid grid;
     protected RandomGenerator randomGenerator;
@@ -33,6 +35,8 @@ public class Game {
 
     private Music tetris_gameboy_play;
     private Music tetris_gameboy_end;
+
+    private GameState gameState;
 
     public Game(Context context, DisplayUnitController displayUnitController, Handler.Callback handler)
             throws
@@ -50,12 +54,13 @@ public class Game {
         this.tetris_gameboy_play = new Music(context, R.raw.tetris_gameboy_play);
         this.tetris_gameboy_end = new Music(context, R.raw.tetris_gameboy_end);
 
+        gameState = GameState.NOT_STARTED;
+
         service = Executors.newScheduledThreadPool(1);
     }
 
     public void start(){
-
-        tetris_gameboy_play.start();
+        gameState = GameState.START;
 
         scheduledFuture = service.scheduleAtFixedRate(
                 new Runnable() {
@@ -66,11 +71,68 @@ public class Game {
                     }
                 },
                 1000,
-                300,
+                500,
                 TimeUnit.MILLISECONDS);
     }
 
+    public void pause(){
+        gameState = GameState.PAUSE;
+        scheduledFuture.cancel(true);
+    }
+
+    public void resume(){
+        gameState = GameState.RESUME;
+        start();
+    }
+
+    public void end(){
+        gameState = GameState.END;
+    }
+
     private void schedCheck(){
+
+//        Message m = new Message();
+//        m.obj = grid.getGridMap();
+
+        // If this place is set, it means there is no room to create new object
+        // End the game
+        if(grid.getGridMap().get(6).isSet()){
+            service.shutdown();
+            tetris_gameboy_play.stop();
+            tetris_gameboy_end.start();
+            displayUnitController.visibleGameOver();
+        }
+
+        // Create new active pattern
+        if(activePattern==null){
+            Log.i(TAG, "Active Pattern Null");
+            Log.i(TAG, "Generated a Pattern");
+            activePattern = (Pattern)randomGenerator.generate();
+            grid.importMovableObject(activePattern);
+        }
+
+        Log.i(TAG, "displayUnitController.getStack().size() ── " + displayUnitController.getStack().size());
+
+        if(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.UNDER_SIDE)){
+            Log.i(TAG, "Grid will fall one step");
+            grid.fall();
+            Log.i(TAG, "Check is it Sequence");
+//            int sequence = sequenceDetector.detect();
+//            if(sequence != 0){
+//                displayUnitController.setScore(sequence);
+//            }
+            Log.i(TAG, "Refresh Monitor");
+//            handler.handleMessage(m);
+            displayUnitController.refreshMonitor(grid.getGridMap());
+        }else{
+            System.out.println("Active Pattern Null");
+            activePattern = null;
+        }
+
+        displayUnitController.emptyActionStack();
+    }
+
+    private void consumeStack(){
 
         Message m = new Message();
         m.obj = grid.getGridMap();
@@ -88,8 +150,6 @@ public class Game {
             activePattern = (Pattern)randomGenerator.generate();
             grid.importMovableObject(activePattern);
         }
-
-        Log.i(TAG, "displayUnitController.getStack().size() ── " + displayUnitController.getStack().size());
 
         for(Event i : displayUnitController.getStack()){
             if(i == Event.RIGHT_MOVE){
@@ -116,28 +176,46 @@ public class Game {
 //                displayUnitController.refreshMonitor(grid.getGridMap());
             }
         }
-
-        if(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.UNDER_SIDE)){
-            Log.i(TAG, "Grid will fall one step");
-            grid.fall();
-            Log.i(TAG, "Check is it Sequence");
-//            int sequence = sequenceDetector.detect();
-//            if(sequence != 0){
-//                displayUnitController.setScore(sequence);
-//            }
-            Log.i(TAG, "Refresh Monitor");
-            handler.handleMessage(m);
-//            displayUnitController.refreshMonitor(grid.getGridMap());
-        }else{
-            System.out.println("Active Pattern Null");
-            activePattern = null;
-        }
-
-        displayUnitController.emptyActionStack();
     }
 
     public void exit(){
         tetris_gameboy_play.stop();
         timer.cancel();
+    }
+
+    public void moveRight(){
+        if (activePattern==null || gameState==GameState.PAUSE || gameState==GameState.END) return;
+        if(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.RIGHT_SIDE)){
+            grid.scrollMovableToRight();
+            displayUnitController.refreshMonitor(grid.getGridMap());
+        }
+    }
+
+    public void moveLeft(){
+        if (activePattern==null || gameState==GameState.PAUSE || gameState==GameState.END) return;
+        if(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.LEFT_SIDE)){
+            grid.scrollMovableToLeft();
+            displayUnitController.refreshMonitor(grid.getGridMap());
+        }
+    }
+
+    public void moveDown(){
+        if (activePattern==null || gameState==GameState.PAUSE || gameState==GameState.END) return;
+        if(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.UNDER_SIDE)){
+            grid.fall();
+            displayUnitController.refreshMonitor(grid.getGridMap());
+        }
+    }
+
+    public void rotate(){
+        if (activePattern==null || gameState==GameState.PAUSE || gameState==GameState.END) return;
+        if(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.RIGHT_SIDE)){
+            grid.rotate();
+            displayUnitController.refreshMonitor(grid.getGridMap());
+        }
+    }
+
+    public GameState getGameState(){
+        return gameState;
     }
 }

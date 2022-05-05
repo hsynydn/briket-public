@@ -6,87 +6,99 @@
     android:orientation="horizontal"
     android:layout_gravity="center">
 
-    <View
+    <ImageView
         android:id="@+id/View16_00"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.83"
-        android:background="@color/black" />
+        android:background="@color/white"
+         />
 
-    <View
+    <ImageView
         android:id="@+id/View16_01"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.83"
-        android:background="@color/black" />
+        android:background="@color/white"
+         />
 
-    <View
+    <ImageView
         android:id="@+id/View16_02"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.83"
-        android:background="@color/black" />
+        android:background="@color/white"
+         />
 
-    <View
+    <ImageView
         android:id="@+id/View16_03"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.83"
-        android:background="@color/black" />
+        android:background="@color/white"
+         />
 
-    <View
+    <ImageView
         android:id="@+id/View16_04"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.83"
-        android:background="@color/black" />
+        android:background="@color/white"
+         />
 
-    <View
+    <ImageView
         android:id="@+id/View16_05"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.83"
-        android:background="@color/black" />
+        android:background="@color/white"
+         />
 
-    <View
+    <ImageView
         android:id="@+id/View16_06"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.83"
-        android:background="@color/black" />
+        android:background="@color/white"
+         />
 
-    <View
+    <ImageView
         android:id="@+id/View16_07"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.83"
-        android:background="@color/black" />
+        android:background="@color/white"
+         />
 
-    <View
+    <ImageView
         android:id="@+id/View16_08"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.83"
-        android:background="@color/black" />
+        android:background="@color/white"
+         />
 
-    <View
+    <ImageView
         android:id="@+id/View16_09"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.83"
-        android:background="@color/black" />
+        android:background="@color/white"
+         />
 
-    <View
+    <ImageView
         android:id="@+id/View16_10"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.83"
-        android:background="@color/black" />
+        android:background="@color/white"
+         />
 
-    <View
+    <ImageView
         android:id="@+id/View16_11"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.83"
-        android:background="@color/black" />
+        android:background="@color/white"
+         />
 </LinearLayout>

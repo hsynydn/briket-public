@@ -1,36 +1,26 @@
 package com.example.hmessenger.logic;
 
-import java.io.IOException;
+import android.content.Context;
+import android.media.MediaPlayer;
 
-//import javax.sound.sampled.AudioInputStream;
-//import javax.sound.sampled.AudioSystem;
-//import javax.sound.sampled.Clip;
-//import javax.sound.sampled.LineUnavailableException;
-//import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 
 public class Music{
 
-//    private Clip clip;
+    MediaPlayer mediaPlayer;
 
-    public Music(String url_param)
+    public Music(Context context, int audio_uri)
             throws
-//            UnsupportedAudioFileException,
             IOException
-//            LineUnavailableException
     {
-
-//        AudioInputStream audioIn = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource(url_param));
-//        clip = AudioSystem.getClip();
-//        clip.open(audioIn);
+        mediaPlayer = MediaPlayer.create(context, audio_uri);
     }
 
     public void start(){
-//        clip.start();
-//        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        mediaPlayer.start(); // This will play continuously
     }
 
     public void stop() throws NullPointerException{
-
-//        clip.stop();
+        mediaPlayer.stop();
     }
 }

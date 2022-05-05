@@ -4,7 +4,7 @@ public class Pattern implements MovableObject{
 
     public short index = INDEX;
     public short patternMap[] = EMPTY;
-    protected String cssColor = "";
+    protected int color;
     protected int rotationCounter = 0;
 
     protected short rightDetector [];
@@ -73,7 +73,7 @@ public class Pattern implements MovableObject{
         return underDetector;
     }
 
-    public String getCssColor(){
-        return this.cssColor;
+    public int getColor(){
+        return this.color;
     }
 }

@@ -16,7 +16,7 @@ public class Player {
             IOException
 //            LineUnavailableException
     {
-        this.game = new Game(displayUnitController);
+//        this.game = new Game(displayUnitController);
     }
 
     public String getScore(){

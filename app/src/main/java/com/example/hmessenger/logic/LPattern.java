@@ -9,7 +9,7 @@ public class LPattern extends Pattern{
         super.leftDetector = LSHAPE_LEFT_DETECTOR;
         super.underDetector = LSHAPE_UNDER_DETECTOR;
 
-        super.cssColor = "-fx-background-color:rgb(255, 0, 102);";
+        super.color = COLOR_GREEN;
     }
 
     @Override

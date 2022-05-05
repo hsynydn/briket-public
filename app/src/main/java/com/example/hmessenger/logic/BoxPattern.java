@@ -9,17 +9,12 @@ public class BoxPattern extends Pattern{
         super.leftDetector = BOX_LEFT_DETECTOR;
         super.underDetector = BOX_UNDER_DETECTOR;
 
-        super.cssColor = "-fx-background-color:rgb(255, 102, 0);";
+        super.color = COLOR_BLUE;
     }
 
     @Override
     public short [] getRotatedMap(){
         return BOX;
     }
-
-//	public String getCssColor(){
-//		return this.cssColor;
-//	}
-
 }
 

@@ -11,116 +11,139 @@
         android:id="@+id/layout_general"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="30dp"
         android:layout_gravity="bottom"
-        android:background="@android:color/transparent"
-        android:gravity="center_vertical"
+        android:gravity="left"
         android:orientation="vertical">
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416"
-            layout="@layout/layout_play_ground_raw_0" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_0" />
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416"
-            layout="@layout/layout_play_ground_raw_1" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_1" />
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416"
-            layout="@layout/layout_play_ground_raw_2" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_2" />
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416" layout="@layout/layout_play_ground_raw_3" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_3" />
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416" layout="@layout/layout_play_ground_raw_4" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_4" />
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416" layout="@layout/layout_play_ground_raw_5" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_5" />
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416" layout="@layout/layout_play_ground_raw_6" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_6" />
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416" layout="@layout/layout_play_ground_raw_7" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_7" />
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416" layout="@layout/layout_play_ground_raw_8" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_8" />
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416" layout="@layout/layout_play_ground_raw_9" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_9" />
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416" layout="@layout/layout_play_ground_raw_10" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_10" />
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416" layout="@layout/layout_play_ground_raw_11" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_11" />
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416" layout="@layout/layout_play_ground_raw_12" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_12" />
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416" layout="@layout/layout_play_ground_raw_13" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_13" />
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416" layout="@layout/layout_play_ground_raw_14" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_14" />
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416" layout="@layout/layout_play_ground_raw_15" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_15" />
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416" layout="@layout/layout_play_ground_raw_16" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_16" />
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416" layout="@layout/layout_play_ground_raw_17" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_17" />
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416" layout="@layout/layout_play_ground_raw_18" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_18" />
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416" layout="@layout/layout_play_ground_raw_19" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_19" />
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416" layout="@layout/layout_play_ground_raw_20" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_20" />
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416" layout="@layout/layout_play_ground_raw_21" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_21" />
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416" layout="@layout/layout_play_ground_raw_22" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_22" />
 
         <include android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.416" layout="@layout/layout_play_ground_raw_23" />
+            android:layout_weight="0.312" layout="@layout/layout_play_ground_raw_23" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.292"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/free_fall_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                app:srcCompat="@color/teal_700" />
+
+            <ImageButton
+                android:id="@+id/rotate_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                app:srcCompat="@color/design_default_color_error" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/shape">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -130,26 +153,43 @@
 
             <Button
                 style="?android:attr/buttonBarButtonStyle"
+                android:id="@+id/button_left_control"
+                android:background="@android:color/transparent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:text="@string/leftcontrol"/>
+                android:layout_weight="0.5"/>
 
             <Button
                 style="?android:attr/buttonBarButtonStyle"
+                android:id="@+id/button_right_control"
+                android:background="@android:color/transparent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:text="@string/rightcontrol" />
+                android:layout_weight="0.5"/>
         </LinearLayout>
 
         <Button
+            android:id="@+id/button_bottom_control"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.8"
-            android:text="@string/bottomControl" />
+            android:visibility="invisible" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape">
+
+        <ImageView
+            android:id="@+id/game_over"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/game_over"
+            android:visibility="invisible"
+            />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

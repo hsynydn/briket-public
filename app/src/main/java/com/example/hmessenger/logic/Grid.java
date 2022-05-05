@@ -13,6 +13,7 @@ public class Grid{
 
     public Grid(){
         System.out.println("Loading");
+
         board = new ArrayList<Cell>();
         for (int i=0; board.size()<GRID_SIZE; i++) {
             board.add(i, new Cell());
@@ -61,9 +62,9 @@ public class Grid{
     public void rotate(){
         cleanPatternRemain();
         patternMap = movableObject.getRotatedMap();
-        ((Pattern)this.movableObject).rightDetector = movableObject.getRightDetector();
-        ((Pattern)this.movableObject).leftDetector = movableObject.getLeftDetector();
-        ((Pattern)this.movableObject).underDetector = movableObject.getUnderDetector();
+        ((Pattern)this.movableObject).rightDetector = movableObject.getRightDetector()  ;
+        ((Pattern)this.movableObject).leftDetector  = movableObject.getLeftDetector()   ;
+        ((Pattern)this.movableObject).underDetector = movableObject.getUnderDetector()  ;
         placePattern();
     }
 
@@ -76,7 +77,7 @@ public class Grid{
     private void placePattern(){
         for(short pm : patternMap){
             board.get(index + pm).set();
-            board.get(index + pm).setColor(((Pattern)movableObject).getCssColor()); ;
+            board.get(index + pm).setColor(((Pattern)movableObject).getColor());
             //System.out.println(((Pattern)movableObject).getCssColor());
         }
     }

@@ -18,14 +18,6 @@ public class Cell {
         setValue(null);
     }
 
-    public void setColor(String color){
-        colorValue = color;
-    }
-
-    public String getColorValue(){
-        return colorValue;
-    }
-
     public void setColor(int color){
         this.color = color;
     }

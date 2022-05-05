@@ -84,4 +84,9 @@ public interface Variables {
 
     public static final int DEGREE_90 = 90;
     public static final int DEGREE_MINUS90 = -90;
+
+    public static final int COLOR_RED = 0xFFA8002D;
+    public static final int COLOR_GREEN = 0xFF006B1B;
+    public static final int COLOR_ORANGE = 0xFFDE8100;
+    public static final int COLOR_BLUE = 0xFF00C0D1;
 }

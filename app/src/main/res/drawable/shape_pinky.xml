@@ -6,5 +6,11 @@
     <solid android:color="#ff3399"/>
     <stroke
         android:width="2dp"
-        android:color="#CF0068" />
+        android:color="#A60054" />
+    <gradient
+        android:angle="45"
+        android:endColor="#A60054"
+        android:type="linear"
+        android:centerX="2"
+        android:centerY="2"/>
 </shape>

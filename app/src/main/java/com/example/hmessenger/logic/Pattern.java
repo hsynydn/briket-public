@@ -2,7 +2,13 @@ package com.example.hmessenger.logic;
 
 public class Pattern implements MovableObject{
 
+    // 16 bit signed 2's complement integer
+    // second byte of index (MSB) holds row number
+    // first byte of index (LSB) holds column number
     public short index = INDEX;
+
+    protected PatternType patternType;
+
     public short patternMap[] = EMPTY;
     protected int color;
     protected int rotationCounter = 0;
@@ -19,11 +25,19 @@ public class Pattern implements MovableObject{
         this.patternMap = patternMap;
     }
 
+    /**
+     * Row Number
+     * @return
+     */
     @Override
     public short getIndex_X(){
         return (short)(index >>> 8);
     }
 
+    /**
+     * Column Number
+     * @return
+     */
     @Override
     public short getIndex_Y() {
         short temp = (short) (index << 8);
@@ -40,16 +54,26 @@ public class Pattern implements MovableObject{
         this.index = index;
     }
 
+
+    /* index  = 0x0006 --> 0000 0000 0000 0110
+     * return = 0x0007 --> 0000 0000 0000 0111
+     */
     @Override
     public void slideRight() {
         index += 0x0001;
     }
 
+    /* index  = 0x0006 --> 0000 0000 0000 0110
+     * return = 0x0005 --> 0000 0000 0000 0101
+     */
     @Override
     public void slideLeft() {
         index -= 0x0001;
     }
 
+    /* index  = 0x0006 --> 0000 0000 0000 0110
+     * return = 0x0106 --> 0000 0001 0000 0110
+     */
     @Override
     public void fall() {
         index += 0x0100;
@@ -75,5 +99,9 @@ public class Pattern implements MovableObject{
 
     public int getColor(){
         return this.color;
+    }
+
+    public PatternType getPatternType(){
+        return patternType;
     }
 }

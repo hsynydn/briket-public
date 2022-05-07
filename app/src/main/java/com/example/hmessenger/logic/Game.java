@@ -29,16 +29,17 @@ public class Game {
     protected CollisionDetector collisionDetector;
     protected DisplayUnitController displayUnitController;
     protected Pattern activePattern;
+    protected Pattern nextPattern;
     protected Timer timer;
 
-    private Handler.Callback handler;
+    private Handler handler;
 
     private Music tetris_gameboy_play;
     private Music tetris_gameboy_end;
 
     private GameState gameState;
 
-    public Game(Context context, DisplayUnitController displayUnitController, Handler.Callback handler)
+    public Game(Context context, DisplayUnitController displayUnitController, Handler handler)
             throws
             IOException
     {
@@ -60,7 +61,11 @@ public class Game {
     }
 
     public void start(){
-        gameState = GameState.START;
+
+        Log.i(TAG, "Game.start()");
+
+        nextPattern = (Pattern)randomGenerator.generate();
+        gameState   = GameState.START;
 
         scheduledFuture = service.scheduleAtFixedRate(
                 new Runnable() {
@@ -91,9 +96,6 @@ public class Game {
 
     private void schedCheck(){
 
-//        Message m = new Message();
-//        m.obj = grid.getGridMap();
-
         // If this place is set, it means there is no room to create new object
         // End the game
         if(grid.getGridMap().get(6).isSet()){
@@ -105,10 +107,21 @@ public class Game {
 
         // Create new active pattern
         if(activePattern==null){
+            Log.i(TAG, "Check is it Sequence");
+            int sequence = sequenceDetector.detect();
+
             Log.i(TAG, "Active Pattern Null");
             Log.i(TAG, "Generated a Pattern");
-            activePattern = (Pattern)randomGenerator.generate();
+            activePattern = nextPattern;
+            nextPattern = (Pattern)randomGenerator.generate();
             grid.importMovableObject(activePattern);
+
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    displayUnitController.setNextPattern(nextPattern.getPatternType());
+                }
+            });
         }
 
         Log.i(TAG, "displayUnitController.getStack().size() ── " + displayUnitController.getStack().size());
@@ -116,13 +129,7 @@ public class Game {
         if(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.UNDER_SIDE)){
             Log.i(TAG, "Grid will fall one step");
             grid.fall();
-            Log.i(TAG, "Check is it Sequence");
-//            int sequence = sequenceDetector.detect();
-//            if(sequence != 0){
-//                displayUnitController.setScore(sequence);
-//            }
             Log.i(TAG, "Refresh Monitor");
-//            handler.handleMessage(m);
             displayUnitController.refreshMonitor(grid.getGridMap());
         }else{
             System.out.println("Active Pattern Null");
@@ -130,52 +137,6 @@ public class Game {
         }
 
         displayUnitController.emptyActionStack();
-    }
-
-    private void consumeStack(){
-
-        Message m = new Message();
-        m.obj = grid.getGridMap();
-
-        if(grid.getGridMap().get(6).isSet()){
-            service.shutdown();
-            tetris_gameboy_play.stop();
-            tetris_gameboy_end.start();
-            displayUnitController.visibleGameOver();
-        }
-
-        if(activePattern==null){
-            Log.i(TAG, "Active Pattern Null");
-            Log.i(TAG, "Generated a Pattern");
-            activePattern = (Pattern)randomGenerator.generate();
-            grid.importMovableObject(activePattern);
-        }
-
-        for(Event i : displayUnitController.getStack()){
-            if(i == Event.RIGHT_MOVE){
-                if(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.RIGHT_SIDE)){
-                    grid.scrollMovableToRight();
-                }
-            }else if(i == Event.LEFT_MOVE){
-                if(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.LEFT_SIDE)){
-                    grid.scrollMovableToLeft();
-                }
-            }else if(i == Event.ROTATE_RIGHT){
-                if(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.RIGHT_SIDE)){
-                    grid.rotate();
-                }
-            }else if(i == Event.FREE_FALL){
-                while(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.UNDER_SIDE)){
-                    grid.fall();
-                }
-//                int sequence = sequenceDetector.detect();
-//                if(sequence != 0){
-//                    displayUnitController.setScore(sequence);
-//                }
-                handler.handleMessage(m);
-//                displayUnitController.refreshMonitor(grid.getGridMap());
-            }
-        }
     }
 
     public void exit(){
@@ -202,6 +163,14 @@ public class Game {
     public void moveDown(){
         if (activePattern==null || gameState==GameState.PAUSE || gameState==GameState.END) return;
         if(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.UNDER_SIDE)){
+            grid.fall();
+            displayUnitController.refreshMonitor(grid.getGridMap());
+        }
+    }
+
+    public void moveFreeFall(){
+        if (activePattern==null || gameState==GameState.PAUSE || gameState==GameState.END) return;
+        while(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.UNDER_SIDE)){
             grid.fall();
             displayUnitController.refreshMonitor(grid.getGridMap());
         }

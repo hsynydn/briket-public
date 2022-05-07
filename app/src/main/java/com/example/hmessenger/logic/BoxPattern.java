@@ -10,6 +10,7 @@ public class BoxPattern extends Pattern{
         super.underDetector = BOX_UNDER_DETECTOR;
 
         super.color = COLOR_BLUE;
+        super.patternType = PatternType.BoxPattern;
     }
 
     @Override

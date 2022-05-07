@@ -9,8 +9,8 @@ public class LinePattern extends Pattern{
         super.leftDetector = LINE_LEFT_DETECTOR;
         super.underDetector = LINE_UNDER_DETECTOR;
 
-//        super.cssColor = "-fx-background-color:rgb(0, 204, 0);";
         super.color = COLOR_ORANGE;
+        super.patternType = PatternType.LinePattern;
     }
 
     @Override

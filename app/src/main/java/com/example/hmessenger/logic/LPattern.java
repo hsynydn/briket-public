@@ -10,6 +10,7 @@ public class LPattern extends Pattern{
         super.underDetector = LSHAPE_UNDER_DETECTOR;
 
         super.color = COLOR_GREEN;
+        super.patternType = PatternType.LPattern;
     }
 
     @Override

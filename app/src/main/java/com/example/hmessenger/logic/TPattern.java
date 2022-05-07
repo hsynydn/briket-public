@@ -9,8 +9,8 @@ public class TPattern extends Pattern{
         super.leftDetector = TSHAPE_LEFT_DETECTOR;
         super.underDetector = TSHAPE_UNDER_DETECTOR;
 
-//        super.cssColor = "-fx-background-color:rgb(102, 204, 255);";
         super.color = COLOR_RED;
+        super.patternType = PatternType.TPattern;
     }
 
     @Override

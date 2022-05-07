@@ -27,17 +27,19 @@ public class DisplayUnitController
     public  Stack<Event>            eventStack;
     private Player                  player;
     private final ImageView         gameOver;
+    private ImageView               nextPatternPanel;
     private AppCompatActivity       context;
 
     public void importObject(Player player){
         this.player = player;
     }
 
-    public DisplayUnitController(AppCompatActivity context, ArrayList<ImageView> gridPane){
-        this.gridPane   = gridPane;
-        this.eventStack = new Stack<Event>();
-        this.context    = context;
-        this.gameOver   = context.findViewById(R.id.game_over);
+    public DisplayUnitController(AppCompatActivity context, ArrayList<ImageView> gridPane, ImageView nextPatternPanel){
+        this.gridPane           = gridPane;
+        this.eventStack         = new Stack<Event>();
+        this.context            = context;
+        this.gameOver           = context.findViewById(R.id.game_over);
+        this.nextPatternPanel   = nextPatternPanel;
     }
 
     public void pushEvent(Event e){
@@ -125,6 +127,28 @@ public class DisplayUnitController
 
     public void rotate(){
 
+    }
+
+    public void setNextPattern(PatternType patternType){
+        Log.i(TAG, "setNextPattern");
+        switch (patternType){
+            case BoxPattern:
+                Log.i(TAG, "setNextPattern::BoxPattern");
+                nextPatternPanel.setImageDrawable(context.getDrawable(R.drawable.box_pattern));
+                break;
+            case LinePattern:
+                Log.i(TAG, "setNextPattern::LinePattern");
+                nextPatternPanel.setImageDrawable(context.getDrawable(R.drawable.line_pattern));
+                break;
+            case LPattern:
+                Log.i(TAG, "setNextPattern::LPattern");
+                nextPatternPanel.setImageDrawable(context.getDrawable(R.drawable.l_pattern));
+                break;
+            case TPattern:
+                Log.i(TAG, "setNextPattern::TPattern");
+                nextPatternPanel.setImageDrawable(context.getDrawable(R.drawable.t_pattern));
+                break;
+        }
     }
 }
 

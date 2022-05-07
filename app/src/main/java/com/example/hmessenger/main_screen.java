@@ -18,13 +18,15 @@ import android.widget.LinearLayout;
 import com.example.hmessenger.logic.Cell;
 import com.example.hmessenger.logic.DisplayUnitController;
 import com.example.hmessenger.logic.Game;
+import com.example.hmessenger.logic.PatternType;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import javax.net.ssl.SNIHostName;
+
 public class main_screen extends AppCompatActivity
-        implements Handler.Callback
 {
 
     private static final String TAG = "main_screen";
@@ -32,6 +34,7 @@ public class main_screen extends AppCompatActivity
 
     DisplayUnitController displayUnitController;
     Game game;
+    Handler handler = new Handler();
 
     ArrayList<LinearLayout> verticalLayoutArray = new ArrayList<>();
     ArrayList<ImageView> gridPane = new ArrayList<>();
@@ -173,38 +176,46 @@ public class main_screen extends AppCompatActivity
             gridPane.add((ImageView) layout.getChildAt(i));
         }
 
-        displayUnitController = new DisplayUnitController(this, gridPane);
+        displayUnitController = new DisplayUnitController(this, gridPane, findViewById(R.id.next_pattern));
 
         try {
-            game = new Game(this, displayUnitController, this);
+            game = new Game(this, displayUnitController, handler);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+//        Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
 
         findViewById(R.id.btn_left_move).setOnClickListener(view -> {
             Log.i(TAG, "btn_left_move Click");
             game.moveLeft();
-            vibrator.vibrate(50);
+//            vibrator.vibrate(50);
         });
 
         findViewById(R.id.btn_right_move).setOnClickListener(view -> {
             Log.i(TAG, "btn_right_move Click");
             game.moveRight();
-            vibrator.vibrate(50);
+//            vibrator.vibrate(50);
         });
 
         findViewById(R.id.btn_drop).setOnClickListener(view -> {
             Log.i(TAG, "btn_drop Click");
             game.moveDown();
-            vibrator.vibrate(50);
+//            vibrator.vibrate(50);
+        });
+
+        findViewById(R.id.btn_drop).setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                game.moveFreeFall();
+                return false;
+            }
         });
 
         findViewById(R.id.btn_rotate).setOnClickListener(view -> {
             Log.i(TAG, "btn_rotate Click");
             game.rotate();
-            vibrator.vibrate(50);
+//            vibrator.vibrate(50);
         });
 
         findViewById(R.id.btn_menu).setOnClickListener(view -> {
@@ -233,13 +244,6 @@ public class main_screen extends AppCompatActivity
     protected void onPause() {
         super.onPause();
 //        game.pause();
-    }
-
-    @Override
-    public boolean handleMessage(@NonNull Message message) {
-        Log.i(TAG, "handleMessage(@NonNull Message message)");
-        displayUnitController.refreshMonitor((ArrayList<Cell>)message.obj);
-        return false;
     }
 
     @Override

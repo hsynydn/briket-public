@@ -4,11 +4,24 @@ import java.util.ArrayList;
 
 public class Grid{
 
+    /**
+     *  ─ ─ ─ ─ y axis ─ ─ ─ ─
+     *  |
+     *  |
+     *  |
+     *  x axis
+     *  |
+     *  |
+     *  |
+     */
+
     private final int GRID_SIZE = Variables.GRID_Y*Variables.GRID_X;
 
     private ArrayList<Cell> board;
     private MovableObject movableObject;
     private short [] patternMap;
+
+    /// \var index Linear Sequence Number in logical 2D grid array
     private int index;
 
     public Grid(){

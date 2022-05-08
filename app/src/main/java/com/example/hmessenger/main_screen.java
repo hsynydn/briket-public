@@ -1,30 +1,24 @@
 package com.example.hmessenger;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
-import android.os.Vibrator;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.example.hmessenger.logic.Cell;
 import com.example.hmessenger.logic.DisplayUnitController;
 import com.example.hmessenger.logic.Game;
-import com.example.hmessenger.logic.PatternType;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
-
-import javax.net.ssl.SNIHostName;
 
 public class main_screen extends AppCompatActivity
 {
@@ -42,7 +36,79 @@ public class main_screen extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.play_ground);
+        setContentView(R.layout.layout_play_board);
+
+        android.util.DisplayMetrics displayMetrics = getApplicationContext().getResources().getDisplayMetrics();
+        int heightPixels = displayMetrics.heightPixels;
+        int widthPixels = displayMetrics.widthPixels;
+
+        Log.i(TAG, "heightPixels ── " + heightPixels); // 2131
+        Log.i(TAG, "widthPixels ── " + widthPixels); // 1080
+
+        double height_coefficient = heightPixels / 35.0;
+        Log.i(TAG, "height_coefficient ── " + height_coefficient); //
+        double width_coefficient  = widthPixels / 16.0;
+        Log.i(TAG, "width_coefficient ── " + width_coefficient); //
+
+        if (height_coefficient < width_coefficient){
+            int new_height = (int)height_coefficient * 24;
+            int new_width = (int)height_coefficient * 12;
+
+            LinearLayout linearLayout = findViewById(R.id.layout_play_board);
+
+            ViewGroup.LayoutParams layoutParams = linearLayout.getLayoutParams();
+            layoutParams.height = new_height;
+            layoutParams.width = new_width;
+
+            Log.i(TAG, "Root height ── " + new_height);
+            Log.i(TAG, "Root width ── " + new_width);
+
+            linearLayout.setLayoutParams(layoutParams);
+
+            LinearLayout bottomCtrlMiddleLayout = findViewById(R.id.bottom_ctrl_middle);
+            ViewGroup.LayoutParams bottomCtrlMiddleLayoutParams = bottomCtrlMiddleLayout.getLayoutParams();
+            bottomCtrlMiddleLayoutParams.width = new_width;
+            bottomCtrlMiddleLayout.setLayoutParams(bottomCtrlMiddleLayoutParams);
+
+            LinearLayout bottomCtrlLeftLayout = findViewById(R.id.bottom_ctrl_left);
+            ViewGroup.LayoutParams bottomCtrlLeftLayoutParams = bottomCtrlLeftLayout.getLayoutParams();
+            bottomCtrlLeftLayoutParams.width = (widthPixels - new_width) / 2;
+            bottomCtrlLeftLayout.setLayoutParams(bottomCtrlLeftLayoutParams);
+
+            LinearLayout bottomCtrlRightLayout = findViewById(R.id.bottom_ctrl_right);
+            ViewGroup.LayoutParams bottomCtrlRightLayoutParams = bottomCtrlRightLayout.getLayoutParams();
+            bottomCtrlRightLayoutParams.width = (widthPixels - new_width) / 2;
+            bottomCtrlRightLayout.setLayoutParams(bottomCtrlRightLayoutParams);
+        }else{
+            int new_height = (int)width_coefficient * 24;
+            int new_width = (int)width_coefficient * 12;
+
+            LinearLayout linearLayout = findViewById(R.id.layout_play_board);
+
+            ViewGroup.LayoutParams layoutParams = linearLayout.getLayoutParams();
+            layoutParams.height = new_height;
+            layoutParams.width = new_width;
+
+            Log.i(TAG, "Root height ── " + new_height);
+            Log.i(TAG, "Root width ── " + new_width);
+
+            linearLayout.setLayoutParams(layoutParams);
+
+            LinearLayout bottomCtrlMiddleLayout = findViewById(R.id.bottom_ctrl_middle);
+            ViewGroup.LayoutParams bottomCtrlMiddleLayoutParams = bottomCtrlMiddleLayout.getLayoutParams();
+            bottomCtrlMiddleLayoutParams.width = new_width;
+            bottomCtrlMiddleLayout.setLayoutParams(bottomCtrlMiddleLayoutParams);
+
+            LinearLayout bottomCtrlLeftLayout = findViewById(R.id.bottom_ctrl_left);
+            ViewGroup.LayoutParams bottomCtrlLeftLayoutParams = bottomCtrlLeftLayout.getLayoutParams();
+            bottomCtrlLeftLayoutParams.width = (widthPixels - new_width) / 2;
+            bottomCtrlLeftLayout.setLayoutParams(bottomCtrlLeftLayoutParams);
+
+            LinearLayout bottomCtrlRightLayout = findViewById(R.id.bottom_ctrl_right);
+            ViewGroup.LayoutParams bottomCtrlRightLayoutParams = bottomCtrlRightLayout.getLayoutParams();
+            bottomCtrlRightLayoutParams.width = (widthPixels - new_width) / 2;
+            bottomCtrlRightLayout.setLayoutParams(bottomCtrlRightLayoutParams);
+        }
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
@@ -176,7 +242,7 @@ public class main_screen extends AppCompatActivity
             gridPane.add((ImageView) layout.getChildAt(i));
         }
 
-        displayUnitController = new DisplayUnitController(this, gridPane, findViewById(R.id.next_pattern));
+        displayUnitController = new DisplayUnitController(this, gridPane, findViewById(R.id.next_pattern), handler);
 
         try {
             game = new Game(this, displayUnitController, handler);
@@ -189,42 +255,48 @@ public class main_screen extends AppCompatActivity
         findViewById(R.id.btn_left_move).setOnClickListener(view -> {
             Log.i(TAG, "btn_left_move Click");
             game.moveLeft();
-//            vibrator.vibrate(50);
         });
 
         findViewById(R.id.btn_right_move).setOnClickListener(view -> {
             Log.i(TAG, "btn_right_move Click");
             game.moveRight();
-//            vibrator.vibrate(50);
         });
 
-        findViewById(R.id.btn_drop).setOnClickListener(view -> {
-            Log.i(TAG, "btn_drop Click");
-            game.moveDown();
-//            vibrator.vibrate(50);
-        });
-
-        findViewById(R.id.btn_drop).setOnLongClickListener(new View.OnLongClickListener() {
+        Runnable free_fall = new Runnable() {
             @Override
-            public boolean onLongClick(View view) {
+            public void run() {
                 game.moveFreeFall();
-                return false;
+            }
+        };
+
+        findViewById(R.id.btn_drop).setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.button_fall_pressed));
+                    game.moveDown();
+                    handler.postDelayed(free_fall, 400);
+                }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.button_fall));
+                    handler.removeCallbacks(free_fall);
+                }
+                return true;
             }
         });
 
-        findViewById(R.id.btn_rotate).setOnClickListener(view -> {
-            Log.i(TAG, "btn_rotate Click");
-            game.rotate();
-//            vibrator.vibrate(50);
-        });
+        findViewById(R.id.btn_rotate).setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
 
-        findViewById(R.id.btn_menu).setOnClickListener(view -> {
-            Log.i(TAG, "btn_menu Click");
-            game.pause();
-
-            Intent intent = new Intent(this, main_menu.class);
-//            startActivityForResult(intent, 0);
-            startActivity(intent);
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.button_rotate_pressed));
+                    game.rotate();
+                }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.button_rotate));
+                }
+                return true;
+            }
         });
     }
 
@@ -234,20 +306,20 @@ public class main_screen extends AppCompatActivity
         game.start();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-//        game.resume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-//        game.pause();
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+////        game.resume();
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+////        game.pause();
+//    }
+//
+//    @Override
+//    public void onPointerCaptureChanged(boolean hasCapture) {
+//
+//    }
 }

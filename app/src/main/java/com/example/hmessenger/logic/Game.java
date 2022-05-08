@@ -1,14 +1,12 @@
 package com.example.hmessenger.logic;
 
-import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
-
 import com.example.hmessenger.R;
 
+import android.content.Context;
+import android.os.Handler;
+import android.util.Log;
+
 import java.io.IOException;
-import java.security.PublicKey;
 import java.util.Timer;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -32,7 +30,7 @@ public class Game {
     protected Pattern nextPattern;
     protected Timer timer;
 
-    private Handler handler;
+    private android.os.Handler handler;
 
     private Music tetris_gameboy_play;
     private Music tetris_gameboy_end;
@@ -76,7 +74,7 @@ public class Game {
                     }
                 },
                 1000,
-                500,
+                400,
                 TimeUnit.MILLISECONDS);
     }
 
@@ -148,40 +146,40 @@ public class Game {
         if (activePattern==null || gameState==GameState.PAUSE || gameState==GameState.END) return;
         if(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.RIGHT_SIDE)){
             grid.scrollMovableToRight();
-            displayUnitController.refreshMonitor(grid.getGridMap());
         }
+        displayUnitController.refreshMonitor(grid.getGridMap());
     }
 
     public void moveLeft(){
         if (activePattern==null || gameState==GameState.PAUSE || gameState==GameState.END) return;
         if(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.LEFT_SIDE)){
             grid.scrollMovableToLeft();
-            displayUnitController.refreshMonitor(grid.getGridMap());
         }
+        displayUnitController.refreshMonitor(grid.getGridMap());
     }
 
     public void moveDown(){
         if (activePattern==null || gameState==GameState.PAUSE || gameState==GameState.END) return;
         if(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.UNDER_SIDE)){
             grid.fall();
-            displayUnitController.refreshMonitor(grid.getGridMap());
         }
+        displayUnitController.refreshMonitor(grid.getGridMap());
     }
 
     public void moveFreeFall(){
         if (activePattern==null || gameState==GameState.PAUSE || gameState==GameState.END) return;
         while(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.UNDER_SIDE)){
             grid.fall();
-            displayUnitController.refreshMonitor(grid.getGridMap());
         }
+        displayUnitController.refreshMonitor(grid.getGridMap());
     }
 
     public void rotate(){
         if (activePattern==null || gameState==GameState.PAUSE || gameState==GameState.END) return;
         if(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.RIGHT_SIDE)){
             grid.rotate();
-            displayUnitController.refreshMonitor(grid.getGridMap());
         }
+        displayUnitController.refreshMonitor(grid.getGridMap());
     }
 
     public GameState getGameState(){

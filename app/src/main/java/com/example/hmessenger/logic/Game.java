@@ -74,7 +74,7 @@ public class Game {
                     }
                 },
                 1000,
-                400,
+                500,
                 TimeUnit.MILLISECONDS);
     }
 
@@ -122,19 +122,14 @@ public class Game {
             });
         }
 
-        Log.i(TAG, "displayUnitController.getStack().size() ── " + displayUnitController.getStack().size());
-
         if(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.UNDER_SIDE)){
-            Log.i(TAG, "Grid will fall one step");
+            Log.i(TAG, "Periodic pattern fall");
             grid.fall();
-            Log.i(TAG, "Refresh Monitor");
-            displayUnitController.refreshMonitor(grid.getGridMap());
+            displayUnitController.refreshMonitor(grid.getGridMap());;
         }else{
             System.out.println("Active Pattern Null");
             activePattern = null;
         }
-
-        displayUnitController.emptyActionStack();
     }
 
     public void exit(){

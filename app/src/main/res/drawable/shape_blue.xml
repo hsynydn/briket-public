@@ -10,6 +10,6 @@
         android:angle="45"
         android:endColor="#00067C"
         android:type="linear"
-        android:centerX="2"
-        android:centerY="2"/>
+        android:centerX="1"
+        android:centerY="1"/>
 </shape>

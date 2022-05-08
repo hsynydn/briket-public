@@ -8,6 +8,7 @@ import java.util.logging.Handler;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.icu.text.MessagePattern;
 import android.util.Log;
 import android.view.View;
@@ -25,7 +26,6 @@ public class DisplayUnitController implements Variables
     private static final String TAG = "DisplayUnitController";
 
     public  ArrayList<ImageView>    gridPane;
-    public  Stack<Event>            eventStack;
     private Player                  player;
     private final ImageView         gameOver;
     private ImageView               nextPatternPanel;
@@ -43,62 +43,73 @@ public class DisplayUnitController implements Variables
             android.os.Handler handler
     ){
         this.gridPane           = gridPane;
-        this.eventStack         = new Stack<Event>();
         this.context            = context;
         this.gameOver           = context.findViewById(R.id.game_over);
         this.nextPatternPanel   = nextPatternPanel;
         this.handler            = handler;
     }
 
-    public void pushEvent(Event e){
-        eventStack.push(e);
-    }
-
     public void refreshMonitor(ArrayList<Cell> gridValues)throws NullPointerException{
+
+        String s = "";
+        int i = 1;
+        for(Cell c : gridValues){
+
+            if (c.isSet()){
+                s+="1 - ";
+            }else{
+                s+="0 - ";
+            }
+
+            if (i%12==0){
+                s+="\n";
+            }
+            i++;
+        }
+        Log.i(TAG, s);
 
         for(Cell cell : gridValues){
 
-            int linear_index = gridValues.indexOf(cell);
-            ImageView view = gridPane.get(linear_index);
+            ImageView view = gridPane.get(gridValues.indexOf(cell));
 
             if(cell.isSet()){
                 try {
                     switch (cell.getColor()){
                         case COLOR_ORANGE:
-                            handler.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    view.setImageResource(R.drawable.brick_style_shady_orange);
-                                }
-                            });
-//                            view.setImageResource(R.drawable.shape_orange);
+//                            handler.post(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    view.setImageResource(R.drawable.brick_style_shady_orange);
+//                                }
+//                            });
+                            view.setImageResource(R.drawable.shape_orange);
                             break;
                         case COLOR_BLUE:
-                            handler.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    view.setImageResource(R.drawable.brick_style_shady_blue);
-                                }
-                            });
-//                            view.setImageResource(R.drawable.shape_blue);
+//                            handler.post(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    view.setImageResource(R.drawable.brick_style_shady_blue);
+//                                }
+//                            });
+                            view.setImageResource(R.drawable.shape_blue);
                             break;
                         case COLOR_GREEN:
-                            handler.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    view.setImageResource(R.drawable.brick_style_shady_green);
-                                }
-                            });
-//                            view.setImageResource(R.drawable.shape_green);
+//                            handler.post(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    view.setImageResource(R.drawable.brick_style_shady_green);
+//                                }
+//                            });
+                            view.setImageResource(R.drawable.shape_green);
                             break;
                         case COLOR_RED:
-                            handler.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    view.setImageResource(R.drawable.brick_style_shady_pinky);
-                                }
-                            });
-//                            view.setImageResource(R.drawable.shape_pinky);
+//                            handler.post(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    view.setImageResource(R.drawable.brick_style_shady_pinky);
+//                                }
+//                            });
+                            view.setImageResource(R.drawable.shape_pinky);
                             break;
                     }
 
@@ -113,18 +124,6 @@ public class DisplayUnitController implements Variables
                 }
             }
         }
-    }
-
-    public void addToActionStack(Event action){
-        eventStack.add(action);
-    }
-
-    public void emptyActionStack(){
-        eventStack.removeAllElements();
-    }
-
-    public Stack<Event> getStack(){
-        return eventStack;
     }
 
     public void actionOnStart(){
@@ -166,19 +165,19 @@ public class DisplayUnitController implements Variables
         switch (patternType){
             case BoxPattern:
                 Log.i(TAG, "setNextPattern::BoxPattern");
-//                nextPatternPanel.setImageDrawable(context.getDrawable(R.drawable.box_pattern));
+                nextPatternPanel.setImageDrawable(context.getDrawable(R.drawable.box_pattern));
                 break;
             case LinePattern:
                 Log.i(TAG, "setNextPattern::LinePattern");
-//                nextPatternPanel.setImageDrawable(context.getDrawable(R.drawable.line_pattern));
+                nextPatternPanel.setImageDrawable(context.getDrawable(R.drawable.line_pattern));
                 break;
             case LPattern:
                 Log.i(TAG, "setNextPattern::LPattern");
-//                nextPatternPanel.setImageDrawable(context.getDrawable(R.drawable.l_pattern));
+                nextPatternPanel.setImageDrawable(context.getDrawable(R.drawable.l_pattern));
                 break;
             case TPattern:
                 Log.i(TAG, "setNextPattern::TPattern");
-//                nextPatternPanel.setImageDrawable(context.getDrawable(R.drawable.t_pattern));
+                nextPatternPanel.setImageDrawable(context.getDrawable(R.drawable.t_pattern));
                 break;
         }
     }

@@ -65,20 +65,30 @@ public class main_screen extends AppCompatActivity
 
             linearLayout.setLayoutParams(layoutParams);
 
-            LinearLayout bottomCtrlMiddleLayout = findViewById(R.id.bottom_ctrl_middle);
-            ViewGroup.LayoutParams bottomCtrlMiddleLayoutParams = bottomCtrlMiddleLayout.getLayoutParams();
-            bottomCtrlMiddleLayoutParams.width = new_width;
-            bottomCtrlMiddleLayout.setLayoutParams(bottomCtrlMiddleLayoutParams);
+//            LinearLayout bottomCtrlMiddleLayout = findViewById(R.id.bottom_ctrl_middle);
+//            ViewGroup.LayoutParams bottomCtrlMiddleLayoutParams = bottomCtrlMiddleLayout.getLayoutParams();
+//            bottomCtrlMiddleLayoutParams.width = new_width;
+//            bottomCtrlMiddleLayout.setLayoutParams(bottomCtrlMiddleLayoutParams);
+//
+//            LinearLayout bottomCtrlLeftLayout = findViewById(R.id.bottom_ctrl_left);
+//            ViewGroup.LayoutParams bottomCtrlLeftLayoutParams = bottomCtrlLeftLayout.getLayoutParams();
+//            bottomCtrlLeftLayoutParams.width = (widthPixels - new_width) / 2;
+//            bottomCtrlLeftLayout.setLayoutParams(bottomCtrlLeftLayoutParams);
+//
+//            LinearLayout bottomCtrlRightLayout = findViewById(R.id.bottom_ctrl_right);
+//            ViewGroup.LayoutParams bottomCtrlRightLayoutParams = bottomCtrlRightLayout.getLayoutParams();
+//            bottomCtrlRightLayoutParams.width = (widthPixels - new_width) / 2;
+//            bottomCtrlRightLayout.setLayoutParams(bottomCtrlRightLayoutParams);
 
-            LinearLayout bottomCtrlLeftLayout = findViewById(R.id.bottom_ctrl_left);
-            ViewGroup.LayoutParams bottomCtrlLeftLayoutParams = bottomCtrlLeftLayout.getLayoutParams();
-            bottomCtrlLeftLayoutParams.width = (widthPixels - new_width) / 2;
-            bottomCtrlLeftLayout.setLayoutParams(bottomCtrlLeftLayoutParams);
+            LinearLayout PGBodyLeftLayout = findViewById(R.id.PG_body_left);
+            ViewGroup.LayoutParams PGBodyLeftLayoutParams = PGBodyLeftLayout.getLayoutParams();
+            PGBodyLeftLayoutParams.width = (widthPixels - new_width) / 2;
+            PGBodyLeftLayout.setLayoutParams(PGBodyLeftLayoutParams);
 
-            LinearLayout bottomCtrlRightLayout = findViewById(R.id.bottom_ctrl_right);
-            ViewGroup.LayoutParams bottomCtrlRightLayoutParams = bottomCtrlRightLayout.getLayoutParams();
-            bottomCtrlRightLayoutParams.width = (widthPixels - new_width) / 2;
-            bottomCtrlRightLayout.setLayoutParams(bottomCtrlRightLayoutParams);
+            LinearLayout PGBodyRightLayout = findViewById(R.id.PG_body_right);
+            ViewGroup.LayoutParams PGBodyRightLayoutParams = PGBodyRightLayout.getLayoutParams();
+            PGBodyRightLayoutParams.width = (widthPixels - new_width) / 2;
+            PGBodyRightLayout.setLayoutParams(PGBodyRightLayoutParams);
         }else{
             int new_height = (int)width_coefficient * 24;
             int new_width = (int)width_coefficient * 12;
@@ -94,20 +104,31 @@ public class main_screen extends AppCompatActivity
 
             linearLayout.setLayoutParams(layoutParams);
 
-            LinearLayout bottomCtrlMiddleLayout = findViewById(R.id.bottom_ctrl_middle);
-            ViewGroup.LayoutParams bottomCtrlMiddleLayoutParams = bottomCtrlMiddleLayout.getLayoutParams();
-            bottomCtrlMiddleLayoutParams.width = new_width;
-            bottomCtrlMiddleLayout.setLayoutParams(bottomCtrlMiddleLayoutParams);
+//            LinearLayout bottomCtrlMiddleLayout = findViewById(R.id.bottom_ctrl_middle);
+//            ViewGroup.LayoutParams bottomCtrlMiddleLayoutParams = bottomCtrlMiddleLayout.getLayoutParams();
+//            bottomCtrlMiddleLayoutParams.width = new_width;
+//            bottomCtrlMiddleLayout.setLayoutParams(bottomCtrlMiddleLayoutParams);
+//
+//            LinearLayout bottomCtrlLeftLayout = findViewById(R.id.bottom_ctrl_left);
+//            ViewGroup.LayoutParams bottomCtrlLeftLayoutParams = bottomCtrlLeftLayout.getLayoutParams();
+//            bottomCtrlLeftLayoutParams.width = (widthPixels - new_width) / 2;
+//            bottomCtrlLeftLayout.setLayoutParams(bottomCtrlLeftLayoutParams);
+//
+//            LinearLayout bottomCtrlRightLayout = findViewById(R.id.bottom_ctrl_right);
+//            ViewGroup.LayoutParams bottomCtrlRightLayoutParams = bottomCtrlRightLayout.getLayoutParams();
+//            bottomCtrlRightLayoutParams.width = (widthPixels - new_width) / 2;
+//            bottomCtrlRightLayout.setLayoutParams(bottomCtrlRightLayoutParams);
 
-            LinearLayout bottomCtrlLeftLayout = findViewById(R.id.bottom_ctrl_left);
-            ViewGroup.LayoutParams bottomCtrlLeftLayoutParams = bottomCtrlLeftLayout.getLayoutParams();
-            bottomCtrlLeftLayoutParams.width = (widthPixels - new_width) / 2;
-            bottomCtrlLeftLayout.setLayoutParams(bottomCtrlLeftLayoutParams);
+            LinearLayout PGBodyLeftLayout = findViewById(R.id.PG_body_left);
+            ViewGroup.LayoutParams PGBodyLeftLayoutParams = PGBodyLeftLayout.getLayoutParams();
+            PGBodyLeftLayoutParams.width = (widthPixels - new_width) / 2;
+            PGBodyLeftLayout.setLayoutParams(PGBodyLeftLayoutParams);
 
-            LinearLayout bottomCtrlRightLayout = findViewById(R.id.bottom_ctrl_right);
-            ViewGroup.LayoutParams bottomCtrlRightLayoutParams = bottomCtrlRightLayout.getLayoutParams();
-            bottomCtrlRightLayoutParams.width = (widthPixels - new_width) / 2;
-            bottomCtrlRightLayout.setLayoutParams(bottomCtrlRightLayoutParams);
+            LinearLayout PGBodyRightLayout = findViewById(R.id.PG_body_right);
+            ViewGroup.LayoutParams PGBodyRightLayoutParams = PGBodyRightLayout.getLayoutParams();
+            PGBodyRightLayoutParams.width = (widthPixels - new_width) / 2;
+            PGBodyRightLayout.setLayoutParams(PGBodyRightLayoutParams);
+
         }
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -274,11 +295,11 @@ public class main_screen extends AppCompatActivity
             public boolean onTouch(View view, MotionEvent motionEvent) {
 
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.button_fall_pressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.control_button_pressed));
                     game.moveDown();
                     handler.postDelayed(free_fall, 400);
                 }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.button_fall));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.control_button_no_press));
                     handler.removeCallbacks(free_fall);
                 }
                 return true;
@@ -290,10 +311,10 @@ public class main_screen extends AppCompatActivity
             public boolean onTouch(View view, MotionEvent motionEvent) {
 
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.button_rotate_pressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.control_button_pressed));
                     game.rotate();
                 }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.button_rotate));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.control_button_no_press));
                 }
                 return true;
             }

@@ -1,6 +1,7 @@
 package com.example.hmessenger.logic;
 
 import java.util.ArrayList;
+import java.util.concurrent.Semaphore;
 
 public class Grid{
 
@@ -87,7 +88,7 @@ public class Grid{
         }
     }
 
-    private void placePattern(){
+    private  void placePattern(){
         for(short pm : patternMap){
             board.get(index + pm).set();
             board.get(index + pm).setColor(((Pattern)movableObject).getColor());

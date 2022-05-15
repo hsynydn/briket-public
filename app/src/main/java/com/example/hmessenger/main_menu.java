@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 
 import java.util.Objects;
 
@@ -30,12 +31,12 @@ public class main_menu extends AppCompatActivity {
             Log.i(TAG, e.toString());
         }
 
-        findViewById(R.id.textview_resume).setOnClickListener(view -> {
+/*        findViewById(R.id.textview_resume).setOnClickListener(view -> {
             Log.i(TAG, "textview_resume Click");
 //            Intent intent = new Intent(this, main_screen.class);
 //            startActivity(intent);
             this.finish();
-        });
+        });*/
     }
 
     @Override

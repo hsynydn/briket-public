@@ -17,192 +17,26 @@
                     android:layout_height="0dp"
                     android:layout_weight="6">
 
+                    <com.example.hmessenger.PlayBoardHead
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
                 </RelativeLayout>
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/PG_body"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="23"
-                    android:background="@color/white"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+                    android:layout_weight="23">
 
-                        <LinearLayout
-                            android:id="@+id/PG_body_left"
+                        <view class="com.example.hmessenger.PlayBoardView"
+                            android:id="@+id/view_playground"
+                            android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"/>
+                            android:background="@color/white"/>
 
-                        <LinearLayout
-                            android:id="@+id/layout_play_board"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:weightSum="24">
+                </RelativeLayout>
 
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_0"
-                                    />
-
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_1"
-                                    />
-
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_2"
-                                    />
-
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_3"
-                                    />
-
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_4" />
-
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_5" />
-
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_6" />
-
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_7" />
-
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_8" />
-
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_9" />
-
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_10" />
-
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_11" />
-
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_12" />
-
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_13" />
-
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_14" />
-
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_15" />
-
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_16" />
-
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_17" />
-
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_18" />
-
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_19" />
-
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_20" />
-
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_21" />
-
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_22" />
-
-                                <include
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    layout="@layout/layout_play_ground_raw_23" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/PG_body_right"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                                <ImageView
-                                    android:id="@+id/next_pattern"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="100dp"
-                                    android:layout_alignParentRight="true"/>
-                        </LinearLayout>
-
-
-                </LinearLayout>
 
                 <RelativeLayout
                     android:id="@+id/PG_footer"
@@ -259,36 +93,6 @@
                                     android:background="@android:color/transparent"/>
 
                         </LinearLayout>
-
-<!--                        <LinearLayout-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="0dp"-->
-<!--                            android:layout_weight="2"-->
-<!--                            android:orientation="horizontal"-->
-<!--                            android:background="@android:color/transparent">-->
-
-<!--                                <LinearLayout-->
-<!--                                    android:id="@+id/bottom_ctrl_left"-->
-<!--                                    android:layout_width="match_parent"-->
-<!--                                    android:layout_height="match_parent">-->
-
-<!--                                </LinearLayout>-->
-
-<!--                                <LinearLayout-->
-<!--                                    android:id="@+id/bottom_ctrl_middle"-->
-<!--                                    android:layout_width="match_parent"-->
-<!--                                    android:layout_height="match_parent">-->
-
-<!--                                </LinearLayout>-->
-
-<!--                                <LinearLayout-->
-<!--                                    android:id="@+id/bottom_ctrl_right"-->
-<!--                                    android:layout_width="match_parent"-->
-<!--                                    android:layout_height="match_parent">-->
-
-<!--                                </LinearLayout>-->
-
-<!--                        </LinearLayout>-->
 
                 </LinearLayout>
 

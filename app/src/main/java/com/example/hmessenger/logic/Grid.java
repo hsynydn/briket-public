@@ -1,5 +1,10 @@
 package com.example.hmessenger.logic;
 
+import android.content.Context;
+
+import com.example.hmessenger.R;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 

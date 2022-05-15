@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/blank.xml" value="0.21776315789473685" />
         <entry key="app/src/main/res/drawable/play_board_single_frame_bitmap.xml" value="0.21776315789473685" />
         <entry key="app/src/main/res/drawable/shape.xml" value="0.21776315789473685" />
         <entry key="app/src/main/res/drawable/shape_blue.xml" value="0.21776315789473685" />

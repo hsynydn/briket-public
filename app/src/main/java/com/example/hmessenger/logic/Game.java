@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.util.Log;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -34,6 +35,7 @@ public class Game {
 
     private Music tetris_gameboy_play;
     private Music tetris_gameboy_end;
+    private Music audio_fx_line_destroy;
 
     private GameState gameState;
 
@@ -52,6 +54,7 @@ public class Game {
         this.handler = handler;
         this.tetris_gameboy_play = new Music(context, R.raw.tetris_gameboy_play);
         this.tetris_gameboy_end = new Music(context, R.raw.tetris_gameboy_end);
+        this.audio_fx_line_destroy = new Music(context, R.raw.audio_fx_line_destroy);
 
         gameState = GameState.NOT_STARTED;
 
@@ -74,7 +77,7 @@ public class Game {
                     }
                 },
                 1000,
-                500,
+                300,
                 TimeUnit.MILLISECONDS);
     }
 
@@ -98,15 +101,20 @@ public class Game {
         // End the game
         if(grid.getGridMap().get(6).isSet()){
             service.shutdown();
-            tetris_gameboy_play.stop();
-            tetris_gameboy_end.start();
+//            tetris_gameboy_play.stop();
+//            tetris_gameboy_end.start();
             displayUnitController.visibleGameOver();
         }
 
         // Create new active pattern
         if(activePattern==null){
             Log.i(TAG, "Check is it Sequence");
-            int sequence = sequenceDetector.detect();
+            ArrayList<Integer> detected_row_indices = sequenceDetector.detect();
+
+            if (!detected_row_indices.isEmpty()){
+                audio_fx_line_destroy.start();
+                displayUnitController.burnFx(detected_row_indices);
+            }
 
             Log.i(TAG, "Active Pattern Null");
             Log.i(TAG, "Generated a Pattern");

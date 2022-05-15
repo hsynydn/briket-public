@@ -80,15 +80,15 @@ public class main_screen extends AppCompatActivity
 //            bottomCtrlRightLayoutParams.width = (widthPixels - new_width) / 2;
 //            bottomCtrlRightLayout.setLayoutParams(bottomCtrlRightLayoutParams);
 
-            LinearLayout PGBodyLeftLayout = findViewById(R.id.PG_body_left);
-            ViewGroup.LayoutParams PGBodyLeftLayoutParams = PGBodyLeftLayout.getLayoutParams();
-            PGBodyLeftLayoutParams.width = (widthPixels - new_width) / 2;
-            PGBodyLeftLayout.setLayoutParams(PGBodyLeftLayoutParams);
-
-            LinearLayout PGBodyRightLayout = findViewById(R.id.PG_body_right);
-            ViewGroup.LayoutParams PGBodyRightLayoutParams = PGBodyRightLayout.getLayoutParams();
-            PGBodyRightLayoutParams.width = (widthPixels - new_width) / 2;
-            PGBodyRightLayout.setLayoutParams(PGBodyRightLayoutParams);
+//            LinearLayout PGBodyLeftLayout = findViewById(R.id.PG_body_left);
+//            ViewGroup.LayoutParams PGBodyLeftLayoutParams = PGBodyLeftLayout.getLayoutParams();
+//            PGBodyLeftLayoutParams.width = (widthPixels - new_width) / 2;
+//            PGBodyLeftLayout.setLayoutParams(PGBodyLeftLayoutParams);
+//
+//            LinearLayout PGBodyRightLayout = findViewById(R.id.PG_body_right);
+//            ViewGroup.LayoutParams PGBodyRightLayoutParams = PGBodyRightLayout.getLayoutParams();
+//            PGBodyRightLayoutParams.width = (widthPixels - new_width) / 2;
+//            PGBodyRightLayout.setLayoutParams(PGBodyRightLayoutParams);
         }else{
             int new_height = (int)width_coefficient * 24;
             int new_width = (int)width_coefficient * 12;
@@ -119,15 +119,15 @@ public class main_screen extends AppCompatActivity
 //            bottomCtrlRightLayoutParams.width = (widthPixels - new_width) / 2;
 //            bottomCtrlRightLayout.setLayoutParams(bottomCtrlRightLayoutParams);
 
-            LinearLayout PGBodyLeftLayout = findViewById(R.id.PG_body_left);
-            ViewGroup.LayoutParams PGBodyLeftLayoutParams = PGBodyLeftLayout.getLayoutParams();
-            PGBodyLeftLayoutParams.width = (widthPixels - new_width) / 2;
-            PGBodyLeftLayout.setLayoutParams(PGBodyLeftLayoutParams);
-
-            LinearLayout PGBodyRightLayout = findViewById(R.id.PG_body_right);
-            ViewGroup.LayoutParams PGBodyRightLayoutParams = PGBodyRightLayout.getLayoutParams();
-            PGBodyRightLayoutParams.width = (widthPixels - new_width) / 2;
-            PGBodyRightLayout.setLayoutParams(PGBodyRightLayoutParams);
+//            LinearLayout PGBodyLeftLayout = findViewById(R.id.PG_body_left);
+//            ViewGroup.LayoutParams PGBodyLeftLayoutParams = PGBodyLeftLayout.getLayoutParams();
+//            PGBodyLeftLayoutParams.width = (widthPixels - new_width) / 2;
+//            PGBodyLeftLayout.setLayoutParams(PGBodyLeftLayoutParams);
+//
+//            LinearLayout PGBodyRightLayout = findViewById(R.id.PG_body_right);
+//            ViewGroup.LayoutParams PGBodyRightLayoutParams = PGBodyRightLayout.getLayoutParams();
+//            PGBodyRightLayoutParams.width = (widthPixels - new_width) / 2;
+//            PGBodyRightLayout.setLayoutParams(PGBodyRightLayoutParams);
 
         }
 
@@ -263,7 +263,7 @@ public class main_screen extends AppCompatActivity
             gridPane.add((ImageView) layout.getChildAt(i));
         }
 
-        displayUnitController = new DisplayUnitController(this, gridPane, findViewById(R.id.next_pattern), handler);
+//        displayUnitController = new DisplayUnitController(this, gridPane, findViewById(R.id.next_pattern), handler);
 
         try {
             game = new Game(this, displayUnitController, handler);

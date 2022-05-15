@@ -12,11 +12,13 @@ import java.util.Timer;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 public class Game {
 
     private static final String TAG = "Game";
+    private static Semaphore animation_mutex = new Semaphore(1);
 
     ScheduledExecutorService service;
     ScheduledFuture scheduledFuture;
@@ -109,12 +111,26 @@ public class Game {
         // Create new active pattern
         if(activePattern==null){
             Log.i(TAG, "Check is it Sequence");
+
+            try {
+                animation_mutex.acquire();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             ArrayList<Integer> detected_row_indices = sequenceDetector.detect();
 
             if (!detected_row_indices.isEmpty()){
                 audio_fx_line_destroy.start();
                 displayUnitController.burnFx(detected_row_indices);
+                try {
+                    Thread.sleep(400);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
+
+            animation_mutex.release();
 
             Log.i(TAG, "Active Pattern Null");
             Log.i(TAG, "Generated a Pattern");
@@ -130,6 +146,12 @@ public class Game {
             });
         }
 
+        try {
+            animation_mutex.acquire();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         if(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.UNDER_SIDE)){
             Log.i(TAG, "Periodic pattern fall");
             grid.fall();
@@ -138,6 +160,8 @@ public class Game {
             System.out.println("Active Pattern Null");
             activePattern = null;
         }
+
+        animation_mutex.release();
     }
 
     public void exit(){
@@ -148,41 +172,71 @@ public class Game {
     public void moveRight(){
         if (activePattern==null || gameState==GameState.PAUSE || gameState==GameState.END) return;
         if(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.RIGHT_SIDE)){
+            try {
+                animation_mutex.acquire();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             grid.scrollMovableToRight();
+            displayUnitController.refreshMonitor(grid.getGridMap());
+            animation_mutex.release();
         }
-        displayUnitController.refreshMonitor(grid.getGridMap());
     }
 
     public void moveLeft(){
         if (activePattern==null || gameState==GameState.PAUSE || gameState==GameState.END) return;
         if(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.LEFT_SIDE)){
+            try {
+                animation_mutex.acquire();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             grid.scrollMovableToLeft();
+            displayUnitController.refreshMonitor(grid.getGridMap());
+            animation_mutex.release();
         }
-        displayUnitController.refreshMonitor(grid.getGridMap());
     }
 
     public void moveDown(){
         if (activePattern==null || gameState==GameState.PAUSE || gameState==GameState.END) return;
         if(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.UNDER_SIDE)){
+            try {
+                animation_mutex.acquire();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             grid.fall();
+            displayUnitController.refreshMonitor(grid.getGridMap());
+            animation_mutex.release();
         }
-        displayUnitController.refreshMonitor(grid.getGridMap());
     }
 
     public void moveFreeFall(){
         if (activePattern==null || gameState==GameState.PAUSE || gameState==GameState.END) return;
         while(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.UNDER_SIDE)){
+            try {
+                animation_mutex.acquire();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             grid.fall();
+            displayUnitController.refreshMonitor(grid.getGridMap());
+            animation_mutex.release();
         }
-        displayUnitController.refreshMonitor(grid.getGridMap());
     }
 
     public void rotate(){
         if (activePattern==null || gameState==GameState.PAUSE || gameState==GameState.END) return;
         if(collisionDetector.detect(grid.getGridMap(), activePattern, Variables.RIGHT_SIDE)){
+            try {
+                animation_mutex.acquire();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             grid.rotate();
+            displayUnitController.refreshMonitor(grid.getGridMap());
+            animation_mutex.release();
         }
-        displayUnitController.refreshMonitor(grid.getGridMap());
     }
 
     public GameState getGameState(){

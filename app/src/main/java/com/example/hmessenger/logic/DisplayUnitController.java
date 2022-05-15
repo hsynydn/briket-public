@@ -125,8 +125,8 @@ public class DisplayUnitController implements Variables
                             playBoardView.animations_flags.get(index).set(i + 8, true);
                             playBoardView.animations_flags.get(index).set(i + 12, true);
                         }
-                            playBoardView.invalidate();
-                            Thread.sleep(100);
+                        playBoardView.invalidate();
+                        Thread.sleep(100);
                         for (Integer index : burn_indices) {
                             playBoardView.animations_flags.get(index).set(i, false);
                             playBoardView.animations_flags.get(index).set(i+4, false);

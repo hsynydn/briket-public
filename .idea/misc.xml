@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/blank.xml" value="0.21776315789473685" />
+        <entry key="app/src/main/res/drawable/ic_slack_463.xml" value="0.21776315789473685" />
         <entry key="app/src/main/res/drawable/play_board_single_frame_bitmap.xml" value="0.21776315789473685" />
         <entry key="app/src/main/res/drawable/shape.xml" value="0.21776315789473685" />
         <entry key="app/src/main/res/drawable/shape_blue.xml" value="0.21776315789473685" />
@@ -11,6 +12,7 @@
         <entry key="app/src/main/res/drawable/shape_green.xml" value="0.21776315789473685" />
         <entry key="app/src/main/res/drawable/shape_orange.xml" value="0.21776315789473685" />
         <entry key="app/src/main/res/drawable/shape_pinky.xml" value="0.21776315789473685" />
+        <entry key="app/src/main/res/drawable/splash.xml" value="0.21776315789473685" />
         <entry key="app/src/main/res/layout-w936dp/layout_play_1.xml" value="0.246484375" />
         <entry key="app/src/main/res/layout-w936dp/layout_play_ground_raw_1.xml" value="0.25625" />
         <entry key="app/src/main/res/layout-w936dp/play_screen_1.xml" value="0.246484375" />
@@ -21,7 +23,8 @@
         <entry key="app/src/main/res/layout/activity_main_screen.xml" value="0.32864583333333336" />
         <entry key="app/src/main/res/layout/activity_pg.xml" value="0.22" />
         <entry key="app/src/main/res/layout/layout.xml" value="0.29212962962962963" />
-        <entry key="app/src/main/res/layout/layout_play_board.xml" value="0.2075657894736842" />
+        <entry key="app/src/main/res/layout/layout_home.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/layout_play_board.xml" value="0.22" />
         <entry key="app/src/main/res/layout/layout_play_ground_raw_0.xml" value="0.18297101449275363" />
         <entry key="app/src/main/res/layout/layout_play_ground_raw_1.xml" value="0.2075657894736842" />
         <entry key="app/src/main/res/layout/layout_play_ground_raw_10.xml" value="0.29212962962962963" />
@@ -46,6 +49,7 @@
         <entry key="app/src/main/res/layout/layout_play_ground_raw_7.xml" value="0.29212962962962963" />
         <entry key="app/src/main/res/layout/layout_play_ground_raw_8.xml" value="0.29212962962962963" />
         <entry key="app/src/main/res/layout/layout_play_ground_raw_9.xml" value="0.29212962962962963" />
+        <entry key="app/src/main/res/layout/layout_splash_screen.xml" value="0.2075657894736842" />
         <entry key="app/src/main/res/layout/main_menu.xml" value="0.2075657894736842" />
         <entry key="app/src/main/res/layout/play_ground.xml" value="0.22" />
       </map>

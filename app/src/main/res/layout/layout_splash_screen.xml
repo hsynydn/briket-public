@@ -36,4 +36,17 @@
 <!--                android:textColorHighlight="#12710F" />-->
 <!--        </LinearLayout>-->
 <!--    </LinearLayout>-->
+    <ImageView
+        android:id="@+id/logo_splash"
+        android:layout_width="145dp"
+        android:layout_height="141dp"
+        android:layout_marginStart="133dp"
+        android:layout_marginTop="364dp"
+        android:layout_marginEnd="133dp"
+        android:layout_marginBottom="364dp"
+        android:src="@drawable/ic_slack_463"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

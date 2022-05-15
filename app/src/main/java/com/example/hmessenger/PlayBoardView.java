@@ -239,6 +239,7 @@ public class PlayBoardView extends View {
         Log.i(TAG, Integer.toString(this.getLayoutParams().width));
         Log.i(TAG, Integer.toString(this.getLayoutParams().height));
 
+        /* Draw game board */
         int j = 0;
         for (Drawable drawable : drawables) {
             drawable.setBounds(board.get(j));
@@ -246,6 +247,7 @@ public class PlayBoardView extends View {
             j++;
         }
 
+        /* Draw next pattern area */
         int k = 0;
         for (Drawable drawable : drawables2) {
             drawable.setBounds(board2.get(k));

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,17 +13,34 @@
             android:orientation="vertical"
             android:weightSum="35">
 
-                <RelativeLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/PG_header"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="6">
+                    android:layout_weight="6"
+                    android:background="@color/white">
 
-                    <com.example.hmessenger.PlayBoardHead
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        <ImageButton
+                            android:id="@+id/btn_menu"
+                            android:layout_width="60dp"
+                            android:layout_height="58dp"
+                            android:background="@drawable/brick_style_shady_red"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                </RelativeLayout>
+                        <TextView
+                            android:id="@+id/tv_score"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/bungee"
+                            android:text="SCORE"
+                            android:textColor="#B20040"
+                            android:textSize="18sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <RelativeLayout
                     android:id="@+id/PG_body"
@@ -59,6 +78,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="6">
+
                 </RelativeLayout>
 
                 <!--CONTROL LAYER BODY-->
@@ -108,17 +128,21 @@
                             android:id="@+id/btn_drop"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_margin="2dp"
+                            android:layout_marginLeft="60dp"
+                            android:layout_marginRight="60dp"
+                            android:layout_marginBottom="60dp"
                             android:layout_weight="0.5"
-                            android:background="@drawable/control_button_no_press"/>
+                            android:background="@drawable/brick_style_shady_pinky" />
 
                         <ImageButton
                             android:id="@+id/btn_rotate"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_margin="2dp"
+                            android:layout_marginLeft="60dp"
+                            android:layout_marginRight="60dp"
+                            android:layout_marginBottom="60dp"
                             android:layout_weight="0.5"
-                            android:background="@drawable/control_button_no_press"/>
+                            android:background="@drawable/brick_style_shady_pinky" />
 
                 </LinearLayout>
 

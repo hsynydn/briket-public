@@ -1,11 +1,8 @@
 package com.example.hmessenger;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -13,14 +10,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 
 import com.example.hmessenger.logic.DisplayUnitController;
 import com.example.hmessenger.logic.Game;
 import com.example.hmessenger.logic.Music;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Objects;
 
 
@@ -52,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         playBoardView = findViewById(R.id.view_playground);
-        displayUnitController = new DisplayUnitController(this, playBoardView, findViewById(R.id.next_pattern), handler);
+        displayUnitController = new DisplayUnitController(this, playBoardView, handler);
 
         try {
             game = new Game(this, displayUnitController, handler);
@@ -261,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openPlayGround(){
-        Intent intent = new Intent(this, main_screen.class);
+        Intent intent = new Intent(this, ActivityGameSplash.class);
         startActivity(intent);
     }
 }

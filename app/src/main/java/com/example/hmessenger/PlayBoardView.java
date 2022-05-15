@@ -123,7 +123,7 @@ public class PlayBoardView extends View {
                     }
                 }else{
                     for (Path p : tmp){
-                        p.lineTo(random.nextInt(sqrtLen/2) + left + sqrtLen/2, random.nextInt(sqrtLen/2) + top + sqrtLen/2);
+                        p.lineTo(random.nextInt(sqrtLen) + left, random.nextInt(sqrtLen) + top);
                     }
                 }
 

@@ -43,14 +43,12 @@ public class DisplayUnitController implements Variables
     public DisplayUnitController(
             AppCompatActivity context,
             PlayBoardView playBoardView,
-            ImageView nextPatternPanel,
             android.os.Handler handler
     ){
         this.playBoardView      = playBoardView;
         this.gridPane           = playBoardView.paints;
         this.context            = context;
-        this.gameOver           = context.findViewById(R.id.game_over);
-        this.nextPatternPanel   = nextPatternPanel;
+        this.gameOver           = context.findViewById(R.id.rot_elem);
         this.handler            = handler;
     }
 

@@ -54,7 +54,7 @@ public class Game {
         this.handler = handler;
         this.tetris_gameboy_play = new Music(context, R.raw.tetris_gameboy_play);
         this.tetris_gameboy_end = new Music(context, R.raw.tetris_gameboy_end);
-        this.audio_fx_line_destroy = new Music(context, R.raw.audio_fx_line_destroy);
+        this.audio_fx_line_destroy = new Music(context, R.raw.fx_audio_distortions );
 
         gameState = GameState.NOT_STARTED;
 

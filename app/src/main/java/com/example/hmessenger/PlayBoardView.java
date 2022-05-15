@@ -255,6 +255,10 @@ public class PlayBoardView extends View {
             k++;
         }
 
+
+        /* Here View draws animations per row if flag is True
+        * animations_flag holds a list of flags which decides
+        * whether */
         int f_i = 0;
         for (ArrayList<Boolean> flags : animations_flags){
             int f_j = 0;
@@ -273,7 +277,7 @@ public class PlayBoardView extends View {
         super.onSizeChanged(xNew, yNew, xOld, yOld);
 
         myInflate(xNew, yNew, 60);
-        myInflates2(30);
+        myInflates2(40);
     }
 
     @Override

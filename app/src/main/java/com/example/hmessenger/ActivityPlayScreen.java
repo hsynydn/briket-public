@@ -216,14 +216,14 @@ public class ActivityPlayScreen extends AppCompatActivity {
 
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
                     audio_fx_btn_click_3.start();
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.brick_style_shady_pinky_pressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.control_button_pressed));
                     handler.postDelayed(fallX1, 10);
                     handler.postDelayed(fallX1, 100);
                     handler.postDelayed(fallX2, 200);
                     handler.postDelayed(fallX3, 300);
                     handler.postDelayed(fallX6, 400);
                 }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.brick_style_shady_pinky));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.control_button_no_press));
                     handler.removeCallbacks(fallX1);
                     handler.removeCallbacks(fallX2);
                     handler.removeCallbacks(fallX3);
@@ -239,10 +239,10 @@ public class ActivityPlayScreen extends AppCompatActivity {
 
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
                     audio_fx_btn_click_3.start();
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.brick_style_shady_pinky_pressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.control_button_pressed));
                     game.rotate();
                 }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.brick_style_shady_pinky));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.control_button_no_press));
                 }
                 return true;
             }

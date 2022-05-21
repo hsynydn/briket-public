@@ -36,8 +36,9 @@ public class ActivityPause extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent motionEvent) {
 
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                    startActivity(new Intent(ActivityPause.this, ActivityPlayScreen.class));
-//                    finish();
+                    Intent pgActivity = new Intent(ActivityPause.this, ActivityPlayScreen.class);
+                    pgActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(pgActivity);
                 }
                 return true;
             }

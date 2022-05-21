@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 
 import com.example.hmessenger.logic.DisplayUnitController;
 import com.example.hmessenger.logic.Game;
+import com.example.hmessenger.logic.GameState;
 import com.example.hmessenger.logic.Music;
 
 import java.io.IOException;
@@ -27,12 +28,16 @@ public class ActivityPlayScreen extends AppCompatActivity {
     DisplayUnitController   displayUnitController;
     Game                    game;
 
-    Handler handler = new Handler();
+    private Handler handler = new Handler();
 
     private Music audio_fx_btn_click_3;
+    private Music fx_audio_btn_pause;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Log.i(TAG, "onCreate");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_play_board);
 
@@ -166,6 +171,7 @@ public class ActivityPlayScreen extends AppCompatActivity {
 
         try {
             this.audio_fx_btn_click_3 = new Music(getApplicationContext(), R.raw.audio_fx_btn_click_3);
+            this.fx_audio_btn_pause = new Music(getApplicationContext(), R.raw.fx_audio_pause);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -247,16 +253,47 @@ public class ActivityPlayScreen extends AppCompatActivity {
                 return true;
             }
         });
+
+        findViewById(R.id.btn_pause).setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
+                    fx_audio_btn_pause.start();
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.control_button_pressed));
+                    if (game.getGameState() == GameState.PAUSE){
+                        game.resume();
+                    }else if (game.getGameState() == GameState.RESUME || game.getGameState() == GameState.START){
+                        game.pause();
+                    }
+                }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.control_button_no_press));
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.btn_menu).setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
+                    fx_audio_btn_pause.start();
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.control_button_pressed));
+                    game.pause();
+                    Intent intent = new Intent(ActivityPlayScreen.this, ActivityPause.class);
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.control_button_no_press));
+                    startActivity(intent);
+                }
+                return true;
+            }
+        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        Log.i(TAG, "onCreate");
         game.start();
-    }
-
-    public void openPlayGround(){
-        Intent intent = new Intent(this, ActivityGameSplash.class);
-        startActivity(intent);
     }
 }

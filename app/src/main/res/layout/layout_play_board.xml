@@ -199,12 +199,21 @@
                             android:id="@+id/btn_pause"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:layout_marginTop="32dp"
+                            android:layout_marginTop="8dp"
                             android:layout_weight="0.2"
                             android:background="@drawable/control_button_no_press"
                             app:layout_constraintEnd_toStartOf="@+id/btn_rotate"
                             app:layout_constraintStart_toEndOf="@+id/btn_drop"
                             app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageButton
+                            android:id="@+id/btn_menu"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/control_button_no_press"
+                            app:layout_constraintStart_toStartOf="@+id/btn_pause"
+                            app:layout_constraintTop_toBottomOf="@+id/btn_pause" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

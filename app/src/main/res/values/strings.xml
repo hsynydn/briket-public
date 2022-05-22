@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Briket</string>
+    <string translatable="false" name="game_services_project_id">975784014030</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

@@ -13,6 +13,10 @@ import android.widget.ImageView;
 
 import java.util.Objects;
 
+import com.google.android.gms.games.GamesSignInClient;
+import com.google.android.gms.games.PlayGames;
+import com.google.android.gms.games.PlayGamesSdk;
+
 public class ActivityHome extends AppCompatActivity {
 
     private static final String TAG = "activity_main_menu";
@@ -67,6 +71,24 @@ public class ActivityHome extends AppCompatActivity {
         findViewById(R.id.home_pause_btn_exit).setOnClickListener(view -> {
             Log.i(TAG, "Exit");
             this.finishAffinity();
+        });
+
+        PlayGamesSdk.initialize(this);
+
+        GamesSignInClient gamesSignInClient = PlayGames.getGamesSignInClient(this);
+
+        gamesSignInClient.isAuthenticated().addOnCompleteListener(isAuthenticatedTask -> {
+            boolean isAuthenticated =
+                    (isAuthenticatedTask.isSuccessful() &&
+                            isAuthenticatedTask.getResult().isAuthenticated());
+
+            if (isAuthenticated) {
+                // Continue with Play Games Services
+            } else {
+                // Disable your integration with Play Games Services or show a
+                // login button to ask  players to sign-in. Clicking it should
+                // call GamesSignInClient.signIn().
+            }
         });
     }
 

@@ -46,6 +46,9 @@
             android:screenOrientation="portrait"
             />
 
+        <meta-data android:name="com.google.android.gms.games.APP_ID"
+            android:value="@string/game_services_project_id"/>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

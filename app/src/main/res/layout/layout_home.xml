@@ -8,6 +8,30 @@
     android:orientation="vertical">
 
     <ImageView
+        android:id="@+id/iv_home_drop_3"
+        android:layout_width="512dp"
+        android:layout_height="512dp"
+        app:srcCompat="@drawable/brick_style_shady_pinky" />
+
+    <ImageView
+        android:id="@+id/drop_2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/brick_style_shady_pinky" />
+
+    <ImageView
+        android:id="@+id/drop_1"
+        android:layout_width="200dp"
+        android:layout_height="00dp"
+        app:srcCompat="@drawable/brick_style_shady_orange"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="224dp" />
+
+    <ImageView
         android:id="@+id/imageView"
         android:layout_width="120dp"
         android:layout_height="116dp"
@@ -19,16 +43,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_slack_463" />
+        app:srcCompat="@drawable/logo" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_new_game"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:layout_marginStart="129dp"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="130dp"
-        android:background="@android:color/transparent"
+        android:background="@drawable/menu_play_pressed"
         android:fontFamily="@font/ubuntu_bold"
         android:text="New Game"
         android:textColor="#9C27B0"

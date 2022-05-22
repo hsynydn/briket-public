@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -97,11 +96,12 @@
                     android:layout_height="0dp"
                     android:layout_weight="23">
 
-                        <view class="com.example.hmessenger.PlayBoardView"
+                        <view
                             android:id="@+id/view_playground"
-                            android:layout_height="wrap_content"
+                            class="com.kastrakomnen.hmessenger.PlayBoardView"
                             android:layout_width="wrap_content"
-                            android:background="@color/white"/>
+                            android:layout_height="wrap_content"
+                            android:background="@color/white" />
 
                 </RelativeLayout>
 
@@ -135,31 +135,31 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="23"
+                    android:background="@android:color/transparent"
                     android:orientation="vertical"
-                    android:weightSum="10"
-                    android:background="@android:color/transparent">
+                    android:weightSum="10">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="10"
+                            android:background="@android:color/transparent"
                             android:orientation="horizontal"
-                            android:weightSum="2"
-                            android:background="@android:color/transparent">
+                            android:weightSum="2">
 
                                 <ImageButton
                                     android:id="@+id/btn_left_move"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
-                                    android:background="@android:color/transparent"/>
+                                    android:background="@android:color/transparent" />
 
                                 <ImageButton
                                     android:id="@+id/btn_right_move"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
-                                    android:background="@android:color/transparent"/>
+                                    android:background="@android:color/transparent" />
 
                         </LinearLayout>
 
@@ -170,8 +170,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="6"
-                    android:orientation="horizontal"
-                    android:background="@color/white">
+                    android:background="@color/white"
+                    android:orientation="horizontal">
 
                         <ImageButton
                             android:id="@+id/btn_rotate"

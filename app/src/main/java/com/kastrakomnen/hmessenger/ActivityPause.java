@@ -56,5 +56,10 @@ public class ActivityPause extends AppCompatActivity {
             startActivity(intent);
             this.finish();
         });
+
+        findViewById(R.id.pause_btn_exit).setOnClickListener(view -> {
+            Log.i(TAG, "pause_btn_exit");
+            this.finishAffinity();
+        });
     }
 }

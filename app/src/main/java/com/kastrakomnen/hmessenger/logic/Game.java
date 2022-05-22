@@ -6,6 +6,8 @@ import android.content.Context;
 import android.os.Handler;
 import android.util.Log;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -43,6 +45,9 @@ public class Game {
     private Music audio_fx_line_destroy;
 
     private GameState gameState;
+    private Context context;
+
+    private GameListener gameListener;
 
     private static Game instance = null;
 
@@ -72,7 +77,14 @@ public class Game {
 
         gameState = GameState.NOT_STARTED;
 
+        this.context = context;
+
         service = Executors.newScheduledThreadPool(1);
+    }
+
+    public Game setGameListener(GameListener gameListener){
+        this.gameListener = gameListener;
+        return this;
     }
 
     public Game setDisplayUnitController(DisplayUnitController displayUnitController){
@@ -123,15 +135,18 @@ public class Game {
         gameState = GameState.END;
     }
 
+    public void destroy(){
+        instance = null;
+    }
+
     private void schedCheck(){
 
         // If this place is set, it means there is no room to create new object
         // End the game
         if(grid.getGridMap().get(6).isSet()){
+            Log.i(TAG, "Game Over");
             service.shutdown();
-//            tetris_gameboy_play.stop();
-//            tetris_gameboy_end.start();
-            displayUnitController.visibleGameOver();
+            gameListener.onGameOver();
         }
 
         // Create new active pattern

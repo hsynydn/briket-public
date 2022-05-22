@@ -9,32 +9,32 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="120dp"
-        android:layout_height="116dp"
+        android:layout_width="256dp"
+        android:layout_height="256dp"
         android:layout_marginStart="119dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="128dp"
         android:layout_marginEnd="119dp"
         android:layout_marginBottom="654dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/logo_text_plus" />
 
-    <Button
+    <TextView
         android:id="@+id/btn_new_game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="129dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="130dp"
         android:background="@android:color/transparent"
         android:fontFamily="@font/ubuntu_bold"
-        android:text="New Game"
+        android:text="NEW GAME"
         android:textColor="#9C27B0"
         android:textColorHighlight="#000000"
         android:textColorHint="#EA0000"
-        android:textSize="24sp"
+        android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,38 +48,38 @@
         android:fontFamily="@font/ubuntu_bold"
         android:text="RESUME"
         android:textColor="#F44336"
-        android:textSize="36sp"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <Button
+    <TextView
         android:id="@+id/btn_options"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="154dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="154dp"
         android:background="@android:color/transparent"
         android:fontFamily="@font/ubuntu_bold"
         android:text="OPTIONS"
-        android:textSize="22sp"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_new_game" />
 
-    <Button
-        android:id="@+id/btn_exit"
+    <TextView
+        android:id="@+id/pause_btn_exit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="161dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="162dp"
         android:background="@android:color/transparent"
         android:fontFamily="@font/ubuntu_bold"
         android:text="EXIT"
         android:textColor="#FF0000"
-        android:textSize="22sp"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_options" />

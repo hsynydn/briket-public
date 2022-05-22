@@ -50,21 +50,21 @@ public class ActivityHome extends AppCompatActivity {
         ImageView drop_3 = findViewById(R.id.iv_home_drop_3);
         drop_3.setAnimation(animaton_3);
 
-        findViewById(R.id.btn_new_game).setOnClickListener(view -> {
+        findViewById(R.id.home_btn_new_game).setOnClickListener(view -> {
             Log.i(TAG, "New Game");
             Intent intent = new Intent(this, ActivityPlayScreen.class);
             startActivity(intent);
             this.finish();
         });
 
-        findViewById(R.id.btn_options).setOnClickListener(view -> {
+        findViewById(R.id.home_btn_options).setOnClickListener(view -> {
             Log.i(TAG, "btn_home_options");
             Intent intent = new Intent(this, ActivityOptions.class);
             startActivity(intent);
             this.finish();
         });
 
-        findViewById(R.id.btn_exit).setOnClickListener(view -> {
+        findViewById(R.id.home_pause_btn_exit).setOnClickListener(view -> {
             Log.i(TAG, "Exit");
             this.finishAffinity();
         });

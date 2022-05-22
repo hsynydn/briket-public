@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 
 import com.kastrakomnen.hmessenger.logic.DisplayUnitController;
 import com.kastrakomnen.hmessenger.logic.Game;
+import com.kastrakomnen.hmessenger.logic.GameListener;
 import com.kastrakomnen.hmessenger.logic.GameState;
 import com.kastrakomnen.hmessenger.logic.Music;
 import com.kastrakomnen.hmessenger.view.AnimationLayer;
@@ -25,15 +26,15 @@ import java.io.IOException;
 import java.util.Objects;
 
 
-public class ActivityPlayScreen extends AppCompatActivity {
+public class ActivityPlayScreen extends AppCompatActivity implements GameListener {
 
     private static final String TAG = "MainActivity";
 
-    public PlayBoardView    playBoardView;
-    DisplayUnitController   displayUnitController;
-    Game                    game;
+    public  PlayBoardView           playBoardView;
+    private DisplayUnitController   displayUnitController;
+    private Game                    game;
 
-    private Handler handler = new Handler();
+    private Handler handler;
 
     private Music audio_fx_btn_click_3;
     private Music fx_audio_btn_pause;
@@ -61,6 +62,8 @@ public class ActivityPlayScreen extends AppCompatActivity {
             Log.i(TAG, e.toString());
         }
 
+        handler  = new Handler();
+
         playBoardView = findViewById(R.id.view_playground);
         displayUnitController = new DisplayUnitController(this, playBoardView, handler);
 
@@ -71,7 +74,8 @@ public class ActivityPlayScreen extends AppCompatActivity {
         try {
             game = Game.getInstance(this)
                     .setDisplayUnitController(displayUnitController)
-                    .setHandler(handler);
+                    .setHandler(handler)
+                    .setGameListener(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -329,5 +333,21 @@ public class ActivityPlayScreen extends AppCompatActivity {
         Log.i(TAG, "onPause");
         game.pause();
         music_get_wacky.pause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "onDestroy");
+        music_get_wacky.stop();
+    }
+
+    @Override
+    public void onGameOver() {
+        Log.i(TAG, "onGameOver");
+        game.destroy();
+        Intent intent = new Intent(this, ActivityHome.class);
+        startActivity(intent);
+        this.finish();
     }
 }

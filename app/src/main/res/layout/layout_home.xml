@@ -11,7 +11,10 @@
         android:id="@+id/iv_home_drop_3"
         android:layout_width="512dp"
         android:layout_height="512dp"
-        app:srcCompat="@drawable/brick_style_shady_pinky" />
+        android:layout_marginBottom="356dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/brick_style_shady_pinky"
+        tools:layout_editor_absoluteX="0dp" />
 
     <ImageView
         android:id="@+id/drop_2"
@@ -33,54 +36,54 @@
         tools:layout_editor_absoluteY="224dp"
         tools:visibility="gone" />
 
-    <ImageButton
-        android:id="@+id/btn_new_game"
+    <TextView
+        android:id="@+id/home_btn_new_game"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginStart="129dp"
         android:layout_marginEnd="130dp"
-        android:background="@drawable/menu_play_pressed"
         android:fontFamily="@font/ubuntu_bold"
-        android:text="New Game"
+        android:text="NEW GAME"
         android:textColor="#9C27B0"
         android:textColorHighlight="#000000"
         android:textColorHint="#EA0000"
-        android:textSize="24sp"
+        android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.312"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_logo_text" />
 
-    <Button
-        android:id="@+id/btn_options"
+    <TextView
+        android:id="@+id/home_btn_options"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="154dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="154dp"
         android:background="@android:color/transparent"
         android:fontFamily="@font/ubuntu_bold"
         android:text="OPTIONS"
-        android:textSize="22sp"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_new_game" />
+        app:layout_constraintTop_toBottomOf="@+id/home_btn_new_game" />
 
-    <Button
-        android:id="@+id/btn_exit"
+    <TextView
+        android:id="@+id/home_pause_btn_exit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="161dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="162dp"
         android:background="@android:color/transparent"
         android:fontFamily="@font/ubuntu_bold"
         android:text="EXIT"
         android:textColor="#FF0000"
-        android:textSize="22sp"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_options" />
+        app:layout_constraintTop_toBottomOf="@id/home_btn_options" />
 
     <ImageView
         android:id="@+id/iv_logo_text"

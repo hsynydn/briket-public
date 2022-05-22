@@ -36,6 +36,7 @@
 <!--                android:textColorHighlight="#12710F" />-->
 <!--        </LinearLayout>-->
 <!--    </LinearLayout>-->
+
     <ImageView
         android:id="@+id/logo_splash"
         android:layout_width="145dp"
@@ -49,4 +50,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/splash_iv_logo_text"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="72dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>

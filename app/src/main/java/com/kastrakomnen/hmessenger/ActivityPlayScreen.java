@@ -3,7 +3,9 @@ package com.kastrakomnen.hmessenger;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
+import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -11,11 +13,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 
 import com.kastrakomnen.hmessenger.logic.DisplayUnitController;
 import com.kastrakomnen.hmessenger.logic.Game;
 import com.kastrakomnen.hmessenger.logic.GameState;
 import com.kastrakomnen.hmessenger.logic.Music;
+import com.kastrakomnen.hmessenger.view.AnimationLayer;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -34,6 +38,10 @@ public class ActivityPlayScreen extends AppCompatActivity {
     private Music audio_fx_btn_click_3;
     private Music fx_audio_btn_pause;
     private MediaPlayer music_get_wacky;
+
+    /****
+     * Game Animations will be drawn upon this GLSurfaceView */
+    private GLSurfaceView animationLayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +63,10 @@ public class ActivityPlayScreen extends AppCompatActivity {
 
         playBoardView = findViewById(R.id.view_playground);
         displayUnitController = new DisplayUnitController(this, playBoardView, handler);
+
+        animationLayer = new AnimationLayer(this);
+        RelativeLayout pg_body = findViewById(R.id.PG_body);
+        pg_body.addView(animationLayer);
 
         try {
             game = Game.getInstance(this)

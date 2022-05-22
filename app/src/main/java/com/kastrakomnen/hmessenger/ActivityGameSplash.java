@@ -20,6 +20,7 @@ public class ActivityGameSplash extends AppCompatActivity
     private static final String TAG = "ActivityGameSplash";
 
     private Animation animaton;
+    private Animation animation_logo_text_show;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,9 @@ public class ActivityGameSplash extends AppCompatActivity
         ImageView imageView = findViewById(R.id.logo_splash);
         imageView.setAnimation(animaton);
 
+        animation_logo_text_show = AnimationUtils.loadAnimation(this, R.anim.splash_logo_text_show);
+        ImageView splash_iv_logo_text = findViewById(R.id.splash_iv_logo_text);
+        splash_iv_logo_text.setAnimation(animation_logo_text_show);
 
         new Handler().postDelayed(new Runnable() {
             @Override

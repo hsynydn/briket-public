@@ -21,36 +21,23 @@
         android:layout_marginBottom="75dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/brick_style_shady_pinky" />
+        app:srcCompat="@drawable/brick_style_shady_green" />
 
     <ImageView
         android:id="@+id/drop_1"
         android:layout_width="200dp"
         android:layout_height="00dp"
+        android:visibility="gone"
         app:srcCompat="@drawable/brick_style_shady_orange"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="224dp" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="120dp"
-        android:layout_height="116dp"
-        android:layout_marginStart="119dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="119dp"
-        android:layout_marginBottom="654dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        tools:layout_editor_absoluteY="224dp"
+        tools:visibility="gone" />
 
     <ImageButton
         android:id="@+id/btn_new_game"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginStart="129dp"
-        android:layout_marginTop="80dp"
         android:layout_marginEnd="130dp"
         android:background="@drawable/menu_play_pressed"
         android:fontFamily="@font/ubuntu_bold"
@@ -62,7 +49,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_logo_text" />
 
     <Button
         android:id="@+id/btn_options"
@@ -94,4 +81,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_options" />
+
+    <ImageView
+        android:id="@+id/iv_logo_text"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_text_plus" />
 </androidx.constraintlayout.widget.ConstraintLayout>

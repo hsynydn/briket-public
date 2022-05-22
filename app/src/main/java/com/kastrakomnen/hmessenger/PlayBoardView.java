@@ -78,15 +78,18 @@ public class PlayBoardView extends View {
 
     void myInflate(int width, int height, int sqrtLen){
 
-        Random random = new Random();
+        board.clear();
+        animations.clear();
+        animations_flags.clear();
+        laser_beam_paints.clear();
 
-        int left_base = (width - 12 * sqrtLen) / 2;
-        int top_base = (height - 24 * sqrtLen) / 2;
+        int left_base   = (width - 12 * sqrtLen) / 2;
+        int top_base    = (height - 24 * sqrtLen) / 2;
 
-        int left = left_base;
-        int right = left + sqrtLen;
-        int top = top_base;
-        int bottom = top + sqrtLen;
+        int left    = left_base;
+        int right   = left + sqrtLen;
+        int top     = top_base;
+        int bottom  = top + sqrtLen;
 
         /* Number of rows */
         for (int j = 0; j<24; j++){
@@ -229,8 +232,10 @@ public class PlayBoardView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        Log.i(TAG, "onDraw " + Integer.toString(this.getLayoutParams().width));
-        Log.i(TAG, "onDraw " + Integer.toString(this.getLayoutParams().height));
+        Log.i(TAG, "onDraw");
+
+//        Log.i(TAG, "onDraw " + Integer.toString(this.getLayoutParams().width));
+//        Log.i(TAG, "onDraw " + Integer.toString(this.getLayoutParams().height));
 
         /* Draw game board */
         int j = 0;
@@ -268,6 +273,7 @@ public class PlayBoardView extends View {
     @Override
     protected void onSizeChanged(int xNew, int yNew, int xOld, int yOld){
         super.onSizeChanged(xNew, yNew, xOld, yOld);
+        Log.i(TAG, "onSizeChanged");
 
         myInflate(xNew, yNew, 60);
         myInflates2(40);
@@ -275,19 +281,19 @@ public class PlayBoardView extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        Log.i(TAG, "onMeasure");
 
-        Log.i(TAG, "onMeasure " + Integer.toString(widthMeasureSpec));
-        Log.i(TAG, "onMeasure " + Integer.toString(heightMeasureSpec));
+//        Log.i(TAG, "onMeasure " + Integer.toString(widthMeasureSpec));
+//        Log.i(TAG, "onMeasure " + Integer.toString(heightMeasureSpec));
 
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
 
-        Log.i(TAG, "widthSize :: " + widthSize);
-        Log.i(TAG, "heightSize :: " + heightSize);
+//        Log.i(TAG, "widthSize :: " + widthSize);
+//        Log.i(TAG, "heightSize :: " + heightSize);
 
     }
 }

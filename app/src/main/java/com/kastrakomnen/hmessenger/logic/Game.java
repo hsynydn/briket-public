@@ -99,7 +99,10 @@ public class Game {
 
     public void start(){
 
-        if (gameState == GameState.START || gameState == GameState.RESUME){
+        Log.i(TAG, "{start} ─ call start");
+
+        if (gameState == GameState.START){
+            Log.i(TAG, "{start} ─ GameState.START");
             return;
         }
 
@@ -127,6 +130,7 @@ public class Game {
     }
 
     public void resume(){
+        Log.i(TAG, "{resume} ─ call resume");
         gameState = GameState.RESUME;
         start();
     }

@@ -8,10 +8,13 @@ import android.media.MediaPlayer;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
@@ -44,6 +47,10 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
      * Game Animations will be drawn upon this GLSurfaceView */
     private GLSurfaceView animationLayer;
 
+    private Animation anim_count_down3;
+    private Animation anim_count_down2;
+    private Animation anim_count_down1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -70,6 +77,10 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
         animationLayer = new AnimationLayer(this);
         RelativeLayout pg_body = findViewById(R.id.PG_body);
         pg_body.addView(animationLayer);
+
+        anim_count_down3 = AnimationUtils.loadAnimation(this, R.anim.far_away);
+        anim_count_down2 = AnimationUtils.loadAnimation(this, R.anim.far_away);
+        anim_count_down1 = AnimationUtils.loadAnimation(this, R.anim.far_away);
 
         try {
             game = Game.getInstance(this)
@@ -311,20 +322,79 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
                 return true;
             }
         });
+
+        findViewById(R.id.iv_count_down_3).setVisibility(View.INVISIBLE);
+        findViewById(R.id.iv_count_down_2).setVisibility(View.INVISIBLE);
+        findViewById(R.id.iv_count_down_1).setVisibility(View.INVISIBLE);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         Log.i(TAG, "onStart");
+
+        if (game.getGameState() != GameState.NOT_STARTED){
+            return;
+        }
+
+        new Handler().postDelayed(new Runnable() {
+                                      @Override
+                                      public void run() {
+                                          findViewById(R.id.iv_count_down_3).setVisibility(View.VISIBLE);
+                                          findViewById(R.id.iv_count_down_3).setAnimation(anim_count_down3);
+                                      }
+                                  },
+                500);
+
+        new Handler().postDelayed(new Runnable() {
+                                      @Override
+                                      public void run() {
+                                          findViewById(R.id.iv_count_down_3).setVisibility(View.INVISIBLE);
+                                          anim_count_down3.cancel();
+//                      findViewById(R.id.iv_count_down_3).clearAnimation();
+                                          findViewById(R.id.iv_count_down_2).setVisibility(View.VISIBLE);
+                                          findViewById(R.id.iv_count_down_2).setAnimation(anim_count_down2);
+                                      }
+                                  },
+                1500);
+
+        new Handler().postDelayed(new Runnable() {
+                                      @Override
+                                      public void run() {
+                                          findViewById(R.id.iv_count_down_2).setVisibility(View.INVISIBLE);
+                                          anim_count_down2.cancel();
+//                      findViewById(R.id.iv_count_down_2).clearAnimation();
+                                          findViewById(R.id.iv_count_down_1).setVisibility(View.VISIBLE);
+                                          findViewById(R.id.iv_count_down_1).setAnimation(anim_count_down1);
+                                      }
+                                  },
+                2500);
+
+        new Handler().postDelayed(new Runnable() {
+                                      @Override
+                                      public void run() {
+                                          findViewById(R.id.iv_count_down_1).setVisibility(View.INVISIBLE);
+                                          anim_count_down1.cancel();
+//                      findViewById(R.id.iv_count_down_1).clearAnimation();
+                                          music_get_wacky.start();
+                                          game.start();
+                                      }
+                                  },
+                3500);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         Log.i(TAG, "onResume");
-        music_get_wacky.start();
-        game.start();
+
+        if (game.getGameState() == GameState.PAUSE){
+            Log.i(TAG, "{onResume} ─ GameState.PAUSE ─ Try Resume");
+            music_get_wacky.start();
+            Log.i(TAG, "{onResume} ─ GameState.PAUSE ─ Start music");
+            game.resume();
+            Log.i(TAG, "{onResume} ─ GameState.PAUSE ─ call game.resume()");
+        }
     }
 
     @Override

@@ -51,6 +51,7 @@ public class ProgressCardAdapter extends RecyclerView.Adapter<ProgressCardAdapte
             holder.star2.setImageResource(R.drawable.star_dead);
             holder.star3.setImageResource(R.drawable.star_dead);
             holder.tv_hi_score.setVisibility(View.INVISIBLE);
+            holder.tv_hi_score_title.setVisibility(View.INVISIBLE);
             holder.setItemClickListener(null);
         }else{
             holder.box.setImageResource(R.drawable.brick_style_shady_red);
@@ -76,6 +77,7 @@ public class ProgressCardAdapter extends RecyclerView.Adapter<ProgressCardAdapte
 
         TextView tv_chapter_no;
         TextView tv_hi_score;
+        TextView tv_hi_score_title;
 
         ItemClickListener itemClickListener;
 
@@ -89,6 +91,7 @@ public class ProgressCardAdapter extends RecyclerView.Adapter<ProgressCardAdapte
             star3       = itemView.findViewById(R.id.iv_star_3);
             tv_chapter_no = itemView.findViewById(R.id.tv_chapter_no);
             tv_hi_score   = itemView.findViewById(R.id.tv_hi_score);
+            tv_hi_score_title   = itemView.findViewById(R.id.tv_high_score_title);
         }
 
         public void setItemClickListener(ItemClickListener itemClickListener) {

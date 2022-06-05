@@ -8,12 +8,17 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import java.util.Objects;
 
 public class ActivityPause extends AppCompatActivity {
 
     public static final String TAG = "ActivityPause";
+
+    private Animation logoBreathingAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +35,10 @@ public class ActivityPause extends AppCompatActivity {
             Log.i(TAG, e.toString());
         }
 
-        findViewById(R.id.tv_resume).setOnTouchListener(new View.OnTouchListener() {
+        this.logoBreathingAnimation = AnimationUtils.loadAnimation(this, R.anim.breathing);
+        findViewById(R.id.layout_pause_iv_logo).setAnimation(logoBreathingAnimation);
+
+        findViewById(R.id.layout_pause_tv_resume).setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
 
@@ -43,23 +51,40 @@ public class ActivityPause extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.btn_options).setOnClickListener(view -> {
-            Log.i(TAG, "btn_home_options");
-            Intent intent = new Intent(this, ActivityOptions.class);
-            startActivity(intent);
-            this.finish();
-        });
-
-        findViewById(R.id.btn_new_game).setOnClickListener(view -> {
+        findViewById(R.id.layout_pause_tv_restart).setOnClickListener(view -> {
             Log.i(TAG, "btn_new_game");
             Intent intent = new Intent(this, ActivityPlayScreen.class);
             startActivity(intent);
             this.finish();
         });
 
-        findViewById(R.id.pause_btn_exit).setOnClickListener(view -> {
+        findViewById(R.id.layout_pause_tv_quit).setOnClickListener(view -> {
             Log.i(TAG, "pause_btn_exit");
             this.finishAffinity();
+        });
+
+        findViewById(R.id.layout_pause_iv_settings).setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
+                    ((ImageView)view).setBackground(getResources().getDrawable(R.drawable.settings_pressed));
+                }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
+                    ((ImageView)view).setBackground(getResources().getDrawable(R.drawable.settings_unpressed));
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.layout_pause_iv_home).setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
+                    ((ImageView)view).setBackground(getResources().getDrawable(R.drawable.home_pressed));
+                }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
+                    ((ImageView)view).setBackground(getResources().getDrawable(R.drawable.home_unpressed));
+                }
+                return true;
+            }
         });
     }
 }

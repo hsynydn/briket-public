@@ -268,14 +268,14 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
 
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
                     audio_fx_btn_click_3.start();
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.control_button_pressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.ctrl_fall_pressed));
                     handler.postDelayed(fallX1, 10);
                     handler.postDelayed(fallX1, 100);
                     handler.postDelayed(fallX2, 200);
                     handler.postDelayed(fallX3, 300);
                     handler.postDelayed(fallX6, 400);
                 }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.control_button_no_press));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.ctrl_fall_unpressed));
                     handler.removeCallbacks(fallX1);
                     handler.removeCallbacks(fallX2);
                     handler.removeCallbacks(fallX3);
@@ -291,10 +291,10 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
 
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
                     audio_fx_btn_click_3.start();
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.control_button_pressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.ctrl_rotate_pressed));
                     game.rotate();
                 }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.control_button_no_press));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.ctrl_rotate_unpressed));
                 }
                 return true;
             }
@@ -306,14 +306,14 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
 
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
                     fx_audio_btn_pause.start();
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.control_button_pressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.ctrl_settings_pressed));
                     if (game.getGameState() == GameState.PAUSE){
                         game.resume();
                     }else if (game.getGameState() == GameState.RESUME || game.getGameState() == GameState.START){
                         game.pause();
                     }
                 }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.control_button_no_press));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.ctrl_settings_unpressed));
                 }
                 return true;
             }
@@ -325,10 +325,10 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
 
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
                     fx_audio_btn_pause.start();
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.control_button_pressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.ctrl_pause_pressed));
                     game.pause();
                     Intent intent = new Intent(ActivityPlayScreen.this, ActivityPause.class);
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.control_button_no_press));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.ctrl_pause_unpressed));
                     startActivity(intent);
                 }
                 return true;

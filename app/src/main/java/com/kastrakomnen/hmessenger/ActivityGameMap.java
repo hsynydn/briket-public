@@ -1,7 +1,6 @@
 package com.kastrakomnen.hmessenger;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,14 +13,11 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.kastrakomnen.hmessenger.view.ItemClickListener;
 import com.kastrakomnen.hmessenger.view.ProgressCard;
 import com.kastrakomnen.hmessenger.view.ProgressCardAdapter;
-import com.kastrakomnen.hmessenger.view.Recycler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,9 +73,9 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
                     audio_fx_button_settings.start();
-                    ((ImageView)view).setBackground(getResources().getDrawable(R.drawable.settings_pressed));
+                    ((ImageView)view).setBackground(getResources().getDrawable(R.drawable.gear_pressed));
                 }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-                    ((ImageView)view).setBackground(getResources().getDrawable(R.drawable.settings_unpressed));
+                    ((ImageView)view).setBackground(getResources().getDrawable(R.drawable.gear_unpressed));
                 }
                 return true;
             }

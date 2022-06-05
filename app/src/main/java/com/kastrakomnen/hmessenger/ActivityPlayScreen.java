@@ -3,13 +3,11 @@ package com.kastrakomnen.hmessenger;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -268,14 +266,14 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
 
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
                     audio_fx_btn_click_3.start();
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.ctrl_fall_pressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.down_arrow_pressed));
                     handler.postDelayed(fallX1, 10);
                     handler.postDelayed(fallX1, 100);
                     handler.postDelayed(fallX2, 200);
                     handler.postDelayed(fallX3, 300);
                     handler.postDelayed(fallX6, 400);
                 }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.ctrl_fall_unpressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.down_arrow_unpressed));
                     handler.removeCallbacks(fallX1);
                     handler.removeCallbacks(fallX2);
                     handler.removeCallbacks(fallX3);
@@ -291,10 +289,10 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
 
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
                     audio_fx_btn_click_3.start();
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.ctrl_rotate_pressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.rotate_pressed));
                     game.rotate();
                 }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.ctrl_rotate_unpressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.rotate_unpressed));
                 }
                 return true;
             }
@@ -306,14 +304,14 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
 
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
                     fx_audio_btn_pause.start();
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.ctrl_settings_pressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.settings_pressed));
                     if (game.getGameState() == GameState.PAUSE){
                         game.resume();
                     }else if (game.getGameState() == GameState.RESUME || game.getGameState() == GameState.START){
                         game.pause();
                     }
                 }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.ctrl_settings_unpressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.settings_unpressed));
                 }
                 return true;
             }
@@ -325,10 +323,10 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
 
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
                     fx_audio_btn_pause.start();
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.ctrl_pause_pressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.pause_pressed));
                     game.pause();
                     Intent intent = new Intent(ActivityPlayScreen.this, ActivityPause.class);
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.ctrl_pause_unpressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.pause_unpressed));
                     startActivity(intent);
                 }
                 return true;

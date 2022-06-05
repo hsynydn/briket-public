@@ -136,7 +136,7 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="32dp"
                             android:layout_weight="0.4"
-                            android:background="@drawable/ctrl_rotate_unpressed"
+                            android:background="@drawable/rotate_unpressed"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -147,7 +147,7 @@
                             android:layout_marginStart="32dp"
                             android:layout_marginTop="16dp"
                             android:layout_weight="0.4"
-                            android:background="@drawable/ctrl_fall_unpressed"
+                            android:background="@drawable/down_arrow_unpressed"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -157,7 +157,7 @@
                             android:layout_height="60dp"
                             android:layout_marginTop="8dp"
                             android:layout_weight="0.2"
-                            android:background="@drawable/ctrl_settings_unpressed"
+                            android:background="@drawable/settings_unpressed"
                             app:layout_constraintEnd_toStartOf="@+id/btn_rotate"
                             app:layout_constraintStart_toEndOf="@+id/btn_drop"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -167,7 +167,7 @@
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_marginTop="8dp"
-                            android:background="@drawable/ctrl_pause_unpressed"
+                            android:background="@drawable/pause_unpressed"
                             app:layout_constraintStart_toStartOf="@+id/btn_pause"
                             app:layout_constraintTop_toBottomOf="@+id/btn_pause" />
 

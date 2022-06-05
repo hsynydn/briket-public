@@ -67,9 +67,9 @@ public class ActivityPause extends AppCompatActivity {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                    ((ImageView)view).setBackground(getResources().getDrawable(R.drawable.settings_pressed));
+                    ((ImageView)view).setBackground(getResources().getDrawable(R.drawable.gear_pressed));
                 }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-                    ((ImageView)view).setBackground(getResources().getDrawable(R.drawable.settings_unpressed));
+                    ((ImageView)view).setBackground(getResources().getDrawable(R.drawable.gear_unpressed));
                 }
                 return true;
             }

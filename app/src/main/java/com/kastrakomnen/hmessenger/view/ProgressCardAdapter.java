@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.kastrakomnen.hmessenger.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProgressCardAdapter extends RecyclerView.Adapter<ProgressCardAdapter.ViewHolder> {
@@ -48,9 +47,9 @@ public class ProgressCardAdapter extends RecyclerView.Adapter<ProgressCardAdapte
 
         if (progressCard.isLocked()){
             holder.box.setImageResource(R.drawable.brick_style_shady_locked);
-            holder.star1.setImageResource(R.drawable.dead_star);
-            holder.star2.setImageResource(R.drawable.dead_star);
-            holder.star3.setImageResource(R.drawable.dead_star);
+            holder.star1.setImageResource(R.drawable.star_dead);
+            holder.star2.setImageResource(R.drawable.star_dead);
+            holder.star3.setImageResource(R.drawable.star_dead);
             holder.tv_hi_score.setVisibility(View.INVISIBLE);
             holder.setItemClickListener(null);
         }else{

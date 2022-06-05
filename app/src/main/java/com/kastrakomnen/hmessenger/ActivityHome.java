@@ -1,12 +1,11 @@
 package com.kastrakomnen.hmessenger;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -18,7 +17,6 @@ import java.util.Objects;
 import com.google.android.gms.games.GamesSignInClient;
 import com.google.android.gms.games.PlayGames;
 import com.google.android.gms.games.PlayGamesSdk;
-import com.kastrakomnen.hmessenger.view.Recycler;
 
 public class ActivityHome extends AppCompatActivity {
 
@@ -27,6 +25,8 @@ public class ActivityHome extends AppCompatActivity {
     private Animation animaton;
     private Animation animaton_2;
     private Animation animaton_3;
+    private Animation logoBreathingAnimation;
+    private Animation playFrameHorizontalBreathingAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,23 +57,26 @@ public class ActivityHome extends AppCompatActivity {
         ImageView drop_3 = findViewById(R.id.iv_home_drop_3);
         drop_3.setAnimation(animaton_3);
 
-        findViewById(R.id.home_btn_new_game).setOnClickListener(view -> {
-            Log.i(TAG, "Play");
-            Intent intent = new Intent(this, ActivityGameMap.class);
-            startActivity(intent);
-            this.finish();
-        });
+        this.logoBreathingAnimation = AnimationUtils.loadAnimation(this, R.anim.breathing);
+        findViewById(R.id.iv_logo).setAnimation(logoBreathingAnimation);
 
-        findViewById(R.id.home_btn_options).setOnClickListener(view -> {
-            Log.i(TAG, "btn_home_options");
-            Intent intent = new Intent(this, ActivityOptions.class);
-            startActivity(intent);
-            this.finish();
-        });
+        this.playFrameHorizontalBreathingAnimation = AnimationUtils.loadAnimation(this, R.anim.horizontal_breathing);
+        findViewById(R.id.home_iv_play_frame).setAnimation(playFrameHorizontalBreathingAnimation);
 
         findViewById(R.id.home_pause_btn_exit).setOnClickListener(view -> {
             Log.i(TAG, "Exit");
             this.finishAffinity();
+        });
+
+        findViewById(R.id.home_btn_new_game).setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                Log.i(TAG, "Play");
+                Intent intent = new Intent(ActivityHome.this, ActivityGameMap.class);
+                startActivity(intent);
+                ActivityHome.this.finish();
+                return true;
+            }
         });
 
         PlayGamesSdk.initialize(this);

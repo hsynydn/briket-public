@@ -26,8 +26,8 @@
         <entry key="app/src/main/res/layout/activity_pg.xml" value="0.22" />
         <entry key="app/src/main/res/layout/game_progress.xml" value="0.2075657894736842" />
         <entry key="app/src/main/res/layout/layout.xml" value="0.29212962962962963" />
-        <entry key="app/src/main/res/layout/layout_game_map.xml" value="0.19057377049180327" />
-        <entry key="app/src/main/res/layout/layout_home.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/layout_game_map.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/layout_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/layout_options.xml" value="0.33" />
         <entry key="app/src/main/res/layout/layout_pause.xml" value="0.33" />
         <entry key="app/src/main/res/layout/layout_play_board.xml" value="0.22" />

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.Handler;
@@ -45,6 +46,10 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
     private MediaPlayer audio_fx_count_down;
     private MediaPlayer audio_fx_game_intro;
 
+    private SoundPool soundPool;
+
+    private int audioFxCountDownResID;
+
     /****
      * Game Animations will be drawn upon this GLSurfaceView */
     private GLSurfaceView animationLayer;
@@ -83,6 +88,9 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
         anim_count_down3 = AnimationUtils.loadAnimation(this, R.anim.far_away);
         anim_count_down2 = AnimationUtils.loadAnimation(this, R.anim.far_away);
         anim_count_down1 = AnimationUtils.loadAnimation(this, R.anim.far_away);
+
+        soundPool = new SoundPool.Builder().build();
+        audioFxCountDownResID = soundPool.load(this, R.raw.audio_fx_count_down, 0);
 
         try {
             game = Game.getInstance(this)
@@ -345,7 +353,7 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
                                       @Override
                                       public void run() {
                                           findViewById(R.id.iv_count_down_3).setVisibility(View.VISIBLE);
-                                          audio_fx_count_down.start();
+                                          soundPool.play(audioFxCountDownResID, 1.0f, 1.0f, 3, 0, 1.0f);
                                           findViewById(R.id.iv_count_down_3).setAnimation(anim_count_down3);
                                       }
                                   },
@@ -356,9 +364,8 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
                                       public void run() {
                                           findViewById(R.id.iv_count_down_3).setVisibility(View.INVISIBLE);
                                           anim_count_down3.cancel();
-//                      findViewById(R.id.iv_count_down_3).clearAnimation();
                                           findViewById(R.id.iv_count_down_2).setVisibility(View.VISIBLE);
-                                          audio_fx_count_down.reset();
+                                          soundPool.play(audioFxCountDownResID, 1.0f, 1.0f, 3, 0, 1.0f);
                                           findViewById(R.id.iv_count_down_2).setAnimation(anim_count_down2);
                                       }
                                   },
@@ -369,9 +376,8 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
                                       public void run() {
                                           findViewById(R.id.iv_count_down_2).setVisibility(View.INVISIBLE);
                                           anim_count_down2.cancel();
-//                      findViewById(R.id.iv_count_down_2).clearAnimation();
                                           findViewById(R.id.iv_count_down_1).setVisibility(View.VISIBLE);
-                                          audio_fx_count_down.reset();
+                                          soundPool.play(audioFxCountDownResID, 1.0f, 1.0f, 3, 0, 1.0f);
                                           findViewById(R.id.iv_count_down_1).setAnimation(anim_count_down1);
                                       }
                                   },
@@ -383,7 +389,6 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
                                           findViewById(R.id.iv_count_down_1).setVisibility(View.INVISIBLE);
                                           anim_count_down1.cancel();
                                           audio_fx_game_intro.start();
-//                      findViewById(R.id.iv_count_down_1).clearAnimation();
                                           music_get_wacky.start();
                                           game.start();
                                       }

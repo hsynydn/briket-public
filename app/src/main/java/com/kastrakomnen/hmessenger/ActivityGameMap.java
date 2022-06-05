@@ -6,11 +6,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.kastrakomnen.hmessenger.view.ItemClickListener;
@@ -25,6 +30,10 @@ import java.util.Objects;
 public class ActivityGameMap extends AppCompatActivity implements ItemClickListener {
 
     private static final String TAG = "ActivityGameMap";
+
+    private MediaPlayer audio_fx_button_settings;
+
+    private Animation logoBreathingAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +52,11 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
             Log.i(TAG, e.toString());
         }
 
+        this.audio_fx_button_settings = MediaPlayer.create(getApplicationContext(), R.raw.fx_audio_pause);
+
+        this.logoBreathingAnimation = AnimationUtils.loadAnimation(this, R.anim.breathing);
+        findViewById(R.id.game_map_iv_logo).setAnimation(logoBreathingAnimation);
+
         RecyclerView recyclerView = findViewById(R.id.rv_progress_cards);
 
         List<ProgressCard> progressCardList = new ArrayList<>();
@@ -58,25 +72,18 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
         recyclerView.setAdapter(progressCardAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-
-
-
-//        findViewById(R.id.recycler).setOnClickListener(view -> {
-//            Log.i(TAG, "Play");
-//            Intent intent = new Intent(this, ActivityGameMap.class);
-//            startActivity(intent);
-//            this.finish();
-//        });
-
-//        ImageView imageView = new ImageView(this);
-//        imageView.setImageResource(R.drawable.brick_style_shady_blue);
-
-//        RecyclerView recyclerView = findViewById(R.id.rv_cards);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-//        recyclerView.addView(imageView);
-
-
-
+        findViewById(R.id.iv_settings).setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
+                    audio_fx_button_settings.start();
+                    ((ImageView)view).setBackground(getResources().getDrawable(R.drawable.settings_pressed));
+                }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
+                    ((ImageView)view).setBackground(getResources().getDrawable(R.drawable.settings_unpressed));
+                }
+                return true;
+            }
+        });
     }
 
     @Override

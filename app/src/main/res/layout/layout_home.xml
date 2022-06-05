@@ -43,7 +43,8 @@
         android:layout_marginStart="129dp"
         android:layout_marginEnd="130dp"
         android:fontFamily="@font/ubuntu_bold"
-        android:text="NEW GAME"
+        android:gravity="center_horizontal"
+        android:text="PLAY"
         android:textColor="#9C27B0"
         android:textColorHighlight="#000000"
         android:textColorHint="#EA0000"
@@ -94,5 +95,15 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_text_plus" />
+        app:srcCompat="@drawable/logo_text" />
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

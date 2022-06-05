@@ -1,6 +1,8 @@
 package com.kastrakomnen.hmessenger;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import java.util.Objects;
 import com.google.android.gms.games.GamesSignInClient;
 import com.google.android.gms.games.PlayGames;
 import com.google.android.gms.games.PlayGamesSdk;
+import com.kastrakomnen.hmessenger.view.Recycler;
 
 public class ActivityHome extends AppCompatActivity {
 
@@ -55,8 +58,8 @@ public class ActivityHome extends AppCompatActivity {
         drop_3.setAnimation(animaton_3);
 
         findViewById(R.id.home_btn_new_game).setOnClickListener(view -> {
-            Log.i(TAG, "New Game");
-            Intent intent = new Intent(this, ActivityPlayScreen.class);
+            Log.i(TAG, "Play");
+            Intent intent = new Intent(this, ActivityGameMap.class);
             startActivity(intent);
             this.finish();
         });

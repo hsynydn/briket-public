@@ -42,6 +42,8 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
     private Music audio_fx_btn_click_3;
     private Music fx_audio_btn_pause;
     private MediaPlayer music_get_wacky;
+    private MediaPlayer audio_fx_count_down;
+    private MediaPlayer audio_fx_game_intro;
 
     /****
      * Game Animations will be drawn upon this GLSurfaceView */
@@ -203,6 +205,8 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
         try {
             this.audio_fx_btn_click_3   = new Music(getApplicationContext(), R.raw.audio_fx_btn_click_3);
             this.fx_audio_btn_pause     = new Music(getApplicationContext(), R.raw.fx_audio_pause);
+            this.audio_fx_count_down    = MediaPlayer.create(getApplicationContext(), R.raw.audio_fx_count_down);
+            this.audio_fx_game_intro    = MediaPlayer.create(getApplicationContext(), R.raw.audio_fx_game_intro);
             this.music_get_wacky        = MediaPlayer.create(getApplicationContext(), R.raw.get_wacky);
             this.music_get_wacky.setLooping(true);
             this.music_get_wacky.setVolume(1, 0);
@@ -341,6 +345,7 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
                                       @Override
                                       public void run() {
                                           findViewById(R.id.iv_count_down_3).setVisibility(View.VISIBLE);
+                                          audio_fx_count_down.start();
                                           findViewById(R.id.iv_count_down_3).setAnimation(anim_count_down3);
                                       }
                                   },
@@ -353,6 +358,7 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
                                           anim_count_down3.cancel();
 //                      findViewById(R.id.iv_count_down_3).clearAnimation();
                                           findViewById(R.id.iv_count_down_2).setVisibility(View.VISIBLE);
+                                          audio_fx_count_down.reset();
                                           findViewById(R.id.iv_count_down_2).setAnimation(anim_count_down2);
                                       }
                                   },
@@ -365,6 +371,7 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
                                           anim_count_down2.cancel();
 //                      findViewById(R.id.iv_count_down_2).clearAnimation();
                                           findViewById(R.id.iv_count_down_1).setVisibility(View.VISIBLE);
+                                          audio_fx_count_down.reset();
                                           findViewById(R.id.iv_count_down_1).setAnimation(anim_count_down1);
                                       }
                                   },
@@ -375,6 +382,7 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
                                       public void run() {
                                           findViewById(R.id.iv_count_down_1).setVisibility(View.INVISIBLE);
                                           anim_count_down1.cancel();
+                                          audio_fx_game_intro.start();
 //                      findViewById(R.id.iv_count_down_1).clearAnimation();
                                           music_get_wacky.start();
                                           game.start();

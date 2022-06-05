@@ -23,71 +23,27 @@
                             android:id="@+id/tv_score"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="24dp"
                             android:fontFamily="@font/ubuntu_bold"
                             android:text="SCORE"
                             android:textColor="#FF0000"
-                            android:textSize="18sp"
+                            android:textSize="24sp"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/tv_level"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="8dp"
-                            android:fontFamily="@font/ubuntu_bold"
-                            android:text="LEVEL"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_score" />
-
-                        <TextView
-                            android:id="@+id/tv_speed"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="8dp"
-                            android:fontFamily="@font/ubuntu_bold"
-                            android:text="SPEED"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_level" />
-
-                        <TextView
-                            android:id="@+id/tv_coin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="16dp"
-                            android:fontFamily="@font/ubuntu_bold"
-                            android:text="COIN"
-                            android:textColor="#FFC107"
-                            android:textSize="16sp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_speed" />
 
                         <TextView
                             android:id="@+id/tv_score_content"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="32dp"
                             android:layout_marginTop="16dp"
                             android:fontFamily="@font/ubuntu_bold"
-                            android:text="35412"
-                            android:textSize="18sp"
-                            app:layout_constraintStart_toEndOf="@+id/tv_score"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            android:text="0"
+                            android:textSize="24sp"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_score"
+                            app:layout_constraintStart_toStartOf="@+id/tv_score"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_score" />
 
-                        <TextView
-                            android:id="@+id/tv_level_content"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="32dp"
-                            android:layout_marginTop="8dp"
-                            android:text="2"
-                            app:layout_constraintStart_toEndOf="@+id/tv_score"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_score_content" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <RelativeLayout

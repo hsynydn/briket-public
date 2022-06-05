@@ -48,7 +48,7 @@
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_btn_new_game" />
+        app:layout_constraintTop_toBottomOf="@+id/layout_home_iv_play" />
 
     <ImageView
         android:id="@+id/iv_logo"
@@ -72,19 +72,11 @@
         app:srcCompat="@drawable/logo_text" />
 
     <ImageView
-        android:id="@+id/home_iv_play_frame"
-        android:layout_width="256dp"
-        android:layout_height="128dp"
-        app:layout_constraintStart_toStartOf="@+id/home_btn_new_game"
-        app:layout_constraintTop_toTopOf="@+id/home_btn_new_game"
-        app:srcCompat="@drawable/play_frame" />
-
-    <ImageView
-        android:id="@+id/home_btn_new_game"
-        android:layout_width="256dp"
+        android:id="@+id/layout_home_iv_play"
+        android:layout_width="128dp"
         android:layout_height="128dp"
         android:layout_marginBottom="32dp"
-        android:background="@drawable/play"
+        android:background="@drawable/layout_home_play_icon"
         android:gravity="center_horizontal"
         android:textColor="#9C27B0"
         android:textColorHighlight="#000000"

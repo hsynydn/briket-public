@@ -61,14 +61,14 @@ public class ActivityHome extends AppCompatActivity {
         findViewById(R.id.iv_logo).setAnimation(logoBreathingAnimation);
 
         this.playFrameHorizontalBreathingAnimation = AnimationUtils.loadAnimation(this, R.anim.horizontal_breathing);
-        findViewById(R.id.home_iv_play_frame).setAnimation(playFrameHorizontalBreathingAnimation);
+        findViewById(R.id.layout_home_iv_play).setAnimation(playFrameHorizontalBreathingAnimation);
 
         findViewById(R.id.home_pause_btn_exit).setOnClickListener(view -> {
             Log.i(TAG, "Exit");
             this.finishAffinity();
         });
 
-        findViewById(R.id.home_btn_new_game).setOnTouchListener(new View.OnTouchListener() {
+        findViewById(R.id.layout_home_iv_play).setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 Log.i(TAG, "Play");

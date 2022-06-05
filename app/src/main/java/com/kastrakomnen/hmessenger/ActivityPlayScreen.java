@@ -1,6 +1,8 @@
 package com.kastrakomnen.hmessenger;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -293,25 +295,6 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
                     game.rotate();
                 }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
                     ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.rotate_unpressed));
-                }
-                return true;
-            }
-        });
-
-        findViewById(R.id.btn_pause).setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-
-                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                    fx_audio_btn_pause.start();
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.settings_pressed));
-                    if (game.getGameState() == GameState.PAUSE){
-                        game.resume();
-                    }else if (game.getGameState() == GameState.RESUME || game.getGameState() == GameState.START){
-                        game.pause();
-                    }
-                }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.settings_unpressed));
                 }
                 return true;
             }

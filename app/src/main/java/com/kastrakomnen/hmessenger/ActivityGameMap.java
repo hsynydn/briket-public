@@ -1,6 +1,8 @@
 package com.kastrakomnen.hmessenger;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -76,6 +78,12 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
                     ((ImageView)view).setBackground(getResources().getDrawable(R.drawable.gear_pressed));
                 }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
                     ((ImageView)view).setBackground(getResources().getDrawable(R.drawable.gear_unpressed));
+
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.layout_game_map, new FragmentOptions());
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
                 }
                 return true;
             }

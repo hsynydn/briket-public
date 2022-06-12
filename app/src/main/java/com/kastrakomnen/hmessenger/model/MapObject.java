@@ -26,7 +26,7 @@ package com.kastrakomnen.hmessenger.model;
  *      Invades 1 Square
  *      Whenever stop automoving, cannot be destroyed
  *
- * CoinBricks
+ *  CoinBricks
  *      Invades 1 Square
  *      Generally not alone, embedded in patterns
  *      Player can collect coins by exploding this bricks

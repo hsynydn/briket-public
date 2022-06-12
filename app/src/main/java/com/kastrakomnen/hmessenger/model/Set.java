@@ -6,13 +6,15 @@ public class Set {
 
     private ArrayList<Formation> formations;
     private ArrayList<Brick> bricks;
+    private ArrayList<ArrayList<Integer>> brickIndexers;
     private Integer currentFormationIndex;
-    private Position basePosition;
+    private Position formationOrigin;
     private SetState setState;
 
     public Set(){
         formations = new ArrayList<>();
         bricks = new ArrayList<>();
+        brickIndexers = new ArrayList<>();
         setState = SetState.MOVE_STATE;
     }
 
@@ -31,16 +33,26 @@ public class Set {
         }
     }
 
+    public void insert(ArrayList<Integer> brickIndexer){
+        if (!formations.isEmpty()){
+            if (formations.get(0).size() != brickIndexer.size()){
+                throw new IllegalArgumentException("brick indexer size does not match with formation");
+            }
+        }
+
+        brickIndexers.add(brickIndexer);
+    }
+
     public void setDefaultFormation(){
         currentFormationIndex = formations.size()-1;
     }
 
-    public void setBasePosition(Position position){
-        basePosition = position;
+    public void setFormationOrigin(Position position){
+        formationOrigin = position;
     }
 
-    public Position getBasePosition(){
-        return basePosition;
+    public Position getFormationOrigin(){
+        return formationOrigin;
     }
 
     public void insert(Brick brick){
@@ -66,6 +78,10 @@ public class Set {
 
     public Formation getCurrentFormation(){
         return formations.get(currentFormationIndex);
+    }
+
+    public Integer getCurrentFormationIndex() {
+        return currentFormationIndex;
     }
 
     public Formation getNextFormation(){
@@ -98,5 +114,29 @@ public class Set {
 
     public void setSetState(SetState setState){
         this.setState = setState;
+    }
+
+    public Brick getBrickAt(int x, int y){
+
+        int i = 0;
+        for (Position position : formations.get(currentFormationIndex).getForm()) {
+            if (formationOrigin.getX() + position.getX() == x && formationOrigin.getY() + position.getY() == y){
+                return bricks.get(i);
+            }
+            i++;
+        }
+
+        return null;
+    }
+
+    public void setBrickAt(int x, int y, Brick brick){
+
+        int i = 0;
+        for (Position position : formations.get(currentFormationIndex).getForm()) {
+            if (formationOrigin.getX() + position.getX() == x && formationOrigin.getY() + position.getY() == y){
+                bricks.set(i, brick);
+            }
+            i++;
+        }
     }
 }

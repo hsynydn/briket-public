@@ -24,6 +24,9 @@ public class SetGeneratorTest {
                         )
                 )
         );
+
+        Set set = setGenerator.generate();
+        System.out.println("");
     }
 
 }

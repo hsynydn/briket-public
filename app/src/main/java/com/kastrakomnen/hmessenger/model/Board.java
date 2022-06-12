@@ -49,7 +49,7 @@ public class Board {
         for (Position p : formation.getForm() ) {
             boardMap[p.getY() + basePosition.getY()][p.getX() + basePosition.getX()] = set;
         }
-        set.setBasePosition(new RelativePosition(5,2));
+        set.setFormationOrigin(new RelativePosition(5,2));
 
         activeSet = set;
 
@@ -65,8 +65,8 @@ public class Board {
         /* Clean currently occupied space */
         for (Position p : formation.getForm()) {
 
-            int rowIndex = p.getY() + activeSet.getBasePosition().getY();
-            int colIndex = p.getX() + activeSet.getBasePosition().getX();
+            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
+            int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
 
             boardMap[rowIndex][colIndex] = null;
         }
@@ -75,8 +75,8 @@ public class Board {
         boolean failFlag = false;
         for (Position p : formation.getForm()) {
 
-            int rowIndex = p.getY() + activeSet.getBasePosition().getY();
-            int colIndex = p.getX() + activeSet.getBasePosition().getX() + 1;
+            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
+            int colIndex = p.getX() + activeSet.getFormationOrigin().getX() + 1;
 
             if (colIndex >= width){
                 failFlag = true;
@@ -91,8 +91,8 @@ public class Board {
         if (failFlag){
             for (Position p : formation.getForm()) {
 
-                int rowIndex = p.getY() + activeSet.getBasePosition().getY();
-                int colIndex = p.getX() + activeSet.getBasePosition().getX();
+                int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
+                int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
 
                 boardMap[rowIndex][colIndex] = activeSet;
             }
@@ -100,13 +100,13 @@ public class Board {
         }
 
         /* Update base index */
-        activeSet.getBasePosition().incrementX();
+        activeSet.getFormationOrigin().incrementX();
 
         /* Mark newly occupied space */
         for (Position p : formation.getForm()) {
 
-            int rowIndex = p.getY() + activeSet.getBasePosition().getY();
-            int colIndex = p.getX() + activeSet.getBasePosition().getX();
+            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
+            int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
 
             boardMap[rowIndex][colIndex] = activeSet;
         }
@@ -123,8 +123,8 @@ public class Board {
         /* Clean currently occupied space */
         for (Position p : formation.getForm()) {
 
-            int rowIndex = p.getY() + activeSet.getBasePosition().getY();
-            int colIndex = p.getX() + activeSet.getBasePosition().getX();
+            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
+            int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
 
             boardMap[rowIndex][colIndex] = null;
         }
@@ -133,8 +133,8 @@ public class Board {
         boolean failFlag = false;
         for (Position p : formation.getForm()) {
 
-            int rowIndex = p.getY() + activeSet.getBasePosition().getY();
-            int colIndex = p.getX() + activeSet.getBasePosition().getX() - 1;
+            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
+            int colIndex = p.getX() + activeSet.getFormationOrigin().getX() - 1;
 
             if (colIndex < 0){
                 failFlag = true;
@@ -150,8 +150,8 @@ public class Board {
         if (failFlag){
             for (Position p : formation.getForm()) {
 
-                int rowIndex = p.getY() + activeSet.getBasePosition().getY();
-                int colIndex = p.getX() + activeSet.getBasePosition().getX();
+                int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
+                int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
 
                 boardMap[rowIndex][colIndex] = activeSet;
             }
@@ -159,13 +159,13 @@ public class Board {
         }
 
         /* Update base index */
-        activeSet.getBasePosition().decrementX();
+        activeSet.getFormationOrigin().decrementX();
 
         /* Mark newly occupied space */
         for (Position p : formation.getForm()) {
 
-            int rowIndex = p.getY() + activeSet.getBasePosition().getY();
-            int colIndex = p.getX() + activeSet.getBasePosition().getX();
+            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
+            int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
 
             boardMap[rowIndex][colIndex] = activeSet;
         }
@@ -182,8 +182,8 @@ public class Board {
         /* Clean currently occupied space */
         for (Position p : formation.getForm()) {
 
-            int rowIndex = p.getY() + activeSet.getBasePosition().getY();
-            int colIndex = p.getX() + activeSet.getBasePosition().getX();
+            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
+            int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
 
             boardMap[rowIndex][colIndex] = null;
         }
@@ -191,8 +191,8 @@ public class Board {
         boolean failFlag = false;
         for (Position p : formation.getForm()) {
 
-            int rowIndex = p.getY() + activeSet.getBasePosition().getY() + 1;
-            int colIndex = p.getX() + activeSet.getBasePosition().getX();
+            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY() + 1;
+            int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
 
             if (rowIndex >= height){
                 failFlag = true;
@@ -207,8 +207,8 @@ public class Board {
         if (failFlag){
             for (Position p : formation.getForm()) {
 
-                int rowIndex = p.getY() + activeSet.getBasePosition().getY();
-                int colIndex = p.getX() + activeSet.getBasePosition().getX();
+                int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
+                int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
 
                 boardMap[rowIndex][colIndex] = activeSet;
             }
@@ -220,13 +220,13 @@ public class Board {
         }
 
         /* Update base index */
-        activeSet.getBasePosition().incrementY();
+        activeSet.getFormationOrigin().incrementY();
 
         /* Mark newly occupied space */
         for (Position p : formation.getForm()) {
 
-            int rowIndex = p.getY() + activeSet.getBasePosition().getY();
-            int colIndex = p.getX() + activeSet.getBasePosition().getX();
+            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
+            int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
 
             boardMap[rowIndex][colIndex] = activeSet;
         }
@@ -241,8 +241,8 @@ public class Board {
         Formation formation = activeSet.getNextFormation();
         for (Position p : formation.getForm()) {
 
-            int rowIndex = p.getY() + activeSet.getBasePosition().getY();
-            int colIndex = p.getX() + activeSet.getBasePosition().getX();
+            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
+            int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
 
             if (rowIndex >= height || rowIndex < 0){
                 return false;
@@ -260,8 +260,8 @@ public class Board {
         /* Clean currently occupied space */
         for (Position p : formation.getForm()) {
 
-            int rowIndex = p.getY() + activeSet.getBasePosition().getY();
-            int colIndex = p.getX() + activeSet.getBasePosition().getX();
+            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
+            int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
 
             boardMap[rowIndex][colIndex] = null;
         }
@@ -272,8 +272,8 @@ public class Board {
         /* Mark newly occupied space */
         for (Position p : formation.getForm()) {
 
-            int rowIndex = p.getY() + activeSet.getBasePosition().getY();
-            int colIndex = p.getX() + activeSet.getBasePosition().getX();
+            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
+            int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
 
             boardMap[rowIndex][colIndex] = activeSet;
         }
@@ -295,7 +295,11 @@ public class Board {
                 if (boardMap[i][j] == null){
                     stringBuilder.append("─");
                 }else{
-                    stringBuilder.append("X");
+                    if (boardMap[i][j].getBrickAt(j, i) == null){
+                        stringBuilder.append("─");
+                    }else{
+                        stringBuilder.append("X");
+                    }
                 }
             }
             stringBuilder.append("\n");

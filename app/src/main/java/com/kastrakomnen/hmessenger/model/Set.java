@@ -43,6 +43,14 @@ public class Set {
         brickIndexers.add(brickIndexer);
     }
 
+    public void setCurrentFormationIndex(Integer currentFormationIndex) {
+        this.currentFormationIndex = currentFormationIndex;
+    }
+
+    public Integer getCurrentFormationIndex() {
+        return currentFormationIndex;
+    }
+
     public void setDefaultFormation(){
         currentFormationIndex = formations.size()-1;
     }
@@ -78,10 +86,6 @@ public class Set {
 
     public Formation getCurrentFormation(){
         return formations.get(currentFormationIndex);
-    }
-
-    public Integer getCurrentFormationIndex() {
-        return currentFormationIndex;
     }
 
     public Formation getNextFormation(){

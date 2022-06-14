@@ -257,8 +257,16 @@ public class SetBuilder {
                 set.insert(box_cw270_brick_indexer);
 
                 for (int i = 0; i < 4; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
                     set.insert(new Brick());
                 }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
             case BOX_CW90:
                 set.insert(box_cw0);
@@ -266,13 +274,23 @@ public class SetBuilder {
                 set.setDefaultFormation();
                 set.insert(box_cw180);
                 set.insert(box_cw270);
+
                 set.insert(box_cw0_brick_indexer);
                 set.insert(box_cw90_brick_indexer);
                 set.insert(box_cw180_brick_indexer);
                 set.insert(box_cw270_brick_indexer);
+
                 for (int i = 0; i < 4; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
                     set.insert(new Brick());
                 }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
             case BOX_CW180:
                 set.insert(box_cw0);
@@ -287,8 +305,15 @@ public class SetBuilder {
                 set.insert(box_cw270_brick_indexer);
 
                 for (int i = 0; i < 4; i++) {
-                    set.insert(new Brick());
-                }
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
+                    set.insert(new Brick());                }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
             case BOX_CW270:
                 set.insert(box_cw0);
@@ -303,8 +328,15 @@ public class SetBuilder {
                 set.insert(box_cw270_brick_indexer);
 
                 for (int i = 0; i < 4; i++) {
-                    set.insert(new Brick());
-                }
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
+                    set.insert(new Brick());                }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
             case L_CW0:
                 set.insert(l_cw0);
@@ -319,8 +351,15 @@ public class SetBuilder {
                 set.insert(l_cw270_brick_indexer);
 
                 for (int i = 0; i < 4; i++) {
-                    set.insert(new Brick());
-                }
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
+                    set.insert(new Brick());                }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
             case L_CW90:
                 set.insert(l_cw0);
@@ -335,8 +374,15 @@ public class SetBuilder {
                 set.insert(l_cw270_brick_indexer);
 
                 for (int i = 0; i < 4; i++) {
-                    set.insert(new Brick());
-                }
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
+                    set.insert(new Brick());                }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
             case L_CW180:
                 set.insert(l_cw0);
@@ -351,8 +397,15 @@ public class SetBuilder {
                 set.insert(l_cw270_brick_indexer);
 
                 for (int i = 0; i < 4; i++) {
-                    set.insert(new Brick());
-                }
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
+                    set.insert(new Brick());                }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
             case L_CW270:
                 set.insert(l_cw0);
@@ -367,8 +420,15 @@ public class SetBuilder {
                 set.insert(l_cw270_brick_indexer);
 
                 for (int i = 0; i < 4; i++) {
-                    set.insert(new Brick());
-                }
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
+                    set.insert(new Brick());                }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
             case T_CW0:
                 set.insert(t_cw0);
@@ -383,8 +443,15 @@ public class SetBuilder {
                 set.insert(t_cw270_brick_indexer);
 
                 for (int i = 0; i < 4; i++) {
-                    set.insert(new Brick());
-                }
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
+                    set.insert(new Brick());                }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
             case T_CW90:
                 set.insert(t_cw0);
@@ -399,8 +466,15 @@ public class SetBuilder {
                 set.insert(t_cw270_brick_indexer);
 
                 for (int i = 0; i < 4; i++) {
-                    set.insert(new Brick());
-                }
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
+                    set.insert(new Brick());                }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
             case T_CW180:
                 set.insert(t_cw0);
@@ -415,8 +489,15 @@ public class SetBuilder {
                 set.insert(t_cw270_brick_indexer);
 
                 for (int i = 0; i < 4; i++) {
-                    set.insert(new Brick());
-                }
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
+                    set.insert(new Brick());                }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
             case T_CW270:
                 set.insert(t_cw0);
@@ -431,8 +512,15 @@ public class SetBuilder {
                 set.insert(t_cw270_brick_indexer);
 
                 for (int i = 0; i < 4; i++) {
-                    set.insert(new Brick());
-                }
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
+                    set.insert(new Brick());                }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
             case LINE_CW0:
                 set.insert(line_cw0);
@@ -447,8 +535,15 @@ public class SetBuilder {
                 set.insert(line_cw270_brick_indexer);
 
                 for (int i = 0; i < 4; i++) {
-                    set.insert(new Brick());
-                }
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
+                    set.insert(new Brick());                }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
             case LINE_CW90:
                 set.insert(line_cw0);
@@ -463,8 +558,15 @@ public class SetBuilder {
                 set.insert(line_cw270_brick_indexer);
 
                 for (int i = 0; i < 4; i++) {
-                    set.insert(new Brick());
-                }
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
+                    set.insert(new Brick());                }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
             case LINE_CW180:
                 set.insert(line_cw0);
@@ -479,8 +581,15 @@ public class SetBuilder {
                 set.insert(line_cw270_brick_indexer);
 
                 for (int i = 0; i < 4; i++) {
-                    set.insert(new Brick());
-                }
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
+                    set.insert(new Brick());                }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
             case LINE_CW270:
                 set.insert(line_cw0);
@@ -495,8 +604,15 @@ public class SetBuilder {
                 set.insert(line_cw270_brick_indexer);
 
                 for (int i = 0; i < 4; i++) {
-                    set.insert(new Brick());
-                }
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
+                    set.insert(new Brick());                }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
             case Z_CW0:
                 set.insert(z_cw0);
@@ -511,8 +627,15 @@ public class SetBuilder {
                 set.insert(z_cw270_brick_indexer);
 
                 for (int i = 0; i < 4; i++) {
-                    set.insert(new Brick());
-                }
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
+                    set.insert(new Brick());                }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
             case Z_CW90:
                 set.insert(z_cw0);
@@ -527,8 +650,15 @@ public class SetBuilder {
                 set.insert(z_cw270_brick_indexer);
 
                 for (int i = 0; i < 4; i++) {
-                    set.insert(new Brick());
-                }
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
+                    set.insert(new Brick());                }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
             case Z_CW180:
                 set.insert(z_cw0);
@@ -543,8 +673,15 @@ public class SetBuilder {
                 set.insert(z_cw270_brick_indexer);
 
                 for (int i = 0; i < 4; i++) {
-                    set.insert(new Brick());
-                }
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
+                    set.insert(new Brick());                }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
             case Z_CW270:
                 set.insert(z_cw0);
@@ -559,8 +696,15 @@ public class SetBuilder {
                 set.insert(z_cw270_brick_indexer);
 
                 for (int i = 0; i < 4; i++) {
-                    set.insert(new Brick());
-                }
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
+                    set.insert(new Brick());                }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
             case RL_CW0:
                 set.insert(rl_cw0);
@@ -575,8 +719,15 @@ public class SetBuilder {
                 set.insert(rl_cw270_brick_indexer);
 
                 for (int i = 0; i < 4; i++) {
-                    set.insert(new Brick());
-                }
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
+                    set.insert(new Brick());                }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
             case RL_CW90:
                 set.insert(rl_cw0);
@@ -591,8 +742,15 @@ public class SetBuilder {
                 set.insert(rl_cw270_brick_indexer);
 
                 for (int i = 0; i < 4; i++) {
-                    set.insert(new Brick());
-                }
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
+                    set.insert(new Brick());                }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
             case RL_CW180:
                 set.insert(rl_cw0);
@@ -607,8 +765,15 @@ public class SetBuilder {
                 set.insert(rl_cw270_brick_indexer);
 
                 for (int i = 0; i < 4; i++) {
-                    set.insert(new Brick());
-                }
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
+                    set.insert(new Brick());                }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
             case RL_CW270:
                 set.insert(rl_cw0);
@@ -623,8 +788,15 @@ public class SetBuilder {
                 set.insert(rl_cw270_brick_indexer);
 
                 for (int i = 0; i < 4; i++) {
-                    set.insert(new Brick());
-                }
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+
+                    set.insert(new Brick());                }
+
+                set.setCurrentFormationIndex(0);
+
                 break;
         }
 

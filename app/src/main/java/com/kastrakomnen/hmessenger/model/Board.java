@@ -1,5 +1,7 @@
 package com.kastrakomnen.hmessenger.model;
 
+import java.util.ArrayList;
+
 public class Board {
 
     private final int height;
@@ -7,7 +9,10 @@ public class Board {
 
     private Set[][] boardMap;
     private Set activeSet;
-    
+    private ArrayList<Set> setList;
+
+    private ArrayList<ArrayList<Brick>> board;
+
     public Board(int height, int width){
 
         boardMap = new Set[height][width];
@@ -19,6 +24,12 @@ public class Board {
         }
 
         activeSet = null;
+        setList = new ArrayList<>();
+
+        board = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            board.add(new ArrayList<>());
+        }
 
         this.height = height;
         this.width = width;
@@ -33,21 +44,24 @@ public class Board {
         }
 
         /* Board has no space left */
-        if (boardMap[basePosition.getY()][basePosition.getX()] != null)
+        if (board.get(basePosition.getY()).get(basePosition.getX()) != null)
             return false;
 
         /* Check does all positions in formation suit */
         Formation formation = set.getCurrentFormation();
         for (Position p : formation.getForm() ) {
-            if (boardMap[p.getY() + basePosition.getY()][p.getX() + basePosition.getX()] != null){
+            if (board
+                    .get(p.getY() + basePosition.getY())
+                    .get(p.getX() + basePosition.getX()) != null){
                 return false;
             }
         }
 
         /* Place the set into the board
          * then let the set know its base position */
-        for (Position p : formation.getForm() ) {
-            boardMap[p.getY() + basePosition.getY()][p.getX() + basePosition.getX()] = set;
+        for (Brick brick : set.getBricks()) {
+            Position relPos = brick.getRelativePosition();
+            board.get(relPos.getY() + basePosition.getY()).set(relPos.getX() + basePosition.getX(), brick);
         }
         set.setFormationOrigin(new RelativePosition(5,2));
 
@@ -60,55 +74,44 @@ public class Board {
 
         if (activeSet==null) return false;
 
-        Formation formation = activeSet.getCurrentFormation();
-
         /* Clean currently occupied space */
-        for (Position p : formation.getForm()) {
+        for (Brick brick : activeSet.getBricks()) {
 
-            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
-            int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
+            Position o = activeSet.getFormationOrigin();
+            Position p = brick.getRelativePosition();
 
-            boardMap[rowIndex][colIndex] = null;
+            board.get(o.getY() + p.getY()).set(o.getX() + p.getX(), null);
         }
 
         /* Check move space is suitable */
         boolean failFlag = false;
-        for (Position p : formation.getForm()) {
+        for (Brick brick : activeSet.getBricks()) {
 
-            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
-            int colIndex = p.getX() + activeSet.getFormationOrigin().getX() + 1;
+            Position o = activeSet.getFormationOrigin();
+            Position p = brick.getRelativePosition();
 
-            if (colIndex >= width){
+            if (o.getX() + p.getX() + 1 >= width) failFlag = true;
+
+            if (board.get(o.getY() + p.getY()).get(o.getX() + p.getX() + 1) != null){
                 failFlag = true;
-            }else{
-                if (boardMap[rowIndex][colIndex] != null){
-                    failFlag = true;
-                }
             }
-        }
-
-        /* Restore previous occupied region */
-        if (failFlag){
-            for (Position p : formation.getForm()) {
-
-                int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
-                int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
-
-                boardMap[rowIndex][colIndex] = activeSet;
-            }
-            return false;
         }
 
         /* Update base index */
-        activeSet.getFormationOrigin().incrementX();
+        if (!failFlag){
+            activeSet.getFormationOrigin().incrementX();
+        }
 
-        /* Mark newly occupied space */
-        for (Position p : formation.getForm()) {
+        /* Restore previous occupied region */
+        /* OR */
+        /* Mark newly occupied region */
+        for (Brick brick : activeSet.getBricks()){
+            if (brick.getBrickState() == BrickState.DEAD) continue;
 
-            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
-            int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
+            Position o = activeSet.getFormationOrigin();
+            Position p = brick.getRelativePosition();
 
-            boardMap[rowIndex][colIndex] = activeSet;
+            board.get(o.getY() + p.getY()).set(o.getX() + p.getX(), brick);
         }
 
         return true;
@@ -118,56 +121,44 @@ public class Board {
 
         if (activeSet==null) return false;
 
-        Formation formation = activeSet.getCurrentFormation();
-
         /* Clean currently occupied space */
-        for (Position p : formation.getForm()) {
+        for (Brick brick : activeSet.getBricks()) {
 
-            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
-            int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
+            Position o = activeSet.getFormationOrigin();
+            Position p = brick.getRelativePosition();
 
-            boardMap[rowIndex][colIndex] = null;
+            board.get(o.getY() + p.getY()).set(o.getX() + p.getX(), null);
         }
 
         /* Check move space is suitable */
         boolean failFlag = false;
-        for (Position p : formation.getForm()) {
+        for (Brick brick : activeSet.getBricks()) {
 
-            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
-            int colIndex = p.getX() + activeSet.getFormationOrigin().getX() - 1;
+            Position o = activeSet.getFormationOrigin();
+            Position p = brick.getRelativePosition();
 
-            if (colIndex < 0){
+            if (o.getX() + p.getX() - 1 < 0) failFlag = true;
+
+            if (board.get(o.getY() + p.getY()).get(o.getX() + p.getX() - 1) != null){
                 failFlag = true;
-            }else{
-                if (boardMap[rowIndex][colIndex] != null){
-                    failFlag = true;
-                }
             }
-
-        }
-
-        /* Restore previous occupied region */
-        if (failFlag){
-            for (Position p : formation.getForm()) {
-
-                int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
-                int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
-
-                boardMap[rowIndex][colIndex] = activeSet;
-            }
-            return false;
         }
 
         /* Update base index */
-        activeSet.getFormationOrigin().decrementX();
+        if (!failFlag){
+            activeSet.getFormationOrigin().decrementX();
+        }
 
-        /* Mark newly occupied space */
-        for (Position p : formation.getForm()) {
+        /* Restore previous occupied region */
+        /* OR */
+        /* Mark newly occupied region */
+        for (Brick brick : activeSet.getBricks()){
+            if (brick.getBrickState() == BrickState.DEAD) continue;
 
-            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
-            int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
+            Position o = activeSet.getFormationOrigin();
+            Position p = brick.getRelativePosition();
 
-            boardMap[rowIndex][colIndex] = activeSet;
+            board.get(o.getY() + p.getY()).set(o.getX() + p.getX(), brick);
         }
 
         return true;
@@ -177,58 +168,44 @@ public class Board {
 
         if (activeSet==null) return false;
 
-        Formation formation = activeSet.getCurrentFormation();
-
         /* Clean currently occupied space */
-        for (Position p : formation.getForm()) {
+        for (Brick brick : activeSet.getBricks()) {
 
-            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
-            int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
+            Position o = activeSet.getFormationOrigin();
+            Position p = brick.getRelativePosition();
 
-            boardMap[rowIndex][colIndex] = null;
+            board.get(o.getY() + p.getY()).set(o.getX() + p.getX(), null);
         }
 
+        /* Check move space is suitable */
         boolean failFlag = false;
-        for (Position p : formation.getForm()) {
+        for (Brick brick : activeSet.getBricks()) {
 
-            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY() + 1;
-            int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
+            Position o = activeSet.getFormationOrigin();
+            Position p = brick.getRelativePosition();
 
-            if (rowIndex >= height){
+            if (o.getX() + p.getX() + 1 >= height) failFlag = true;
+
+            if (board.get(o.getY() + p.getY() + 1).get(o.getX() + p.getX()) != null){
                 failFlag = true;
-            }else{
-                if (boardMap[rowIndex][colIndex] != null){
-                    failFlag = true;
-                }
             }
-        }
-
-        /* Restore previous occupied region */
-        if (failFlag){
-            for (Position p : formation.getForm()) {
-
-                int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
-                int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
-
-                boardMap[rowIndex][colIndex] = activeSet;
-            }
-
-            activeSet.setSetState(SetState.NON_MOVE_STATE);
-            activeSet = null;
-
-            return false;
         }
 
         /* Update base index */
-        activeSet.getFormationOrigin().incrementY();
+        if (!failFlag){
+            activeSet.getFormationOrigin().incrementY();
+        }
 
-        /* Mark newly occupied space */
-        for (Position p : formation.getForm()) {
+        /* Restore previous occupied region */
+        /* OR */
+        /* Mark newly occupied region */
+        for (Brick brick : activeSet.getBricks()){
+            if (brick.getBrickState() == BrickState.DEAD) continue;
 
-            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
-            int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
+            Position o = activeSet.getFormationOrigin();
+            Position p = brick.getRelativePosition();
 
-            boardMap[rowIndex][colIndex] = activeSet;
+            board.get(o.getY() + p.getY()).set(o.getX() + p.getX(), brick);
         }
 
         return true;
@@ -238,46 +215,54 @@ public class Board {
 
         if (activeSet==null) return false;
 
-        Formation formation = activeSet.getNextFormation();
-        for (Position p : formation.getForm()) {
-
-            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
-            int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
-
-            if (rowIndex >= height || rowIndex < 0){
-                return false;
-            }
-
-            if (colIndex >= width || colIndex < 0){
-                return false;
-            }
-
-            if (boardMap[rowIndex][colIndex] != null){
-                return false;
-            }
-        }
-
         /* Clean currently occupied space */
-        for (Position p : formation.getForm()) {
+        for (Brick brick : activeSet.getBricks()) {
 
-            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
-            int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
+            Position o = activeSet.getFormationOrigin();
+            Position p = brick.getRelativePosition();
 
-            boardMap[rowIndex][colIndex] = null;
+            board.get(o.getY() + p.getY()).set(o.getX() + p.getX(), null);
         }
 
-        /* Update base index */
-        activeSet.cycleFormationForward();
+        /* Check move space is suitable */
+        Formation nextFormation = activeSet.getNextFormation();
+        boolean failFlag = false;
+        for (Position p : nextFormation.getForm()) {
 
+            Position o = activeSet.getFormationOrigin();
+
+            if (o.getY() + p.getY() < 0 || o.getY() + p.getY() >= height)
+                failFlag=true;
+
+            if (o.getX() + p.getX() < 0 || o.getX() + p.getX() >= width)
+                failFlag=true;
+
+            if (board.get(o.getY() + p.getY()).get(o.getX() + p.getX()) != null){
+                failFlag = true;
+            }
+        }
+
+        if (!failFlag){
+            /* Update base index */
+            activeSet.cycleFormationForward();
+            int i = 0;
+            for (Brick brick : activeSet.getBricks()) {
+                brick.setRelativePosition(activeSet.getCurrentFormation().getForm().get(i));
+                i++;
+            }
+        }
+
+        /* Restore previous occupied region */
+        /* OR */
         /* Mark newly occupied space */
-        for (Position p : formation.getForm()) {
+        for (Brick brick : activeSet.getBricks()) {
+            if (brick.getBrickState() == BrickState.DEAD) continue;
 
-            int rowIndex = p.getY() + activeSet.getFormationOrigin().getY();
-            int colIndex = p.getX() + activeSet.getFormationOrigin().getX();
+            Position o = activeSet.getFormationOrigin();
+            Position p = brick.getRelativePosition();
 
-            boardMap[rowIndex][colIndex] = activeSet;
+            board.get(o.getY() + p.getY()).set(o.getX() + p.getX(), brick);
         }
-
 
         return true;
     }

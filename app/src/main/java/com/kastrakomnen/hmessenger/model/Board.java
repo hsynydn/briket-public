@@ -28,7 +28,11 @@ public class Board {
 
         board = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            board.add(new ArrayList<>());
+            ArrayList<Brick> row = new ArrayList<>();
+            for (int j = 0; j < width; j++) {
+                row.add(null);
+            }
+            board.add(row);
         }
 
         this.height = height;
@@ -90,7 +94,10 @@ public class Board {
             Position o = activeSet.getFormationOrigin();
             Position p = brick.getRelativePosition();
 
-            if (o.getX() + p.getX() + 1 >= width) failFlag = true;
+            if (o.getX() + p.getX() + 1 >= width){
+                failFlag = true;
+                break;
+            }
 
             if (board.get(o.getY() + p.getY()).get(o.getX() + p.getX() + 1) != null){
                 failFlag = true;
@@ -184,7 +191,10 @@ public class Board {
             Position o = activeSet.getFormationOrigin();
             Position p = brick.getRelativePosition();
 
-            if (o.getX() + p.getX() + 1 >= height) failFlag = true;
+            if (o.getY() + p.getY() + 1 >= height){
+                failFlag = true;
+                break;
+            }
 
             if (board.get(o.getY() + p.getY() + 1).get(o.getX() + p.getX()) != null){
                 failFlag = true;
@@ -206,6 +216,11 @@ public class Board {
             Position p = brick.getRelativePosition();
 
             board.get(o.getY() + p.getY()).set(o.getX() + p.getX(), brick);
+        }
+
+        if (failFlag){
+            activeSet = null;
+            return false;
         }
 
         return true;
@@ -277,14 +292,14 @@ public class Board {
 
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                if (boardMap[i][j] == null){
+                if (board.get(i).get(j) == null){
                     stringBuilder.append("─");
                 }else{
-                    if (boardMap[i][j].getBrickAt(j, i) == null){
-                        stringBuilder.append("─");
-                    }else{
+//                    if (board.get(i).get(j).getBrickAt(j, i) == null){
+//                        stringBuilder.append("─");
+//                    }else{
                         stringBuilder.append("X");
-                    }
+//                    }
                 }
             }
             stringBuilder.append("\n");

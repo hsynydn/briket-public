@@ -2,10 +2,50 @@ package com.kastrakomnen.hmessenger.model;
 
 public class FormationTransformer {
 
-    private static final int rotateMatrixCW90[][] = {{(int) Math.cos(270), (int) (-1 * Math.sin(270))},{(int) Math.sin(270), (int) Math.cos(270)}};
-    private static final int rotateMatrixCW180[][] = {{(int) Math.cos(180), (int) (-1 * Math.sin(180))},{(int) Math.sin(180), (int) Math.cos(180)}};
-    private static final int rotateMatrixCW270[][] = {{(int) Math.cos(90), (int) (-1 * Math.sin(90))},{(int) Math.sin(90), (int) Math.cos(90)}};
-    private static final int rotateMatrixCW260[][] = {{(int) Math.cos(0), (int) (-1 * Math.sin(0))},{(int) Math.sin(0), (int) Math.cos(0)}};
+    private static final int[][] rotateMatrixCW90 =
+            {
+                    {
+                        (int) Math.cos(Math.toRadians(270)),
+                            (int) (-1 * Math.sin(Math.toRadians(270)))
+                    },
+                    {
+                        (int) Math.sin(Math.toRadians(270)),
+                            (int) Math.cos(Math.toRadians(270))
+                    }
+            };
+    private static final int[][] rotateMatrixCW180 =
+            {
+                    {
+                        (int) Math.cos(Math.toRadians(180)),
+                            (int) (-1 * Math.sin(Math.toRadians(180)))
+                    },
+                    {
+                        (int) Math.sin(Math.toRadians(180)),
+                            (int) Math.cos(Math.toRadians(180))
+                    }
+            };
+    private static final int[][] rotateMatrixCW270 =
+            {
+                    {
+                        (int) Math.cos(Math.toRadians(90)),
+                            (int) (-1 * Math.sin(Math.toRadians(90)))
+                    },
+                    {
+                        (int) Math.sin(Math.toRadians(90)),
+                            (int) Math.cos(Math.toRadians(90))
+                    }
+            };
+    private static final int[][] rotateMatrixCW360 =
+            {
+                    {
+                        (int) Math.cos(Math.toRadians(0)),
+                            (int) (-1 * Math.sin(Math.toRadians(0)))
+                    },
+                    {
+                        (int) Math.sin(Math.toRadians(0)),
+                            (int) Math.cos(Math.toRadians(0))
+                    }
+            };
 
     public static Formation transform(RotateType rotateType, Formation formation){
 
@@ -23,7 +63,7 @@ public class FormationTransformer {
                 activeRotationMatrix = rotateMatrixCW270;
                 break;
             case CW360:
-                activeRotationMatrix = rotateMatrixCW260;
+                activeRotationMatrix = rotateMatrixCW360;
                 break;
             default:
                 throw new IllegalArgumentException("RotateType not valid");

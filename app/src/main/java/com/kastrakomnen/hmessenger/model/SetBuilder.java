@@ -262,7 +262,7 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());
+                    set.insert(brick);
                 }
 
                 set.setCurrentFormationIndex(0);
@@ -286,7 +286,7 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());
+                    set.insert(brick);
                 }
 
                 set.setCurrentFormationIndex(0);
@@ -310,7 +310,7 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());                }
+                    set.insert(brick);                }
 
                 set.setCurrentFormationIndex(0);
 
@@ -333,7 +333,7 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());                }
+                    set.insert(brick);                }
 
                 set.setCurrentFormationIndex(0);
 
@@ -356,7 +356,7 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());                }
+                    set.insert(brick);                }
 
                 set.setCurrentFormationIndex(0);
 
@@ -379,7 +379,7 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());                }
+                    set.insert(brick);                }
 
                 set.setCurrentFormationIndex(0);
 
@@ -402,7 +402,7 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());                }
+                    set.insert(brick);                }
 
                 set.setCurrentFormationIndex(0);
 
@@ -425,7 +425,7 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());                }
+                    set.insert(brick);                }
 
                 set.setCurrentFormationIndex(0);
 
@@ -448,7 +448,7 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());                }
+                    set.insert(brick);                }
 
                 set.setCurrentFormationIndex(0);
 
@@ -471,7 +471,7 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());                }
+                    set.insert(brick);                }
 
                 set.setCurrentFormationIndex(0);
 
@@ -494,7 +494,8 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());                }
+                    set.insert(brick);
+                }
 
                 set.setCurrentFormationIndex(0);
 
@@ -517,7 +518,8 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());                }
+                    set.insert(brick);
+                }
 
                 set.setCurrentFormationIndex(0);
 
@@ -540,7 +542,8 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());                }
+                    set.insert(brick);
+                }
 
                 set.setCurrentFormationIndex(0);
 
@@ -563,7 +566,8 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());                }
+                    set.insert(brick);
+                }
 
                 set.setCurrentFormationIndex(0);
 
@@ -586,7 +590,8 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());                }
+                    set.insert(brick);
+                }
 
                 set.setCurrentFormationIndex(0);
 
@@ -609,7 +614,8 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());                }
+                    set.insert(brick);
+                }
 
                 set.setCurrentFormationIndex(0);
 
@@ -632,7 +638,8 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());                }
+                    set.insert(brick);
+                }
 
                 set.setCurrentFormationIndex(0);
 
@@ -655,7 +662,8 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());                }
+                    set.insert(brick);
+                }
 
                 set.setCurrentFormationIndex(0);
 
@@ -678,7 +686,8 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());                }
+                    set.insert(brick);
+                }
 
                 set.setCurrentFormationIndex(0);
 
@@ -701,7 +710,8 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());                }
+                    set.insert(brick);
+                }
 
                 set.setCurrentFormationIndex(0);
 
@@ -724,7 +734,8 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());                }
+                    set.insert(brick);
+                }
 
                 set.setCurrentFormationIndex(0);
 
@@ -747,7 +758,8 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());                }
+                    set.insert(brick);
+                }
 
                 set.setCurrentFormationIndex(0);
 
@@ -770,7 +782,8 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());                }
+                    set.insert(brick);
+                }
 
                 set.setCurrentFormationIndex(0);
 
@@ -793,7 +806,8 @@ public class SetBuilder {
                     brick.setSet(set);
                     brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
 
-                    set.insert(new Brick());                }
+                    set.insert(brick);
+                }
 
                 set.setCurrentFormationIndex(0);
 

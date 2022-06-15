@@ -51,4 +51,23 @@ public class BoardTest {
         board.moveRight();
         System.out.println(board.toString());
     }
+
+    @Test
+    public void testRotate(){
+        Board board = new Board(24, 12);
+
+        board.place(SetBuilder.build(FormationType.RL_CW90));
+        System.out.println(board.toString());
+
+        board.rotateCW();
+        System.out.println(board.toString());
+        board.rotateCW();
+        System.out.println(board.toString());
+        board.rotateCW();
+        System.out.println(board.toString());
+
+        System.out.println((int)Math.cos(Math.toRadians(180)));
+        System.out.println((int)Math.sin(Math.toRadians(180)));
+
+    }
 }

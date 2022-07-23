@@ -15,7 +15,7 @@ public interface GameInputListener {
     /**
      * A request to the game to move the current element 1 square down
      */
-    public void onMoveDown();
+    public void onMoveDown(int amount);
 
     /**
      * A request to the game to rotate the current element

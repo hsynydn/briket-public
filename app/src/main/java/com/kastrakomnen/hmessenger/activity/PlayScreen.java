@@ -41,6 +41,7 @@ public class PlayScreen extends AppCompatActivity implements View.OnTouchListene
     private Game game;
     private DisplayUnitController displayUnitController;
     private Bot bot;
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,7 @@ public class PlayScreen extends AppCompatActivity implements View.OnTouchListene
             Log.i(TAG, e.toString());
         }
 
+        handler = new Handler();
         gestureDetector = new GestureDetector(this, new GestureListener());
 
         /* DisplayUnitController will do all visual tasks */
@@ -96,6 +98,108 @@ public class PlayScreen extends AppCompatActivity implements View.OnTouchListene
 
     private void setUpControls() {
 
+        Runnable leftX1 = new Runnable() {
+            @Override
+            public void run() {
+                game.onMoveLeft(1);
+            }
+        };
+
+        Runnable leftX2 = new Runnable() {
+            @Override
+            public void run() {
+                for (int i=0; i<2; i++){
+                    game.onMoveLeft(2);
+                }
+            }
+        };
+
+        Runnable leftX3 = new Runnable() {
+            @Override
+            public void run() {
+                for (int i=0; i<3; i++){
+                    game.onMoveLeft(3);
+                }
+            }
+        };
+
+        Runnable leftX6 = new Runnable() {
+            @Override
+            public void run() {
+                for (int i=0; i<6; i++){
+                    game.onMoveLeft(6);
+                }
+            }
+        };
+
+        Runnable rightX1 = new Runnable() {
+            @Override
+            public void run() {
+                game.onMoveRight(1);
+            }
+        };
+
+        Runnable rightX2 = new Runnable() {
+            @Override
+            public void run() {
+                for (int i=0; i<2; i++){
+                    game.onMoveRight(2);
+                }
+            }
+        };
+
+        Runnable rightX3 = new Runnable() {
+            @Override
+            public void run() {
+                for (int i=0; i<3; i++){
+                    game.onMoveRight(3);
+                }
+            }
+        };
+
+        Runnable rightX6 = new Runnable() {
+            @Override
+            public void run() {
+                for (int i=0; i<6; i++){
+                    game.onMoveRight(6);
+                }
+            }
+        };
+
+        Runnable fallX1 = new Runnable() {
+            @Override
+            public void run() {
+                game.onMoveDown(1);
+            }
+        };
+
+        Runnable fallX2 = new Runnable() {
+            @Override
+            public void run() {
+                for (int i=0; i<2; i++){
+                    game.onMoveDown(2);
+                }
+            }
+        };
+
+        Runnable fallX3 = new Runnable() {
+            @Override
+            public void run() {
+                for (int i=0; i<3; i++){
+                    game.onMoveDown(3);
+                }
+            }
+        };
+
+        Runnable fallX6 = new Runnable() {
+            @Override
+            public void run() {
+                for (int i=0; i<12; i++){
+                    game.onMoveDown(12);
+                }
+            }
+        };
+
         findViewById(R.id.btn_rotate).setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -110,15 +214,20 @@ public class PlayScreen extends AppCompatActivity implements View.OnTouchListene
             }
         });
 
-        findViewById(R.id.btn_drop).setOnTouchListener(new View.OnTouchListener() {
+        findViewById(R.id.btn_drop).setOnTouchListener(new View.OnTouchListener(){
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.down_arrow_pressed));
-                    game.onMoveDown();
+                    handler.postDelayed(fallX1, 100);
+                    handler.postDelayed(fallX1, 10);
+                    handler.postDelayed(fallX2, 200);
+                    handler.postDelayed(fallX3, 300);
+                    handler.postDelayed(fallX6, 400);
                 }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.down_arrow_unpressed));
+                    handler.removeCallbacks(fallX1);
+                    handler.removeCallbacks(fallX2);
+                    handler.removeCallbacks(fallX3);
+                    handler.removeCallbacks(fallX6);
                 }
                 return true;
             }
@@ -127,29 +236,40 @@ public class PlayScreen extends AppCompatActivity implements View.OnTouchListene
         findViewById(R.id.btn_right_move).setOnTouchListener(new View.OnTouchListener(){
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-
-                gestureDetector.onTouchEvent(motionEvent);
-
-//                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-//                    game.onMoveRight(1);
-//                }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-//                }
-                return true;
-            }
-        });
-
-        findViewById(R.id.btn_left_move).setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                    game.onMoveLeft(1);
+                    handler.postDelayed(rightX1, 100);
+                    handler.postDelayed(rightX1, 10);
+                    handler.postDelayed(rightX2, 200);
+                    handler.postDelayed(rightX3, 300);
+                    handler.postDelayed(rightX6, 400);
                 }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
+                    handler.removeCallbacks(rightX1);
+                    handler.removeCallbacks(rightX2);
+                    handler.removeCallbacks(rightX3);
+                    handler.removeCallbacks(rightX6);
                 }
                 return true;
             }
         });
 
+        findViewById(R.id.btn_left_move).setOnTouchListener(new View.OnTouchListener(){
+                    @Override
+                    public boolean onTouch(View view, MotionEvent motionEvent) {
+                        if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
+                            handler.postDelayed(leftX1, 10);
+                            handler.postDelayed(leftX1, 100);
+                            handler.postDelayed(leftX2, 200);
+                            handler.postDelayed(leftX3, 300);
+                            handler.postDelayed(leftX6, 400);
+                        }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
+                            handler.removeCallbacks(leftX1);
+                            handler.removeCallbacks(leftX2);
+                            handler.removeCallbacks(leftX3);
+                            handler.removeCallbacks(leftX6);
+                        }
+                        return true;
+                    }
+                });
     }
 
     @Override

@@ -135,7 +135,7 @@ public class Game implements GameInputListener, Subscriber{
     }
 
     @Override
-    public void onMoveDown() {
+    public void onMoveDown(int amount) {
 
         Log.d(TAG, "{onMoveDown}");
 
@@ -152,8 +152,13 @@ public class Game implements GameInputListener, Subscriber{
                 enableInputs();
             }
         }else{
-            if (!board.moveDown()) {
-                enableInputs();
+            boolean ret;
+            for (int i = 0; i < amount; i++) {
+                ret = board.moveDown();
+                if (!ret){
+                    enableInputs();
+                    break;
+                }
             }
         }
     }

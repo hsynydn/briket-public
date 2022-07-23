@@ -33,7 +33,7 @@ public class Bot implements GameStateListener{
                 new Runnable() {
                     @Override
                     public void run() {
-                        gameInputListener.onMoveDown();
+                        gameInputListener.onMoveDown(1);
                     }
                 },
                 botBehaviour.botStartDelay,
@@ -53,7 +53,7 @@ public class Bot implements GameStateListener{
                 new Runnable() {
                     @Override
                     public void run() {
-                        gameInputListener.onMoveDown();
+                        gameInputListener.onMoveDown(1);
                     }
                 },
                 botBehaviour.botStartDelay,

@@ -17,6 +17,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.kastrakomnen.hmessenger.activity.PlayScreen;
 import com.kastrakomnen.hmessenger.view.ItemClickListener;
 import com.kastrakomnen.hmessenger.view.ProgressCard;
 import com.kastrakomnen.hmessenger.view.ProgressCardAdapter;
@@ -92,7 +93,7 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
 
     @Override
     public void onClick(View view, int position) {
-        Intent intent = new Intent(ActivityGameMap.this, ActivityPlayScreen.class);
+        Intent intent = new Intent(ActivityGameMap.this, PlayScreen.class);
         startActivity(intent);
         ActivityGameMap.this.finish();
 

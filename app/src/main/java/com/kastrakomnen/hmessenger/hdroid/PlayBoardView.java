@@ -267,35 +267,40 @@ public class PlayBoardView extends View implements DisplayUnitController {
             }
         }
 
-        for (ArrayList<Brick> row : board) {
-            for (Brick brick : row) {
-                if (brick == null) continue;
+        for (int i = 0; i < board.size(); i++) {
+            for (int j = 0; j < board.get(i).size(); j++) {
 
-                Position o = brick.getSet().getFormationOrigin();
-                Position p = brick.getRelativePosition();
+                Brick brick = board.get(i).get(j);
+
+                if (brick == null) continue;
 
                 if (brick.getBrickType() == BrickType.NORMAL){
                     switch (brick.getSet().getSetType()){
                         case BOX:
-                            brickDrawables.get(o.getY() + p.getY()).set(o.getX() + p.getX(), brick_blue);
+                            brickDrawables.get(i).set(j, brick_blue);
                             break;
                         case LINE:
-                            brickDrawables.get(o.getY() + p.getY()).set(o.getX() + p.getX(), brick_orange);
+                            brickDrawables.get(i).set(j, brick_orange);
                             break;
                         case T:
-                            brickDrawables.get(o.getY() + p.getY()).set(o.getX() + p.getX(), brick_green);
+                            brickDrawables.get(i).set(j, brick_green);
                             break;
                         case J:
                         case Z:
-                            brickDrawables.get(o.getY() + p.getY()).set(o.getX() + p.getX(), brick_red);
+                            brickDrawables.get(i).set(j, brick_red);
                             break;
                         case L:
-                            brickDrawables.get(o.getY() + p.getY()).set(o.getX() + p.getX(), brick_pink);
+                            brickDrawables.get(i).set(j, brick_pink);
                             break;
                     }
                 }else if (brick.getBrickType() == BrickType.COIN){
-                    brickDrawables.get(o.getY() + p.getY()).set(o.getX() + p.getX(), brick_pink);
+                    brickDrawables.get(i).set(j, brick_pink);
                 }
+            }
+        }
+        for (ArrayList<Brick> row : board) {
+            for (Brick brick : row) {
+
             }
         }
 

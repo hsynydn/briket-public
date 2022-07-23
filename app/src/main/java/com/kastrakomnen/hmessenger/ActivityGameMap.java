@@ -17,6 +17,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.kastrakomnen.hmessenger.activity.PlayScreen;
 import com.kastrakomnen.hmessenger.view.ItemClickListener;
 import com.kastrakomnen.hmessenger.view.ProgressCard;
@@ -31,7 +33,7 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
     private static final String TAG = "ActivityGameMap";
 
     private MediaPlayer audio_fx_button_settings;
-
+    private AdView adView;
     private Animation logoBreathingAnimation;
 
     @Override
@@ -50,6 +52,10 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
         }catch (NullPointerException e){
             Log.i(TAG, e.toString());
         }
+
+        adView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
         this.audio_fx_button_settings = MediaPlayer.create(getApplicationContext(), R.raw.fx_audio_pause);
 
@@ -96,6 +102,5 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
         Intent intent = new Intent(ActivityGameMap.this, PlayScreen.class);
         startActivity(intent);
         ActivityGameMap.this.finish();
-
     }
 }

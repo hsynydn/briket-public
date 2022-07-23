@@ -14,13 +14,16 @@ import android.widget.ImageView;
 
 import java.util.Objects;
 
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.games.GamesSignInClient;
 import com.google.android.gms.games.PlayGames;
 import com.google.android.gms.games.PlayGamesSdk;
 
 public class ActivityHome extends AppCompatActivity {
 
-    private static final String TAG = "activity_main_menu";
+    private static final String TAG = "{view.ActivityHome}";
 
     private Animation animaton;
     private Animation animaton_2;
@@ -76,6 +79,13 @@ public class ActivityHome extends AppCompatActivity {
                 startActivity(intent);
                 ActivityHome.this.finish();
                 return true;
+            }
+        });
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+                Log.i(TAG, "Mobile Ads has been initialized");
             }
         });
 

@@ -11,26 +11,22 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.kastrakomnen.hmessenger.R;
-import com.kastrakomnen.hmessenger.hdroid.PlayBoardView;
 import com.kastrakomnen.hmessenger.model.Bot;
 import com.kastrakomnen.hmessenger.model.BotBehaviour;
 import com.kastrakomnen.hmessenger.model.DisplayData;
 import com.kastrakomnen.hmessenger.model.DisplayUnitController;
-import com.kastrakomnen.hmessenger.model.DistributionTableBuilder;
 import com.kastrakomnen.hmessenger.model.DistributionType;
 import com.kastrakomnen.hmessenger.model.FormationType;
 import com.kastrakomnen.hmessenger.model.Game;
-import com.kastrakomnen.hmessenger.model.RelativePosition;
 import com.kastrakomnen.hmessenger.model.Stage;
 import com.kastrakomnen.hmessenger.model.WinCondition;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class PlayScreen extends AppCompatActivity implements View.OnTouchListener {
 
@@ -42,6 +38,8 @@ public class PlayScreen extends AppCompatActivity implements View.OnTouchListene
     private DisplayUnitController displayUnitController;
     private Bot bot;
     private Handler handler;
+
+    private AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +56,10 @@ public class PlayScreen extends AppCompatActivity implements View.OnTouchListene
         }catch (NullPointerException e){
             Log.i(TAG, e.toString());
         }
+
+        adView = findViewById(R.id.playboard_adview);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
         handler = new Handler();
         gestureDetector = new GestureDetector(this, new GestureListener());

@@ -6,9 +6,18 @@ public class Brick {
     private Set set;
     private Position relativePosition;
     private BrickState brickState;
+    private BrickType brickType;
 
     public Brick(){
 
+    }
+
+    public void setBrickType(BrickType brickType) {
+        this.brickType = brickType;
+    }
+
+    public BrickType getBrickType() {
+        return brickType;
     }
 
     public void setSet(Set set) {

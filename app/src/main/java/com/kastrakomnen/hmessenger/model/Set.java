@@ -10,6 +10,7 @@ public class Set {
     private Integer currentFormationIndex;
     private Position formationOrigin;
     private SetState setState;
+    private SetType setType;
 
     public Set(){
         formations = new ArrayList<>();
@@ -41,6 +42,18 @@ public class Set {
         }
 
         brickIndexers.add(brickIndexer);
+    }
+
+    public void setSetType(SetType setType) {
+        this.setType = setType;
+    }
+
+    public SetType getSetType() {
+        return setType;
+    }
+
+    public SetState getSetState() {
+        return setState;
     }
 
     public void setCurrentFormationIndex(Integer currentFormationIndex) {
@@ -96,6 +109,14 @@ public class Set {
         }
     }
 
+    public Formation getPrevFormation(){
+        if (currentFormationIndex == 0){
+            return formations.get(formations.size() - 1);
+        }else{
+            return formations.get(currentFormationIndex - 1);
+        }
+    }
+
     public Formation cycleFormationForward(){
         if (currentFormationIndex == formations.size() - 1){
             currentFormationIndex = 0;
@@ -142,5 +163,9 @@ public class Set {
             }
             i++;
         }
+    }
+
+    public ArrayList<ArrayList<Integer>> getBrickIndexers() {
+        return brickIndexers;
     }
 }

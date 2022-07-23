@@ -6,4 +6,9 @@ public class BotBehaviour {
 
     /* Number of milliseconds to delay bot start-up */
     public int botStartDelay;
+
+    public BotBehaviour(int commandGenerationPeriod, int botStartDelay){
+        this.commandGenerationPeriod = commandGenerationPeriod;
+        this.botStartDelay = botStartDelay;
+    }
 }

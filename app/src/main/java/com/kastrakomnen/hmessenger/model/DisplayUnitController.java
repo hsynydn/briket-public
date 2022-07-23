@@ -1,15 +1,44 @@
 package com.kastrakomnen.hmessenger.model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public interface DisplayUnitController {
+public interface DisplayUnitController extends Publisher{
 
-    public void createMap(int h, int w);
-    public void startFast();
-    public void startDelay(int delay);
-    public void move(ArrayList<Position> from, ArrayList<Position> to);
-    public void remove(ArrayList<Position> from);
-    public void updateInfo();
-    public void end();
+    void create(DisplayData.Board board);
+    void create(DisplayData.Brick brick, Position at);
 
+    void move(DisplayData.Brick brick, Position from, Position to);
+
+    void refresh(ArrayList<ArrayList<Brick>> board);
+
+    void move(
+            ArrayList<DisplayData.Brick> brickArrayList,
+            ArrayList<Position> fromPositions,
+            ArrayList<Position> toPositions
+            );
+
+    void rotate(
+            ArrayList<DisplayData.Brick> brickArrayList,
+            ArrayList<Position> fromPositions,
+            ArrayList<Position> toPositions
+            );
+
+    void remove(DisplayData.Brick brick, Position at);
+
+    void removeAndRefresh(
+            ArrayList<DisplayData.Brick> brickArrayList,
+            ArrayList<Position> atPositions,
+            ArrayList<Position> board
+            );
+
+    void refresh(
+            ArrayList<DisplayData.Brick> brickArrayList,
+            ArrayList<Position> atPositions
+            );
+
+    void startFast();
+    void startDelay(int delay);
+    void updateInfo();
+    void end();
 }

@@ -43,36 +43,36 @@ public class PlayBoardView extends View {
     public PlayBoardView(Context context) {
         super(context);
         board = new ArrayList<>();
-        animations = new ArrayList<ArrayList<Path>>();
-        animations_flags = new ArrayList<ArrayList<Boolean>>();
-        laser_beam_paints = new ArrayList<Paint>();
+        animations = new ArrayList<>();
+        animations_flags = new ArrayList<>();
+        laser_beam_paints = new ArrayList<>();
         random = new Random();
     }
 
     public PlayBoardView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         board = new ArrayList<>();
-        animations = new ArrayList<ArrayList<Path>>();
-        animations_flags = new ArrayList<ArrayList<Boolean>>();
-        laser_beam_paints = new ArrayList<Paint>();
+        animations = new ArrayList<>();
+        animations_flags = new ArrayList<>();
+        laser_beam_paints = new ArrayList<>();
         random = new Random();
     }
 
     public PlayBoardView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         board = new ArrayList<>();
-        animations = new ArrayList<ArrayList<Path>>();
-        animations_flags = new ArrayList<ArrayList<Boolean>>();
-        laser_beam_paints = new ArrayList<Paint>();
+        animations = new ArrayList<>();
+        animations_flags = new ArrayList<>();
+        laser_beam_paints = new ArrayList<>();
         random = new Random();
     }
 
     public PlayBoardView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         board = new ArrayList<>();
-        animations = new ArrayList<ArrayList<Path>>();
-        animations_flags = new ArrayList<ArrayList<Boolean>>();
-        laser_beam_paints = new ArrayList<Paint>();
+        animations = new ArrayList<>();
+        animations_flags = new ArrayList<>();
+        laser_beam_paints = new ArrayList<>();
         random = new Random();
     }
 
@@ -96,7 +96,7 @@ public class PlayBoardView extends View {
 
             /* Create 16 Laser Beam Path for every row
              * Connection Point is the middle of left side */
-            ArrayList<Path> tmp = new ArrayList<Path>();
+            ArrayList<Path> tmp = new ArrayList<>();
             for (int i = 0; i<16; i++){
                 Path p = new Path();
                 p.moveTo(left,sqrtLen/2 + top);

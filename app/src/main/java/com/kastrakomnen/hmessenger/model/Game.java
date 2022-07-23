@@ -1,8 +1,12 @@
 package com.kastrakomnen.hmessenger.model;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
-public class Game implements GameInputListener {
+public class Game implements GameInputListener, Subscriber{
+
+    private static final String TAG = "Game";
 
     private DisplayUnitController displayUnitController;
     private Board board;
@@ -10,12 +14,12 @@ public class Game implements GameInputListener {
     private final ArrayList<GameStateListener> gameStateListeners;
 
     private GameState gameState;
-    private final boolean disableInputs;
+    private boolean disableInputs;
 
     public Game(DisplayUnitController displayUnitController){
 
         this.displayUnitController = displayUnitController;
-        this.board = new Board(24, 12);
+        this.board = new Board(20, 10, displayUnitController);
         this.gameStateListeners = new ArrayList<>();
 
         disableInputs = true;
@@ -39,11 +43,8 @@ public class Game implements GameInputListener {
     }
 
     public void start(){
-
-        Set set = setGenerator.generate();
-//        board.
-
         gameState = GameState.START;
+        disableInputs = false;
         for (GameStateListener listener: gameStateListeners) {
             listener.onGameStart();
         }
@@ -75,34 +76,134 @@ public class Game implements GameInputListener {
     }
 
     @Override
-    public void onMoveRight() {
-        if (disableInputs) return;
+    public void onMoveRight(int amount) {
 
+        Log.d(TAG, "{onMoveRight}");
+
+        if (isDisableInputs()) {
+            Log.d(TAG, "{onMoveRight} ─ isDisableInputs::true");
+            return;
+        }
+
+        disableInputs();
+
+        if (board.getActiveSet() != null) {
+            Log.d(TAG, "{onMoveRight} ─ activeSet::notnull");
+
+            boolean ret;
+            for (int i = 0; i < amount; i++) {
+                ret = board.moveRight();
+                if (!ret){
+                    enableInputs();
+                    break;
+                }
+            }
+
+            return;
+        }
+
+        enableInputs();
     }
 
     @Override
-    public void onMoveLeft() {
-        if (disableInputs) return;
+    public void onMoveLeft(int amount) {
 
+        Log.d(TAG, "{onMoveLeft}");
+
+        if (isDisableInputs()) {
+            Log.d(TAG, "{onMoveLeft} ─ isDisableInputs::true");
+            return;
+        }
+
+        disableInputs();
+
+        if (board.getActiveSet() != null) {
+
+            boolean ret;
+            for (int i = 0; i < amount; i++) {
+                ret = board.moveLeft();
+                if (!ret){
+                    enableInputs();
+                    break;
+                }
+            }
+
+            return;
+        }
+
+        enableInputs();
     }
 
     @Override
     public void onMoveDown() {
-        if (disableInputs) return;
 
-        if (board.getActiveSet() == null){
-            board.place(setGenerator.generate());
+        Log.d(TAG, "{onMoveDown}");
+
+        if (isDisableInputs()) {
+            Log.d(TAG, "{onMoveDown} ─ isDisableInputs::true");
+            return;
         }
 
+        disableInputs();
+
+        if (board.getActiveSet() == null){
+            Log.d(TAG, "Active set null");
+            if (board.place(setGenerator.generate())){
+                enableInputs();
+            }
+        }else{
+            if (!board.moveDown()) {
+                enableInputs();
+            }
+        }
     }
 
     @Override
     public void onRotate() {
-        if (disableInputs) return;
 
+        Log.d(TAG, "{onRotate}");
+
+        if (isDisableInputs()) {
+            Log.d(TAG, "{onRotate} ─ isDisableInputs::true");
+            return;
+        }
+
+        disableInputs();
+
+        if (board.getActiveSet() != null) {
+            if (!board.rotateCW()){
+                Log.d(TAG, "{onRotate} ── board.rotateCW failed ─ reactivate inputs");
+                enableInputs();
+            }
+            return;
+        }
+
+        enableInputs();
     }
 
     public void registerGameStateListener(GameStateListener gameStateListener){
         gameStateListeners.add(gameStateListener);
+    }
+
+    private synchronized void toggleInputs(){
+        disableInputs = !disableInputs;
+    }
+
+    private synchronized void disableInputs(){
+        disableInputs = true;
+    }
+
+    private synchronized boolean isDisableInputs(){
+        return disableInputs;
+    }
+
+    private synchronized void enableInputs(){
+        disableInputs = false;
+    }
+
+    @Override
+    public void onNotify() {
+        Log.i(TAG, "onNotify called");
+        enableInputs();
     }
 }

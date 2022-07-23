@@ -1,18 +1,77 @@
 package com.kastrakomnen.hmessenger.model;
 
-import junit.framework.TestCase;
-
-import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+
+class MockDisplayUnitController implements DisplayUnitController{
+
+    @Override
+    public void create(DisplayData.Board board) {
+
+    }
+
+    @Override
+    public void create(DisplayData.Brick brick, Position at) {
+
+    }
+
+    @Override
+    public void move(DisplayData.Brick brick, Position from, Position to) {
+
+    }
+
+    @Override
+    public void move(ArrayList<DisplayData.Brick> brickArrayList, ArrayList<Position> fromPositions, ArrayList<Position> toPositions) {
+
+    }
+
+    @Override
+    public void rotate(ArrayList<DisplayData.Brick> brickArrayList, ArrayList<Position> fromPositions, ArrayList<Position> toPositions) {
+
+    }
+
+    @Override
+    public void remove(DisplayData.Brick brick, Position at) {
+
+    }
+
+    @Override
+    public void startFast() {
+
+    }
+
+    @Override
+    public void startDelay(int delay) {
+
+    }
+
+    @Override
+    public void updateInfo() {
+
+    }
+
+    @Override
+    public void end() {
+
+    }
+
+    @Override
+    public void register(Subscriber subscriber) {
+
+    }
+
+    @Override
+    public void publish() {
+
+    }
+}
 
 public class BoardTest {
 
     @Test
     public void t1(){
-        Board board = new Board(24, 12);
+        Board board = new Board(24, 12, null);
 
         board.place(SetBuilder.build(FormationType.BOX_CW0));
         System.out.println(board.toString());
@@ -54,7 +113,7 @@ public class BoardTest {
 
     @Test
     public void testRotate(){
-        Board board = new Board(24, 12);
+        Board board = new Board(24, 12, new MockDisplayUnitController());
 
         board.place(SetBuilder.build(FormationType.RL_CW90));
         System.out.println(board.toString());

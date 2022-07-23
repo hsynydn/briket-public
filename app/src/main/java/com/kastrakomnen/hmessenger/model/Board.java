@@ -1,30 +1,26 @@
 package com.kastrakomnen.hmessenger.model;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class Board {
 
+    private static final String TAG = "Board";
+
     private final int height;
     private final int width;
 
-    private Set[][] boardMap;
     private Set activeSet;
-    private ArrayList<Set> setList;
 
-    private ArrayList<ArrayList<Brick>> board;
+    private final ArrayList<ArrayList<Brick>> board;
+    private final DisplayUnitController displayUnitController;
 
-    public Board(int height, int width){
+    public Board(int height, int width, DisplayUnitController displayUnitController){
 
-        boardMap = new Set[height][width];
-
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                boardMap[i][j] = null;
-            }
-        }
+        this.displayUnitController = displayUnitController;
 
         activeSet = null;
-        setList = new ArrayList<>();
 
         board = new ArrayList<>();
         for (int i = 0; i < height; i++) {
@@ -40,6 +36,8 @@ public class Board {
     }
 
     public boolean place(Set set){
+
+        Log.i(TAG, "Board place called");
 
         Position basePosition = new RelativePosition(5,2);
 
@@ -71,6 +69,18 @@ public class Board {
 
         activeSet = set;
 
+        for (Brick brick : set.getBricks()) {
+            displayUnitController.create(
+                    null,
+                    new RelativePosition(
+                            activeSet.getFormationOrigin().getX() + brick.getRelativePosition().getX(),
+                            activeSet.getFormationOrigin().getY() + brick.getRelativePosition().getY()
+                    )
+            );
+        }
+
+        Log.i(TAG, "Board place end");
+
         return true;
     }
 
@@ -101,6 +111,7 @@ public class Board {
 
             if (board.get(o.getY() + p.getY()).get(o.getX() + p.getX() + 1) != null){
                 failFlag = true;
+                break;
             }
         }
 
@@ -121,7 +132,11 @@ public class Board {
             board.get(o.getY() + p.getY()).set(o.getX() + p.getX(), brick);
         }
 
-        return true;
+        if (!failFlag){
+            displayUnitController.refresh(board);
+        }
+
+        return !failFlag;
     }
 
     public boolean moveLeft(){
@@ -144,10 +159,14 @@ public class Board {
             Position o = activeSet.getFormationOrigin();
             Position p = brick.getRelativePosition();
 
-            if (o.getX() + p.getX() - 1 < 0) failFlag = true;
+            if (o.getX() + p.getX() - 1 < 0) {
+                failFlag = true;
+                break;
+            }
 
             if (board.get(o.getY() + p.getY()).get(o.getX() + p.getX() - 1) != null){
                 failFlag = true;
+                break;
             }
         }
 
@@ -168,12 +187,21 @@ public class Board {
             board.get(o.getY() + p.getY()).set(o.getX() + p.getX(), brick);
         }
 
-        return true;
+        if (!failFlag){
+            displayUnitController.refresh(board);
+        }
+
+        return !failFlag;
     }
 
     public boolean moveDown(){
 
-        if (activeSet==null) return false;
+        Log.i(TAG, "Board moveDown called");
+
+        if (activeSet==null) {
+            Log.d(TAG, "activeSet=null");
+            return false;
+        }
 
         /* Clean currently occupied space */
         for (Brick brick : activeSet.getBricks()) {
@@ -219,9 +247,41 @@ public class Board {
         }
 
         if (failFlag){
+            ArrayList<Integer> indices = checkSequence();
+
+            /* Check is there any row to delete */
+            if (!indices.isEmpty()){
+
+                ArrayList<Position> visualUpdateAtArrayList = new ArrayList<>();
+                for (Integer i: indices) {
+                    for (int j = 0; j < width; j++) {
+                        Position o = board.get(i).get(j).getSet().getFormationOrigin();
+                        Position p = board.get(i).get(j).getRelativePosition();
+
+                        board.get(i).get(j).setBrickState(BrickState.DEAD);
+
+                        visualUpdateAtArrayList.add(new RelativePosition(o.getX() + p.getX(), o.getY() + p.getY()));
+                    }
+
+                    board.remove((int)i);
+
+                    ArrayList<Brick> newRow = new ArrayList<>();
+                    for (int j = 0; j < width; j++) {
+                        newRow.add(null);
+                    }
+                    board.add(0, newRow);
+                }
+
+                displayUnitController.refresh(board);
+                activeSet = null;
+                return true;
+            }
+
             activeSet = null;
             return false;
         }
+
+        displayUnitController.refresh(board);
 
         return true;
     }
@@ -246,14 +306,19 @@ public class Board {
 
             Position o = activeSet.getFormationOrigin();
 
-            if (o.getY() + p.getY() < 0 || o.getY() + p.getY() >= height)
+            if (o.getY() + p.getY() < 0 || o.getY() + p.getY() >= height){
                 failFlag=true;
+                break;
+            }
 
-            if (o.getX() + p.getX() < 0 || o.getX() + p.getX() >= width)
+            if (o.getX() + p.getX() < 0 || o.getX() + p.getX() >= width){
                 failFlag=true;
+                break;
+            }
 
             if (board.get(o.getY() + p.getY()).get(o.getX() + p.getX()) != null){
                 failFlag = true;
+                break;
             }
         }
 
@@ -279,11 +344,44 @@ public class Board {
             board.get(o.getY() + p.getY()).set(o.getX() + p.getX(), brick);
         }
 
+        if (failFlag){
+            return false;
+        }
+
+        displayUnitController.refresh(board);
+
         return true;
     }
 
-    public Set getActiveSet(){
-        return activeSet;
+    /**
+     * Find sequences in board
+     * @return
+     */
+    private ArrayList<Integer> checkSequence(){
+
+        Log.v(TAG, "{checkSequence}");
+        ArrayList<Integer> indices = new ArrayList<>();
+
+        int k = 0;
+        for (ArrayList<Brick> row : board) {
+            int i = 0;
+            for (Brick brick : row) {
+                Log.v(TAG, "{checkSequence} loop");
+                if (brick == null) continue;
+
+                if (brick.getBrickState() == BrickState.LIVE){
+                    i++;
+                }
+
+                if (i == width){
+                    indices.add(k);
+                    Log.d(TAG, "{checkSequence} ── Delete Row::" + k);
+                }
+            }
+            k++;
+        }
+
+        return indices;
     }
 
     @Override
@@ -306,5 +404,9 @@ public class Board {
         }
 
         return stringBuilder.toString();
+    }
+
+    public Set getActiveSet(){
+        return activeSet;
     }
 }

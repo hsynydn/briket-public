@@ -5,12 +5,12 @@ public interface GameInputListener {
     /**
      * A request to the game to move the current element 1 square right
      */
-    public void onMoveRight();
+    public void onMoveRight(int amount);
 
     /**
      * A request to the game to move the current element 1 square left
      */
-    public void onMoveLeft();
+    public void onMoveLeft(int amount);
 
     /**
      * A request to the game to move the current element 1 square down

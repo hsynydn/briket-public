@@ -222,45 +222,45 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
             e.printStackTrace();
         }
 
-        findViewById(R.id.btn_left_move).setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                    audio_fx_btn_click_3.start();
-                    handler.postDelayed(leftX1, 10);
-                    handler.postDelayed(leftX1, 100);
-                    handler.postDelayed(leftX2, 200);
-                    handler.postDelayed(leftX3, 300);
-                    handler.postDelayed(leftX6, 400);
-                }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-                    handler.removeCallbacks(leftX1);
-                    handler.removeCallbacks(leftX2);
-                    handler.removeCallbacks(leftX3);
-                    handler.removeCallbacks(leftX6);
-                }
-                return true;
-            }
-        });
+//        findViewById(R.id.btn_left_move).setOnTouchListener(new View.OnTouchListener(){
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
+//                    audio_fx_btn_click_3.start();
+//                    handler.postDelayed(leftX1, 10);
+//                    handler.postDelayed(leftX1, 100);
+//                    handler.postDelayed(leftX2, 200);
+//                    handler.postDelayed(leftX3, 300);
+//                    handler.postDelayed(leftX6, 400);
+//                }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
+//                    handler.removeCallbacks(leftX1);
+//                    handler.removeCallbacks(leftX2);
+//                    handler.removeCallbacks(leftX3);
+//                    handler.removeCallbacks(leftX6);
+//                }
+//                return true;
+//            }
+//        });
 
-        findViewById(R.id.btn_right_move).setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                    audio_fx_btn_click_3.start();
-                    handler.postDelayed(rightX1, 100);
-                    handler.postDelayed(rightX1, 10);
-                    handler.postDelayed(rightX2, 200);
-                    handler.postDelayed(rightX3, 300);
-                    handler.postDelayed(rightX6, 400);
-                }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-                    handler.removeCallbacks(rightX1);
-                    handler.removeCallbacks(rightX2);
-                    handler.removeCallbacks(rightX3);
-                    handler.removeCallbacks(rightX6);
-                }
-                return true;
-            }
-        });
+//        findViewById(R.id.btn_right_move).setOnTouchListener(new View.OnTouchListener(){
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
+//                    audio_fx_btn_click_3.start();
+//                    handler.postDelayed(rightX1, 100);
+//                    handler.postDelayed(rightX1, 10);
+//                    handler.postDelayed(rightX2, 200);
+//                    handler.postDelayed(rightX3, 300);
+//                    handler.postDelayed(rightX6, 400);
+//                }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
+//                    handler.removeCallbacks(rightX1);
+//                    handler.removeCallbacks(rightX2);
+//                    handler.removeCallbacks(rightX3);
+//                    handler.removeCallbacks(rightX6);
+//                }
+//                return true;
+//            }
+//        });
 
         findViewById(R.id.btn_drop).setOnTouchListener(new View.OnTouchListener() {
             @Override

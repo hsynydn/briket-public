@@ -4,10 +4,11 @@ import android.util.Log;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 public class Bot implements GameStateListener{
+
+    private static final String TAG = "Bot";
 
     private GameInputListener gameInputListener;
     private BotBehaviour botBehaviour;
@@ -25,6 +26,9 @@ public class Bot implements GameStateListener{
 
     @Override
     public void onGameStart() {
+
+        Log.i(TAG, "Bot onGameStart called");
+
         service.scheduleAtFixedRate(
                 new Runnable() {
                     @Override

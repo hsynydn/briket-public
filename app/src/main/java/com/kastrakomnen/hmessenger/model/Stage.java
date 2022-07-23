@@ -48,11 +48,23 @@ public class Stage {
         return distributionType;
     }
 
+    public void setDistributionType(DistributionType distributionType) {
+        this.distributionType = distributionType;
+    }
+
     public WinCondition getWinCondition(){
         return winCondition;
     }
 
+    public void setWinCondition(WinCondition winCondition) {
+        this.winCondition = winCondition;
+    }
+
     public ArrayList<FormationType> getFormationTypes(){
         return formationTypes;
+    }
+
+    public void setFormationTypes(ArrayList<FormationType> formationTypes) {
+        this.formationTypes = formationTypes;
     }
 }

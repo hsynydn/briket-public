@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -20,6 +21,10 @@ import android.widget.ImageView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.kastrakomnen.hmessenger.activity.PlayScreen;
+import com.kastrakomnen.hmessenger.db.BriketDatabase;
+import com.kastrakomnen.hmessenger.db.entity.BotBehaviour;
+import com.kastrakomnen.hmessenger.db.entity.Preferences;
+import com.kastrakomnen.hmessenger.db.entity.Stage;
 import com.kastrakomnen.hmessenger.view.ItemClickListener;
 import com.kastrakomnen.hmessenger.view.ProgressCard;
 import com.kastrakomnen.hmessenger.view.ProgressCardAdapter;
@@ -30,7 +35,7 @@ import java.util.Objects;
 
 public class ActivityGameMap extends AppCompatActivity implements ItemClickListener {
 
-    private static final String TAG = "ActivityGameMap";
+    private static final String TAG = "{ActivityGameMap}";
 
     private MediaPlayer audio_fx_button_settings;
     private AdView adView;
@@ -56,6 +61,14 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
         adView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
+
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                List<BotBehaviour> botBehaviours = BriketDatabase.getInstance(ActivityGameMap.this).getBotBehaviourDAO().getBotBehaviours();
+                Log.d(TAG, "botBehaviours.size() = " + botBehaviours.size());
+            }
+        });
 
         this.audio_fx_button_settings = MediaPlayer.create(getApplicationContext(), R.raw.fx_audio_pause);
 

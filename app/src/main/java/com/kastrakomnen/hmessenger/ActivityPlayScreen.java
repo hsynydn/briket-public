@@ -214,8 +214,7 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
             this.audio_fx_btn_click_3   = new Music(getApplicationContext(), R.raw.audio_fx_btn_click_3);
             this.fx_audio_btn_pause     = new Music(getApplicationContext(), R.raw.fx_audio_pause);
             this.audio_fx_count_down    = MediaPlayer.create(getApplicationContext(), R.raw.audio_fx_count_down);
-            this.audio_fx_game_intro    = MediaPlayer.create(getApplicationContext(), R.raw.audio_fx_game_intro);
-            this.music_get_wacky        = MediaPlayer.create(getApplicationContext(), R.raw.get_wacky);
+//            this.music_get_wacky        = MediaPlayer.create(getApplicationContext(), R.raw.get_wacky);
             this.music_get_wacky.setLooping(true);
             this.music_get_wacky.setVolume(1, 0);
         } catch (IOException e) {

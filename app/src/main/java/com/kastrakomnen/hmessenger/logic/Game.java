@@ -71,9 +71,6 @@ public class Game {
         this.collisionDetector = new CollisionDetector();
         this.activePattern = null;
         this.timer = new Timer();
-        this.tetris_gameboy_play = new Music(context, R.raw.tetris_gameboy_play);
-        this.tetris_gameboy_end = new Music(context, R.raw.tetris_gameboy_end);
-        this.audio_fx_line_destroy = new Music(context, R.raw.fx_audio_distortions );
 
         gameState = GameState.NOT_STARTED;
 

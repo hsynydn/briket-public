@@ -22,9 +22,10 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.kastrakomnen.hmessenger.activity.PlayScreen;
 import com.kastrakomnen.hmessenger.db.BriketDatabase;
-import com.kastrakomnen.hmessenger.db.entity.BotBehaviour;
-import com.kastrakomnen.hmessenger.db.entity.Preferences;
-import com.kastrakomnen.hmessenger.db.entity.Stage;
+import com.kastrakomnen.hmessenger.db.entity.BotBehaviourEntity;
+import com.kastrakomnen.hmessenger.db.entity.StageEntity;
+import com.kastrakomnen.hmessenger.model.BriketContext;
+import com.kastrakomnen.hmessenger.model.Stage;
 import com.kastrakomnen.hmessenger.view.ItemClickListener;
 import com.kastrakomnen.hmessenger.view.ProgressCard;
 import com.kastrakomnen.hmessenger.view.ProgressCardAdapter;
@@ -65,7 +66,7 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
-                List<BotBehaviour> botBehaviours = BriketDatabase.getInstance(ActivityGameMap.this).getBotBehaviourDAO().getBotBehaviours();
+                List<BotBehaviourEntity> botBehaviours = BriketDatabase.getInstance(ActivityGameMap.this).getBotBehaviourDAO().getBotBehaviours();
                 Log.d(TAG, "botBehaviours.size() = " + botBehaviours.size());
             }
         });
@@ -78,11 +79,14 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
         RecyclerView recyclerView = findViewById(R.id.rv_progress_cards);
 
         List<ProgressCard> progressCardList = new ArrayList<>();
-        progressCardList.add(new ProgressCard(false));
-        progressCardList.add(new ProgressCard(true));
-        progressCardList.add(new ProgressCard(true));
-        progressCardList.add(new ProgressCard(true));
-        progressCardList.add(new ProgressCard(true));
+        for (Stage stage : BriketContext.getInstance().getStages()) {
+            ProgressCard progressCard = new ProgressCard();
+            progressCard.setLocked(stage.isLocked());
+            progressCard.setHighScore(stage.getHighScore());
+            progressCard.setIndex(stage.getIndex());
+
+            progressCardList.add(progressCard);
+        }
 
         ProgressCardAdapter progressCardAdapter = new ProgressCardAdapter(progressCardList);
         progressCardAdapter.setClickListener(this);

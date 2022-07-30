@@ -1,21 +1,18 @@
 package com.kastrakomnen.hmessenger.db.entity;
 
-import static androidx.room.ForeignKey.CASCADE;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 @Entity(foreignKeys = @ForeignKey(
-        entity = BotBehaviour.class,
+        entity = BotBehaviourEntity.class,
         parentColumns = "id",
         childColumns = "botBehaviour"),
         tableName = "Stage"
 )
-public class Stage {
+public class StageEntity {
 
     @PrimaryKey(autoGenerate = true) @ColumnInfo(defaultValue = "0")
     public int id;

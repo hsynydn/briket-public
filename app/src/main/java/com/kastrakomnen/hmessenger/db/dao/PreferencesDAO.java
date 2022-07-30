@@ -6,7 +6,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.kastrakomnen.hmessenger.db.entity.Preferences;
+import com.kastrakomnen.hmessenger.db.entity.PreferencesEntity;
 
 import java.util.List;
 
@@ -14,14 +14,14 @@ import java.util.List;
 public interface PreferencesDAO {
 
     @Insert
-    public void insert(Preferences preferences);
+    public void insert(PreferencesEntity preferences);
 
     @Update
-    public void update(Preferences preferences);
+    public void update(PreferencesEntity preferences);
 
     @Delete
-    public void delete(Preferences preferences);
+    public void delete(PreferencesEntity preferences);
 
     @Query("SELECT * FROM Preferences")
-    List<Preferences> getPreferences();
+    List<PreferencesEntity> getPreferences();
 }

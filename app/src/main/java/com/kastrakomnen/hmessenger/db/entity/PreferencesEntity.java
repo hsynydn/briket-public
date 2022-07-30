@@ -6,7 +6,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "Preferences")
-public class Preferences {
+public class PreferencesEntity {
 
     @PrimaryKey(autoGenerate = true)
     public int id;

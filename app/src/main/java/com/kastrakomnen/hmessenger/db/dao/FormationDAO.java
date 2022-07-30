@@ -6,7 +6,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.kastrakomnen.hmessenger.db.entity.Formation;
+import com.kastrakomnen.hmessenger.db.entity.FormationEntity;
 
 import java.util.List;
 
@@ -14,14 +14,14 @@ import java.util.List;
 public interface FormationDAO {
 
     @Insert
-    public void insert(Formation formation);
+    public void insert(FormationEntity formation);
 
     @Update
-    public void update(Formation formation);
+    public void update(FormationEntity formation);
 
     @Delete
-    public void delete(Formation formation);
+    public void delete(FormationEntity formation);
 
     @Query("SELECT * FROM Formation")
-    List<Formation> getFormations();
+    List<FormationEntity> getFormations();
 }

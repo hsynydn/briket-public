@@ -7,7 +7,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "BotBehaviour")
-public class BotBehaviour {
+public class BotBehaviourEntity {
 
     @PrimaryKey(autoGenerate = true)
     public int id;

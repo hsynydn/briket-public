@@ -6,21 +6,21 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.kastrakomnen.hmessenger.db.entity.StageFormation;
+import com.kastrakomnen.hmessenger.db.entity.StageFormationEntity;
 
 import java.util.List;
 
 @Dao
 public interface StageFormationDAO {
     @Insert
-    public void insert(StageFormation stageFormation);
+    public void insert(StageFormationEntity stageFormation);
 
     @Update
-    public void update(StageFormation stageFormation);
+    public void update(StageFormationEntity stageFormation);
 
     @Delete
-    public void delete(StageFormation stageFormation);
+    public void delete(StageFormationEntity stageFormation);
 
     @Query("SELECT * FROM StageFormation")
-    List<StageFormation> getStageFormations();
+    List<StageFormationEntity> getStageFormations();
 }

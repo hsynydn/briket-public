@@ -5,15 +5,41 @@ import android.graphics.Rect;
 public class ProgressCard {
 
     private boolean locked;
-    private int hi_score;
-    private int earn_star;
-    private int chapter_number;
+    private int highScore;
+    private int earnStar;
+    private int index;
 
-    public ProgressCard(boolean locked){
+    public ProgressCard(){}
+
+    public void setLocked(boolean locked) {
         this.locked = locked;
     }
 
     public boolean isLocked(){
         return locked;
+    }
+
+    public void setEarnStar(int earnStar) {
+        this.earnStar = earnStar;
+    }
+
+    public int getEarnStar() {
+        return earnStar;
+    }
+
+    public void setHighScore(int highScore) {
+        this.highScore = highScore;
+    }
+
+    public int getHighScore() {
+        return highScore;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public int getIndex() {
+        return index;
     }
 }

@@ -6,7 +6,8 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.kastrakomnen.hmessenger.db.entity.Stage;
+import com.kastrakomnen.hmessenger.db.entity.FormationEntity;
+import com.kastrakomnen.hmessenger.db.entity.StageEntity;
 
 import java.util.List;
 
@@ -14,14 +15,17 @@ import java.util.List;
 public interface StageDAO {
 
     @Insert
-    public void insert(Stage stage);
+    public void insert(StageEntity stage);
 
     @Update
-    public void update(Stage stage);
+    public void update(StageEntity stage);
 
     @Delete
-    public void delete(Stage stage);
+    public void delete(StageEntity stage);
 
     @Query("SELECT * FROM Stage")
-    List<Stage> getStages();
+    List<StageEntity> getStages();
+
+    @Query("SELECT Formation.* FROM StageFormation INNER JOIN Formation On StageFormation.stageID==:stageID AND StageFormation.formationID=Formation.id")
+    List<FormationEntity> getFormations(int stageID);
 }

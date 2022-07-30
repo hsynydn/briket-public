@@ -3,6 +3,7 @@ package com.kastrakomnen.hmessenger;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -20,6 +21,7 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 import com.google.android.gms.games.GamesSignInClient;
 import com.google.android.gms.games.PlayGames;
 import com.google.android.gms.games.PlayGamesSdk;
+import com.kastrakomnen.hmessenger.model.BriketContext;
 
 public class ActivityHome extends AppCompatActivity {
 
@@ -82,28 +84,14 @@ public class ActivityHome extends AppCompatActivity {
             }
         });
 
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+        AsyncTask.execute(new Runnable() {
             @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-                Log.i(TAG, "Mobile Ads has been initialized");
-            }
-        });
-
-        PlayGamesSdk.initialize(this);
-
-        GamesSignInClient gamesSignInClient = PlayGames.getGamesSignInClient(this);
-
-        gamesSignInClient.isAuthenticated().addOnCompleteListener(isAuthenticatedTask -> {
-            boolean isAuthenticated =
-                    (isAuthenticatedTask.isSuccessful() &&
-                            isAuthenticatedTask.getResult().isAuthenticated());
-
-            if (isAuthenticated) {
-                // Continue with Play Games Services
-            } else {
-                // Disable your integration with Play Games Services or show a
-                // login button to ask  players to sign-in. Clicking it should
-                // call GamesSignInClient.signIn().
+            public void run() {
+                Log.d(TAG, "BriketContext.loading started");
+                BriketContext.getInstance().initializeDatabase(ActivityHome.this);
+                BriketContext.getInstance().initializeAdMob(ActivityHome.this);
+                BriketContext.getInstance().initializeGooglePlayServices(ActivityHome.this);
+                Log.d(TAG, "BriketContext.loading finished");
             }
         });
     }

@@ -1,18 +1,16 @@
 package com.kastrakomnen.hmessenger.db.entity;
 
-import static androidx.room.ForeignKey.CASCADE;
-
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 @Entity(foreignKeys = {
-        @ForeignKey(entity = Stage.class, parentColumns = "id", childColumns = "stageID"),
-        @ForeignKey(entity = Formation.class, parentColumns = "id", childColumns = "formationID")},
+        @ForeignKey(entity = StageEntity.class, parentColumns = "id", childColumns = "stageID"),
+        @ForeignKey(entity = FormationEntity.class, parentColumns = "id", childColumns = "formationID")},
         tableName = "StageFormation"
 )
-public class StageFormation {
+public class StageFormationEntity {
     @PrimaryKey(autoGenerate = true)
     public int id;
     @NonNull

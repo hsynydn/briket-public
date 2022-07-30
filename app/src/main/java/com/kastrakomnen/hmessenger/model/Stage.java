@@ -67,4 +67,60 @@ public class Stage {
     public void setFormationTypes(ArrayList<FormationType> formationTypes) {
         this.formationTypes = formationTypes;
     }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setHighScore(int highScore) {
+        this.highScore = highScore;
+    }
+
+    public int getHighScore() {
+        return highScore;
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
+    }
+
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    public void setBrief(String brief) {
+        this.brief = brief;
+    }
+
+    public String getBrief() {
+        return brief;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setStageDuration(long stageDuration) {
+        this.stageDuration = stageDuration;
+    }
+
+    public long getStageDuration() {
+        return stageDuration;
+    }
 }

@@ -48,6 +48,7 @@ public class PlayBoardView extends View implements DisplayUnitController {
     private ArrayList<Rect> removeObjects;
 
     private Random random;
+    private int randomInteger;
 
     private ArrayList<Boolean>  scorePopUPGates;
     private ArrayList<String>   scorePopUPTexts;
@@ -95,6 +96,7 @@ public class PlayBoardView extends View implements DisplayUnitController {
         basePublisher = new BasePublisher();
 
         random = new Random();
+        randomInteger = random.nextInt(1000);
 
         permanentRectBounds = new ArrayList<>();
         brickRectBounds = new ArrayList<>();
@@ -141,6 +143,7 @@ public class PlayBoardView extends View implements DisplayUnitController {
                     scorePopUPGates.set(i, false);
                 }
                 invalidate();
+                randomInteger = random.nextInt(1000);
             }
         });
 
@@ -184,8 +187,8 @@ public class PlayBoardView extends View implements DisplayUnitController {
 
                 canvas.drawText(
                         scorePopUPTexts.get(i),
-                        permanentRectBounds.get(i).get(i%boardWidth).left,
-                        permanentRectBounds.get(i).get(i%boardWidth).top,
+                        permanentRectBounds.get(i).get((i*randomInteger)%boardWidth).left,
+                        permanentRectBounds.get(i).get((i*randomInteger)%boardWidth).top,
                         scorePopUPPaint);
             }
         }

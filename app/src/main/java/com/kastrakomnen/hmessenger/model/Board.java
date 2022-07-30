@@ -11,6 +11,8 @@ public class Board {
     private final int height;
     private final int width;
 
+    private int score;
+
     private Set activeSet;
 
     private final ArrayList<ArrayList<Brick>> board;
@@ -33,6 +35,8 @@ public class Board {
 
         this.height = height;
         this.width = width;
+
+        score = 0;
     }
 
     public boolean place(Set set){
@@ -265,7 +269,7 @@ public class Board {
                     }
 
                     board.remove((int)i);
-                    scores.add(new DisplayData.Score(i, 400));
+                    scores.add(new DisplayData.Score(i, 100));
 
                     ArrayList<Brick> newRow = new ArrayList<>();
                     for (int j = 0; j < width; j++) {
@@ -274,6 +278,7 @@ public class Board {
                     board.add(0, newRow);
                 }
 
+                score += 100 * scores.size();
                 displayUnitController.refresh(board);
                 displayUnitController.gainScore(scores);
                 activeSet = null;
@@ -411,5 +416,9 @@ public class Board {
 
     public Set getActiveSet(){
         return activeSet;
+    }
+
+    public int getScore() {
+        return score;
     }
 }

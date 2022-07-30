@@ -150,6 +150,9 @@ public class Game implements GameInputListener, Subscriber{
             Log.d(TAG, "Active set null");
             if (board.place(setGenerator.generate())){
                 enableInputs();
+            }else{
+                // Game End
+                displayUnitController.end();
             }
         }else{
             boolean ret;

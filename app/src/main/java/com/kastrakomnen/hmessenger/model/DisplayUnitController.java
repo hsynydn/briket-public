@@ -43,4 +43,5 @@ public interface DisplayUnitController extends Publisher{
     void end();
 
     void gainScore(ArrayList<DisplayData.Score> scores);
+    void setScore(int score);
 }

@@ -29,11 +29,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class PlayScreen extends AppCompatActivity implements View.OnTouchListener {
+public class PlayScreen extends AppCompatActivity {
 
-    private static final String TAG = "PlayScreen";
-
-    private GestureDetector gestureDetector;
+    private static final String TAG = "{PlayScreen}";
 
     private Game game;
     private DisplayUnitController displayUnitController;
@@ -63,7 +61,6 @@ public class PlayScreen extends AppCompatActivity implements View.OnTouchListene
 //        adView.loadAd(adRequest);
 
         handler = new Handler();
-        gestureDetector = new GestureDetector(this, new GestureListener());
 
         /* DisplayUnitController will do all visual tasks */
         displayUnitController = findViewById(R.id.view_playground);
@@ -198,95 +195,5 @@ public class PlayScreen extends AppCompatActivity implements View.OnTouchListene
     protected void onDestroy() {
         super.onDestroy();
 //        game.stop();
-    }
-
-    private void onSwipeRight(int amount){
-        Log.d(TAG, "onSwipeRight");
-        game.onMoveRight(amount);
-    }
-
-    private void onSwipeLeft(int amount){
-        Log.d(TAG, "onSwipeLeft");
-        game.onMoveLeft(amount);
-    }
-
-    @Override
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        gestureDetector.onTouchEvent(motionEvent);
-        return true;
-    }
-
-    private final class GestureListener extends GestureDetector.SimpleOnGestureListener {
-
-        private static final int SWIPE_VELOCITY_THRESHOLD = 10;
-        private static final int SWIPE_THRESHOLD = 100;
-
-        @Override
-        public boolean onSingleTapConfirmed(MotionEvent e) {
-            game.onMoveRight(1);
-            return true;
-        }
-
-        @Override
-        public boolean onDoubleTap(MotionEvent e) {
-            game.onMoveRight(3);
-            return true;
-        }
-
-        @Override
-        public void onLongPress(MotionEvent e) {
-            game.onMoveRight(6);
-        }
-
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-//            return super.onFling(e1, e2, velocityX, velocityY);
-
-            float diffY = e2.getY() - e1.getY();
-            float diffX = e2.getX() - e1.getX();
-            if (Math.abs(diffX) > Math.abs(diffY)) {
-                if (Math.abs(diffX) > 600 && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-                    if (diffX > 0) {
-                        onSwipeRight(6);
-                    } else {
-                        onSwipeLeft(6);
-                    }
-                }else if (Math.abs(diffX) > 500 && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-                    if (diffX > 0) {
-                        onSwipeRight(5);
-                    } else {
-                        onSwipeLeft(5);
-                    }
-                }else if (Math.abs(diffX) > 400 && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-                    if (diffX > 0) {
-                        onSwipeRight(4);
-                    } else {
-                        onSwipeLeft(4);
-                    }
-                }else if (Math.abs(diffX) > 300 && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-                    if (diffX > 0) {
-                        onSwipeRight(3);
-                    } else {
-                        onSwipeLeft(3);
-                    }
-                }
-                else if (Math.abs(diffX) > 200 && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-                    if (diffX > 0) {
-                        onSwipeRight(2);
-                    } else {
-                        onSwipeLeft(2);
-                    }
-                }
-                else if (Math.abs(diffX) > 100 && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-                    if (diffX > 0) {
-                        onSwipeRight(1);
-                    } else {
-                        onSwipeLeft(1);
-                    }
-                }
-            }
-
-            return true;
-        }
     }
 }

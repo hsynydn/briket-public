@@ -16,6 +16,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.BounceInterpolator;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
@@ -682,11 +683,11 @@ public class PlayBoardView extends View implements DisplayUnitController {
             scorePopUPGates.set(score.at, true);
             scorePopUPTexts.set(score.at, Integer.toString(score.value));
         }
-
-
-
-//        scorePopUPAnimator.start();
         publish();
+    }
+
+    @Override
+    public void setScore(int score) {
     }
 
     @Override

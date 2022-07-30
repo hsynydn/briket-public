@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/root_layout_game_over_summary"
+    tools:context=".activity.FragmentGameOverSummary"
+    android:background="#E69C27B0"
+    android:backgroundTint="#C51162"
+    android:backgroundTintMode="src_atop"
+    android:clickable="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_game_over_summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:text="SUMMARY"
+            android:textColor="#FF9800"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_score_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Score"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_game_over_summary"
+            app:layout_constraintStart_toStartOf="@+id/tv_game_over_summary"
+            app:layout_constraintTop_toBottomOf="@+id/tv_game_over_summary" />
+
+        <TextView
+            android:id="@+id/gos_tv_score_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="33000"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_score_title"
+            app:layout_constraintStart_toStartOf="@+id/tv_score_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_score_title" />
+
+        <Button
+            android:id="@+id/gos_button_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="OK"
+            app:layout_constraintEnd_toEndOf="@+id/gos_tv_score_content"
+            app:layout_constraintStart_toStartOf="@+id/gos_tv_score_content"
+            app:layout_constraintTop_toBottomOf="@+id/gos_tv_score_content" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

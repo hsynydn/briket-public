@@ -1,7 +1,10 @@
 package com.kastrakomnen.hmessenger.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -14,6 +17,8 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.kastrakomnen.hmessenger.ActivityGameMap;
+import com.kastrakomnen.hmessenger.FragmentOptions;
 import com.kastrakomnen.hmessenger.R;
 import com.kastrakomnen.hmessenger.hdroid.PlayBoardView;
 import com.kastrakomnen.hmessenger.model.BasePublisher;
@@ -266,7 +271,13 @@ public class PlayScreen extends AppCompatActivity implements DisplayUnitControll
 
     @Override
     public void end() {
+        Log.d(TAG, "Game ended");
 
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.layout_play_board_root, new FragmentGameOverSummary());
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
     @Override

@@ -10,33 +10,34 @@ public class Board {
 
     private final int height;
     private final int width;
+    private final int invisibleHeight = 4;
 
     private int score;
 
     private Set activeSet;
 
     private final ArrayList<ArrayList<Brick>> board;
+    private final ArrayList<ArrayList<Brick>> visibleBoard;
     private final DisplayUnitController displayUnitController;
 
     public Board(int height, int width, DisplayUnitController displayUnitController){
 
+        this.height = height + invisibleHeight;
+        this.width = width;
+        this.score = 0;
         this.displayUnitController = displayUnitController;
+        this.visibleBoard = new ArrayList<>();
 
         activeSet = null;
 
         board = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
+        for (int i = 0; i < this.height; i++) {
             ArrayList<Brick> row = new ArrayList<>();
-            for (int j = 0; j < width; j++) {
+            for (int j = 0; j < this.width; j++) {
                 row.add(null);
             }
             board.add(row);
         }
-
-        this.height = height;
-        this.width = width;
-
-        this.score = 0;
     }
 
     public boolean place(Set set){
@@ -137,7 +138,8 @@ public class Board {
         }
 
         if (!failFlag){
-            displayUnitController.refresh(board);
+            this.updateVisibleBoard();
+            displayUnitController.refresh(visibleBoard);
         }
 
         return !failFlag;
@@ -192,7 +194,8 @@ public class Board {
         }
 
         if (!failFlag){
-            displayUnitController.refresh(board);
+            this.updateVisibleBoard();
+            displayUnitController.refresh(visibleBoard);
         }
 
         return !failFlag;
@@ -269,7 +272,7 @@ public class Board {
                     }
 
                     board.remove((int)i);
-                    scores.add(new DisplayData.Score(i, 100));
+                    scores.add(new DisplayData.Score(i - invisibleHeight, 100));
 
                     ArrayList<Brick> newRow = new ArrayList<>();
                     for (int j = 0; j < width; j++) {
@@ -280,7 +283,10 @@ public class Board {
 
                 score += 100 * scores.size();
                 Log.d(TAG, "Score is " + score);
-                displayUnitController.refresh(board);
+
+                this.updateVisibleBoard();
+
+                displayUnitController.refresh(visibleBoard);
                 displayUnitController.gainScore(scores);
                 displayUnitController.setScore(score);
                 activeSet = null;
@@ -291,7 +297,8 @@ public class Board {
             return false;
         }
 
-        displayUnitController.refresh(board);
+        this.updateVisibleBoard();
+        displayUnitController.refresh(visibleBoard);
 
         return true;
     }
@@ -358,7 +365,8 @@ public class Board {
             return false;
         }
 
-        displayUnitController.refresh(board);
+        this.updateVisibleBoard();
+        displayUnitController.refresh(visibleBoard);
 
         return true;
     }
@@ -423,4 +431,12 @@ public class Board {
     public int getScore() {
         return score;
     }
+
+    private void updateVisibleBoard(){
+        visibleBoard.clear();
+        for (int i = invisibleHeight; i < board.size(); i++) {
+            visibleBoard.add(board.get(i));
+        }
+    }
 }
+

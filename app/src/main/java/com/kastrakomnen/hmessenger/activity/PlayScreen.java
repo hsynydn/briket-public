@@ -278,6 +278,7 @@ public class PlayScreen extends AppCompatActivity implements DisplayUnitControll
     @Override
     public void setScore(int score) {
         textViewScoreContent.setText(Integer.toString(score));
+        publish();
     }
 
     @Override

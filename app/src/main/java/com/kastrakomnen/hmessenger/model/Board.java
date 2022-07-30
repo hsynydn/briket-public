@@ -279,6 +279,7 @@ public class Board {
                 }
 
                 score += 100 * scores.size();
+                Log.d(TAG, "Score is " + score);
                 displayUnitController.refresh(board);
                 displayUnitController.gainScore(scores);
                 displayUnitController.setScore(score);

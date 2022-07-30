@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Bot implements GameStateListener{
 
-    private static final String TAG = "Bot";
+    private static final String TAG = "{Bot}";
 
     private GameInputListener gameInputListener;
     private BotBehaviour botBehaviour;
@@ -33,7 +33,11 @@ public class Bot implements GameStateListener{
                 new Runnable() {
                     @Override
                     public void run() {
-                        gameInputListener.onMoveDown(1);
+                        try{
+                            gameInputListener.onMoveDown(1);
+                        }catch(Exception e){
+                            Log.e(TAG, "Exception occurred ─ " + e.toString());
+                        }
                     }
                 },
                 botBehaviour.botStartDelay,

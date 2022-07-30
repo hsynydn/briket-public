@@ -22,6 +22,8 @@ public class BriketContext {
     private Preferences preferences = new Preferences();
     private static BriketContext instance;
 
+    private Stage currentStage;
+
     private BriketContext(){}
 
     public static BriketContext getInstance() {
@@ -96,5 +98,13 @@ public class BriketContext {
 
     public Preferences getPreferences() {
         return preferences;
+    }
+
+    public void setCurrentStage(int index) {
+        this.currentStage = stages.get(index);
+    }
+
+    public Stage getCurrentStage() {
+        return currentStage;
     }
 }

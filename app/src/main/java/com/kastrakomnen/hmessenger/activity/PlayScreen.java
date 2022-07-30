@@ -16,6 +16,7 @@ import com.google.android.gms.ads.AdView;
 import com.kastrakomnen.hmessenger.R;
 import com.kastrakomnen.hmessenger.model.Bot;
 import com.kastrakomnen.hmessenger.model.BotBehaviour;
+import com.kastrakomnen.hmessenger.model.BriketContext;
 import com.kastrakomnen.hmessenger.model.DisplayData;
 import com.kastrakomnen.hmessenger.model.DisplayUnitController;
 import com.kastrakomnen.hmessenger.model.DistributionType;
@@ -68,23 +69,11 @@ public class PlayScreen extends AppCompatActivity implements View.OnTouchListene
         displayUnitController = findViewById(R.id.view_playground);
         displayUnitController.create(new DisplayData.Board(20, 10));
 
-        Stage stage = new Stage();
-        stage.setDistributionType(DistributionType.UNIFORM);
-        stage.setFormationTypes(new ArrayList<>(Arrays.asList(
-                FormationType.BOX_CW0, // trace on rotate bug
-                FormationType.T_CW180, // sometimes down head stuck at up
-                FormationType.Z_CW270, // trace on rotate bug
-                FormationType.LINE_CW90, // trace on rotate bug
-                FormationType.RL_CW90, // trace on rotate bug
-                FormationType.L_CW90
-                )));
-        stage.setWinCondition(WinCondition.AGAINST_TIME);
-
         /* Game will become a bridge between commands logic and visual */
         game = new Game(displayUnitController);
-        game.loadStage(stage);
+        game.loadStage(BriketContext.getInstance().getCurrentStage());
 
-        BotBehaviour botBehaviour = new BotBehaviour(1000, 500);
+        BotBehaviour botBehaviour = new BotBehaviour(500, 500);
         bot = new Bot(botBehaviour);
         /* Bot can send its own command over this interface to the Game */
         bot.registerGameInputListener(game);

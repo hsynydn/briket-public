@@ -27,4 +27,14 @@ public class DisplayData {
     public static class Diamond{
         public int amount;
     }
+
+    public static class Score{
+        public int at;
+        public int value;
+
+        public Score(int at, int value){
+            this.at = at;
+            this.value = value;
+        }
+    }
 }

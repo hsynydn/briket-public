@@ -41,4 +41,6 @@ public interface DisplayUnitController extends Publisher{
     void startDelay(int delay);
     void updateInfo();
     void end();
+
+    void gainScore(ArrayList<DisplayData.Score> scores);
 }

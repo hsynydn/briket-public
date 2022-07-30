@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.AttributeSet;
@@ -28,12 +29,16 @@ import com.kastrakomnen.hmessenger.model.Position;
 import com.kastrakomnen.hmessenger.model.Subscriber;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class PlayBoardView extends View implements DisplayUnitController {
 
-    private static final String TAG = "hdroid.PlayBoardView";
+    private static final String TAG = "{hdroid.PlayBoardView}";
 
     private BasePublisher basePublisher;
+
+    private int boardHeight;
+    private int boardWidth;
 
     private final int animDuration = 200;
 
@@ -41,6 +46,13 @@ public class PlayBoardView extends View implements DisplayUnitController {
     private ArrayList<ArrayList<Rect>> brickRectBounds;
     private ArrayList<ArrayList<Drawable>> brickDrawables;
     private ArrayList<Rect> removeObjects;
+
+    private Random random;
+
+    private ArrayList<Boolean>  scorePopUPGates;
+    private ArrayList<String>   scorePopUPTexts;
+    private ValueAnimator       scorePopUPAnimator;
+    private Paint               scorePopUPPaint;
 
     private int screenHeight;
     private int screenWidth;
@@ -82,6 +94,8 @@ public class PlayBoardView extends View implements DisplayUnitController {
 
         basePublisher = new BasePublisher();
 
+        random = new Random();
+
         permanentRectBounds = new ArrayList<>();
         brickRectBounds = new ArrayList<>();
         brickDrawables = new ArrayList<>();
@@ -104,6 +118,39 @@ public class PlayBoardView extends View implements DisplayUnitController {
         brick_orange  = getContext().getDrawable(R.drawable.brick_style_shady_orange);
         coin  = getContext().getDrawable(R.drawable.coin);
         emptyRegion  = getContext().getDrawable(R.drawable.shape);
+
+        scorePopUPGates = new ArrayList<>();
+        scorePopUPTexts = new ArrayList<>();
+
+        scorePopUPAnimator = ValueAnimator.ofInt(0, 100);
+        scorePopUPAnimator.setDuration(700);
+        scorePopUPAnimator.setInterpolator(new BounceInterpolator());
+        scorePopUPAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                scorePopUPPaint.setTextSize((Integer) valueAnimator.getAnimatedValue());
+                invalidate();
+            }
+        });
+
+        scorePopUPAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                for (int i = 0; i < scorePopUPGates.size(); i++) {
+                    scorePopUPGates.set(i, false);
+                }
+                invalidate();
+            }
+        });
+
+        scorePopUPPaint = new Paint();
+        scorePopUPPaint.setAntiAlias(true);
+        scorePopUPPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        scorePopUPPaint.setColor(0xff993399);
+        scorePopUPPaint.setStrokeWidth(4);
+        scorePopUPPaint.setTextSize(0);
+
     }
 
     @Override
@@ -117,19 +164,6 @@ public class PlayBoardView extends View implements DisplayUnitController {
             }
         }
 
-//        for (ArrayList<Rect> row : brickRectBounds) {
-//            for (Rect rect: row) {
-//                if (rect == null) continue;
-//                brick.setBounds(rect);
-//                brick.draw(canvas);
-//            }
-//        }
-//
-//        for (Rect rect : removeObjects) {
-//            brick.setBounds(rect);
-//            brick.draw(canvas);
-//        }
-
         int rowIndex = 0;
         for (ArrayList<Drawable> row : brickDrawables) {
             int colIndex = 0;
@@ -141,10 +175,27 @@ public class PlayBoardView extends View implements DisplayUnitController {
             rowIndex++;
         }
 
+        for (int i = 0; i < scorePopUPGates.size(); i++) {
+            if(scorePopUPGates.get(i)){
+
+                if (!scorePopUPAnimator.isRunning()){
+                    scorePopUPAnimator.start();
+                }
+
+                canvas.drawText(
+                        scorePopUPTexts.get(i),
+                        permanentRectBounds.get(i).get(i%boardWidth).left,
+                        permanentRectBounds.get(i).get(i%boardWidth).top,
+                        scorePopUPPaint);
+            }
+        }
     }
 
     @Override
     public void create(DisplayData.Board board) {
+
+        boardHeight = board.height;
+        boardWidth = board.width;
 
         squareDimension = (int) (screenWidth / ((1.5) * board.width));
 
@@ -202,6 +253,11 @@ public class PlayBoardView extends View implements DisplayUnitController {
         empty.setStyle(Paint.Style.STROKE);
         empty.setColor(0x77fcba03);
         empty.setStrokeWidth(2);
+
+        for (int i = 0; i < board.height; i++) {
+            scorePopUPGates.add(false);
+            scorePopUPTexts.add(null);
+        }
     }
 
     @Override
@@ -615,6 +671,19 @@ public class PlayBoardView extends View implements DisplayUnitController {
     @Override
     public void end() {
 
+    }
+
+    @Override
+    public void gainScore(ArrayList<DisplayData.Score> scores) {
+        for (DisplayData.Score score : scores) {
+            scorePopUPGates.set(score.at, true);
+            scorePopUPTexts.set(score.at, Integer.toString(score.value));
+        }
+
+
+
+//        scorePopUPAnimator.start();
+        publish();
     }
 
     @Override

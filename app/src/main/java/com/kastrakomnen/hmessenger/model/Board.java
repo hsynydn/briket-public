@@ -253,6 +253,7 @@ public class Board {
             if (!indices.isEmpty()){
 
                 ArrayList<Position> visualUpdateAtArrayList = new ArrayList<>();
+                ArrayList<DisplayData.Score> scores = new ArrayList<>();
                 for (Integer i: indices) {
                     for (int j = 0; j < width; j++) {
                         Position o = board.get(i).get(j).getSet().getFormationOrigin();
@@ -264,6 +265,7 @@ public class Board {
                     }
 
                     board.remove((int)i);
+                    scores.add(new DisplayData.Score(i, 400));
 
                     ArrayList<Brick> newRow = new ArrayList<>();
                     for (int j = 0; j < width; j++) {
@@ -273,6 +275,7 @@ public class Board {
                 }
 
                 displayUnitController.refresh(board);
+                displayUnitController.gainScore(scores);
                 activeSet = null;
                 return true;
             }

@@ -116,6 +116,7 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
 
     @Override
     public void onClick(View view, int position) {
+        BriketContext.getInstance().setCurrentStage(position);
         Intent intent = new Intent(ActivityGameMap.this, PlayScreen.class);
         startActivity(intent);
         ActivityGameMap.this.finish();

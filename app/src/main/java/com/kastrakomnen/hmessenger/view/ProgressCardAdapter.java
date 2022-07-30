@@ -43,18 +43,39 @@ public class ProgressCardAdapter extends RecyclerView.Adapter<ProgressCardAdapte
         // Fill data in here
         ProgressCard progressCard = progressCards.get(position);
 
-        holder.tv_chapter_no.setText(Integer.toString(position + 1));
+        holder.tv_chapter_no.setText(Integer.toString(progressCard.getIndex()));
 
         if (progressCard.isLocked()){
+
+            /* How the box will look */
             holder.box.setImageResource(R.drawable.brick_style_shady_locked);
+
+            /* How the stars will look */
             holder.star1.setImageResource(R.drawable.star_dead);
             holder.star2.setImageResource(R.drawable.star_dead);
             holder.star3.setImageResource(R.drawable.star_dead);
+
+            /* How the info will look */
             holder.tv_hi_score.setVisibility(View.INVISIBLE);
             holder.tv_hi_score_title.setVisibility(View.INVISIBLE);
+
             holder.setItemClickListener(null);
         }else{
             holder.box.setImageResource(R.drawable.brick_style_shady_red);
+
+            if (progressCard.getEarnStar() == 0){
+                holder.star1.setImageResource(R.drawable.star_dead);
+                holder.star2.setImageResource(R.drawable.star_dead);
+                holder.star3.setImageResource(R.drawable.star_dead);
+            }else if (progressCard.getEarnStar() == 1){
+                holder.star2.setImageResource(R.drawable.star_dead);
+                holder.star3.setImageResource(R.drawable.star_dead);
+            }else if (progressCard.getEarnStar() == 2){
+                holder.star2.setImageResource(R.drawable.star_dead);
+            }
+
+            holder.tv_hi_score.setText(Integer.toString(progressCard.getHighScore()));
+
             holder.setItemClickListener(itemClickListener);
         }
     }

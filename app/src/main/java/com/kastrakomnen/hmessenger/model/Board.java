@@ -36,7 +36,7 @@ public class Board {
         this.height = height;
         this.width = width;
 
-        score = 0;
+        this.score = 0;
     }
 
     public boolean place(Set set){
@@ -281,6 +281,7 @@ public class Board {
                 score += 100 * scores.size();
                 displayUnitController.refresh(board);
                 displayUnitController.gainScore(scores);
+                displayUnitController.setScore(score);
                 activeSet = null;
                 return true;
             }

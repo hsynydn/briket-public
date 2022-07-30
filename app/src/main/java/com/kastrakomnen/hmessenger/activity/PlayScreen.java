@@ -10,35 +10,43 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.kastrakomnen.hmessenger.R;
+import com.kastrakomnen.hmessenger.hdroid.PlayBoardView;
+import com.kastrakomnen.hmessenger.model.BasePublisher;
 import com.kastrakomnen.hmessenger.model.Bot;
 import com.kastrakomnen.hmessenger.model.BotBehaviour;
+import com.kastrakomnen.hmessenger.model.Brick;
 import com.kastrakomnen.hmessenger.model.BriketContext;
 import com.kastrakomnen.hmessenger.model.DisplayData;
 import com.kastrakomnen.hmessenger.model.DisplayUnitController;
 import com.kastrakomnen.hmessenger.model.DistributionType;
 import com.kastrakomnen.hmessenger.model.FormationType;
 import com.kastrakomnen.hmessenger.model.Game;
+import com.kastrakomnen.hmessenger.model.Position;
 import com.kastrakomnen.hmessenger.model.Stage;
+import com.kastrakomnen.hmessenger.model.Subscriber;
 import com.kastrakomnen.hmessenger.model.WinCondition;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class PlayScreen extends AppCompatActivity {
+public class PlayScreen extends AppCompatActivity implements DisplayUnitController{
 
     private static final String TAG = "{PlayScreen}";
 
+    private BasePublisher basePublisher;
     private Game game;
-    private DisplayUnitController displayUnitController;
     private Bot bot;
     private Handler handler;
 
-    private AdView adView;
+    /* Views belongs to this activity */
+    private PlayBoardView playBoardView;
+    private TextView textViewScoreContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,18 +64,16 @@ public class PlayScreen extends AppCompatActivity {
             Log.i(TAG, e.toString());
         }
 
-//        adView = findViewById(R.id.playboard_adview);
-//        AdRequest adRequest = new AdRequest.Builder().build();
-//        adView.loadAd(adRequest);
-
         handler = new Handler();
+        basePublisher = new BasePublisher();
 
-        /* DisplayUnitController will do all visual tasks */
-        displayUnitController = findViewById(R.id.view_playground);
-        displayUnitController.create(new DisplayData.Board(20, 10));
+        playBoardView = findViewById(R.id.view_playground);
+        playBoardView.create(20, 10);
+
+        textViewScoreContent = findViewById(R.id.tv_score_content);
 
         /* Game will become a bridge between commands logic and visual */
-        game = new Game(displayUnitController);
+        game = new Game(this);
         game.loadStage(BriketContext.getInstance().getCurrentStage());
 
         BotBehaviour botBehaviour = new BotBehaviour(500, 500);
@@ -79,7 +85,7 @@ public class PlayScreen extends AppCompatActivity {
         game.registerGameStateListener(bot);
 
         /* DisplayUnitController will notify game when finish visual updates */
-        displayUnitController.register(game);
+        this.register(game);
 
         setUpControls();
     }
@@ -195,5 +201,92 @@ public class PlayScreen extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
 //        game.stop();
+    }
+
+    @Override
+    public void create(DisplayData.Board board) {
+
+    }
+
+    @Override
+    public void create(DisplayData.Brick brick, Position at) {
+
+    }
+
+    @Override
+    public void move(DisplayData.Brick brick, Position from, Position to) {
+
+    }
+
+    @Override
+    public void refresh(ArrayList<ArrayList<Brick>> board) {
+        playBoardView.refresh(board);
+        publish();
+    }
+
+    @Override
+    public void move(ArrayList<DisplayData.Brick> brickArrayList, ArrayList<Position> fromPositions, ArrayList<Position> toPositions) {
+
+    }
+
+    @Override
+    public void rotate(ArrayList<DisplayData.Brick> brickArrayList, ArrayList<Position> fromPositions, ArrayList<Position> toPositions) {
+
+    }
+
+    @Override
+    public void remove(DisplayData.Brick brick, Position at) {
+
+    }
+
+    @Override
+    public void removeAndRefresh(ArrayList<DisplayData.Brick> brickArrayList, ArrayList<Position> atPositions, ArrayList<Position> board) {
+
+    }
+
+    @Override
+    public void refresh(ArrayList<DisplayData.Brick> brickArrayList, ArrayList<Position> atPositions) {
+
+    }
+
+    @Override
+    public void startFast() {
+
+    }
+
+    @Override
+    public void startDelay(int delay) {
+
+    }
+
+    @Override
+    public void updateInfo() {
+
+    }
+
+    @Override
+    public void end() {
+
+    }
+
+    @Override
+    public void gainScore(ArrayList<DisplayData.Score> scores) {
+        playBoardView.popUpScore(scores);
+        publish();
+    }
+
+    @Override
+    public void setScore(int score) {
+        textViewScoreContent.setText(Integer.toString(score));
+    }
+
+    @Override
+    public void register(Subscriber subscriber) {
+        basePublisher.register(subscriber);
+    }
+
+    @Override
+    public void publish() {
+        basePublisher.publish();
     }
 }

@@ -57,9 +57,9 @@ public class PlayScreen extends AppCompatActivity implements View.OnTouchListene
             Log.i(TAG, e.toString());
         }
 
-        adView = findViewById(R.id.playboard_adview);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
+//        adView = findViewById(R.id.playboard_adview);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        adView.loadAd(adRequest);
 
         handler = new Handler();
         gestureDetector = new GestureDetector(this, new GestureListener());

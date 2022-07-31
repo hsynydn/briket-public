@@ -21,6 +21,8 @@ public class ActivityGameSplash extends AppCompatActivity
 
     private Animation animaton;
     private Animation animation_logo_text_show;
+    ImageView imageView;
+    ImageView splash_iv_logo_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +40,10 @@ public class ActivityGameSplash extends AppCompatActivity
         }
 
         animaton = AnimationUtils.loadAnimation(this, R.anim.splash);
-        ImageView imageView = findViewById(R.id.logo_splash);
-        imageView.setAnimation(animaton);
-
         animation_logo_text_show = AnimationUtils.loadAnimation(this, R.anim.splash_logo_text_show);
-        ImageView splash_iv_logo_text = findViewById(R.id.splash_iv_logo_text);
-        splash_iv_logo_text.setAnimation(animation_logo_text_show);
+
+        imageView = findViewById(R.id.logo_splash);
+        splash_iv_logo_text = findViewById(R.id.splash_iv_logo_text);
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -57,6 +57,9 @@ public class ActivityGameSplash extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
+
+        imageView.setAnimation(animaton);
+        splash_iv_logo_text.setAnimation(animation_logo_text_show);
     }
 
     @Override

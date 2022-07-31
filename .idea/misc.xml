@@ -17,6 +17,8 @@
         <entry key="app/src/main/res/drawable/shape_orange.xml" value="0.21776315789473685" />
         <entry key="app/src/main/res/drawable/shape_pinky.xml" value="0.21776315789473685" />
         <entry key="app/src/main/res/drawable/splash.xml" value="0.21776315789473685" />
+        <entry key="app/src/main/res/font/.xml" value="0.38645833333333335" />
+        <entry key="app/src/main/res/font/bungee.xml" value="0.38645833333333335" />
         <entry key="app/src/main/res/layout-w936dp/layout_play_1.xml" value="0.246484375" />
         <entry key="app/src/main/res/layout-w936dp/layout_play_ground_raw_1.xml" value="0.25625" />
         <entry key="app/src/main/res/layout-w936dp/play_screen_1.xml" value="0.246484375" />

@@ -6,9 +6,14 @@
         <item>@font/alfa_slab_one</item>
         <item>@font/allerta_stencil</item>
         <item>@font/amarante</item>
+        <item>@font/amita</item>
+        <item>@font/atomic_age</item>
         <item>@font/autour_one</item>
+        <item>@font/baloo_thambi</item>
+        <item>@font/bubblegum_sans</item>
         <item>@font/bungee</item>
         <item>@font/coda</item>
+        <item>@font/convergence</item>
         <item>@font/dm_mono_medium</item>
         <item>@font/goldman</item>
         <item>@font/orbitron</item>
@@ -16,5 +21,6 @@
         <item>@font/trade_winds</item>
         <item>@font/ubuntu</item>
         <item>@font/ubuntu_bold</item>
+        <item>@font/vollkorn_sc</item>
     </array>
 </resources>

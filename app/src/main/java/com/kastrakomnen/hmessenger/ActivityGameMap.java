@@ -20,6 +20,7 @@ import android.widget.ImageView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.kastrakomnen.hmessenger.activity.FragmentStageDetails;
 import com.kastrakomnen.hmessenger.activity.PlayScreen;
 import com.kastrakomnen.hmessenger.db.BriketDatabase;
 import com.kastrakomnen.hmessenger.db.entity.BotBehaviourEntity;
@@ -117,8 +118,10 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
     @Override
     public void onClick(View view, int position) {
         BriketContext.getInstance().setCurrentStage(position);
-        Intent intent = new Intent(ActivityGameMap.this, PlayScreen.class);
-        startActivity(intent);
-        ActivityGameMap.this.finish();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.layout_game_map, new FragmentStageDetails());
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }

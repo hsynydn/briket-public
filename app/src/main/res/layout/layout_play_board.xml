@@ -156,28 +156,68 @@
 
                         <TextView
                             android:id="@+id/tv_score"
-                            android:layout_width="wrap_content"
+                            android:layout_width="80dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:fontFamily="@font/coda"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/atomic_age"
                             android:text="SCORE"
                             android:textColor="#FF0000"
-                            android:textSize="24sp"
-                            app:layout_constraintEnd_toEndOf="parent"
+                            android:textSize="20sp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toBottomOf="@+id/tv_time" />
 
                         <TextView
                             android:id="@+id/tv_score_content"
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/coda"
+                            android:fontFamily="@font/atomic_age"
                             android:text="0"
-                            android:textAlignment="center"
-                            android:textSize="26sp"
-                            app:layout_constraintEnd_toEndOf="@+id/tv_score"
-                            app:layout_constraintStart_toStartOf="@+id/tv_score"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_score" />
+                            android:textSize="20sp"
+                            app:layout_constraintStart_toEndOf="@+id/tv_score"
+                            app:layout_constraintTop_toTopOf="@+id/tv_score" />
+
+                        <TextView
+                            android:id="@+id/tv_speed"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/atomic_age"
+                            android:text="Speed"
+                            android:textColor="#3F51B5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_speed_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/atomic_age"
+                            android:text="x1"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_speed"
+                            app:layout_constraintStart_toEndOf="@+id/tv_speed"
+                            app:layout_constraintTop_toTopOf="@+id/tv_speed" />
+
+                        <TextView
+                            android:id="@+id/tv_time"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/atomic_age"
+                            android:text="Time"
+                            android:textColor="#3F51B5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_speed" />
+
+                        <TextView
+                            android:id="@+id/tv_time_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/atomic_age"
+                            android:text="02.34"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_time"
+                            app:layout_constraintStart_toEndOf="@+id/tv_time"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_speed" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

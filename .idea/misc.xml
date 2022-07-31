@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.21776315789473685" />
         <entry key="app/src/main/res/drawable/ic_slack_463.xml" value="0.21776315789473685" />
         <entry key="app/src/main/res/drawable/play_board_single_frame_bitmap.xml" value="0.21776315789473685" />
+        <entry key="app/src/main/res/drawable/progress_bar.xml" value="0.316" />
         <entry key="app/src/main/res/drawable/shape.xml" value="0.21776315789473685" />
         <entry key="app/src/main/res/drawable/shape_blue.xml" value="0.21776315789473685" />
         <entry key="app/src/main/res/drawable/shape_frame.xml" value="0.21776315789473685" />
@@ -31,7 +32,7 @@
         <entry key="app/src/main/res/layout/layout.xml" value="0.29212962962962963" />
         <entry key="app/src/main/res/layout/layout_game_map.xml" value="0.33" />
         <entry key="app/src/main/res/layout/layout_game_over_summary.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/layout_home.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/layout_home.xml" value="0.5" />
         <entry key="app/src/main/res/layout/layout_options.xml" value="0.25" />
         <entry key="app/src/main/res/layout/layout_pause.xml" value="0.33" />
         <entry key="app/src/main/res/layout/layout_play_board.xml" value="0.4634146341463415" />

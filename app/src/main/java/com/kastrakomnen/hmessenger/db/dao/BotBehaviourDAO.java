@@ -23,4 +23,7 @@ public interface BotBehaviourDAO {
 
     @Query("SELECT * FROM BotBehaviour")
     List<BotBehaviourEntity> getBotBehaviours();
+
+    @Query("SELECT * FROM BotBehaviour WHERE BotBehaviour.id==:id")
+    List<BotBehaviourEntity> getBotBehavioursByID(int id);
 }

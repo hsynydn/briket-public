@@ -1,6 +1,10 @@
 package com.kastrakomnen.hmessenger.model.stat;
 
+import android.util.Log;
+
 public class GameStatistics {
+
+    private static final String TAG = "{GameStatistics}";
 
     private int score;
     private int comboX2;
@@ -12,6 +16,7 @@ public class GameStatistics {
     private int diamond;
 
     public void setScore(int score) {
+        Log.d(TAG, "Score Updated " + score);
         this.score = score;
     }
 

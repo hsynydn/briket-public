@@ -2,16 +2,19 @@ package com.kastrakomnen.hmessenger.model;
 
 import android.util.Log;
 
+import com.kastrakomnen.hmessenger.model.stat.GameStatCollector;
+
 import java.util.ArrayList;
 
 public class Game implements GameInputListener, Subscriber{
 
-    private static final String TAG = "Game";
+    private static final String TAG = "{Game}";
 
-    private DisplayUnitController displayUnitController;
-    private Board board;
+    private final DisplayUnitController displayUnitController;
+    private final Board board;
     private SetGenerator setGenerator;
     private final ArrayList<GameStateListener> gameStateListeners;
+    private final GameStatCollector gameStatCollector;
 
     private GameState gameState;
     private boolean disableInputs;
@@ -19,10 +22,15 @@ public class Game implements GameInputListener, Subscriber{
     public Game(DisplayUnitController displayUnitController){
 
         this.displayUnitController = displayUnitController;
-        this.board = new Board(20, 10, displayUnitController);
+        this.gameStatCollector = new GameStatCollector();
+        this.board = new Board(20, 10, displayUnitController, gameStatCollector);
         this.gameStateListeners = new ArrayList<>();
 
         disableInputs = true;
+
+        this.gameStatCollector.addScoreListener(BriketContext.getInstance());
+        this.gameStatCollector.addComboListener(BriketContext.getInstance());
+        this.gameStatCollector.addTimeListener(BriketContext.getInstance());
 
         gameState = GameState.PRE_START;
     }
@@ -213,5 +221,9 @@ public class Game implements GameInputListener, Subscriber{
     public void onNotify() {
         Log.i(TAG, "onNotify called");
         enableInputs();
+    }
+
+    public GameStatCollector getGameStatCollector() {
+        return gameStatCollector;
     }
 }

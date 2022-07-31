@@ -1,5 +1,7 @@
 package com.kastrakomnen.hmessenger.model;
 
+import com.kastrakomnen.hmessenger.model.stat.GameStatCollector;
+
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -71,7 +73,7 @@ public class BoardTest {
 
     @Test
     public void t1(){
-        Board board = new Board(24, 12, null);
+        Board board = new Board(24, 12, null, null);
 
         board.place(SetBuilder.build(FormationType.BOX_CW0));
         System.out.println(board.toString());
@@ -113,7 +115,7 @@ public class BoardTest {
 
     @Test
     public void testRotate(){
-        Board board = new Board(24, 12, new MockDisplayUnitController());
+        Board board = new Board(24, 12, new MockDisplayUnitController(), null);
 
         board.place(SetBuilder.build(FormationType.RL_CW90));
         System.out.println(board.toString());

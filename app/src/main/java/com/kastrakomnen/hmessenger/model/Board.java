@@ -2,6 +2,8 @@ package com.kastrakomnen.hmessenger.model;
 
 import android.util.Log;
 
+import com.kastrakomnen.hmessenger.model.stat.GameStatCollector;
+
 import java.util.ArrayList;
 
 public class Board {
@@ -19,13 +21,15 @@ public class Board {
     private final ArrayList<ArrayList<Brick>> board;
     private final ArrayList<ArrayList<Brick>> visibleBoard;
     private final DisplayUnitController displayUnitController;
+    private final GameStatCollector gameStatCollector;
 
-    public Board(int height, int width, DisplayUnitController displayUnitController){
+    public Board(int height, int width, DisplayUnitController displayUnitController, GameStatCollector gameStatCollector){
 
         this.height = height + invisibleHeight;
         this.width = width;
         this.score = 0;
         this.displayUnitController = displayUnitController;
+        this.gameStatCollector = gameStatCollector;
         this.visibleBoard = new ArrayList<>();
 
         activeSet = null;
@@ -282,6 +286,7 @@ public class Board {
                 }
 
                 score += 100 * scores.size();
+                gameStatCollector.setScore(score);
                 Log.d(TAG, "Score is " + score);
 
                 this.updateVisibleBoard();

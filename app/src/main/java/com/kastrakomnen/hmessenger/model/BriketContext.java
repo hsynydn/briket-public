@@ -10,21 +10,29 @@ import com.kastrakomnen.hmessenger.db.BriketDatabase;
 import com.kastrakomnen.hmessenger.db.entity.FormationEntity;
 import com.kastrakomnen.hmessenger.db.entity.PreferencesEntity;
 import com.kastrakomnen.hmessenger.db.entity.StageEntity;
+import com.kastrakomnen.hmessenger.model.stat.GameStatCollector;
+import com.kastrakomnen.hmessenger.model.stat.GameStatistics;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BriketContext {
+public class BriketContext implements GameStatCollector.ScoreListener, GameStatCollector.ComboListener, GameStatCollector.TimeListener {
 
     private static final String TAG = "{BriketContext}";
 
-    private ArrayList<Stage> stages = new ArrayList<>();
-    private Preferences preferences = new Preferences();
     private static BriketContext instance;
+
+    private final ArrayList<Stage> stages;
+    private final Preferences preferences;
+    private GameStatistics gameStatistics;
 
     private Stage currentStage;
 
-    private BriketContext(){}
+    private BriketContext(){
+        stages = new ArrayList<>();
+        preferences = new Preferences();
+        gameStatistics = new GameStatistics();
+    }
 
     public static BriketContext getInstance() {
         if (instance == null){
@@ -106,5 +114,32 @@ public class BriketContext {
 
     public Stage getCurrentStage() {
         return currentStage;
+    }
+
+    @Override
+    public void onScoreEvent(int score) {
+        gameStatistics.setScore(score);
+    }
+
+    @Override
+    public void onComboEvent(int combo) {
+        switch (combo){
+            case 2:
+                gameStatistics.setComboX2();
+                break;
+            case 3:
+                gameStatistics.setComboX3();
+                break;
+            case 4:
+                gameStatistics.setComboX4();
+                break;
+            default:
+                Log.e(TAG, "Unknown Combo Event happened");
+        }
+    }
+
+    @Override
+    public void onTimeEvent(int time) {
+        gameStatistics.setElapsedTime(time);
     }
 }

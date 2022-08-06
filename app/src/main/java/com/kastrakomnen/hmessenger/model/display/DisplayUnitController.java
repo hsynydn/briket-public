@@ -1,6 +1,6 @@
 package com.kastrakomnen.hmessenger.model.display;
 
-import com.kastrakomnen.hmessenger.model.Brick;
+import com.kastrakomnen.hmessenger.model.set.Brick;
 import com.kastrakomnen.hmessenger.model.Position;
 import com.kastrakomnen.hmessenger.model.Publisher;
 

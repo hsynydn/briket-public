@@ -16,4 +16,8 @@ public class PApplier<Agent, Product> {
     public Product apply(){
         return pApplierFunction.apply(distribution.next());
     }
+
+    public Product apply(Product product){
+        return pApplierFunction.apply(distribution.next(), product);
+    }
 }

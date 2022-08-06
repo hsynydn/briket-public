@@ -2,8 +2,12 @@ package com.kastrakomnen.hmessenger.model;
 
 import android.util.Log;
 
-import com.kastrakomnen.hmessenger.model.display.DisplayData;
 import com.kastrakomnen.hmessenger.model.display.DisplayUnitController;
+import com.kastrakomnen.hmessenger.model.policy.PolicyChecker;
+import com.kastrakomnen.hmessenger.model.set.Brick;
+import com.kastrakomnen.hmessenger.model.set.BrickState;
+import com.kastrakomnen.hmessenger.model.set.Formation;
+import com.kastrakomnen.hmessenger.model.set.Set;
 import com.kastrakomnen.hmessenger.model.stat.GameStatCollector;
 
 import java.util.ArrayList;
@@ -24,14 +28,22 @@ public class Board {
     private final ArrayList<ArrayList<Brick>> visibleBoard;
     private final DisplayUnitController displayUnitController;
     private final GameStatCollector gameStatCollector;
+    private final PolicyChecker policyChecker;
 
-    public Board(int height, int width, DisplayUnitController displayUnitController, GameStatCollector gameStatCollector){
+    public Board(
+            int height,
+            int width,
+            DisplayUnitController displayUnitController,
+            GameStatCollector gameStatCollector,
+            PolicyChecker gamePolicy
+    ){
 
         this.height = height + invisibleHeight;
         this.width = width;
         this.score = 0;
         this.displayUnitController = displayUnitController;
         this.gameStatCollector = gameStatCollector;
+        this.policyChecker = gamePolicy;
         this.visibleBoard = new ArrayList<>();
 
         activeSet = null;
@@ -260,45 +272,7 @@ public class Board {
         }
 
         if (failFlag){
-            ArrayList<Integer> indices = checkSequence();
 
-            /* Check is there any row to delete */
-            if (!indices.isEmpty()){
-
-                ArrayList<Position> visualUpdateAtArrayList = new ArrayList<>();
-                ArrayList<DisplayData.Score> scores = new ArrayList<>();
-                for (Integer i: indices) {
-                    for (int j = 0; j < width; j++) {
-                        Position o = board.get(i).get(j).getSet().getFormationOrigin();
-                        Position p = board.get(i).get(j).getRelativePosition();
-
-                        board.get(i).get(j).setBrickState(BrickState.DEAD);
-
-                        visualUpdateAtArrayList.add(new RelativePosition(o.getX() + p.getX(), o.getY() + p.getY()));
-                    }
-
-                    board.remove((int)i);
-                    scores.add(new DisplayData.Score(i - invisibleHeight, 100));
-
-                    ArrayList<Brick> newRow = new ArrayList<>();
-                    for (int j = 0; j < width; j++) {
-                        newRow.add(null);
-                    }
-                    board.add(0, newRow);
-                }
-
-                score += 100 * scores.size();
-                gameStatCollector.setScore(score);
-                Log.d(TAG, "Score is " + score);
-
-                this.updateVisibleBoard();
-
-                displayUnitController.refresh(visibleBoard);
-                displayUnitController.gainScore(scores);
-                displayUnitController.setScore(score);
-                activeSet = null;
-                return true;
-            }
 
             activeSet = null;
             return false;

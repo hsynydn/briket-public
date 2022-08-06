@@ -1,10 +1,13 @@
-package com.kastrakomnen.hmessenger.model;
+package com.kastrakomnen.hmessenger.model.set;
+
+import com.kastrakomnen.hmessenger.model.RelativePosition;
+import com.kastrakomnen.hmessenger.model.RotateType;
+import com.kastrakomnen.hmessenger.model.stat.PApplierFunction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
-public class SetBuilder {
+public class SetBuilder implements PApplierFunction<FormationType, Set> {
 
     private static final Formation box_cw0;
     private static final Formation box_cw90;
@@ -849,5 +852,15 @@ public class SetBuilder {
         }
 
         return set;
+    }
+
+    @Override
+    public Set apply(FormationType formationType) {
+        return build(formationType);
+    }
+
+    @Override
+    public Set apply(FormationType formationType, Set set) {
+        return build(formationType);
     }
 }

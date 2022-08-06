@@ -1,5 +1,8 @@
 package com.kastrakomnen.hmessenger.model;
 
+import com.kastrakomnen.hmessenger.model.set.FormationType;
+import com.kastrakomnen.hmessenger.model.set.Set;
+import com.kastrakomnen.hmessenger.model.set.SetGenerator;
 import com.kastrakomnen.hmessenger.model.stat.Distribution;
 import com.kastrakomnen.hmessenger.model.stat.DistributionType;
 

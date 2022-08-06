@@ -1,4 +1,4 @@
-package com.kastrakomnen.hmessenger.model;
+package com.kastrakomnen.hmessenger.model.set;
 
 public enum SetState {
     MOVE_STATE,

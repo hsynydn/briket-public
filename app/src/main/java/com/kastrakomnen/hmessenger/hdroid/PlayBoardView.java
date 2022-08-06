@@ -17,8 +17,8 @@ import androidx.annotation.Nullable;
 
 import com.kastrakomnen.hmessenger.R;
 import com.kastrakomnen.hmessenger.model.BasePublisher;
-import com.kastrakomnen.hmessenger.model.Brick;
-import com.kastrakomnen.hmessenger.model.BrickType;
+import com.kastrakomnen.hmessenger.model.set.Brick;
+import com.kastrakomnen.hmessenger.model.set.BrickType;
 import com.kastrakomnen.hmessenger.model.display.DisplayData;
 
 import java.util.ArrayList;

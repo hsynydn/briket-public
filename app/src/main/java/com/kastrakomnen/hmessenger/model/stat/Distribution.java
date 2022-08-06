@@ -1,6 +1,7 @@
 package com.kastrakomnen.hmessenger.model.stat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -23,6 +24,13 @@ public class Distribution<T> {
     public Distribution(DistributionType distributionType, ArrayList<T> elements){
         this.weights = DistributionTableBuilder.build(distributionType, elements.size());
         this.elements = elements;
+
+        onInit();
+    }
+
+    public Distribution(DistributionType distributionType, T[] elements){
+        this.weights = DistributionTableBuilder.build(distributionType, elements.length);
+        this.elements = (ArrayList<T>) Arrays.asList(elements);
 
         onInit();
     }

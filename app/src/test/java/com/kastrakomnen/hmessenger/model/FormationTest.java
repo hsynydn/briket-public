@@ -1,5 +1,7 @@
 package com.kastrakomnen.hmessenger.model;
 
+import com.kastrakomnen.hmessenger.model.set.Formation;
+
 import junit.framework.TestCase;
 
 public class FormationTest extends TestCase {

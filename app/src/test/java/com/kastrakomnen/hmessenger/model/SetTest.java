@@ -1,5 +1,9 @@
 package com.kastrakomnen.hmessenger.model;
 
+import com.kastrakomnen.hmessenger.model.set.Brick;
+import com.kastrakomnen.hmessenger.model.set.Formation;
+import com.kastrakomnen.hmessenger.model.set.Set;
+
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,4 +1,8 @@
-package com.kastrakomnen.hmessenger.model;
+package com.kastrakomnen.hmessenger.model.set;
+
+import com.kastrakomnen.hmessenger.model.Position;
+import com.kastrakomnen.hmessenger.model.RelativePosition;
+import com.kastrakomnen.hmessenger.model.RotateType;
 
 public class FormationTransformer {
 

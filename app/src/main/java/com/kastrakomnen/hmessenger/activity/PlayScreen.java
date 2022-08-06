@@ -18,7 +18,7 @@ import com.kastrakomnen.hmessenger.hdroid.PlayBoardView;
 import com.kastrakomnen.hmessenger.model.BasePublisher;
 import com.kastrakomnen.hmessenger.model.Bot;
 import com.kastrakomnen.hmessenger.model.BotBehaviour;
-import com.kastrakomnen.hmessenger.model.Brick;
+import com.kastrakomnen.hmessenger.model.set.Brick;
 import com.kastrakomnen.hmessenger.model.BriketContext;
 import com.kastrakomnen.hmessenger.model.display.DisplayData;
 import com.kastrakomnen.hmessenger.model.display.DisplayUnitController;

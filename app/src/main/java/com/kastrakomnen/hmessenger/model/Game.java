@@ -3,10 +3,25 @@ package com.kastrakomnen.hmessenger.model;
 import android.util.Log;
 
 import com.kastrakomnen.hmessenger.model.display.DisplayUnitController;
+import com.kastrakomnen.hmessenger.model.policy.PolicyChecker;
+import com.kastrakomnen.hmessenger.model.set.BrickType;
+import com.kastrakomnen.hmessenger.model.set.FormationType;
+import com.kastrakomnen.hmessenger.model.set.Set;
+import com.kastrakomnen.hmessenger.model.set.SetBuilder;
+import com.kastrakomnen.hmessenger.model.set.SetGenerator;
+import com.kastrakomnen.hmessenger.model.set.modifier.CoinModifier;
+import com.kastrakomnen.hmessenger.model.set.modifier.PrimitiveSetModifierFactory;
+import com.kastrakomnen.hmessenger.model.set.modifier.SetModifierFactory;
+import com.kastrakomnen.hmessenger.model.set.modifier.StarModifier;
 import com.kastrakomnen.hmessenger.model.stat.Distribution;
+import com.kastrakomnen.hmessenger.model.stat.DistributionTableBuilder;
+import com.kastrakomnen.hmessenger.model.stat.DistributionType;
 import com.kastrakomnen.hmessenger.model.stat.GameStatCollector;
+import com.kastrakomnen.hmessenger.model.stat.PApplier;
+import com.kastrakomnen.hmessenger.model.stat.PApplierFunction;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Game implements GameInputListener, Subscriber{
 
@@ -14,9 +29,15 @@ public class Game implements GameInputListener, Subscriber{
 
     private final DisplayUnitController displayUnitController;
     private final Board board;
-    private SetGenerator setGenerator;
+
     private final ArrayList<GameStateListener> gameStateListeners;
     private final GameStatCollector gameStatCollector;
+    private final PolicyChecker policyChecker;
+
+    private PApplier<FormationType, Set> setGenerator;
+    private ArrayList<PApplier<Boolean, Set>> setModifiers;
+
+    private SetModifierFactory setModifierFactory;
 
     private GameState gameState;
     private boolean disableInputs;
@@ -25,8 +46,11 @@ public class Game implements GameInputListener, Subscriber{
 
         this.displayUnitController = displayUnitController;
         this.gameStatCollector = new GameStatCollector();
-        this.board = new Board(20, 10, displayUnitController, gameStatCollector);
+        this.policyChecker = new PolicyChecker();
+        this.board = new Board(20, 10, displayUnitController, gameStatCollector, policyChecker);
         this.gameStateListeners = new ArrayList<>();
+        this.setModifiers = new ArrayList<>();
+        this.setModifierFactory = new PrimitiveSetModifierFactory();
 
         disableInputs = true;
 
@@ -43,15 +67,27 @@ public class Game implements GameInputListener, Subscriber{
             throw new IllegalStateException("game state not allowed this operation");
         }
 
-        setGenerator = new SetGenerator(
+        setGenerator = new PApplier<>(
                 new Distribution<FormationType>(
                         stage.getDistributionType(),
                         stage.getFormationTypes()
-                )
+                ),
+                new SetBuilder()
         );
 
-        // Create a set modifier
+        ArrayList<Boolean> booleans = new ArrayList<>();
+        booleans.add(true);
+        booleans.add(false);
 
+        setModifiers.add(
+                new PApplier<>(
+                        new Distribution<Boolean>(
+                                DistributionTableBuilder.build(DistributionType.PROB_10, null),
+                                booleans
+                        ),
+                        setModifierFactory.createProduct(BrickType.STAR)
+                )
+        );
     }
 
     public void start(){
@@ -160,7 +196,13 @@ public class Game implements GameInputListener, Subscriber{
 
         if (board.getActiveSet() == null){
             Log.d(TAG, "Active set null");
-            if (board.place(setGenerator.generate())){
+
+            Set set = setGenerator.apply();
+            for (PApplier<Boolean, Set> applier : setModifiers) {
+                set = applier.apply(set);
+            }
+
+            if (board.place(set)){
                 enableInputs();
             }else{
                 // Game End

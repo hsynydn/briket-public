@@ -2,6 +2,9 @@ package com.kastrakomnen.hmessenger.model;
 
 import com.kastrakomnen.hmessenger.model.display.DisplayData;
 import com.kastrakomnen.hmessenger.model.display.DisplayUnitController;
+import com.kastrakomnen.hmessenger.model.set.Brick;
+import com.kastrakomnen.hmessenger.model.set.FormationType;
+import com.kastrakomnen.hmessenger.model.set.SetBuilder;
 
 import org.junit.Test;
 

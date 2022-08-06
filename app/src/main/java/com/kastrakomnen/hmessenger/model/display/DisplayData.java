@@ -1,6 +1,6 @@
 package com.kastrakomnen.hmessenger.model.display;
 
-import com.kastrakomnen.hmessenger.model.BrickType;
+import com.kastrakomnen.hmessenger.model.set.BrickType;
 
 public class DisplayData {
 

@@ -68,6 +68,7 @@ public class PlayBoardView extends View {
     private Drawable brick_green;
     private Drawable brick_blue;
     private Drawable brick_pink;
+    private Drawable brick_star;
     private Drawable brick_orange;
     private Drawable coin;
     private Drawable emptyRegion;
@@ -120,6 +121,7 @@ public class PlayBoardView extends View {
         brick_pink  = getContext().getDrawable(R.drawable.brick_style_shady_pinky);
         brick_orange  = getContext().getDrawable(R.drawable.brick_style_shady_orange);
         coin  = getContext().getDrawable(R.drawable.coin);
+        brick_star  = getContext().getDrawable(R.drawable.star);
         emptyRegion  = getContext().getDrawable(R.drawable.shape);
 
         scorePopUPGates = new ArrayList<>();
@@ -353,6 +355,8 @@ public class PlayBoardView extends View {
                     }
                 }else if (brick.getBrickType() == BrickType.COIN){
                     brickDrawables.get(i).set(j, brick_pink);
+                }else if (brick.getBrickType() == BrickType.STAR){
+                    brickDrawables.get(i).set(j, brick_star);
                 }
             }
         }

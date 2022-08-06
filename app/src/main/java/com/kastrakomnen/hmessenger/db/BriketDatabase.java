@@ -11,13 +11,37 @@ import com.kastrakomnen.hmessenger.db.dao.FormationDAO;
 import com.kastrakomnen.hmessenger.db.dao.PreferencesDAO;
 import com.kastrakomnen.hmessenger.db.dao.StageDAO;
 import com.kastrakomnen.hmessenger.db.dao.StageFormationDAO;
+import com.kastrakomnen.hmessenger.db.entity.AgentEntity;
+import com.kastrakomnen.hmessenger.db.entity.BoardEntity;
+import com.kastrakomnen.hmessenger.db.entity.BoardHorizontalEntity;
+import com.kastrakomnen.hmessenger.db.entity.BoardVerticalEntity;
 import com.kastrakomnen.hmessenger.db.entity.BotBehaviourEntity;
+import com.kastrakomnen.hmessenger.db.entity.DistributionEntity;
 import com.kastrakomnen.hmessenger.db.entity.FormationEntity;
 import com.kastrakomnen.hmessenger.db.entity.PreferencesEntity;
+import com.kastrakomnen.hmessenger.db.entity.StageAgentEntity;
 import com.kastrakomnen.hmessenger.db.entity.StageEntity;
 import com.kastrakomnen.hmessenger.db.entity.StageFormationEntity;
+import com.kastrakomnen.hmessenger.db.entity.WinConditionEntity;
 
-@Database(entities = {BotBehaviourEntity.class, FormationEntity.class, PreferencesEntity.class, StageEntity.class, StageFormationEntity.class}, version = 19, exportSchema = true)
+@Database(
+        entities = {
+                BotBehaviourEntity.class,
+                FormationEntity.class,
+                PreferencesEntity.class,
+                StageEntity.class,
+                StageFormationEntity.class,
+                AgentEntity.class,
+                BoardEntity.class,
+                BoardHorizontalEntity.class,
+                BoardVerticalEntity.class,
+                DistributionEntity.class,
+                StageAgentEntity.class,
+                WinConditionEntity.class
+        },
+        version = 20,
+        exportSchema = true
+)
 public abstract class BriketDatabase extends RoomDatabase {
 
     private static volatile BriketDatabase instance;

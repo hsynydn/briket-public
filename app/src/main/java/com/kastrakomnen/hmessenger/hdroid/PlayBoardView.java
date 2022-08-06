@@ -7,16 +7,11 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.BounceInterpolator;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
@@ -24,10 +19,7 @@ import com.kastrakomnen.hmessenger.R;
 import com.kastrakomnen.hmessenger.model.BasePublisher;
 import com.kastrakomnen.hmessenger.model.Brick;
 import com.kastrakomnen.hmessenger.model.BrickType;
-import com.kastrakomnen.hmessenger.model.DisplayData;
-import com.kastrakomnen.hmessenger.model.DisplayUnitController;
-import com.kastrakomnen.hmessenger.model.Position;
-import com.kastrakomnen.hmessenger.model.Subscriber;
+import com.kastrakomnen.hmessenger.model.display.DisplayData;
 
 import java.util.ArrayList;
 import java.util.Random;

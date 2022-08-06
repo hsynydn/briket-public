@@ -4,21 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.kastrakomnen.hmessenger.ActivityGameMap;
-import com.kastrakomnen.hmessenger.FragmentOptions;
 import com.kastrakomnen.hmessenger.R;
 import com.kastrakomnen.hmessenger.hdroid.PlayBoardView;
 import com.kastrakomnen.hmessenger.model.BasePublisher;
@@ -26,18 +20,13 @@ import com.kastrakomnen.hmessenger.model.Bot;
 import com.kastrakomnen.hmessenger.model.BotBehaviour;
 import com.kastrakomnen.hmessenger.model.Brick;
 import com.kastrakomnen.hmessenger.model.BriketContext;
-import com.kastrakomnen.hmessenger.model.DisplayData;
-import com.kastrakomnen.hmessenger.model.DisplayUnitController;
-import com.kastrakomnen.hmessenger.model.DistributionType;
-import com.kastrakomnen.hmessenger.model.FormationType;
+import com.kastrakomnen.hmessenger.model.display.DisplayData;
+import com.kastrakomnen.hmessenger.model.display.DisplayUnitController;
 import com.kastrakomnen.hmessenger.model.Game;
 import com.kastrakomnen.hmessenger.model.Position;
-import com.kastrakomnen.hmessenger.model.Stage;
 import com.kastrakomnen.hmessenger.model.Subscriber;
-import com.kastrakomnen.hmessenger.model.WinCondition;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
 public class PlayScreen extends AppCompatActivity implements DisplayUnitController{

@@ -2,6 +2,8 @@ package com.kastrakomnen.hmessenger.model;
 
 import android.util.Log;
 
+import com.kastrakomnen.hmessenger.model.display.DisplayUnitController;
+import com.kastrakomnen.hmessenger.model.stat.Distribution;
 import com.kastrakomnen.hmessenger.model.stat.GameStatCollector;
 
 import java.util.ArrayList;
@@ -47,6 +49,8 @@ public class Game implements GameInputListener, Subscriber{
                         stage.getFormationTypes()
                 )
         );
+
+        // Create a set modifier
 
     }
 

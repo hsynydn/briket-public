@@ -1,11 +1,11 @@
 package com.kastrakomnen.hmessenger.model;
 
-import static org.junit.Assert.*;
+import com.kastrakomnen.hmessenger.model.stat.Distribution;
+import com.kastrakomnen.hmessenger.model.stat.DistributionType;
 
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class DistributionTest {
 

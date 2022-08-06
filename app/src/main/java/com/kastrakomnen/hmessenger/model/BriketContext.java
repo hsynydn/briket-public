@@ -10,6 +10,7 @@ import com.kastrakomnen.hmessenger.db.BriketDatabase;
 import com.kastrakomnen.hmessenger.db.entity.FormationEntity;
 import com.kastrakomnen.hmessenger.db.entity.PreferencesEntity;
 import com.kastrakomnen.hmessenger.db.entity.StageEntity;
+import com.kastrakomnen.hmessenger.model.stat.DistributionType;
 import com.kastrakomnen.hmessenger.model.stat.GameStatCollector;
 import com.kastrakomnen.hmessenger.model.stat.GameStatistics;
 

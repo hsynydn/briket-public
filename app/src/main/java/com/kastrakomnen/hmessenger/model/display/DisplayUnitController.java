@@ -1,9 +1,12 @@
-package com.kastrakomnen.hmessenger.model;
+package com.kastrakomnen.hmessenger.model.display;
 
-import java.lang.reflect.Array;
+import com.kastrakomnen.hmessenger.model.Brick;
+import com.kastrakomnen.hmessenger.model.Position;
+import com.kastrakomnen.hmessenger.model.Publisher;
+
 import java.util.ArrayList;
 
-public interface DisplayUnitController extends Publisher{
+public interface DisplayUnitController extends Publisher {
 
     void create(DisplayData.Board board);
     void create(DisplayData.Brick brick, Position at);

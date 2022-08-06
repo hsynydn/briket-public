@@ -1,5 +1,7 @@
 package com.kastrakomnen.hmessenger.model;
 
+import com.kastrakomnen.hmessenger.model.stat.DistributionType;
+
 import java.util.ArrayList;
 
 public class Stage {

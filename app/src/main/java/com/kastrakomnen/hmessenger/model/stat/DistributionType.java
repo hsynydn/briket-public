@@ -1,4 +1,4 @@
-package com.kastrakomnen.hmessenger.model;
+package com.kastrakomnen.hmessenger.model.stat;
 
 public enum DistributionType {
     NORMAL,

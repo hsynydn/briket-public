@@ -1,12 +1,13 @@
 package com.kastrakomnen.hmessenger.model;
 
-import com.kastrakomnen.hmessenger.model.stat.GameStatCollector;
+import com.kastrakomnen.hmessenger.model.display.DisplayData;
+import com.kastrakomnen.hmessenger.model.display.DisplayUnitController;
 
 import org.junit.Test;
 
 import java.util.ArrayList;
 
-class MockDisplayUnitController implements DisplayUnitController{
+class MockDisplayUnitController implements DisplayUnitController {
 
     @Override
     public void create(DisplayData.Board board) {
@@ -24,6 +25,11 @@ class MockDisplayUnitController implements DisplayUnitController{
     }
 
     @Override
+    public void refresh(ArrayList<ArrayList<Brick>> board) {
+
+    }
+
+    @Override
     public void move(ArrayList<DisplayData.Brick> brickArrayList, ArrayList<Position> fromPositions, ArrayList<Position> toPositions) {
 
     }
@@ -35,6 +41,16 @@ class MockDisplayUnitController implements DisplayUnitController{
 
     @Override
     public void remove(DisplayData.Brick brick, Position at) {
+
+    }
+
+    @Override
+    public void removeAndRefresh(ArrayList<DisplayData.Brick> brickArrayList, ArrayList<Position> atPositions, ArrayList<Position> board) {
+
+    }
+
+    @Override
+    public void refresh(ArrayList<DisplayData.Brick> brickArrayList, ArrayList<Position> atPositions) {
 
     }
 
@@ -55,6 +71,16 @@ class MockDisplayUnitController implements DisplayUnitController{
 
     @Override
     public void end() {
+
+    }
+
+    @Override
+    public void gainScore(ArrayList<DisplayData.Score> scores) {
+
+    }
+
+    @Override
+    public void setScore(int score) {
 
     }
 

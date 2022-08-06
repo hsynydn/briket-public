@@ -1,11 +1,11 @@
-package com.kastrakomnen.hmessenger.model;
+package com.kastrakomnen.hmessenger.model.stat;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-class Distribution<T> {
+public class Distribution<T> {
 
     private Map<Integer, T> distributionMap;
     private Random random;

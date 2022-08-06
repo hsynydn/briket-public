@@ -1,5 +1,7 @@
 package com.kastrakomnen.hmessenger.model;
 
+import com.kastrakomnen.hmessenger.model.stat.Distribution;
+
 public class SetGenerator {
 
     private final Distribution<FormationType> distribution;

@@ -32,12 +32,13 @@ public class Game implements GameInputListener, Subscriber{
 
     private final ArrayList<GameStateListener> gameStateListeners;
     private final GameStatCollector gameStatCollector;
+
     private final PolicyChecker policyChecker;
 
     private PApplier<FormationType, Set> setGenerator;
-    private ArrayList<PApplier<Boolean, Set>> setModifiers;
+    private final ArrayList<PApplier<Boolean, Set>> setModifiers;
 
-    private SetModifierFactory setModifierFactory;
+    private final SetModifierFactory setModifierFactory;
 
     private GameState gameState;
     private boolean disableInputs;

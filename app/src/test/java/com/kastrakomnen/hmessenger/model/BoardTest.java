@@ -102,7 +102,7 @@ public class BoardTest {
 
     @Test
     public void t1(){
-        Board board = new Board(24, 12, null, null);
+        Board board = new Board(24, 12, null, null, null);
 
         board.place(SetBuilder.build(FormationType.BOX_CW0));
         System.out.println(board.toString());
@@ -144,7 +144,7 @@ public class BoardTest {
 
     @Test
     public void testRotate(){
-        Board board = new Board(24, 12, new MockDisplayUnitController(), null);
+        Board board = new Board(24, 12, new MockDisplayUnitController(), null, null);
 
         board.place(SetBuilder.build(FormationType.RL_CW90));
         System.out.println(board.toString());

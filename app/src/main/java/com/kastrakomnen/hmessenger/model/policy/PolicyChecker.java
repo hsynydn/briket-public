@@ -12,19 +12,11 @@ public class PolicyChecker {
         this.policies = new ArrayList<>();
     }
 
-    public void addConditionable(Policy policy){
+    public void addPolicy(Policy policy){
         this.policies.add(policy);
     }
 
-    public void scanBoard(ArrayList<ArrayList<Brick>> board){
-
-        for (ArrayList<Brick> row : board) {
-
-
-
-        }
-
-
+    public void scanPolicies(){
     }
 
 }

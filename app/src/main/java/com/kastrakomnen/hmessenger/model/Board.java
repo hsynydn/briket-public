@@ -3,9 +3,16 @@ package com.kastrakomnen.hmessenger.model;
 import android.util.Log;
 
 import com.kastrakomnen.hmessenger.model.display.DisplayUnitController;
+import com.kastrakomnen.hmessenger.model.policy.LineUpPolicy;
+import com.kastrakomnen.hmessenger.model.policy.OccurrencePolicy;
+import com.kastrakomnen.hmessenger.model.policy.PNull;
+import com.kastrakomnen.hmessenger.model.policy.Policy;
 import com.kastrakomnen.hmessenger.model.policy.PolicyChecker;
+import com.kastrakomnen.hmessenger.model.policy.PolicyListener;
+import com.kastrakomnen.hmessenger.model.policy.RushPolicy;
 import com.kastrakomnen.hmessenger.model.set.Brick;
 import com.kastrakomnen.hmessenger.model.set.BrickState;
+import com.kastrakomnen.hmessenger.model.set.BrickType;
 import com.kastrakomnen.hmessenger.model.set.Formation;
 import com.kastrakomnen.hmessenger.model.set.Set;
 import com.kastrakomnen.hmessenger.model.stat.GameStatCollector;
@@ -35,7 +42,7 @@ public class Board {
             int width,
             DisplayUnitController displayUnitController,
             GameStatCollector gameStatCollector,
-            PolicyChecker gamePolicy
+            PolicyChecker policyChecker
     ){
 
         this.height = height + invisibleHeight;
@@ -43,7 +50,7 @@ public class Board {
         this.score = 0;
         this.displayUnitController = displayUnitController;
         this.gameStatCollector = gameStatCollector;
-        this.policyChecker = gamePolicy;
+        this.policyChecker = policyChecker;
         this.visibleBoard = new ArrayList<>();
 
         activeSet = null;
@@ -273,6 +280,33 @@ public class Board {
 
         if (failFlag){
 
+            // Repeat 10 lines up // Occurrence Policy + LineUp Policy
+            // Repeat 10 Lines Up + 1 Star Line // Occurrence Policy + LineUp Policy (Normal + Star)
+
+            Policy lineUpPolicy = new LineUpPolicy<BrickType, ArrayList<Brick>, Integer, PNull>(new PolicyListener<Integer, PNull>() {
+                @Override
+                public void onListen(Integer integer, PNull pNull) {
+                    // Index of the lineup
+                    // I need to delete that line
+                }
+            });
+
+            Policy rushPolicy = new RushPolicy<>(new PolicyListener<PNull, PNull>() {
+                @Override
+                public void onListen(PNull pNull, PNull pNull2) {
+
+                }
+            });
+
+            Policy occurrencePolicy = new OccurrencePolicy<Board, PNull, Boolean, Brick>(10, new PolicyListener<Boolean, Brick>() {
+                    @Override
+                    public void onListen(Boolean aBoolean, Brick brick) {
+                        // What happen when occurrence policy realized
+                    }
+            });
+
+            rushPolicy.pursue(lineUpPolicy);
+            occurrencePolicy.pursue(rushPolicy);
 
             activeSet = null;
             return false;

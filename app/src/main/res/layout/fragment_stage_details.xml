@@ -2,33 +2,22 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_layout_stage_details"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/root_layout_stage_details"
-    tools:context=".activity.FragmentStageDetails"
-    android:background="#E69C27B0"
-    android:backgroundTint="#C51162"
+    android:background="#FFFFFF"
+    android:backgroundTint="#FFFFFF"
     android:backgroundTintMode="src_atop"
-    android:clickable="true">
-
-    <TextView
-        android:id="@+id/sd_tv_about"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="About"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:clickable="true"
+    tools:context=".activity.FragmentStageDetails">
 
     <Button
         android:id="@+id/sd_button_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="BACK"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="118dp" />
 
     <Button
         android:id="@+id/sd_button_ok"
@@ -36,7 +25,17 @@
         android:layout_height="wrap_content"
         android:text="OK"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="256dp"
+        android:layout_height="256dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/ic_logo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sd_tv_about" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

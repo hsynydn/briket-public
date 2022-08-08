@@ -13,7 +13,7 @@
         android:layout_height="512dp"
         android:layout_marginBottom="356dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/brick_style_shady_pinky"
+        app:srcCompat="@drawable/ic_hot_pink_brikets"
         tools:layout_editor_absoluteX="0dp" />
 
     <ImageView
@@ -24,7 +24,7 @@
         android:layout_marginBottom="75dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/brick_style_shady_green" />
+        app:srcCompat="@drawable/ic_green_briket_star" />
 
     <ImageView
         android:id="@+id/iv_logo"
@@ -34,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_icon" />
+        app:srcCompat="@drawable/ic_logo" />
 
     <ImageView
         android:id="@+id/iv_logo_text"
@@ -45,7 +45,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_text" />
+        app:srcCompat="@drawable/ic_logo_text" />
 
     <ImageView
         android:id="@+id/layout_home_iv_play"

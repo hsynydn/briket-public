@@ -32,7 +32,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo_icon" />
+            app:srcCompat="@drawable/ic_logo" />
 
         <ImageView
             android:id="@+id/iv_settings"
@@ -52,7 +52,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo_text" />
+            app:srcCompat="@drawable/ic_logo_text" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_progress_cards"

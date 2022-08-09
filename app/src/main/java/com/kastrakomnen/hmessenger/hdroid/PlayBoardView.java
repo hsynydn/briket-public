@@ -106,14 +106,14 @@ public class PlayBoardView extends View {
         testPaint.setColor(0xff00ff00);
         testPaint.setStrokeWidth(2);
 
-        brick           = getContext().getDrawable(R.drawable.ic_red_briket);
-        brick_red       = getContext().getDrawable(R.drawable.ic_red_briket);
+        brick           = getContext().getDrawable(R.drawable.ic_fuscia_briket);
+        brick_red       = getContext().getDrawable(R.drawable.ic_fuscia_briket);
         brick_green     = getContext().getDrawable(R.drawable.ic_green_briket);
-        brick_blue      = getContext().getDrawable(R.drawable.ic_cyan_briket);
-        brick_pink      = getContext().getDrawable(R.drawable.ic_hot_pink_briket);
-        brick_orange    = getContext().getDrawable(R.drawable.ic_tangerine_briket);
+        brick_blue      = getContext().getDrawable(R.drawable.ic_blue_briket);
+        brick_pink      = getContext().getDrawable(R.drawable.ic_raspberry_briket);
+        brick_orange    = getContext().getDrawable(R.drawable.ic_orange_briket);
         coin            = getContext().getDrawable(R.drawable.coin);
-        brick_star      = getContext().getDrawable(R.drawable.ic_hot_pink_briket_star);
+        brick_star      = getContext().getDrawable(R.drawable.ic_tough_briket);
         emptyRegion     = getContext().getDrawable(R.drawable.shape);
 
         scorePopUPGates = new ArrayList<>();

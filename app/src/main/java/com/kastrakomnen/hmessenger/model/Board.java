@@ -3,13 +3,7 @@ package com.kastrakomnen.hmessenger.model;
 import android.util.Log;
 
 import com.kastrakomnen.hmessenger.model.display.DisplayUnitController;
-import com.kastrakomnen.hmessenger.model.policy.LineUpPolicy;
-import com.kastrakomnen.hmessenger.model.policy.OccurrencePolicy;
-import com.kastrakomnen.hmessenger.model.policy.PNull;
-import com.kastrakomnen.hmessenger.model.policy.Policy;
 import com.kastrakomnen.hmessenger.model.policy.PolicyChecker;
-import com.kastrakomnen.hmessenger.model.policy.PolicyListener;
-import com.kastrakomnen.hmessenger.model.policy.RushPolicy;
 import com.kastrakomnen.hmessenger.model.set.Brick;
 import com.kastrakomnen.hmessenger.model.set.BrickState;
 import com.kastrakomnen.hmessenger.model.set.BrickType;
@@ -18,6 +12,8 @@ import com.kastrakomnen.hmessenger.model.set.Set;
 import com.kastrakomnen.hmessenger.model.stat.GameStatCollector;
 
 import java.util.ArrayList;
+
+import kotlin.Triple;
 
 public class Board {
 
@@ -280,7 +276,102 @@ public class Board {
 
         if (failFlag){
 
-            // Repeat 10 lines up // Occurrence Policy + LineUp Policy
+            ArrayList<Triple<BoardEvent, Integer, ArrayList<Position>>> list2Delete = new ArrayList<>();
+
+            boolean isContinue = false;
+
+            for (int i = 0; i < height; i++) {
+
+                int nofLive = 0;
+                int nofNorm = 0;
+                int nofStar = 0;
+                ArrayList<Position> listOfStarPositions = new ArrayList<>();
+
+                for (int j = 0; j < width; j++) {
+
+                    if(board.get(i).get(j) == null){
+                        isContinue = true;
+                        break;
+                    }
+
+                    if (board.get(i).get(j).getBrickState() == BrickState.LIVE){
+                        nofLive++;
+                        if (board.get(i).get(j).getBrickType() == BrickType.NORMAL){
+                            nofNorm++;
+                            listOfStarPositions.add(new RelativePosition(j, i));
+                        }else if (board.get(i).get(j).getBrickType() == BrickType.STAR){
+                            nofStar++;
+                        }
+                    }else{
+                        isContinue = true;
+                        break;
+                    }
+                }
+
+                if (isContinue){
+                    isContinue = false;
+                    continue;
+                }
+
+                if (nofNorm == width){
+                    list2Delete.add(new Triple<>(BoardEvent.NORM_LINEUP, i, null));
+                }else if (nofStar == width){
+                    list2Delete.add(new Triple<>(BoardEvent.STAR_LINEUP, i, null));
+                }else{
+                    list2Delete.add(new Triple<>(BoardEvent.NORM_WITH_STAR_LINEUP, i, listOfStarPositions));
+                }
+            }
+
+            for (Triple<BoardEvent, Integer, ArrayList<Position>> triple :  list2Delete) {
+
+                ArrayList<Brick> newRow;
+
+                switch (triple.component1()){
+                    case NORM_LINEUP:
+                        Log.d(TAG, "NORM_LINEUP");
+                        for (int i = 0; i < width; i++) {
+                            board.get(triple.component2()).get(i).setBrickState(BrickState.DEAD);
+                        }
+                        board.remove((int)triple.component2());
+
+                        newRow = new ArrayList<>();
+                        for (int j = 0; j < width; j++) {
+                            newRow.add(null);
+                        }
+                        board.add(0, newRow);
+                        break;
+                    case STAR_LINEUP:
+                        Log.d(TAG, "STAR_LINEUP");
+                        for (int i = 0; i < width; i++) {
+                            board.get(triple.component2()).get(i).setBrickState(BrickState.DEAD);
+                        }
+                        board.remove((int)triple.component2());
+
+                        newRow = new ArrayList<>();
+                        for (int j = 0; j < width; j++) {
+                            newRow.add(null);
+                        }
+                        board.add(0, newRow);
+                        break;
+                    case NORM_WITH_STAR_LINEUP:
+                        Log.i(TAG, "NORM_WITH_STAR_LINEUP");
+
+                        for (Position position : triple.component3()) {
+                            board.get(position.getY()).get(position.getX()).setBrickState(BrickState.DEAD);
+                            for (int i = position.getY(); i > 0; i--) {
+                                board.get(i).set(position.getX(), board.get(i-1).get(position.getX()));
+                            }
+                        }
+
+                        break;
+                }
+            }
+
+            gameStatCollector.setCombo(list2Delete.size());
+            gameStatCollector.setScore(0);
+            gameStatCollector.setTime(0);
+
+/*            // Repeat 10 lines up // Occurrence Policy + LineUp Policy
             // Repeat 10 Lines Up + 1 Star Line // Occurrence Policy + LineUp Policy (Normal + Star)
 
             Policy lineUpPolicy = new LineUpPolicy<BrickType, ArrayList<Brick>, Integer, PNull>(new PolicyListener<Integer, PNull>() {
@@ -306,7 +397,11 @@ public class Board {
             });
 
             rushPolicy.pursue(lineUpPolicy);
-            occurrencePolicy.pursue(rushPolicy);
+            occurrencePolicy.pursue(rushPolicy);*/
+
+            this.updateVisibleBoard();
+
+            displayUnitController.refresh(visibleBoard);
 
             activeSet = null;
             return false;

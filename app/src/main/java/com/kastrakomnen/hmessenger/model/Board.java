@@ -371,34 +371,6 @@ public class Board {
             gameStatCollector.setScore(0);
             gameStatCollector.setTime(0);
 
-/*            // Repeat 10 lines up // Occurrence Policy + LineUp Policy
-            // Repeat 10 Lines Up + 1 Star Line // Occurrence Policy + LineUp Policy (Normal + Star)
-
-            Policy lineUpPolicy = new LineUpPolicy<BrickType, ArrayList<Brick>, Integer, PNull>(new PolicyListener<Integer, PNull>() {
-                @Override
-                public void onListen(Integer integer, PNull pNull) {
-                    // Index of the lineup
-                    // I need to delete that line
-                }
-            });
-
-            Policy rushPolicy = new RushPolicy<>(new PolicyListener<PNull, PNull>() {
-                @Override
-                public void onListen(PNull pNull, PNull pNull2) {
-
-                }
-            });
-
-            Policy occurrencePolicy = new OccurrencePolicy<Board, PNull, Boolean, Brick>(10, new PolicyListener<Boolean, Brick>() {
-                    @Override
-                    public void onListen(Boolean aBoolean, Brick brick) {
-                        // What happen when occurrence policy realized
-                    }
-            });
-
-            rushPolicy.pursue(lineUpPolicy);
-            occurrencePolicy.pursue(rushPolicy);*/
-
             this.updateVisibleBoard();
 
             displayUnitController.refresh(visibleBoard);

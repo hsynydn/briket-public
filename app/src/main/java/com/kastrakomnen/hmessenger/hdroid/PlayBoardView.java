@@ -119,7 +119,7 @@ public class PlayBoardView extends View {
         scorePopUPGates = new ArrayList<>();
         scorePopUPTexts = new ArrayList<>();
 
-        scorePopUPAnimator = ValueAnimator.ofInt(0, 100);
+        scorePopUPAnimator = ValueAnimator.ofInt(0, 75);
         scorePopUPAnimator.setDuration(700);
         scorePopUPAnimator.setInterpolator(new BounceInterpolator());
         scorePopUPAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -181,7 +181,7 @@ public class PlayBoardView extends View {
                 }
 
                 canvas.drawText(
-                        scorePopUPTexts.get(i),
+                        "+" + scorePopUPTexts.get(i),
                         permanentRectBounds.get(i).get((i*randomInteger)%boardWidth).left,
                         permanentRectBounds.get(i).get((i*randomInteger)%boardWidth).top,
                         scorePopUPPaint);

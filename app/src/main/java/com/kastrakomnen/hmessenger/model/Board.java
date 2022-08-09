@@ -2,6 +2,7 @@ package com.kastrakomnen.hmessenger.model;
 
 import android.util.Log;
 
+import com.kastrakomnen.hmessenger.model.display.DisplayData;
 import com.kastrakomnen.hmessenger.model.display.DisplayUnitController;
 import com.kastrakomnen.hmessenger.model.policy.PolicyChecker;
 import com.kastrakomnen.hmessenger.model.set.Brick;
@@ -322,17 +323,23 @@ public class Board {
                 }
             }
 
+            ArrayList<DisplayData.Score> scores = new ArrayList<>();
             for (Triple<BoardEvent, Integer, ArrayList<Position>> triple :  list2Delete) {
 
                 ArrayList<Brick> newRow;
+                int totalToughness=0;
 
                 switch (triple.component1()){
                     case NORM_LINEUP:
                         Log.d(TAG, "NORM_LINEUP");
+
                         for (int i = 0; i < width; i++) {
                             board.get(triple.component2()).get(i).setBrickState(BrickState.DEAD);
+                            totalToughness+=board.get(triple.component2()).get(i).getSet().getCurrentFormation().getFormationType().getFormationToughness();
                         }
                         board.remove((int)triple.component2());
+                        scores.add(new DisplayData.Score(triple.component2() - invisibleHeight, 12 * totalToughness));
+                        score+=12 * totalToughness;
 
                         newRow = new ArrayList<>();
                         for (int j = 0; j < width; j++) {
@@ -342,10 +349,14 @@ public class Board {
                         break;
                     case STAR_LINEUP:
                         Log.d(TAG, "STAR_LINEUP");
+
                         for (int i = 0; i < width; i++) {
                             board.get(triple.component2()).get(i).setBrickState(BrickState.DEAD);
+                            totalToughness+=board.get(triple.component2()).get(i).getSet().getCurrentFormation().getFormationType().getFormationToughness();
                         }
                         board.remove((int)triple.component2());
+                        scores.add(new DisplayData.Score(triple.component2() - invisibleHeight, 12 * totalToughness));
+                        score+=12 * totalToughness;
 
                         newRow = new ArrayList<>();
                         for (int j = 0; j < width; j++) {
@@ -358,22 +369,28 @@ public class Board {
 
                         for (Position position : triple.component3()) {
                             board.get(position.getY()).get(position.getX()).setBrickState(BrickState.DEAD);
+                            totalToughness+=board.get(position.getY()).get(position.getX()).getSet().getCurrentFormation().getFormationType().getFormationToughness();
                             for (int i = position.getY(); i > 0; i--) {
                                 board.get(i).set(position.getX(), board.get(i-1).get(position.getX()));
                             }
                         }
+
+                        scores.add(new DisplayData.Score(triple.component3().get(0).getY() - invisibleHeight, 12 * totalToughness));
+                        score+=12 * totalToughness;
 
                         break;
                 }
             }
 
             gameStatCollector.setCombo(list2Delete.size());
-            gameStatCollector.setScore(0);
+            gameStatCollector.setScore(score);
             gameStatCollector.setTime(0);
 
             this.updateVisibleBoard();
 
             displayUnitController.refresh(visibleBoard);
+            displayUnitController.gainScore(scores);
+            displayUnitController.setScore(score);
 
             activeSet = null;
             return false;

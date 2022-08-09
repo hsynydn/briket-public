@@ -58,6 +58,7 @@ public class BriketContext implements GameStatCollector.ScoreListener, GameStatC
             /* Set Up Formation Types */
             ArrayList<FormationType> formationTypes = new ArrayList<>();
             for (FormationEntity dbFormation : db.getStageDAO().getFormations(dbStage.id)) {
+                FormationType.valueOf(dbFormation.name).setFormationToughness(dbFormation.toughness);
                 formationTypes.add(FormationType.valueOf(dbFormation.name));
             }
             stage.setFormationTypes(formationTypes);

@@ -10,6 +10,25 @@ import com.kastrakomnen.hmessenger.model.set.Set;
 import org.junit.Assert;
 import org.junit.Test;
 
+enum TestEnum{
+    A(0),
+    B(0);
+
+    private int value;
+
+    TestEnum(int value){
+        this.value = value;
+    }
+
+    void changeValue(int value){
+        this.value = value;
+    }
+
+    int getValue(){
+        return this.value;
+    }
+}
+
 public class SetTest {
 
     @Test
@@ -94,5 +113,16 @@ public class SetTest {
         });
 
         Assert.assertEquals(2, set.getBricks().size());
+    }
+
+    @Test
+    public void enumTest() {
+
+        TestEnum testEnum1 = TestEnum.A;
+        testEnum1.changeValue(5);
+
+        TestEnum testEnum2 = TestEnum.A;
+        Assert.assertEquals(5, testEnum2.getValue());
+
     }
 }

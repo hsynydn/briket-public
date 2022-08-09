@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class Formation {
 
     private ArrayList<Position> form;
+    private FormationType formationType;
 
     public Formation(){
         form = new ArrayList<>();
@@ -26,5 +27,13 @@ public class Formation {
 
     public ArrayList<Position> getForm(){
         return form;
+    }
+
+    public void setFormationType(FormationType formationType) {
+        this.formationType = formationType;
+    }
+
+    public FormationType getFormationType() {
+        return formationType;
     }
 }

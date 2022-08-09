@@ -3,6 +3,8 @@ package com.kastrakomnen.hmessenger.model;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.core.app.NavUtils;
+
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
@@ -10,6 +12,7 @@ import com.kastrakomnen.hmessenger.db.BriketDatabase;
 import com.kastrakomnen.hmessenger.db.entity.FormationEntity;
 import com.kastrakomnen.hmessenger.db.entity.PreferencesEntity;
 import com.kastrakomnen.hmessenger.db.entity.StageEntity;
+import com.kastrakomnen.hmessenger.db.entity.intermediate.WinConditionIntermediateData;
 import com.kastrakomnen.hmessenger.model.set.FormationType;
 import com.kastrakomnen.hmessenger.model.stat.DistributionType;
 import com.kastrakomnen.hmessenger.model.stat.GameStatCollector;
@@ -51,26 +54,35 @@ public class BriketContext implements GameStatCollector.ScoreListener, GameStatC
         for (StageEntity dbStage : db.getStageDAO().getStages()) {
 
             Stage stage = new Stage();
-            ArrayList<FormationType> formationTypes = new ArrayList<>();
 
+            /* Set Up Formation Types */
+            ArrayList<FormationType> formationTypes = new ArrayList<>();
             for (FormationEntity dbFormation : db.getStageDAO().getFormations(dbStage.id)) {
                 formationTypes.add(FormationType.valueOf(dbFormation.name));
             }
+            stage.setFormationTypes(formationTypes);
 
-            if (dbStage.isLocked == 1){
-                stage.setLocked(true);
-            }else{
-                stage.setLocked(false);
+            /* Set Up Win Conditions */
+            ArrayList<WinCondition> winConditions = new ArrayList<>();
+            for (WinConditionIntermediateData winCondition: db.getStageDAO().getWinConditionDetails(dbStage.id)) {
+                winConditions.add(
+                        new WinCondition(
+                                WinConditionType.valueOf(winCondition.winConditionName),
+                                winCondition.timeBound,
+                                winCondition.numberOfObjective)
+                );
             }
+            stage.setWinConditions(winConditions);
+
+            stage.setLocked(dbStage.isLocked == 1);
 
             stage.setBrief(dbStage.summary);
             stage.setIndex(dbStage.idx);
             stage.setHighScore(dbStage.highScore);
             stage.setScore(dbStage.lastScore);
 
-            stage.setFormationTypes(formationTypes);
             stage.setDistributionType(DistributionType.UNIFORM);
-            stage.setWinCondition(WinCondition.NUMBER_OF_SEQUENCE);
+            stage.setWinConditions(null);
 
             stages.add(stage);
         }

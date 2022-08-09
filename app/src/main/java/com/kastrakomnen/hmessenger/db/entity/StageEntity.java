@@ -10,7 +10,6 @@ import androidx.room.PrimaryKey;
         foreignKeys = {
         @ForeignKey(entity = BotBehaviourEntity.class, parentColumns = "id", childColumns = "botBehaviour"),
         @ForeignKey(entity = BoardEntity.class, parentColumns = "id", childColumns = "boardID"),
-        @ForeignKey(entity = WinConditionEntity.class, parentColumns = "id", childColumns = "winConditionID"),
         @ForeignKey(entity = DistributionEntity.class, parentColumns = "id", childColumns = "generatorDistributionID")}
 )
 public class StageEntity {
@@ -38,6 +37,5 @@ public class StageEntity {
 
     public int botBehaviour;
     public int boardID;
-    public int winConditionID;
     public int generatorDistributionID;
 }

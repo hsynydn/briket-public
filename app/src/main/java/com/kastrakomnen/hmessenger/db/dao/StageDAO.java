@@ -8,6 +8,7 @@ import androidx.room.Update;
 
 import com.kastrakomnen.hmessenger.db.entity.FormationEntity;
 import com.kastrakomnen.hmessenger.db.entity.StageEntity;
+import com.kastrakomnen.hmessenger.db.entity.intermediate.WinConditionIntermediateData;
 
 import java.util.List;
 
@@ -24,8 +25,11 @@ public interface StageDAO {
     public void delete(StageEntity stage);
 
     @Query("SELECT * FROM Stage")
-    List<StageEntity> getStages();
+    public List<StageEntity> getStages();
 
     @Query("SELECT Formation.* FROM StageFormation INNER JOIN Formation On StageFormation.stageID==:stageID AND StageFormation.formationID=Formation.id")
-    List<FormationEntity> getFormations(int stageID);
+    public List<FormationEntity> getFormations(int stageID);
+
+    @Query("SELECT WinCondition.name AS winConditionName, WinConditionDetail.timeBound, WinConditionDetail.numberOfObjective FROM StageWithWinConditionDetails, WinConditionDetail, WinCondition WHERE StageWithWinConditionDetails.stageID=:stageID AND WinConditionDetail.winConditionID=WinCondition.id")
+    public List<WinConditionIntermediateData> getWinConditionDetails(int stageID);
 }

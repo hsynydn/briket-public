@@ -1,11 +1,26 @@
 package com.kastrakomnen.hmessenger.model;
 
-public enum WinCondition {
-    NUMBER_OF_SEQUENCE,
-    DESTROY_ALL,
-    AGAINST_TIME,
-    COMBO,
-    COLLECT_COIN,
-    USE_H_PUSHER,
-    USE_SPOTTER
+public class WinCondition {
+
+    private WinConditionType winConditionType;
+    private long timeBound;
+    private int numberOfObjective;
+
+    public WinCondition(WinConditionType winConditionType, long timeBound, int numberOfObjective){
+        this.winConditionType = winConditionType;
+        this.timeBound = timeBound;
+        this.numberOfObjective = numberOfObjective;
+    }
+
+    public WinConditionType getWinConditionType() {
+        return winConditionType;
+    }
+
+    public long getTimeBound() {
+        return timeBound;
+    }
+
+    public int getNumberOfObjective() {
+        return numberOfObjective;
+    }
 }

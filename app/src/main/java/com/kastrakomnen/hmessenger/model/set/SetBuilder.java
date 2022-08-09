@@ -79,6 +79,11 @@ public class SetBuilder implements PApplierFunction<FormationType, Set> {
         box_cw180 = FormationTransformer.transform(RotateType.CW180, box_cw0);
         box_cw270 = FormationTransformer.transform(RotateType.CW270, box_cw0);
 
+        box_cw0.setFormationType(FormationType.BOX_CW0);
+        box_cw90.setFormationType(FormationType.BOX_CW90);
+        box_cw180.setFormationType(FormationType.BOX_CW180);
+        box_cw270.setFormationType(FormationType.BOX_CW270);
+
         box_cw0_brick_indexer = new ArrayList<>(Arrays.asList(0, 1, 2, 3));
         box_cw90_brick_indexer = new ArrayList<>(Arrays.asList(2, 0, 3, 1));
         box_cw180_brick_indexer = new ArrayList<>(Arrays.asList(3, 2, 1, 0));
@@ -98,6 +103,11 @@ public class SetBuilder implements PApplierFunction<FormationType, Set> {
         l_cw90 = FormationTransformer.transform(RotateType.CW90, l_cw0);
         l_cw180 = FormationTransformer.transform(RotateType.CW180, l_cw0);
         l_cw270 = FormationTransformer.transform(RotateType.CW270, l_cw0);
+
+        l_cw0.setFormationType(FormationType.L_CW0);
+        l_cw90.setFormationType(FormationType.L_CW90);
+        l_cw180.setFormationType(FormationType.L_CW180);
+        l_cw270.setFormationType(FormationType.L_CW270);
 
         l_cw0_brick_indexer = new ArrayList<Integer>(
                 Arrays.asList(0, 1, 2, 3)
@@ -130,6 +140,11 @@ public class SetBuilder implements PApplierFunction<FormationType, Set> {
         t_cw180 = FormationTransformer.transform(RotateType.CW180, t_cw0);
         t_cw270 = FormationTransformer.transform(RotateType.CW270, t_cw0);
 
+        t_cw0.setFormationType(FormationType.T_CW0);
+        t_cw90.setFormationType(FormationType.T_CW90);
+        t_cw180.setFormationType(FormationType.T_CW180);
+        t_cw270.setFormationType(FormationType.T_CW270);
+
         t_cw0_brick_indexer = new ArrayList<Integer>(
                 Arrays.asList(0, 1, 2, 3)
         );
@@ -160,6 +175,11 @@ public class SetBuilder implements PApplierFunction<FormationType, Set> {
         line_cw90 = FormationTransformer.transform(RotateType.CW90, line_cw0);
         line_cw180 = FormationTransformer.transform(RotateType.CW180, line_cw0);
         line_cw270 = FormationTransformer.transform(RotateType.CW270, line_cw0);
+
+        line_cw0.setFormationType(FormationType.LINE_CW0);
+        line_cw90.setFormationType(FormationType.LINE_CW90);
+        line_cw180.setFormationType(FormationType.LINE_CW180);
+        line_cw270.setFormationType(FormationType.LINE_CW270);
 
         line_cw0_brick_indexer = new ArrayList<Integer>(
                 Arrays.asList(0, 1, 2, 3)
@@ -192,6 +212,11 @@ public class SetBuilder implements PApplierFunction<FormationType, Set> {
         z_cw180 = FormationTransformer.transform(RotateType.CW180, z_cw0);
         z_cw270 = FormationTransformer.transform(RotateType.CW270, z_cw0);
 
+        z_cw0.setFormationType(FormationType.Z_CW0);
+        z_cw90.setFormationType(FormationType.Z_CW90);
+        z_cw180.setFormationType(FormationType.Z_CW180);
+        z_cw270.setFormationType(FormationType.Z_CW270);
+
         z_cw0_brick_indexer = new ArrayList<Integer>(
                 Arrays.asList(0, 1, 2, 3)
         );
@@ -222,6 +247,11 @@ public class SetBuilder implements PApplierFunction<FormationType, Set> {
         rl_cw90 = FormationTransformer.transform(RotateType.CW90, rl_cw0);
         rl_cw180 = FormationTransformer.transform(RotateType.CW180, rl_cw0);
         rl_cw270 = FormationTransformer.transform(RotateType.CW270, rl_cw0);
+
+        rl_cw0.setFormationType(FormationType.RL_CW0);
+        rl_cw90.setFormationType(FormationType.RL_CW90);
+        rl_cw180.setFormationType(FormationType.RL_CW180);
+        rl_cw270.setFormationType(FormationType.RL_CW270);
 
         rl_cw0_brick_indexer = new ArrayList<Integer>(
                 Arrays.asList(0, 1, 2, 3)

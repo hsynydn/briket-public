@@ -48,7 +48,7 @@ public class Game implements GameInputListener, Subscriber{
         this.displayUnitController = displayUnitController;
         this.gameStatCollector = new GameStatCollector();
         this.policyChecker = new PolicyChecker();
-        this.board = new Board(20, 10, displayUnitController, gameStatCollector, policyChecker);
+        this.board = new Board(18, 9, displayUnitController, gameStatCollector, policyChecker);
         this.gameStateListeners = new ArrayList<>();
         this.setModifiers = new ArrayList<>();
         this.setModifierFactory = new PrimitiveSetModifierFactory();
@@ -83,7 +83,7 @@ public class Game implements GameInputListener, Subscriber{
         setModifiers.add(
                 new PApplier<>(
                         new Distribution<Boolean>(
-                                DistributionTableBuilder.build(DistributionType.PROB_10, null),
+                                DistributionTableBuilder.build(DistributionType.PROB_40, null),
                                 booleans
                         ),
                         setModifierFactory.createProduct(BrickType.STAR)

@@ -37,7 +37,7 @@ public class Stage {
 
     /**
      * This defines the condition in case of met, game will be end and won */
-    private WinCondition winCondition;
+    private ArrayList<WinCondition> winConditions;
 
     /**
      * A short information about this stage */
@@ -55,12 +55,12 @@ public class Stage {
         this.distributionType = distributionType;
     }
 
-    public WinCondition getWinCondition(){
-        return winCondition;
+    public ArrayList<WinCondition> getWinConditions() {
+        return winConditions;
     }
 
-    public void setWinCondition(WinCondition winCondition) {
-        this.winCondition = winCondition;
+    public void setWinConditions(ArrayList<WinCondition> winConditions) {
+        this.winConditions = winConditions;
     }
 
     public ArrayList<FormationType> getFormationTypes(){

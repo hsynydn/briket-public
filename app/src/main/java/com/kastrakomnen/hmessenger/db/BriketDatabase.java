@@ -22,7 +22,10 @@ import com.kastrakomnen.hmessenger.db.entity.PreferencesEntity;
 import com.kastrakomnen.hmessenger.db.entity.StageAgentEntity;
 import com.kastrakomnen.hmessenger.db.entity.StageEntity;
 import com.kastrakomnen.hmessenger.db.entity.StageFormationEntity;
+import com.kastrakomnen.hmessenger.db.entity.StageWithWinConditionDetailsEntity;
+import com.kastrakomnen.hmessenger.db.entity.WinConditionDetailEntity;
 import com.kastrakomnen.hmessenger.db.entity.WinConditionEntity;
+import com.kastrakomnen.hmessenger.db.entity.intermediate.WinConditionIntermediateData;
 
 @Database(
         entities = {
@@ -37,7 +40,9 @@ import com.kastrakomnen.hmessenger.db.entity.WinConditionEntity;
                 BoardVerticalEntity.class,
                 DistributionEntity.class,
                 StageAgentEntity.class,
-                WinConditionEntity.class
+                WinConditionEntity.class,
+                WinConditionDetailEntity.class,
+                StageWithWinConditionDetailsEntity.class
         },
         version = 20,
         exportSchema = true

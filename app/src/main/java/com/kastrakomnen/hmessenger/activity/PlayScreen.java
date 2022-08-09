@@ -62,7 +62,7 @@ public class PlayScreen extends AppCompatActivity implements DisplayUnitControll
         basePublisher = new BasePublisher();
 
         playBoardView = findViewById(R.id.view_playground);
-        playBoardView.create(20, 10);
+        playBoardView.create(18, 9);
 
         textViewScoreContent = findViewById(R.id.tv_score_content);
 

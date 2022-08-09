@@ -1,7 +1,10 @@
 package com.kastrakomnen.hmessenger.model;
 
+import static com.kastrakomnen.hmessenger.model.set.FormationType.L_CW0;
+
 import com.kastrakomnen.hmessenger.model.set.Brick;
 import com.kastrakomnen.hmessenger.model.set.Formation;
+import com.kastrakomnen.hmessenger.model.set.FormationType;
 import com.kastrakomnen.hmessenger.model.set.Set;
 
 import org.junit.Assert;

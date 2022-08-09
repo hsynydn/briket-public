@@ -24,5 +24,5 @@ public enum FormationType {
     RL_CW0,
     RL_CW90,
     RL_CW180,
-    RL_CW270,
+    RL_CW270;
 }

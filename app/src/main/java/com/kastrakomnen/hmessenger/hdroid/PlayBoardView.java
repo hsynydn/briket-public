@@ -64,6 +64,7 @@ public class PlayBoardView extends View {
     private Drawable brick_orange;
     private Drawable coin;
     private Drawable emptyRegion;
+    private Drawable lineup;
 
     public PlayBoardView(Context context) {
         super(context);
@@ -115,6 +116,7 @@ public class PlayBoardView extends View {
         coin            = getContext().getDrawable(R.drawable.coin);
         brick_star      = getContext().getDrawable(R.drawable.ic_tough_briket);
         emptyRegion     = getContext().getDrawable(R.drawable.shape);
+        lineup          = getContext().getDrawable(R.drawable.ic_lineup);
 
         scorePopUPGates = new ArrayList<>();
         scorePopUPTexts = new ArrayList<>();
@@ -175,6 +177,16 @@ public class PlayBoardView extends View {
 
         for (int i = 0; i < scorePopUPGates.size(); i++) {
             if(scorePopUPGates.get(i)){
+
+                lineup.setBounds(
+                        new Rect(
+                                permanentRectBounds.get(i).get(0).left - 50,
+                                permanentRectBounds.get(i).get(0).top,
+                                permanentRectBounds.get(i).get(boardWidth - 1).right + 50,
+                                permanentRectBounds.get(i).get(boardWidth - 1).bottom
+                                )
+                );
+                lineup.draw(canvas);
 
                 if (!scorePopUPAnimator.isRunning()){
                     scorePopUPAnimator.start();

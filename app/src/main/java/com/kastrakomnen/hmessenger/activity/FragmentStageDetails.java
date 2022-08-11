@@ -12,9 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.kastrakomnen.hmessenger.ActivityGameMap;
 import com.kastrakomnen.hmessenger.R;
-import com.kastrakomnen.hmessenger.hdroid.PlayBoardView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -86,7 +84,7 @@ public class FragmentStageDetails extends Fragment {
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), PlayScreen.class);
+                Intent intent = new Intent(getActivity(), ActivityPlayBoard.class);
                 startActivity(intent);
                 getActivity().finish();
             }

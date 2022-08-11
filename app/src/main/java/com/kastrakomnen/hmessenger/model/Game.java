@@ -48,7 +48,7 @@ public class Game implements GameInputListener, Subscriber{
         this.displayUnitController = displayUnitController;
         this.gameStatCollector = new GameStatCollector();
         this.policyChecker = new PolicyChecker();
-        this.board = new Board(18, 9, displayUnitController, gameStatCollector, policyChecker);
+        this.board = new Board(19, 9, displayUnitController, gameStatCollector, policyChecker);
         this.gameStateListeners = new ArrayList<>();
         this.setModifiers = new ArrayList<>();
         this.setModifierFactory = new PrimitiveSetModifierFactory();
@@ -248,19 +248,19 @@ public class Game implements GameInputListener, Subscriber{
         gameStateListeners.add(gameStateListener);
     }
 
-    private synchronized void toggleInputs(){
+    public synchronized void toggleInputs(){
         disableInputs = !disableInputs;
     }
 
-    private synchronized void disableInputs(){
+    public synchronized void disableInputs(){
         disableInputs = true;
     }
 
-    private synchronized boolean isDisableInputs(){
+    public synchronized boolean isDisableInputs(){
         return disableInputs;
     }
 
-    private synchronized void enableInputs(){
+    public synchronized void enableInputs(){
         disableInputs = false;
     }
 

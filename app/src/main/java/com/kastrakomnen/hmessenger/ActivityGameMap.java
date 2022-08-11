@@ -6,7 +6,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -21,10 +20,8 @@ import android.widget.ImageView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.kastrakomnen.hmessenger.activity.FragmentStageDetails;
-import com.kastrakomnen.hmessenger.activity.PlayScreen;
 import com.kastrakomnen.hmessenger.db.BriketDatabase;
 import com.kastrakomnen.hmessenger.db.entity.BotBehaviourEntity;
-import com.kastrakomnen.hmessenger.db.entity.StageEntity;
 import com.kastrakomnen.hmessenger.model.BriketContext;
 import com.kastrakomnen.hmessenger.model.Stage;
 import com.kastrakomnen.hmessenger.view.ItemClickListener;

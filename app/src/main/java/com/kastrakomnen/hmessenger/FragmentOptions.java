@@ -10,12 +10,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.kastrakomnen.hmessenger.activity.FragmentPause;
+
 public class FragmentOptions extends Fragment {
+
     public FragmentOptions(){
-        /**
-         * Set the content of this fragment in its contructor or
-         * in onCreateView method
-         */
         super(R.layout.layout_options);
     }
 

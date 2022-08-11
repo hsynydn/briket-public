@@ -178,15 +178,15 @@ public class PlayBoardView extends View {
         for (int i = 0; i < scorePopUPGates.size(); i++) {
             if(scorePopUPGates.get(i)){
 
-                lineup.setBounds(
-                        new Rect(
-                                permanentRectBounds.get(i).get(0).left - 50,
-                                permanentRectBounds.get(i).get(0).top,
-                                permanentRectBounds.get(i).get(boardWidth - 1).right + 50,
-                                permanentRectBounds.get(i).get(boardWidth - 1).bottom
-                                )
-                );
-                lineup.draw(canvas);
+//                lineup.setBounds(
+//                        new Rect(
+//                                permanentRectBounds.get(i).get(0).left - 50,
+//                                permanentRectBounds.get(i).get(0).top,
+//                                permanentRectBounds.get(i).get(boardWidth - 1).right + 50,
+//                                permanentRectBounds.get(i).get(boardWidth - 1).bottom
+//                                )
+//                );
+//                lineup.draw(canvas);
 
                 if (!scorePopUPAnimator.isRunning()){
                     scorePopUPAnimator.start();

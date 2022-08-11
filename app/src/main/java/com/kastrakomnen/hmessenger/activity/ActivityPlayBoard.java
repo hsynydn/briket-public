@@ -13,23 +13,25 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.kastrakomnen.hmessenger.FragmentOptions;
 import com.kastrakomnen.hmessenger.R;
 import com.kastrakomnen.hmessenger.hdroid.PlayBoardView;
 import com.kastrakomnen.hmessenger.model.BasePublisher;
 import com.kastrakomnen.hmessenger.model.Bot;
 import com.kastrakomnen.hmessenger.model.BotBehaviour;
-import com.kastrakomnen.hmessenger.model.set.Brick;
 import com.kastrakomnen.hmessenger.model.BriketContext;
-import com.kastrakomnen.hmessenger.model.display.DisplayData;
-import com.kastrakomnen.hmessenger.model.display.DisplayUnitController;
 import com.kastrakomnen.hmessenger.model.Game;
+import com.kastrakomnen.hmessenger.model.GameState;
 import com.kastrakomnen.hmessenger.model.Position;
 import com.kastrakomnen.hmessenger.model.Subscriber;
+import com.kastrakomnen.hmessenger.model.display.DisplayData;
+import com.kastrakomnen.hmessenger.model.display.DisplayUnitController;
+import com.kastrakomnen.hmessenger.model.set.Brick;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class PlayScreen extends AppCompatActivity implements DisplayUnitController{
+public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitController {
 
     private static final String TAG = "{PlayScreen}";
 
@@ -41,6 +43,9 @@ public class PlayScreen extends AppCompatActivity implements DisplayUnitControll
     /* Views belongs to this activity */
     private PlayBoardView playBoardView;
     private TextView textViewScoreContent;
+
+    private FragmentPause fragmentPause;
+    private FragmentOptions fragmentOptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,11 +63,17 @@ public class PlayScreen extends AppCompatActivity implements DisplayUnitControll
             Log.i(TAG, e.toString());
         }
 
+        Log.d(TAG, "onViewCreated called");
+
+        fragmentPause = new FragmentPause();
+        fragmentOptions = new FragmentOptions();
+
         handler = new Handler();
         basePublisher = new BasePublisher();
 
         playBoardView = findViewById(R.id.view_playground);
-        playBoardView.create(18, 9);
+
+        playBoardView.create(19, 9);
 
         textViewScoreContent = findViewById(R.id.tv_score_content);
 
@@ -171,30 +182,63 @@ public class PlayScreen extends AppCompatActivity implements DisplayUnitControll
                 return true;
             }
         });
+
+        findViewById(R.id.btn_menu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "menu button clicked");
+                onPause();
+            }
+        });
     }
 
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
-        game.start();
+
+        if (game.getGameState() == GameState.PRE_START){
+            Log.d(TAG, "onStart called");
+            game.start();
+        }
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
-//        game.resume();
+
+        if(game.getGameState() == GameState.PAUSE){
+            Log.d(TAG, "onResume called");
+            game.resume();
+            game.enableInputs();
+        }else{
+            Log.d(TAG, "onResume not called called");
+        }
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
+        Log.d(TAG, "onPause called");
         super.onPause();
-//        game.pause();
+
+        Log.d(TAG, game.getGameState().toString());
+
+        if (game.getGameState() == GameState.START || game.getGameState() == GameState.RESUME){
+            game.pause();
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.add(R.id.fragment_container, FragmentPause.class, null);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+        }
+        game.disableInputs();
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
+        Log.d(TAG, "onDestroy called");
         super.onDestroy();
-//        game.stop();
+        game.stop();
     }
 
     @Override
@@ -261,11 +305,9 @@ public class PlayScreen extends AppCompatActivity implements DisplayUnitControll
     @Override
     public void end() {
         Log.d(TAG, "Game ended");
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.layout_play_board_root, new FragmentGameOverSummary());
-        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.replace(R.id.fragment_container, FragmentGameOverSummary.class, null);
         fragmentTransaction.commit();
     }
 

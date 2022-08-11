@@ -61,7 +61,7 @@ public class ProgressCardAdapter extends RecyclerView.Adapter<ProgressCardAdapte
 
             holder.setItemClickListener(null);
         }else{
-            holder.box.setImageResource(R.drawable.brick_style_shady_red);
+            holder.box.setImageResource(R.drawable.ic_fuscia_briket);
 
             if (progressCard.getEarnStar() == 0){
                 holder.star1.setImageResource(R.drawable.star_dead);

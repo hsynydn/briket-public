@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hmessenger">
         <activity
-            android:name=".activity.PlayScreen"
+            android:name=".activity.ActivityPlayBoard"
             android:exported="true" />
         <activity
             android:name=".ActivityGameMap"

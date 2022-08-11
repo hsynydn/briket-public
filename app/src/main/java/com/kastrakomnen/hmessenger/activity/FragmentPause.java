@@ -40,8 +40,9 @@ public class FragmentPause extends Fragment {
         getView().findViewById(R.id.fragment_pause_restart_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((ActivityPlayBoard)getActivity()).onResume();
-                getParentFragmentManager().popBackStackImmediate();
+                Intent intent = new Intent(getActivity(), ActivityPlayBoard.class);
+                startActivity(intent);
+                getActivity().finish();
             }
         });
 

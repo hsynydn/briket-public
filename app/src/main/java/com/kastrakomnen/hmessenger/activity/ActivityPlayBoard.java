@@ -123,10 +123,10 @@ public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitC
             public boolean onTouch(View view, MotionEvent motionEvent) {
 
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.rotate_pressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.button_pressed));
                     game.onRotate();
                 }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.rotate_unpressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.button_unpressed));
                 }
                 return true;
             }
@@ -136,11 +136,13 @@ public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitC
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.button_pressed));
                     handler.postDelayed(fallX1, 10);
                     for (int i = 1; i < 22; i++) {
                         handler.postDelayed(fallX1, 100 * i);
                     }
                 }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.button_unpressed));
                     for (int i = 1; i < 22; i++) {
                         handler.removeCallbacks(fallX1);
                     }

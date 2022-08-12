@@ -9,16 +9,22 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <view
             android:id="@+id/view_playground"
             class="com.kastrakomnen.hmessenger.hdroid.PlayBoardView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -76,34 +82,34 @@
 
             <ImageButton
                 android:id="@+id/btn_rotate"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="32dp"
                 android:layout_weight="0.4"
-                android:background="@drawable/rotate_unpressed"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:background="@drawable/button_unpressed"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_menu"
+                app:layout_constraintStart_toEndOf="@+id/btn_menu"
+                app:layout_constraintTop_toTopOf="@+id/btn_menu" />
 
             <ImageButton
                 android:id="@+id/btn_drop"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginEnd="32dp"
                 android:layout_weight="0.4"
-                android:background="@drawable/down_arrow_unpressed"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:background="@drawable/button_unpressed"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_menu"
+                app:layout_constraintEnd_toStartOf="@+id/btn_menu"
+                app:layout_constraintTop_toTopOf="@+id/btn_menu" />
 
             <ImageButton
                 android:id="@+id/btn_menu"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/pause_unpressed"
-                app:layout_constraintEnd_toStartOf="@+id/btn_rotate"
-                app:layout_constraintStart_toEndOf="@+id/btn_drop"
+                android:background="@drawable/button_unpressed"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -155,17 +161,26 @@
             android:layout_height="0dp"
             android:layout_weight="4">
 
-            <TextView
-                android:id="@+id/tv_score"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:fontFamily="@font/atomic_age"
-                android:text="SCORE"
-                android:textColor="#FF0000"
-                android:textSize="20sp"
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:foreground="@drawable/score_banner"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_time" />
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_score"-->
+            <!--                android:layout_width="80dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginStart="16dp"-->
+            <!--                android:fontFamily="@font/atomic_age"-->
+            <!--                android:text="SCORE"-->
+            <!--                android:textColor="#FF0000"-->
+            <!--                android:textSize="20sp"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/tv_time" />-->
 
             <TextView
                 android:id="@+id/tv_score_content"
@@ -173,52 +188,55 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/atomic_age"
                 android:text="0"
+                android:textAlignment="center"
                 android:textSize="20sp"
-                app:layout_constraintStart_toEndOf="@+id/tv_score"
-                app:layout_constraintTop_toTopOf="@+id/tv_score" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/imageView5"
+                app:layout_constraintStart_toStartOf="@+id/imageView5"
+                app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
-            <TextView
-                android:id="@+id/tv_speed"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/atomic_age"
-                android:text="Speed"
-                android:textColor="#3F51B5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_speed"-->
+            <!--                android:layout_width="60dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginStart="16dp"-->
+            <!--                android:layout_marginTop="16dp"-->
+            <!--                android:fontFamily="@font/atomic_age"-->
+            <!--                android:text="Speed"-->
+            <!--                android:textColor="#3F51B5"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
-            <TextView
-                android:id="@+id/tv_speed_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/atomic_age"
-                android:text="x1"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_speed"
-                app:layout_constraintStart_toEndOf="@+id/tv_speed"
-                app:layout_constraintTop_toTopOf="@+id/tv_speed" />
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_speed_content"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:fontFamily="@font/atomic_age"-->
+            <!--                android:text="x1"-->
+            <!--                app:layout_constraintBottom_toBottomOf="@+id/tv_speed"-->
+            <!--                app:layout_constraintStart_toEndOf="@+id/tv_speed"-->
+            <!--                app:layout_constraintTop_toTopOf="@+id/tv_speed" />-->
 
-            <TextView
-                android:id="@+id/tv_time"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:fontFamily="@font/atomic_age"
-                android:text="Time"
-                android:textColor="#3F51B5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_speed" />
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_time"-->
+            <!--                android:layout_width="60dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginStart="16dp"-->
+            <!--                android:fontFamily="@font/atomic_age"-->
+            <!--                android:text="Time"-->
+            <!--                android:textColor="#3F51B5"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/tv_speed" />-->
 
-            <TextView
-                android:id="@+id/tv_time_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/atomic_age"
-                android:text="02.34"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_time"
-                app:layout_constraintStart_toEndOf="@+id/tv_time"
-                app:layout_constraintTop_toBottomOf="@+id/tv_speed" />
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_time_content"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:fontFamily="@font/atomic_age"-->
+            <!--                android:text="02.34"-->
+            <!--                app:layout_constraintBottom_toBottomOf="@+id/tv_time"-->
+            <!--                app:layout_constraintStart_toEndOf="@+id/tv_time"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/tv_speed" />-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -242,9 +260,9 @@
     </LinearLayout>
 
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/fragment_container"/>
+        android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

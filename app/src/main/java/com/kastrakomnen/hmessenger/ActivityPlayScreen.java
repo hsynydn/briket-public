@@ -267,14 +267,14 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
 
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
                     audio_fx_btn_click_3.start();
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.down_arrow_pressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.button_unpressed));
                     handler.postDelayed(fallX1, 10);
                     handler.postDelayed(fallX1, 100);
                     handler.postDelayed(fallX2, 200);
                     handler.postDelayed(fallX3, 300);
                     handler.postDelayed(fallX6, 400);
                 }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.down_arrow_unpressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.button_unpressed));
                     handler.removeCallbacks(fallX1);
                     handler.removeCallbacks(fallX2);
                     handler.removeCallbacks(fallX3);
@@ -290,10 +290,10 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
 
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
                     audio_fx_btn_click_3.start();
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.rotate_pressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.button_unpressed));
                     game.rotate();
                 }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.rotate_unpressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.button_unpressed));
                 }
                 return true;
             }
@@ -305,10 +305,10 @@ public class ActivityPlayScreen extends AppCompatActivity implements GameListene
 
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
                     fx_audio_btn_pause.start();
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.pause_pressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.button_unpressed));
                     game.pause();
                     Intent intent = new Intent(ActivityPlayScreen.this, ActivityPause.class);
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.pause_unpressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.button_unpressed));
                     startActivity(intent);
                 }
                 return true;

@@ -54,6 +54,9 @@ public class PlayBoardView extends View {
     private Paint empty;
 
     private Paint testPaint;
+    private Paint playBoardBackgroundPaint;
+    private Paint timeBoardPaint;
+    private Paint scoreBoardPaint;
 
     private Drawable brick;
     private Drawable brick_red;
@@ -65,6 +68,41 @@ public class PlayBoardView extends View {
     private Drawable coin;
     private Drawable emptyRegion;
     private Drawable lineup;
+
+    private Drawable icScoreBoard;
+    private Drawable icTimeBoard;
+
+    private Rect scoreBoardRect;
+    private int scoreBoardLeft;
+    private int scoreBoardTop;
+    private final int scoreBoardWidth = 400;
+    private final int scoreBoardHeight = 150;
+    private Rect scoreBoardTextRect;
+
+    private Rect objectiveRect;
+    private int objectiveLeft;
+    private int objectiveTop;
+    private int objectiveWidth;
+    private int objectiveHeight;
+
+    private Rect timeBoardRect;
+    private int timeBoardLeft;
+    private int timeBoardTop;
+    private final int timeBoardWidth = 300;
+    private final int timeBoardHeight = 75;
+    private Rect timeBoardTextRect;
+
+    private Rect nextPatternRect;
+    private int nextPatternLeft;
+    private int nextPatternTop;
+    private int nextPatternWidth;
+    private int nextPatternHeight;
+
+    private Rect playBoardRect;
+    private int playBoardLeft;
+    private int playBoardTop;
+    private int playBoardWidth;
+    private int playBoardHeight;
 
     public PlayBoardView(Context context) {
         super(context);
@@ -106,6 +144,27 @@ public class PlayBoardView extends View {
         testPaint.setStyle(Paint.Style.FILL_AND_STROKE);
         testPaint.setColor(0xff00ff00);
         testPaint.setStrokeWidth(2);
+        testPaint.setTextSize(42);
+
+        scoreBoardPaint = new Paint();
+        scoreBoardPaint.setAntiAlias(true);
+        scoreBoardPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        scoreBoardPaint.setColor(0xff000000);
+        scoreBoardPaint.setStrokeWidth(2);
+        scoreBoardPaint.setTextSize(60);
+
+        timeBoardTextRect = new Rect();
+        scoreBoardTextRect = new Rect();
+
+        playBoardBackgroundPaint = new Paint();
+        playBoardBackgroundPaint.setAntiAlias(true);
+        playBoardBackgroundPaint.setStyle(Paint.Style.FILL);
+        playBoardBackgroundPaint.setColor(0x99FFFFFF);
+
+        timeBoardPaint = new Paint();
+        timeBoardPaint.setAntiAlias(true);
+        timeBoardPaint.setStyle(Paint.Style.FILL);
+        timeBoardPaint.setColor(0xFF000000);
 
         brick           = getContext().getDrawable(R.drawable.ic_fuscia_briket);
         brick_red       = getContext().getDrawable(R.drawable.ic_fuscia_briket);
@@ -117,6 +176,8 @@ public class PlayBoardView extends View {
         brick_star      = getContext().getDrawable(R.drawable.ic_tough_briket);
         emptyRegion     = getContext().getDrawable(R.drawable.shape);
         lineup          = getContext().getDrawable(R.drawable.ic_lineup);
+        icScoreBoard    = getContext().getDrawable(R.drawable.ic_score_board);
+        icTimeBoard    = getContext().getDrawable(R.drawable.ic_time_board);
 
         scorePopUPGates = new ArrayList<>();
         scorePopUPTexts = new ArrayList<>();
@@ -156,6 +217,32 @@ public class PlayBoardView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        canvas.drawRect(playBoardRect, playBoardBackgroundPaint);
+
+        scoreBoardPaint.getTextBounds("1342", 0, 4, scoreBoardTextRect);
+
+        icScoreBoard.setBounds(scoreBoardRect);
+        icScoreBoard.draw(canvas);
+
+        canvas.drawText(
+                "1342",
+                scoreBoardLeft + scoreBoardWidth/2 - scoreBoardTextRect.exactCenterX(),
+                scoreBoardTop + scoreBoardHeight/2 - scoreBoardTextRect.exactCenterY(),
+                scoreBoardPaint
+        );
+
+        testPaint.getTextBounds("05:42", 0, 5, timeBoardTextRect);
+
+        icTimeBoard.setBounds(timeBoardRect);
+        icTimeBoard.draw(canvas);
+
+        canvas.drawText(
+                "05:42",
+                timeBoardLeft + timeBoardWidth/2 - timeBoardTextRect.exactCenterX(),
+                timeBoardTop + timeBoardHeight/2 - timeBoardTextRect.exactCenterY(),
+                testPaint
+        );
 
         for (ArrayList<Rect> row : permanentRectBounds) {
             for (Rect rect: row) {
@@ -232,6 +319,13 @@ public class PlayBoardView extends View {
         int left_base   = (screenWidth - width * squareDimension) / 2;
         int top_base    = (screenHeight - height * squareDimension) / 2;
 
+        playBoardLeft = left_base;
+        playBoardTop = top_base;
+        playBoardWidth = width * squareDimension;
+        playBoardHeight = height * squareDimension;
+
+        playBoardRect = new Rect(playBoardLeft, playBoardTop, playBoardLeft + playBoardWidth, playBoardTop + playBoardHeight);
+
         int left    = left_base;
         int right   = left + squareDimension;
         int top     = top_base;
@@ -272,8 +366,16 @@ public class PlayBoardView extends View {
             scorePopUPGates.add(false);
             scorePopUPTexts.add(null);
         }
+
+        timeBoardLeft = (screenWidth - timeBoardWidth ) / 2;
+        timeBoardTop = playBoardTop - timeBoardHeight;
+        timeBoardRect = new Rect(timeBoardLeft, timeBoardTop, timeBoardLeft + timeBoardWidth, timeBoardTop + timeBoardHeight);
+
+        scoreBoardLeft = (screenWidth - scoreBoardWidth ) / 2;
+        scoreBoardTop = (screenHeight/2 - playBoardHeight/2) - scoreBoardHeight -  timeBoardHeight;
+        scoreBoardRect = new Rect(scoreBoardLeft, scoreBoardTop, scoreBoardLeft + scoreBoardWidth, scoreBoardTop + scoreBoardHeight);
     }
-//
+
 //    @Override
 //    public void create(DisplayData.Brick brick, Position at) {
 //

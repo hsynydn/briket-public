@@ -208,6 +208,11 @@ public class PlayBoardView extends View {
 
         squareDimension = (int) (screenWidth / ((1.5) * width));
 
+        /**
+         * Note screenWidth and screenHeight are size of the screen in pixels
+         * Get on construction
+         */
+
         Log.i(TAG, "screenWidth :: " + screenWidth);
         Log.i(TAG, "screenHeight :: " + screenHeight);
         Log.i(TAG, "squareDimension :: " + squareDimension);

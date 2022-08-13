@@ -114,6 +114,14 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
 
     @Override
     public void onClick(View view, int position) {
+
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                BriketContext.getInstance().reinitializeDatabase(ActivityGameMap.this);
+            }
+        });
+
         BriketContext.getInstance().setCurrentStage(position);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

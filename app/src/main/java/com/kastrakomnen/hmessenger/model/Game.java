@@ -2,6 +2,7 @@ package com.kastrakomnen.hmessenger.model;
 
 import android.util.Log;
 
+import com.kastrakomnen.hmessenger.model.display.DisplayData;
 import com.kastrakomnen.hmessenger.model.display.DisplayUnitController;
 import com.kastrakomnen.hmessenger.model.policy.PolicyChecker;
 import com.kastrakomnen.hmessenger.model.set.BrickType;
@@ -23,7 +24,7 @@ import com.kastrakomnen.hmessenger.model.stat.PApplierFunction;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Game implements GameInputListener, Subscriber{
+public class Game implements GameInputListener, Subscriber, GameStatCollector.WinConditionListener{
 
     private static final String TAG = "{Game}";
 
@@ -39,6 +40,8 @@ public class Game implements GameInputListener, Subscriber{
     private final ArrayList<PApplier<Boolean, Set>> setModifiers;
 
     private final SetModifierFactory setModifierFactory;
+
+    private Stage loadedStage;
 
     private GameState gameState;
     private boolean disableInputs;
@@ -58,11 +61,14 @@ public class Game implements GameInputListener, Subscriber{
         this.gameStatCollector.addScoreListener(BriketContext.getInstance());
         this.gameStatCollector.addComboListener(BriketContext.getInstance());
         this.gameStatCollector.addTimeListener(BriketContext.getInstance());
+        this.gameStatCollector.addWinConditionListener(this);
 
         gameState = GameState.PRE_START;
     }
 
     public void loadStage(Stage stage){
+
+        loadedStage = stage;
 
         if (gameState != GameState.PRE_START){
             throw new IllegalStateException("game state not allowed this operation");
@@ -207,7 +213,7 @@ public class Game implements GameInputListener, Subscriber{
                 enableInputs();
             }else{
                 // Game End
-                displayUnitController.end();
+                displayUnitController.end(new DisplayData.Status(StageStatus.GAME_OVER_FAIL));
             }
         }else{
             boolean ret;
@@ -272,5 +278,31 @@ public class Game implements GameInputListener, Subscriber{
 
     public GameStatCollector getGameStatCollector() {
         return gameStatCollector;
+    }
+
+    @Override
+    public void onWinCondition(WinConditionType winConditionType) {
+        for (WinCondition winCondition : loadedStage.getWinConditions()) {
+            if (winCondition.getWinConditionType() == winConditionType){
+                winCondition.increment();
+            }
+        }
+
+        isStageCompleted();
+    }
+
+    private void isStageCompleted(){
+        boolean isStageCompleted = true;
+        for (WinCondition winCondition : loadedStage.getWinConditions()) {
+            if (!winCondition.isCompleted()){
+                isStageCompleted = false;
+            }
+        }
+
+        if (isStageCompleted){
+            this.disableInputs();
+            stop();
+            displayUnitController.end(new DisplayData.Status(StageStatus.GAME_OVER_SUCCESS));
+        }
     }
 }

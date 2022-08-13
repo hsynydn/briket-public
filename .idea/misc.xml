@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.18705035971223022" />
+        <entry key="..\:/Users/cehsy/StudioProjects/briket/app/src/main/res/drawable/blank.xml" value="0.323" />
         <entry key="..\:/Users/cehsy/StudioProjects/briket/app/src/main/res/drawable/ic_background.xml" value="0.323" />
         <entry key="..\:/Users/cehsy/StudioProjects/briket/app/src/main/res/drawable/ic_cyan_briket_star.xml" value="0.3425" />
         <entry key="..\:/Users/cehsy/StudioProjects/briket/app/src/main/res/drawable/ic_hot_pink_briket_star.xml" value="0.316" />
@@ -12,6 +13,7 @@
         <entry key="..\:/Users/cehsy/StudioProjects/briket/app/src/main/res/drawable/ic_score_banner.xml" value="0.1935" />
         <entry key="..\:/Users/cehsy/StudioProjects/briket/app/src/main/res/drawable/ic_tough_briket.xml" value="0.1935" />
         <entry key="..\:/Users/cehsy/StudioProjects/briket/app/src/main/res/drawable/shape.xml" value="0.323" />
+        <entry key="..\:/Users/cehsy/StudioProjects/briket/app/src/main/res/layout/fragment_game_over_success.xml" value="0.5" />
         <entry key="..\:/Users/cehsy/StudioProjects/briket/app/src/main/res/layout/fragment_game_over_summary.xml" value="0.3625" />
         <entry key="..\:/Users/cehsy/StudioProjects/briket/app/src/main/res/layout/fragment_pause.xml" value="0.3625" />
         <entry key="..\:/Users/cehsy/StudioProjects/briket/app/src/main/res/layout/fragment_play_board.xml" value="0.3625" />
@@ -19,7 +21,7 @@
         <entry key="..\:/Users/cehsy/StudioProjects/briket/app/src/main/res/layout/layout_game_map.xml" value="0.3625" />
         <entry key="..\:/Users/cehsy/StudioProjects/briket/app/src/main/res/layout/layout_home.xml" value="0.3625" />
         <entry key="..\:/Users/cehsy/StudioProjects/briket/app/src/main/res/layout/layout_pause.xml" value="0.3351449275362319" />
-        <entry key="..\:/Users/cehsy/StudioProjects/briket/app/src/main/res/layout/layout_play_board.xml" value="0.3625" />
+        <entry key="..\:/Users/cehsy/StudioProjects/briket/app/src/main/res/layout/layout_play_board.xml" value="0.33" />
         <entry key="..\:/Users/cehsy/StudioProjects/briket/app/src/main/res/layout/layout_splash_screen.xml" value="0.3625" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.21776315789473685" />
         <entry key="app/src/main/res/drawable/blank.xml" value="0.21776315789473685" />

@@ -25,6 +25,7 @@ public class Board {
     private final int invisibleHeight = 4;
 
     private int score;
+    private int objective;
 
     private Set activeSet;
 
@@ -45,6 +46,7 @@ public class Board {
         this.height = height + invisibleHeight;
         this.width = width;
         this.score = 0;
+        this.objective = 0;
         this.displayUnitController = displayUnitController;
         this.gameStatCollector = gameStatCollector;
         this.policyChecker = policyChecker;
@@ -333,6 +335,10 @@ public class Board {
                     case NORM_LINEUP:
                         Log.d(TAG, "NORM_LINEUP");
 
+                        objective++;
+
+                        gameStatCollector.setWinCondition(WinConditionType.LINEUP_BASIC);
+
                         for (int i = 0; i < width; i++) {
                             board.get(triple.component2()).get(i).setBrickState(BrickState.DEAD);
                             totalToughness+=board.get(triple.component2()).get(i).getSet().getCurrentFormation().getFormationType().getFormationToughness();
@@ -350,6 +356,10 @@ public class Board {
                     case STAR_LINEUP:
                         Log.d(TAG, "STAR_LINEUP");
 
+                        objective++;
+
+                        gameStatCollector.setWinCondition(WinConditionType.LINEUP_STAR);
+
                         for (int i = 0; i < width; i++) {
                             board.get(triple.component2()).get(i).setBrickState(BrickState.DEAD);
                             totalToughness+=board.get(triple.component2()).get(i).getSet().getCurrentFormation().getFormationType().getFormationToughness();
@@ -366,6 +376,10 @@ public class Board {
                         break;
                     case NORM_WITH_STAR_LINEUP:
                         Log.i(TAG, "NORM_WITH_STAR_LINEUP");
+
+                        objective++;
+
+                        gameStatCollector.setWinCondition(WinConditionType.LINEUP_BASIC);
 
                         for (Position position : triple.component3()) {
                             board.get(position.getY()).get(position.getX()).setBrickState(BrickState.DEAD);
@@ -391,6 +405,7 @@ public class Board {
             displayUnitController.refresh(visibleBoard);
             displayUnitController.gainScore(scores);
             displayUnitController.setScore(score);
+            displayUnitController.updateObjective(objective);
 
             activeSet = null;
             return false;

@@ -1,5 +1,7 @@
 package com.kastrakomnen.hmessenger.model.stat;
 
+import com.kastrakomnen.hmessenger.model.WinConditionType;
+
 import java.util.ArrayList;
 
 public class GameStatCollector {
@@ -16,14 +18,20 @@ public class GameStatCollector {
         void onTimeEvent(int time);
     }
 
+    public interface WinConditionListener{
+        void onWinCondition(WinConditionType winConditionType);
+    }
+
     private final ArrayList<GameStatCollector.ScoreListener> scoreListeners;
     private final ArrayList<GameStatCollector.ComboListener> comboListeners;
     private final ArrayList<GameStatCollector.TimeListener> timeListeners;
+    private final ArrayList<GameStatCollector.WinConditionListener> winConditionListeners;
 
     public GameStatCollector(){
         scoreListeners = new ArrayList<>();
         comboListeners = new ArrayList<>();
         timeListeners = new ArrayList<>();
+        winConditionListeners = new ArrayList<>();
     }
 
     public void addScoreListener(GameStatCollector.ScoreListener scoreListener){
@@ -36,6 +44,10 @@ public class GameStatCollector {
 
     public void addTimeListener(GameStatCollector.TimeListener timeListener){
         timeListeners.add(timeListener);
+    }
+
+    public void addWinConditionListener(GameStatCollector.WinConditionListener winConditionListener){
+        winConditionListeners.add(winConditionListener);
     }
 
     public void setScore(int score){
@@ -53,6 +65,12 @@ public class GameStatCollector {
     public void setTime(int time){
         for (GameStatCollector.TimeListener timeListener: timeListeners) {
             timeListener.onTimeEvent(time);
+        }
+    }
+
+    public  void setWinCondition(WinConditionType winConditionType){
+        for (GameStatCollector.WinConditionListener winConditionListener: winConditionListeners) {
+            winConditionListener.onWinCondition(winConditionType);
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.kastrakomnen.hmessenger.model.display;
 
+import com.kastrakomnen.hmessenger.model.StageStatus;
 import com.kastrakomnen.hmessenger.model.set.BrickType;
 
 public class DisplayData {
@@ -37,6 +38,14 @@ public class DisplayData {
         public Score(int at, int value){
             this.at = at;
             this.value = value;
+        }
+    }
+
+    public static class Status{
+        public StageStatus stageStatus;
+
+        public Status(StageStatus stageStatus){
+            this.stageStatus = stageStatus;
         }
     }
 }

@@ -23,15 +23,18 @@ import com.kastrakomnen.hmessenger.model.BriketContext;
 import com.kastrakomnen.hmessenger.model.Game;
 import com.kastrakomnen.hmessenger.model.GameState;
 import com.kastrakomnen.hmessenger.model.Position;
+import com.kastrakomnen.hmessenger.model.StageStatus;
 import com.kastrakomnen.hmessenger.model.Subscriber;
+import com.kastrakomnen.hmessenger.model.WinConditionType;
 import com.kastrakomnen.hmessenger.model.display.DisplayData;
 import com.kastrakomnen.hmessenger.model.display.DisplayUnitController;
 import com.kastrakomnen.hmessenger.model.set.Brick;
+import com.kastrakomnen.hmessenger.model.stat.GameStatCollector;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitController {
+public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitController{
 
     private static final String TAG = "{PlayScreen}";
 
@@ -43,6 +46,7 @@ public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitC
     /* Views belongs to this activity */
     private PlayBoardView playBoardView;
     private TextView textViewScoreContent;
+    private TextView textViewObjective;
 
     private FragmentPause fragmentPause;
     private FragmentOptions fragmentOptions;
@@ -76,6 +80,7 @@ public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitC
         playBoardView.create(19, 9);
 
         textViewScoreContent = findViewById(R.id.tv_score_content);
+        textViewObjective = findViewById(R.id.tv_objective);
 
         /* Game will become a bridge between commands logic and visual */
         game = new Game(this);
@@ -305,17 +310,34 @@ public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitC
     }
 
     @Override
-    public void end() {
-        Log.d(TAG, "Game ended");
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, FragmentGameOverSummary.class, null);
-        fragmentTransaction.commit();
+    public void end(DisplayData.Status status) {
+
+        if (status.stageStatus == StageStatus.GAME_OVER_FAIL){
+            Log.d(TAG, "Game ended");
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, FragmentGameOverSummary.class, null);
+            fragmentTransaction.commit();
+        }else if(status.stageStatus == StageStatus.GAME_OVER_SUCCESS){
+            Log.d(TAG, "Game ended");
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, FragmentGameOverSuccess.class, null);
+            fragmentTransaction.commit();
+        }else{
+            throw new IllegalArgumentException("DisplayData.Status unknown");
+        }
     }
 
     @Override
     public void gainScore(ArrayList<DisplayData.Score> scores) {
         playBoardView.popUpScore(scores);
+        publish();
+    }
+
+    @Override
+    public void updateObjective(int objective) {
+        textViewObjective.setText(Integer.toString(objective));
         publish();
     }
 

@@ -8,63 +8,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.kastrakomnen.hmessenger.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FragmentStageDetails#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FragmentStageDetails extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public FragmentStageDetails() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentStageDetails.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static FragmentStageDetails newInstance(String param1, String param2) {
-        FragmentStageDetails fragment = new FragmentStageDetails();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_stage_details, container, false);
     }
 
@@ -72,21 +27,37 @@ public class FragmentStageDetails extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button backButton = getView().findViewById(R.id.sd_button_back);
-        backButton.setOnClickListener(new View.OnClickListener() {
+        getView().findViewById(R.id.sd_button_back).setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
-                getParentFragmentManager().popBackStack();
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.quit_button_pressed));
+                }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.quit_button_unpressed));
+
+                    getParentFragmentManager().popBackStack();
+                }
+
+                return true;
             }
         });
 
-        Button okButton = getView().findViewById(R.id.sd_button_ok);
-        okButton.setOnClickListener(new View.OnClickListener() {
+        getView().findViewById(R.id.sd_button_ok).setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ActivityPlayBoard.class);
-                startActivity(intent);
-                getActivity().finish();
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.play_button_pressed));
+                }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.play_button_unpressed));
+
+                    Intent intent = new Intent(getActivity(), ActivityPlayBoard.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                }
+
+                return true;
             }
         });
     }

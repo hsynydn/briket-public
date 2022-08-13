@@ -81,9 +81,7 @@ public class BriketContext implements GameStatCollector.ScoreListener, GameStatC
             stage.setIndex(dbStage.idx);
             stage.setHighScore(dbStage.highScore);
             stage.setScore(dbStage.lastScore);
-
             stage.setDistributionType(DistributionType.UNIFORM);
-            stage.setWinConditions(null);
 
             stages.add(stage);
         }
@@ -100,6 +98,11 @@ public class BriketContext implements GameStatCollector.ScoreListener, GameStatC
         }else{
             preferences.setSound(false);
         }
+    }
+
+    public void reinitializeDatabase(Context context){
+        stages.clear();
+        initializeDatabase(context);
     }
 
     public void initializeAdMob(Context context){

@@ -73,7 +73,7 @@ class MockDisplayUnitController implements DisplayUnitController {
     }
 
     @Override
-    public void end() {
+    public void end(DisplayData.Status status) {
 
     }
 

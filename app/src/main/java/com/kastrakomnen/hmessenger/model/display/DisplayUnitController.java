@@ -1,5 +1,6 @@
 package com.kastrakomnen.hmessenger.model.display;
 
+import com.kastrakomnen.hmessenger.model.StageStatus;
 import com.kastrakomnen.hmessenger.model.set.Brick;
 import com.kastrakomnen.hmessenger.model.Position;
 import com.kastrakomnen.hmessenger.model.Publisher;
@@ -43,8 +44,9 @@ public interface DisplayUnitController extends Publisher {
     void startFast();
     void startDelay(int delay);
     void updateInfo();
-    void end();
+    void end(DisplayData.Status status);
 
     void gainScore(ArrayList<DisplayData.Score> scores);
+    void updateObjective(int objective);
     void setScore(int score);
 }

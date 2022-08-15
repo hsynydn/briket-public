@@ -46,7 +46,8 @@ public class FragmentPause extends Fragment {
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.fragment_container, FragmentOptions.class, null);
+                fragmentTransaction.setCustomAnimations(R.anim.drop_down, R.anim.pull_up, R.anim.pull_up, R.anim.pull_up);
+                fragmentTransaction.add(R.id.fragment_container, FragmentPreferencesDropDown.class, null);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }

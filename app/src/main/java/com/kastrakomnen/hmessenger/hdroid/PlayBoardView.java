@@ -28,8 +28,6 @@ public class PlayBoardView extends View {
 
     private static final String TAG = "{hdroid.PlayBoardView}";
 
-    private BasePublisher basePublisher;
-
     private int boardHeight;
     private int boardWidth;
 
@@ -65,9 +63,8 @@ public class PlayBoardView extends View {
     private Drawable brick_pink;
     private Drawable brick_star;
     private Drawable brick_orange;
-    private Drawable coin;
     private Drawable emptyRegion;
-    private Drawable lineup;
+    private Drawable icObjectiveBoard;
 
     private Drawable icScoreBoard;
     private Drawable icTimeBoard;
@@ -82,8 +79,9 @@ public class PlayBoardView extends View {
     private Rect objectiveRect;
     private int objectiveLeft;
     private int objectiveTop;
-    private int objectiveWidth;
-    private int objectiveHeight;
+    private final int objectiveWidth = 150;
+    private final int objectiveHeight = 150;
+    private final ArrayList<Rect> objectiveIconRects = new ArrayList<>();
 
     private Rect timeBoardRect;
     private int timeBoardLeft;
@@ -126,8 +124,6 @@ public class PlayBoardView extends View {
 
     private void onInit(Context context){
 
-        basePublisher = new BasePublisher();
-
         random = new Random();
         randomInteger = random.nextInt(1000);
 
@@ -155,6 +151,7 @@ public class PlayBoardView extends View {
 
         timeBoardTextRect = new Rect();
         scoreBoardTextRect = new Rect();
+        objectiveRect = new Rect();
 
         playBoardBackgroundPaint = new Paint();
         playBoardBackgroundPaint.setAntiAlias(true);
@@ -172,12 +169,11 @@ public class PlayBoardView extends View {
         brick_blue      = getContext().getDrawable(R.drawable.ic_blue_briket);
         brick_pink      = getContext().getDrawable(R.drawable.ic_raspberry_briket);
         brick_orange    = getContext().getDrawable(R.drawable.ic_orange_briket);
-        coin            = getContext().getDrawable(R.drawable.coin);
         brick_star      = getContext().getDrawable(R.drawable.ic_tough_briket);
         emptyRegion     = getContext().getDrawable(R.drawable.shape);
-        lineup          = getContext().getDrawable(R.drawable.ic_lineup);
         icScoreBoard    = getContext().getDrawable(R.drawable.ic_score_board);
         icTimeBoard    = getContext().getDrawable(R.drawable.ic_time_board);
+        icObjectiveBoard    = getContext().getDrawable(R.drawable.ic_objective_board);
 
         scorePopUPGates = new ArrayList<>();
         scorePopUPTexts = new ArrayList<>();
@@ -244,6 +240,25 @@ public class PlayBoardView extends View {
                 testPaint
         );
 
+        icObjectiveBoard.setBounds(objectiveRect);
+        icObjectiveBoard.draw(canvas);
+
+        brick_orange.setBounds(objectiveIconRects.get(0));
+        brick_orange.draw(canvas);
+        brick_blue.setBounds(objectiveIconRects.get(1));
+        brick_blue.draw(canvas);
+        brick_red.setBounds(objectiveIconRects.get(2));
+        brick_red.draw(canvas);
+
+        String text_objective = "21";
+
+        canvas.drawText(
+                "21",
+                objectiveRect.left + objectiveWidth/2,
+                objectiveRect.bottom - objectiveHeight/2,
+                scoreBoardPaint
+        );
+
         for (ArrayList<Rect> row : permanentRectBounds) {
             for (Rect rect: row) {
                 emptyRegion.setBounds(rect);
@@ -264,17 +279,6 @@ public class PlayBoardView extends View {
 
         for (int i = 0; i < scorePopUPGates.size(); i++) {
             if(scorePopUPGates.get(i)){
-
-//                lineup.setBounds(
-//                        new Rect(
-//                                permanentRectBounds.get(i).get(0).left - 50,
-//                                permanentRectBounds.get(i).get(0).top,
-//                                permanentRectBounds.get(i).get(boardWidth - 1).right + 50,
-//                                permanentRectBounds.get(i).get(boardWidth - 1).bottom
-//                                )
-//                );
-//                lineup.draw(canvas);
-
                 if (!scorePopUPAnimator.isRunning()){
                     scorePopUPAnimator.start();
                 }
@@ -294,15 +298,6 @@ public class PlayBoardView extends View {
         boardWidth = width;
 
         squareDimension = (int) (screenWidth / ((1.5) * width));
-
-        /**
-         * Note screenWidth and screenHeight are size of the screen in pixels
-         * Get on construction
-         */
-
-        Log.i(TAG, "screenWidth :: " + screenWidth);
-        Log.i(TAG, "screenHeight :: " + screenHeight);
-        Log.i(TAG, "squareDimension :: " + squareDimension);
 
         for (int i = 0; i < height; i++) {
             permanentRectBounds.add(new ArrayList<>());
@@ -374,6 +369,18 @@ public class PlayBoardView extends View {
         scoreBoardLeft = (screenWidth - scoreBoardWidth ) / 2;
         scoreBoardTop = (screenHeight/2 - playBoardHeight/2) - scoreBoardHeight -  timeBoardHeight;
         scoreBoardRect = new Rect(scoreBoardLeft, scoreBoardTop, scoreBoardLeft + scoreBoardWidth, scoreBoardTop + scoreBoardHeight);
+
+        objectiveLeft = scoreBoardRect.right + 100;
+        objectiveTop = scoreBoardRect.top;
+        objectiveRect = new Rect(objectiveLeft, objectiveTop, objectiveLeft + objectiveWidth, objectiveTop + objectiveHeight);
+
+        Rect rect1 = new Rect(objectiveLeft + objectiveWidth/2 - 20, objectiveTop + 10, objectiveLeft + objectiveWidth/2 + 20, objectiveTop + 50);
+        Rect rect2 = new Rect(objectiveLeft + objectiveWidth/2 - 60, objectiveTop + 10, objectiveLeft + objectiveWidth/2 - 20, objectiveTop + 50);
+        Rect rect3 = new Rect(objectiveLeft + objectiveWidth/2 + 20, objectiveTop + 10, objectiveLeft + objectiveWidth/2 + 60, objectiveTop + 50);
+
+        objectiveIconRects.add(rect1);
+        objectiveIconRects.add(rect2);
+        objectiveIconRects.add(rect3);
     }
 
 //    @Override

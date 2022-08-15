@@ -9,13 +9,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
-import com.kastrakomnen.hmessenger.ActivityGameMap;
-import com.kastrakomnen.hmessenger.ActivityHome;
-import com.kastrakomnen.hmessenger.FragmentOptions;
 import com.kastrakomnen.hmessenger.R;
 
 public class FragmentPause extends Fragment {

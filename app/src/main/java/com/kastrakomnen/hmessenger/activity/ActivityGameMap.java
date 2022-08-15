@@ -1,4 +1,4 @@
-package com.kastrakomnen.hmessenger;
+package com.kastrakomnen.hmessenger.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -19,7 +19,7 @@ import android.widget.ImageView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.kastrakomnen.hmessenger.activity.FragmentStageDetails;
+import com.kastrakomnen.hmessenger.R;
 import com.kastrakomnen.hmessenger.db.BriketDatabase;
 import com.kastrakomnen.hmessenger.db.entity.BotBehaviourEntity;
 import com.kastrakomnen.hmessenger.model.BriketContext;

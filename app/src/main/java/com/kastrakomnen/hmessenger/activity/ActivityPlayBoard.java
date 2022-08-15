@@ -11,9 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
-import com.kastrakomnen.hmessenger.FragmentOptions;
 import com.kastrakomnen.hmessenger.R;
 import com.kastrakomnen.hmessenger.hdroid.PlayBoardView;
 import com.kastrakomnen.hmessenger.model.BasePublisher;
@@ -25,11 +23,9 @@ import com.kastrakomnen.hmessenger.model.GameState;
 import com.kastrakomnen.hmessenger.model.Position;
 import com.kastrakomnen.hmessenger.model.StageStatus;
 import com.kastrakomnen.hmessenger.model.Subscriber;
-import com.kastrakomnen.hmessenger.model.WinConditionType;
 import com.kastrakomnen.hmessenger.model.display.DisplayData;
 import com.kastrakomnen.hmessenger.model.display.DisplayUnitController;
 import com.kastrakomnen.hmessenger.model.set.Brick;
-import com.kastrakomnen.hmessenger.model.stat.GameStatCollector;
 
 import java.util.ArrayList;
 import java.util.Objects;

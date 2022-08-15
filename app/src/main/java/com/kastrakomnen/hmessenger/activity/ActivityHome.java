@@ -1,4 +1,4 @@
-package com.kastrakomnen.hmessenger;
+package com.kastrakomnen.hmessenger.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,14 +18,8 @@ import android.widget.TextView;
 
 import java.util.Objects;
 
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-import com.google.android.gms.games.GamesSignInClient;
-import com.google.android.gms.games.PlayGames;
-import com.google.android.gms.games.PlayGamesSdk;
+import com.kastrakomnen.hmessenger.R;
 import com.kastrakomnen.hmessenger.model.BriketContext;
-import com.kastrakomnen.hmessenger.view.ProgressCard;
 
 public class ActivityHome extends AppCompatActivity {
 

@@ -12,7 +12,7 @@
 <!--        android:layout_height="match_parent">-->
 
 <!--        <fragment-->
-<!--            android:name="com.kastrakomnen.hmessenger.FragmentOptions"-->
+<!--            android:name="com.kastrakomnen.hmessenger.activity.FragmentOptions"-->
 <!--            android:id="@+id/fragment_options"-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="match_parent"-->

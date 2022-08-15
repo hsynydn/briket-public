@@ -1,4 +1,4 @@
-package com.kastrakomnen.hmessenger;
+package com.kastrakomnen.hmessenger.activity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.kastrakomnen.hmessenger.R;
 import com.kastrakomnen.hmessenger.activity.FragmentPause;
 
 public class FragmentOptions extends Fragment {

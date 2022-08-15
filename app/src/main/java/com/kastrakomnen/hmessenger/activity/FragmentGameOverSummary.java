@@ -9,14 +9,9 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 
-import com.kastrakomnen.hmessenger.ActivityGameMap;
 import com.kastrakomnen.hmessenger.R;
 
 public class FragmentGameOverSummary extends Fragment {

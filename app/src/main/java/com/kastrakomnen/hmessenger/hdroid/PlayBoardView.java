@@ -9,14 +9,12 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.BounceInterpolator;
 
 import androidx.annotation.Nullable;
 
 import com.kastrakomnen.hmessenger.R;
-import com.kastrakomnen.hmessenger.model.BasePublisher;
 import com.kastrakomnen.hmessenger.model.set.Brick;
 import com.kastrakomnen.hmessenger.model.set.BrickType;
 import com.kastrakomnen.hmessenger.model.display.DisplayData;
@@ -28,79 +26,77 @@ public class PlayBoardView extends View {
 
     private static final String TAG = "{hdroid.PlayBoardView}";
 
-    private int boardHeight;
-    private int boardWidth;
+    private int mRow;
+    private int mColumn;
 
-    private final int animDuration = 200;
+    private ArrayList<ArrayList<Rect>> mRectBoardObjects;
+    private ArrayList<ArrayList<Drawable>> mDrawableBoardObjects;
 
-    private ArrayList<ArrayList<Rect>> permanentRectBounds;
-    private ArrayList<ArrayList<Rect>> brickRectBounds;
-    private ArrayList<ArrayList<Drawable>> brickDrawables;
-    private ArrayList<Rect> removeObjects;
+    private Random mRandomGenerator;
+    private int mRandomNumber;
 
-    private Random random;
-    private int randomInteger;
+    private ArrayList<Boolean>  mGateScores;
+    private ArrayList<String>   mTextScores;
+    private ValueAnimator       mAnimatorScore;
+    private Paint               mPaintScore;
 
-    private ArrayList<Boolean>  scorePopUPGates;
-    private ArrayList<String>   scorePopUPTexts;
-    private ValueAnimator       scorePopUPAnimator;
-    private Paint               scorePopUPPaint;
+    private int     mScreenHeightPixel;
+    private int     mScreenWidthPixel;
+    private int     mBoardSquareDimension;
+    private Paint   mPaintEmpty;
 
-    private int screenHeight;
-    private int screenWidth;
-    private int squareDimension;
-    private Paint empty;
+    private Paint mPaintTest;
+    private Paint mPaintBoardBackground;
+    private Paint mPaintTimeBoard;
+    private Paint mPaintScoreBoard;
 
-    private Paint testPaint;
-    private Paint playBoardBackgroundPaint;
-    private Paint timeBoardPaint;
-    private Paint scoreBoardPaint;
+    private Drawable mDrawableBrickRed;
+    private Drawable mDrawableBrickGreen;
+    private Drawable mDrawableBrickBlue;
+    private Drawable mDrawableBrickPink;
+    private Drawable mDrawableBrickStar;
+    private Drawable mDrawableBrickOrange;
+    private Drawable mDrawableEmptyRegion;
+    private Drawable mDrawableObjectiveBoard;
+    private Drawable mDrawableScoreBoard;
+    private Drawable mDrawableTimeBoard;
 
-    private Drawable brick;
-    private Drawable brick_red;
-    private Drawable brick_green;
-    private Drawable brick_blue;
-    private Drawable brick_pink;
-    private Drawable brick_star;
-    private Drawable brick_orange;
-    private Drawable emptyRegion;
-    private Drawable icObjectiveBoard;
+    private Rect        mRectScoreBoard;
+    private int         mScoreBoardLeft;
+    private int         mScoreBoardTop;
+    private final int   mScoreBoardWidth    = 400;
+    private final int   mScoreBoardHeight   = 150;
+    private Rect        mRectScoreBoardText;
+    private String      mScoreBoardText;
 
-    private Drawable icScoreBoard;
-    private Drawable icTimeBoard;
+    private Rect        mRectObjectiveBoard;
+    private int         mObjectiveBoardLeft;
+    private int         mObjectiveBoardTop;
+    private final int   mObjectiveBoardWidth = 150;
+    private final int   mObjectiveBoardHeight = 150;
+    private Rect        mRectObjectiveBoardText;
+    private String      mObjectiveBoardText;
+    private final ArrayList<Rect> mRectObjectiveIcons = new ArrayList<>();
 
-    private Rect scoreBoardRect;
-    private int scoreBoardLeft;
-    private int scoreBoardTop;
-    private final int scoreBoardWidth = 400;
-    private final int scoreBoardHeight = 150;
-    private Rect scoreBoardTextRect;
+    private Rect        mRectTimeBoard;
+    private int         mTimeBoardLeft;
+    private int         mTimeBoardTop;
+    private final int   mTimeBoardWidth = 300;
+    private final int   mTimeBoardHeight = 75;
+    private Rect        mRectTimeBoardText;
+    private String      mTimeBoardText;
 
-    private Rect objectiveRect;
-    private int objectiveLeft;
-    private int objectiveTop;
-    private final int objectiveWidth = 150;
-    private final int objectiveHeight = 150;
-    private final ArrayList<Rect> objectiveIconRects = new ArrayList<>();
+    private Rect    mRectNextPattern;
+    private int     mNextPatternLeft;
+    private int     mNextPatternTop;
+    private int     mNextPatternWidth;
+    private int     mNextPatternHeight;
 
-    private Rect timeBoardRect;
-    private int timeBoardLeft;
-    private int timeBoardTop;
-    private final int timeBoardWidth = 300;
-    private final int timeBoardHeight = 75;
-    private Rect timeBoardTextRect;
-
-    private Rect nextPatternRect;
-    private int nextPatternLeft;
-    private int nextPatternTop;
-    private int nextPatternWidth;
-    private int nextPatternHeight;
-
-    private Rect playBoardRect;
-    private int playBoardLeft;
-    private int playBoardTop;
-    private int playBoardWidth;
-    private int playBoardHeight;
+    private Rect    mRectBoard;
+    private int     mBoardLeft;
+    private int     mBoardTop;
+    private int     mBoardWidth;
+    private int     mBoardHeight;
 
     public PlayBoardView(Context context) {
         super(context);
@@ -117,331 +113,220 @@ public class PlayBoardView extends View {
         onInit(context);
     }
 
-    public PlayBoardView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        onInit(context);
-    }
-
     private void onInit(Context context){
 
-        random = new Random();
-        randomInteger = random.nextInt(1000);
+        mScreenWidthPixel = context.getResources().getDisplayMetrics().widthPixels;
+        mScreenHeightPixel = context.getResources().getDisplayMetrics().heightPixels;
 
-        permanentRectBounds = new ArrayList<>();
-        brickRectBounds = new ArrayList<>();
-        brickDrawables = new ArrayList<>();
-        removeObjects = new ArrayList<>();
+        mRandomGenerator = new Random();
+        mRandomNumber = mRandomGenerator.nextInt(1000);
 
-        screenWidth = context.getResources().getDisplayMetrics().widthPixels;
-        screenHeight = context.getResources().getDisplayMetrics().heightPixels;
+        mRectBoardObjects       = new ArrayList<>();
+        mDrawableBoardObjects   = new ArrayList<>();
 
-        testPaint = new Paint();
-        testPaint.setAntiAlias(true);
-        testPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-        testPaint.setColor(0xff00ff00);
-        testPaint.setStrokeWidth(2);
-        testPaint.setTextSize(42);
+        mRectTimeBoardText      = new Rect();
+        mRectScoreBoardText     = new Rect();
+        mRectObjectiveBoardText = new Rect();
+        mRectObjectiveBoard     = new Rect();
 
-        scoreBoardPaint = new Paint();
-        scoreBoardPaint.setAntiAlias(true);
-        scoreBoardPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-        scoreBoardPaint.setColor(0xff000000);
-        scoreBoardPaint.setStrokeWidth(2);
-        scoreBoardPaint.setTextSize(60);
+        mGateScores             = new ArrayList<>();
+        mTextScores             = new ArrayList<>();
 
-        timeBoardTextRect = new Rect();
-        scoreBoardTextRect = new Rect();
-        objectiveRect = new Rect();
+        mScoreBoardText = "0";
+        mTimeBoardText = "00:00";
+        mObjectiveBoardText = "0";
 
-        playBoardBackgroundPaint = new Paint();
-        playBoardBackgroundPaint.setAntiAlias(true);
-        playBoardBackgroundPaint.setStyle(Paint.Style.FILL);
-        playBoardBackgroundPaint.setColor(0x99FFFFFF);
-
-        timeBoardPaint = new Paint();
-        timeBoardPaint.setAntiAlias(true);
-        timeBoardPaint.setStyle(Paint.Style.FILL);
-        timeBoardPaint.setColor(0xFF000000);
-
-        brick           = getContext().getDrawable(R.drawable.ic_fuscia_briket);
-        brick_red       = getContext().getDrawable(R.drawable.ic_fuscia_briket);
-        brick_green     = getContext().getDrawable(R.drawable.ic_green_briket);
-        brick_blue      = getContext().getDrawable(R.drawable.ic_blue_briket);
-        brick_pink      = getContext().getDrawable(R.drawable.ic_raspberry_briket);
-        brick_orange    = getContext().getDrawable(R.drawable.ic_orange_briket);
-        brick_star      = getContext().getDrawable(R.drawable.ic_tough_briket);
-        emptyRegion     = getContext().getDrawable(R.drawable.shape);
-        icScoreBoard    = getContext().getDrawable(R.drawable.ic_score_board);
-        icTimeBoard    = getContext().getDrawable(R.drawable.ic_time_board);
-        icObjectiveBoard    = getContext().getDrawable(R.drawable.ic_objective_board);
-
-        scorePopUPGates = new ArrayList<>();
-        scorePopUPTexts = new ArrayList<>();
-
-        scorePopUPAnimator = ValueAnimator.ofInt(0, 75);
-        scorePopUPAnimator.setDuration(700);
-        scorePopUPAnimator.setInterpolator(new BounceInterpolator());
-        scorePopUPAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                scorePopUPPaint.setTextSize((Integer) valueAnimator.getAnimatedValue());
-                invalidate();
-            }
-        });
-
-        scorePopUPAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                for (int i = 0; i < scorePopUPGates.size(); i++) {
-                    scorePopUPGates.set(i, false);
-                }
-                invalidate();
-                randomInteger = random.nextInt(1000);
-            }
-        });
-
-        scorePopUPPaint = new Paint();
-        scorePopUPPaint.setAntiAlias(true);
-        scorePopUPPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-        scorePopUPPaint.setColor(0xff993399);
-        scorePopUPPaint.setStrokeWidth(4);
-        scorePopUPPaint.setTextSize(0);
-
+        loadPaints();
+        loadDrawables();
+        loadAnimators();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        canvas.drawRect(playBoardRect, playBoardBackgroundPaint);
+        // Draw a background color for board
+        canvas.drawRect(mRectBoard, mPaintBoardBackground);
 
-        scoreBoardPaint.getTextBounds("1342", 0, 4, scoreBoardTextRect);
+        /* ****************************
+         * Score Board
+         */
+        mDrawableScoreBoard.setBounds(mRectScoreBoard);
+        mDrawableScoreBoard.draw(canvas);
 
-        icScoreBoard.setBounds(scoreBoardRect);
-        icScoreBoard.draw(canvas);
-
+        mPaintScoreBoard.getTextBounds(mScoreBoardText, 0, mScoreBoardText.length(), mRectScoreBoardText);
         canvas.drawText(
-                "1342",
-                scoreBoardLeft + scoreBoardWidth/2 - scoreBoardTextRect.exactCenterX(),
-                scoreBoardTop + scoreBoardHeight/2 - scoreBoardTextRect.exactCenterY(),
-                scoreBoardPaint
+                mScoreBoardText,
+                mScoreBoardLeft + mScoreBoardWidth /2 - mRectScoreBoardText.exactCenterX(),
+                mScoreBoardTop + mScoreBoardHeight /2 - mRectScoreBoardText.exactCenterY(),
+                mPaintScoreBoard
         );
 
-        testPaint.getTextBounds("05:42", 0, 5, timeBoardTextRect);
+        /* ****************************
+         * Time Board
+         */
+        mDrawableTimeBoard.setBounds(mRectTimeBoard);
+        mDrawableTimeBoard.draw(canvas);
 
-        icTimeBoard.setBounds(timeBoardRect);
-        icTimeBoard.draw(canvas);
-
+        mPaintTest.getTextBounds(mTimeBoardText, 0, mTimeBoardText.length(), mRectTimeBoardText);
         canvas.drawText(
-                "05:42",
-                timeBoardLeft + timeBoardWidth/2 - timeBoardTextRect.exactCenterX(),
-                timeBoardTop + timeBoardHeight/2 - timeBoardTextRect.exactCenterY(),
-                testPaint
+                mTimeBoardText,
+                mTimeBoardLeft + mTimeBoardWidth /2 - mRectTimeBoardText.exactCenterX(),
+                mTimeBoardTop + mTimeBoardHeight /2 - mRectTimeBoardText.exactCenterY(),
+                mPaintTest
         );
 
-        icObjectiveBoard.setBounds(objectiveRect);
-        icObjectiveBoard.draw(canvas);
+        /* ****************************
+         * Objective Board
+         */
+        mDrawableObjectiveBoard.setBounds(mRectObjectiveBoard);
+        mDrawableObjectiveBoard.draw(canvas);
 
-        brick_orange.setBounds(objectiveIconRects.get(0));
-        brick_orange.draw(canvas);
-        brick_blue.setBounds(objectiveIconRects.get(1));
-        brick_blue.draw(canvas);
-        brick_red.setBounds(objectiveIconRects.get(2));
-        brick_red.draw(canvas);
+        mDrawableBrickOrange.setBounds(mRectObjectiveIcons.get(0));
+        mDrawableBrickOrange.draw(canvas);
+        mDrawableBrickBlue.setBounds(mRectObjectiveIcons.get(1));
+        mDrawableBrickBlue.draw(canvas);
+        mDrawableBrickRed.setBounds(mRectObjectiveIcons.get(2));
+        mDrawableBrickRed.draw(canvas);
 
-        String text_objective = "21";
-
+        mPaintScoreBoard.getTextBounds(mObjectiveBoardText, 0, mObjectiveBoardText.length(), mRectObjectiveBoardText);
         canvas.drawText(
-                "21",
-                objectiveRect.left + objectiveWidth/2,
-                objectiveRect.bottom - objectiveHeight/2,
-                scoreBoardPaint
+                mObjectiveBoardText,
+                mRectObjectiveBoard.left + mObjectiveBoardWidth /2 - mRectObjectiveBoardText.exactCenterX(),
+                mRectObjectiveBoard.bottom - mObjectiveBoardHeight /2 - mRectObjectiveBoardText.exactCenterY(),
+                mPaintScoreBoard
         );
 
-        for (ArrayList<Rect> row : permanentRectBounds) {
-            for (Rect rect: row) {
-                emptyRegion.setBounds(rect);
-                emptyRegion.draw(canvas);
-            }
-        }
-
+        /* ****************************
+         * Draw Bricks on Board
+         */
         int rowIndex = 0;
-        for (ArrayList<Drawable> row : brickDrawables) {
+        for (ArrayList<Drawable> row : mDrawableBoardObjects) {
             int colIndex = 0;
             for (Drawable drawable: row) {
-                drawable.setBounds(permanentRectBounds.get(rowIndex).get(colIndex));
+                drawable.setBounds(mRectBoardObjects.get(rowIndex).get(colIndex));
                 drawable.draw(canvas);
                 colIndex++;
             }
             rowIndex++;
         }
 
-        for (int i = 0; i < scorePopUPGates.size(); i++) {
-            if(scorePopUPGates.get(i)){
-                if (!scorePopUPAnimator.isRunning()){
-                    scorePopUPAnimator.start();
+        /* ****************************
+         * Draw Score Pop Ups
+         */
+        for (int i = 0; i < mGateScores.size(); i++) {
+            if(mGateScores.get(i)){
+                if (!mAnimatorScore.isRunning()){
+                    mAnimatorScore.start();
                 }
 
                 canvas.drawText(
-                        "+" + scorePopUPTexts.get(i),
-                        permanentRectBounds.get(i).get((i*randomInteger)%boardWidth).left,
-                        permanentRectBounds.get(i).get((i*randomInteger)%boardWidth).top,
-                        scorePopUPPaint);
+                        "+" + mTextScores.get(i),
+                        mRectBoardObjects.get(i).get((i* mRandomNumber)% mColumn).left,
+                        mRectBoardObjects.get(i).get((i* mRandomNumber)% mColumn).top,
+                        mPaintScore);
             }
         }
     }
 
     public void create(int height, int width) {
 
-        boardHeight = height;
-        boardWidth = width;
+        mRow = height;
+        mColumn = width;
 
-        squareDimension = (int) (screenWidth / ((1.5) * width));
+        mBoardSquareDimension = (int) (mScreenWidthPixel / ((1.5) * width));
 
         for (int i = 0; i < height; i++) {
-            permanentRectBounds.add(new ArrayList<>());
+            mRectBoardObjects.add(new ArrayList<>());
         }
 
         for (int i = 0; i < height; i++) {
-            brickRectBounds.add(new ArrayList<>());
+            mDrawableBoardObjects.add(new ArrayList<>());
         }
 
-        for (int i = 0; i < height; i++) {
-            brickDrawables.add(new ArrayList<>());
-        }
+        int left_base   = (mScreenWidthPixel - width * mBoardSquareDimension) / 2;
+        int top_base    = (mScreenHeightPixel - height * mBoardSquareDimension) / 2;
 
-        int left_base   = (screenWidth - width * squareDimension) / 2;
-        int top_base    = (screenHeight - height * squareDimension) / 2;
+        mBoardLeft = left_base;
+        mBoardTop = top_base;
+        mBoardWidth = width * mBoardSquareDimension;
+        mBoardHeight = height * mBoardSquareDimension;
 
-        playBoardLeft = left_base;
-        playBoardTop = top_base;
-        playBoardWidth = width * squareDimension;
-        playBoardHeight = height * squareDimension;
-
-        playBoardRect = new Rect(playBoardLeft, playBoardTop, playBoardLeft + playBoardWidth, playBoardTop + playBoardHeight);
+        mRectBoard = new Rect(mBoardLeft, mBoardTop, mBoardLeft + mBoardWidth, mBoardTop + mBoardHeight);
 
         int left    = left_base;
-        int right   = left + squareDimension;
+        int right   = left + mBoardSquareDimension;
         int top     = top_base;
-        int bottom  = top + squareDimension;
+        int bottom  = top + mBoardSquareDimension;
 
-        for (ArrayList<Rect> row : permanentRectBounds) {
+        for (ArrayList<Rect> row : mRectBoardObjects) {
             for (int i = 0; i < width; i++) {
                 row.add(new Rect(left, top, right, bottom));
                 left = right;
-                right += squareDimension;
+                right += mBoardSquareDimension;
             }
             top     = bottom;
-            bottom += squareDimension;
+            bottom += mBoardSquareDimension;
 
             left    = left_base;
-            right   = left + squareDimension;
+            right   = left + mBoardSquareDimension;
         }
 
-        for (ArrayList<Rect> row : brickRectBounds) {
+        for (ArrayList<Drawable> row : mDrawableBoardObjects) {
             for (int i = 0; i < width; i++) {
-                row.add(null);
+                row.add(mDrawableEmptyRegion);
             }
         }
-
-        for (ArrayList<Drawable> row : brickDrawables) {
-            for (int i = 0; i < width; i++) {
-                row.add(emptyRegion);
-            }
-        }
-
-        empty = new Paint();
-        empty.setAntiAlias(true);
-        empty.setStyle(Paint.Style.STROKE);
-        empty.setColor(0x77fcba03);
-        empty.setStrokeWidth(2);
 
         for (int i = 0; i < height; i++) {
-            scorePopUPGates.add(false);
-            scorePopUPTexts.add(null);
+            mGateScores.add(false);
+            mTextScores.add(null);
         }
 
-        timeBoardLeft = (screenWidth - timeBoardWidth ) / 2;
-        timeBoardTop = playBoardTop - timeBoardHeight;
-        timeBoardRect = new Rect(timeBoardLeft, timeBoardTop, timeBoardLeft + timeBoardWidth, timeBoardTop + timeBoardHeight);
+        mTimeBoardLeft = (mScreenWidthPixel - mTimeBoardWidth) / 2;
+        mTimeBoardTop = mBoardTop - mTimeBoardHeight;
+        mRectTimeBoard = new Rect(mTimeBoardLeft, mTimeBoardTop, mTimeBoardLeft + mTimeBoardWidth, mTimeBoardTop + mTimeBoardHeight);
 
-        scoreBoardLeft = (screenWidth - scoreBoardWidth ) / 2;
-        scoreBoardTop = (screenHeight/2 - playBoardHeight/2) - scoreBoardHeight -  timeBoardHeight;
-        scoreBoardRect = new Rect(scoreBoardLeft, scoreBoardTop, scoreBoardLeft + scoreBoardWidth, scoreBoardTop + scoreBoardHeight);
+        mScoreBoardLeft = (mScreenWidthPixel - mScoreBoardWidth) / 2;
+        mScoreBoardTop = (mScreenHeightPixel /2 - mBoardHeight /2) - mScoreBoardHeight - mTimeBoardHeight;
+        mRectScoreBoard = new Rect(mScoreBoardLeft, mScoreBoardTop, mScoreBoardLeft + mScoreBoardWidth, mScoreBoardTop + mScoreBoardHeight);
 
-        objectiveLeft = scoreBoardRect.right + 100;
-        objectiveTop = scoreBoardRect.top;
-        objectiveRect = new Rect(objectiveLeft, objectiveTop, objectiveLeft + objectiveWidth, objectiveTop + objectiveHeight);
+        int objectiveIconDimension = 40;
+        mObjectiveBoardLeft = mRectScoreBoard.right + 100;
+        mObjectiveBoardTop = mRectScoreBoard.top;
+        mRectObjectiveBoard = new Rect(mObjectiveBoardLeft, mObjectiveBoardTop, mObjectiveBoardLeft + mObjectiveBoardWidth, mObjectiveBoardTop + mObjectiveBoardHeight);
 
-        Rect rect1 = new Rect(objectiveLeft + objectiveWidth/2 - 20, objectiveTop + 10, objectiveLeft + objectiveWidth/2 + 20, objectiveTop + 50);
-        Rect rect2 = new Rect(objectiveLeft + objectiveWidth/2 - 60, objectiveTop + 10, objectiveLeft + objectiveWidth/2 - 20, objectiveTop + 50);
-        Rect rect3 = new Rect(objectiveLeft + objectiveWidth/2 + 20, objectiveTop + 10, objectiveLeft + objectiveWidth/2 + 60, objectiveTop + 50);
+        Rect rect1 = new Rect(
+                mObjectiveBoardLeft + mObjectiveBoardWidth /2 - objectiveIconDimension/2,
+                mObjectiveBoardTop - objectiveIconDimension/2,
+                mObjectiveBoardLeft + mObjectiveBoardWidth /2 + objectiveIconDimension/2,
+                mObjectiveBoardTop + objectiveIconDimension/2
+        );
 
-        objectiveIconRects.add(rect1);
-        objectiveIconRects.add(rect2);
-        objectiveIconRects.add(rect3);
+        Rect rect2 = new Rect(
+                mObjectiveBoardLeft + mObjectiveBoardWidth /2 - (3 * objectiveIconDimension/2),
+                mObjectiveBoardTop - objectiveIconDimension/2,
+                mObjectiveBoardLeft + mObjectiveBoardWidth /2 - objectiveIconDimension/2,
+                mObjectiveBoardTop + objectiveIconDimension/2
+        );
+
+        Rect rect3 = new Rect(
+                mObjectiveBoardLeft + mObjectiveBoardWidth /2 + objectiveIconDimension/2,
+                mObjectiveBoardTop - objectiveIconDimension/2,
+                mObjectiveBoardLeft + mObjectiveBoardWidth /2 + (3 * objectiveIconDimension/2),
+                mObjectiveBoardTop + objectiveIconDimension/2
+        );
+
+        mRectObjectiveIcons.add(rect1);
+        mRectObjectiveIcons.add(rect2);
+        mRectObjectiveIcons.add(rect3);
     }
-
-//    @Override
-//    public void create(DisplayData.Brick brick, Position at) {
-//
-//        Log.i(TAG, " called create(DisplayData.Brick brick, Position at)");
-//
-//        brickRectBounds.get(at.getY()).set(at.getX(), new Rect(permanentRectBounds.get(at.getY()).get(at.getX())));
-//
-//        brickRectBounds.get(at.getY()).get(at.getX()).top = (brickRectBounds.get(at.getY()).get(at.getX()).top + squareDimension/2);
-//        brickRectBounds.get(at.getY()).get(at.getX()).bottom =  (brickRectBounds.get(at.getY()).get(at.getX()).bottom - squareDimension/2);
-//        brickRectBounds.get(at.getY()).get(at.getX()).left =  (brickRectBounds.get(at.getY()).get(at.getX()).left + squareDimension/2);
-//        brickRectBounds.get(at.getY()).get(at.getX()).right =  (brickRectBounds.get(at.getY()).get(at.getX()).right - squareDimension/2);
-//
-//        float tmpTop = brickRectBounds.get(at.getY()).get(at.getX()).top;
-//        float tmpBottom = brickRectBounds.get(at.getY()).get(at.getX()).bottom;
-//        float tmpLeft = brickRectBounds.get(at.getY()).get(at.getX()).left;
-//        float tmpRight = brickRectBounds.get(at.getY()).get(at.getX()).right;
-//
-//        ValueAnimator animator = ValueAnimator.ofInt(0, squareDimension/2);
-//        animator.setDuration(animDuration);
-//        animator.setInterpolator(new BounceInterpolator());
-//        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-//            @Override
-//            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-//                if (brickRectBounds.get(at.getY()).get(at.getX())!=null){
-//                    brickRectBounds.get(at.getY()).get(at.getX()).top = (int) (tmpTop - (Integer)valueAnimator.getAnimatedValue());
-//                    brickRectBounds.get(at.getY()).get(at.getX()).bottom = (int) (tmpBottom + (Integer)valueAnimator.getAnimatedValue());
-//                    brickRectBounds.get(at.getY()).get(at.getX()).left = (int) (tmpLeft - (Integer)valueAnimator.getAnimatedValue());
-//                    brickRectBounds.get(at.getY()).get(at.getX()).right = (int) (tmpRight + (Integer)valueAnimator.getAnimatedValue());
-//                }
-//                invalidate();
-//            }
-//        });
-//
-//        animator.addListener(new AnimatorListenerAdapter() {
-//            @Override
-//            public void onAnimationEnd(Animator animation) {
-//                super.onAnimationEnd(animation);
-//                publish();
-//            }
-//        });
-//
-//        new Handler(Looper.getMainLooper()).post(new Runnable() {
-//            @Override
-//            public void run() {
-//                animator.start();
-//            }
-//        });
-//    }
-
-//    @Override
-//    public void move(DisplayData.Brick brick, Position from, Position to) {
-//
-//    }
 
     public void refresh(ArrayList<ArrayList<Brick>> board) {
 
-        for (ArrayList<Drawable> row : brickDrawables) {
+        for (ArrayList<Drawable> row : mDrawableBoardObjects) {
             for (int i = 0; i < row.size(); i++) {
-                row.set(i, emptyRegion);
+                row.set(i, mDrawableEmptyRegion);
             }
         }
 
@@ -455,367 +340,126 @@ public class PlayBoardView extends View {
                 if (brick.getBrickType() == BrickType.NORMAL){
                     switch (brick.getSet().getSetType()){
                         case BOX:
-                            brickDrawables.get(i).set(j, brick_blue);
+                            mDrawableBoardObjects.get(i).set(j, mDrawableBrickBlue);
                             break;
                         case LINE:
-                            brickDrawables.get(i).set(j, brick_orange);
+                            mDrawableBoardObjects.get(i).set(j, mDrawableBrickOrange);
                             break;
                         case T:
-                            brickDrawables.get(i).set(j, brick_green);
+                            mDrawableBoardObjects.get(i).set(j, mDrawableBrickGreen);
                             break;
                         case J:
                         case Z:
-                            brickDrawables.get(i).set(j, brick_red);
+                            mDrawableBoardObjects.get(i).set(j, mDrawableBrickRed);
                             break;
                         case L:
-                            brickDrawables.get(i).set(j, brick_pink);
+                            mDrawableBoardObjects.get(i).set(j, mDrawableBrickPink);
                             break;
                     }
                 }else if (brick.getBrickType() == BrickType.COIN){
-                    brickDrawables.get(i).set(j, brick_pink);
+                    mDrawableBoardObjects.get(i).set(j, mDrawableBrickPink);
                 }else if (brick.getBrickType() == BrickType.STAR){
-                    brickDrawables.get(i).set(j, brick_star);
+                    mDrawableBoardObjects.get(i).set(j, mDrawableBrickStar);
                 }
-            }
-        }
-        for (ArrayList<Brick> row : board) {
-            for (Brick brick : row) {
-
             }
         }
 
         invalidate();
-//        publish();
     }
-
-//    @Override
-//    public void move(ArrayList<DisplayData.Brick> brickArrayList, ArrayList<Position> fromPositions, ArrayList<Position> toPositions) {
-//
-//        if (fromPositions.isEmpty() || toPositions.isEmpty()){
-//            publish();
-//            return;
-//        }
-//
-//        if (fromPositions.size() != toPositions.size()) {
-//            publish();
-//            return;
-//        }
-//
-//        /* existingBricks are holding rectangular regions of bricks
-//        * when a move occurs, immediately updates index of moved brick
-//        * but new locations rectangular data is old, and will be updated by animator
-//        * */
-//
-//        /* Calculate the amount of index */
-//        int deltaXIndex = toPositions.get(0).getX() - fromPositions.get(0).getX();
-//        int deltaYIndex = toPositions.get(0).getY() - fromPositions.get(0).getY();
-//
-//        /* This list holds drawable start positions of bricks */
-//        ArrayList<RectF> animationStartPositions = new ArrayList<>();
-//        for (int i = 0; i < fromPositions.size(); i++) {
-//
-//            Position from = fromPositions.get(i);
-//
-//            /* Hold this data to calculate animation */
-//            animationStartPositions.add(new RectF(permanentRectBounds.get(from.getY()).get(from.getX())));
-//
-//            /* Remove bricks from positions in visual buffer */
-//            brickRectBounds.get(from.getY()).set(from.getX(), null);
-//        }
-//
-//        for (int i = 0; i < fromPositions.size(); i++) {
-//            Position from = fromPositions.get(i);
-//            Position to = toPositions.get(i);
-//
-//            /* Add bricks into new visual buffer, ATTENTION, rectangular region is still old
-//             * Wait animator update */
-//            brickRectBounds.get(to.getY()).set(to.getX(), new Rect(permanentRectBounds.get(from.getY()).get(from.getX())));
-//        }
-//
-//        // #AYIKOL This values can also be negative. Amount of shift pixels
-//        int deltaXPx = squareDimension * deltaXIndex;
-//        int deltaYPx = squareDimension * deltaYIndex;
-//
-//        ValueAnimator horizontalAnimator = ValueAnimator.ofInt(0, deltaXPx);
-//        horizontalAnimator.setDuration(animDuration);
-//        horizontalAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-//            @Override
-//            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-//                int i = 0;
-//                for (Position to : toPositions) {
-//                    if (brickRectBounds.get(to.getY()).get(to.getX()) == null) continue;
-//                    brickRectBounds.get(to.getY()).get(to.getX()).left = (int) (animationStartPositions.get(i).left + (Integer)valueAnimator.getAnimatedValue());
-//                    brickRectBounds.get(to.getY()).get(to.getX()).right = (int) (animationStartPositions.get(i).right + (Integer)valueAnimator.getAnimatedValue());
-//                    i++;
-//                }
-//                invalidate();
-//            }
-//        });
-//
-//        horizontalAnimator.addListener(new AnimatorListenerAdapter() {
-//            @Override
-//            public void onAnimationEnd(Animator animation) {
-//                super.onAnimationEnd(animation);
-//                publish();
-//            }
-//        });
-//
-//        ValueAnimator verticalAnimator = ValueAnimator.ofInt(0, deltaYPx);
-//        verticalAnimator.setDuration(animDuration);
-//        verticalAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-//            @Override
-//            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-//                int i = 0;
-//                for (Position to : toPositions) {
-//                    if (brickRectBounds.get(to.getY()).get(to.getX()) == null) continue;
-//                    brickRectBounds.get(to.getY()).get(to.getX()).top = (int) (animationStartPositions.get(i).top + (Integer)valueAnimator.getAnimatedValue());
-//                    brickRectBounds.get(to.getY()).get(to.getX()).bottom = (int) (animationStartPositions.get(i).bottom + (Integer)valueAnimator.getAnimatedValue());
-//                    i++;
-//                }
-//                invalidate();
-//            }
-//        });
-//
-//        verticalAnimator.addListener(new AnimatorListenerAdapter() {
-//            @Override
-//            public void onAnimationEnd(Animator animation) {
-//                super.onAnimationEnd(animation);
-//                publish();
-//            }
-//        });
-//
-//        new Handler(Looper.getMainLooper()).post(new Runnable() {
-//            @Override
-//            public void run() {
-//                horizontalAnimator.start();
-//                verticalAnimator.start();
-//            }
-//        });
-//    }
-
-//    @Override
-//    public void rotate(ArrayList<DisplayData.Brick> brickArrayList, ArrayList<Position> fromPositions, ArrayList<Position> toPositions) {
-//
-//        if (fromPositions.isEmpty() || toPositions.isEmpty()) {
-//            publish();
-//            return;
-//        }
-//
-//        if (fromPositions.size() != toPositions.size()) {
-//            publish();
-//            return;
-//        }
-//
-//        /* existingBricks is holding rectangular regions of bricks
-//         * when a move occurs, immediately updates index of moved brick
-//         * but new locations rectangular data is old, and will be updated by animator
-//         * */
-//
-//        /* This list holds drawable start positions of bricks */
-//        ArrayList<RectF> animationStartPositions = new ArrayList<>();
-//        for (int i = 0; i < fromPositions.size(); i++) {
-//
-//            Position from = fromPositions.get(i);
-//
-//            /* Hold this data to calculate animation */
-//            animationStartPositions.add(new RectF(permanentRectBounds.get(from.getY()).get(from.getX())));
-//
-//            /* Remove bricks from positions in visual buffer */
-//            brickRectBounds.get(from.getY()).set(from.getX(), null);
-//        }
-//
-//        for (int i = 0; i < fromPositions.size(); i++) {
-//            Position from = fromPositions.get(i);
-//            Position to = toPositions.get(i);
-//
-//            /* Add bricks into new visual buffer, ATTENTION, rectangular region is still old
-//             * Wait animator update */
-//            brickRectBounds.get(to.getY()).set(to.getX(), new Rect(permanentRectBounds.get(to.getY()).get(to.getX())));
-//        }
-//
-////        ValueAnimator horizontalAnimator = ValueAnimator.ofInt(0, 90);
-////        horizontalAnimator.setDuration(100);
-////        horizontalAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-////            @Override
-////            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-////                int i = 0;
-////                for (Position to : toPositions) {
-////                    if (existingBricks.get(to.getY()).get(to.getX()) == null) continue;
-////                    existingBricks.get(to.getY()).get(to.getX()).left = (int) (animationStartPositions.get(i).left + (Integer)valueAnimator.getAnimatedValue());
-////                    existingBricks.get(to.getY()).get(to.getX()).right = (int) (animationStartPositions.get(i).right + (Integer)valueAnimator.getAnimatedValue());
-////                    i++;
-////                }
-////                invalidate();
-////            }
-////        });
-//
-////        new Handler(Looper.getMainLooper()).post(new Runnable() {
-////            @Override
-////            public void run() {
-////                horizontalAnimator.start();
-////            }
-////        });
-//
-//        invalidate();
-//        publish();
-//    }
-
-//    @Override
-//    public void remove(DisplayData.Brick brick, Position at) {
-//
-////        Rect tmp = existingBricks.get(at.getY()).get(at.getX());
-////
-////        existingBricks.get(at.getY()).set(at.getX(), null);
-////        removeObjects.add(tmp);
-////
-////        float tmpLeft = tmp.left;
-////        float tmpRight = tmp.right;
-////
-////        ValueAnimator animator = ValueAnimator.ofInt(0, (int) tmpLeft);
-////        animator.setDuration(animDuration);
-////        animator.setInterpolator(new BounceInterpolator());
-////        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-////            @Override
-////            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-////                tmp.left = (int) (tmpLeft - (Integer)valueAnimator.getAnimatedValue());
-////                tmp.right = (int) (tmpRight - (Integer)valueAnimator.getAnimatedValue());
-////            }
-////        });
-////
-////        animator.addListener(new AnimatorListenerAdapter() {
-////            @Override
-////            public void onAnimationEnd(Animator animation) {
-////                super.onAnimationEnd(animation);
-////                removeObjects.remove(tmp);
-////            }
-////        });
-////
-////        new Handler(Looper.getMainLooper()).post(new Runnable() {
-////            @Override
-////            public void run() {
-////                animator.start();
-////            }
-////        });
-//    }
-
-//    @Override
-//    public void removeAndRefresh(
-//            ArrayList<DisplayData.Brick> brickArrayList,
-//            ArrayList<Position> atPositions,
-//            ArrayList<Position> board
-//    ) {
-//
-//        ArrayList<Animator> animators = new ArrayList<>();
-//
-//        for (int i = 0; i < atPositions.size(); i++) {
-//
-//            Position at = atPositions.get(i);
-//
-//            /* Keep a reference of remove brick */
-//            Rect removeBrick = brickRectBounds.get(at.getY()).get(at.getX());
-//
-//            /* Remove From Board Visual Buffer */
-//            brickRectBounds.get(at.getY()).set(at.getX(), null);
-//
-//            /* Collect all remove brick references together */
-//            removeObjects.add(removeBrick);
-//
-//            float tmpLeft = removeBrick.left;
-//            float tmpRight = removeBrick.right;
-//
-//            ValueAnimator animator = ValueAnimator.ofInt(0, (int) tmpLeft);
-//            animator.setDuration(3000);
-//            animator.setInterpolator(new BounceInterpolator());
-//            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-//                @Override
-//                public void onAnimationUpdate(ValueAnimator valueAnimator) {
-//                    removeBrick.left = (int) (tmpLeft - (Integer)valueAnimator.getAnimatedValue());
-//                    removeBrick.right = (int) (tmpRight - (Integer)valueAnimator.getAnimatedValue());
-//                    invalidate();
-//                }
-//            });
-//
-//            if (i == atPositions.size() - 1){
-//                animator.addListener(new AnimatorListenerAdapter() {
-//                    @Override
-//                    public void onAnimationEnd(Animator animation) {
-//                        super.onAnimationEnd(animation);
-//                        removeObjects.clear();
-//                        refresh(brickArrayList, board);
-//                        publish();
-//                    }
-//                });
-//            }
-//
-//            animators.add(animator);
-//        }
-//
-//        new Handler(Looper.getMainLooper()).post(new Runnable() {
-//            @Override
-//            public void run() {
-//                for (Animator animator : animators) {
-//                    animator.start();
-//                }
-//            }
-//        });
-//    }
-//
-//    @Override
-//    public void refresh(ArrayList<DisplayData.Brick> brickArrayList, ArrayList<Position> atPositions) {
-//
-//        for (int i = 0; i < brickRectBounds.size(); i++) {
-//            for (int j = 0; j < brickRectBounds.get(i).size(); j++) {
-//                brickRectBounds.get(i).set(j, null);
-//            }
-//        }
-//
-//        for (Position p : atPositions) {
-//            brickRectBounds.get(p.getY()).set(p.getX(), permanentRectBounds.get(p.getY()).get(p.getX()));
-//        }
-//
-//        invalidate();
-//        publish();
-//    }
-//
-//    @Override
-//    public void startFast() {
-//
-//    }
-//
-//    @Override
-//    public void startDelay(int delay) {
-//
-//    }
-//
-//    @Override
-//    public void updateInfo() {
-//
-//    }
-//
-//    @Override
-//    public void end() {
-//
-//    }
 
     public void popUpScore(ArrayList<DisplayData.Score> scores) {
         for (DisplayData.Score score : scores) {
-            scorePopUPGates.set(score.at, true);
-            scorePopUPTexts.set(score.at, Integer.toString(score.value));
+            mGateScores.set(score.at, true);
+            mTextScores.set(score.at, Integer.toString(score.value));
         }
-//        publish();
     }
 
-//    @Override
-//    public void setScore(int score) {
-//    }
+    private void loadPaints(){
+        mPaintTest = new Paint();
+        mPaintTest.setAntiAlias(true);
+        mPaintTest.setStyle(Paint.Style.FILL_AND_STROKE);
+        mPaintTest.setColor(0xff00ff00);
+        mPaintTest.setStrokeWidth(2);
+        mPaintTest.setTextSize(42);
 
-//    @Override
-//    public void register(Subscriber subscriber) {
-//        basePublisher.register(subscriber);
-//    }
-//
-//    @Override
-//    public void publish() {
-//        basePublisher.publish();
-//    }
+        mPaintScoreBoard = new Paint();
+        mPaintScoreBoard.setAntiAlias(true);
+        mPaintScoreBoard.setStyle(Paint.Style.FILL_AND_STROKE);
+        mPaintScoreBoard.setColor(0xff000000);
+        mPaintScoreBoard.setStrokeWidth(2);
+        mPaintScoreBoard.setTextSize(60);
+
+        mPaintBoardBackground = new Paint();
+        mPaintBoardBackground.setAntiAlias(true);
+        mPaintBoardBackground.setStyle(Paint.Style.FILL);
+        mPaintBoardBackground.setColor(0x99FFFFFF);
+
+        mPaintTimeBoard = new Paint();
+        mPaintTimeBoard.setAntiAlias(true);
+        mPaintTimeBoard.setStyle(Paint.Style.FILL);
+        mPaintTimeBoard.setColor(0xFF000000);
+
+        mPaintScore = new Paint();
+        mPaintScore.setAntiAlias(true);
+        mPaintScore.setStyle(Paint.Style.FILL_AND_STROKE);
+        mPaintScore.setColor(0xff993399);
+        mPaintScore.setStrokeWidth(4);
+        mPaintScore.setTextSize(0);
+
+        mPaintEmpty = new Paint();
+        mPaintEmpty.setAntiAlias(true);
+        mPaintEmpty.setStyle(Paint.Style.STROKE);
+        mPaintEmpty.setColor(0x77fcba03);
+        mPaintEmpty.setStrokeWidth(2);
+    }
+
+    private void loadDrawables(){
+        mDrawableBrickRed = getContext().getDrawable(R.drawable.ic_fuscia_briket);
+        mDrawableBrickGreen = getContext().getDrawable(R.drawable.ic_green_briket);
+        mDrawableBrickBlue = getContext().getDrawable(R.drawable.ic_blue_briket);
+        mDrawableBrickPink = getContext().getDrawable(R.drawable.ic_raspberry_briket);
+        mDrawableBrickOrange = getContext().getDrawable(R.drawable.ic_orange_briket);
+        mDrawableBrickStar = getContext().getDrawable(R.drawable.ic_tough_briket);
+        mDrawableEmptyRegion = getContext().getDrawable(R.drawable.shape);
+        mDrawableScoreBoard = getContext().getDrawable(R.drawable.ic_score_board);
+        mDrawableTimeBoard = getContext().getDrawable(R.drawable.ic_time_board);
+        mDrawableObjectiveBoard = getContext().getDrawable(R.drawable.ic_objective_board);
+    }
+
+    private void loadAnimators() {
+        mAnimatorScore = ValueAnimator.ofInt(0, 75);
+        mAnimatorScore.setDuration(700);
+        mAnimatorScore.setInterpolator(new BounceInterpolator());
+        mAnimatorScore.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                mPaintScore.setTextSize((Integer) valueAnimator.getAnimatedValue());
+                invalidate();
+            }
+        });
+
+        mAnimatorScore.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                for (int i = 0; i < mGateScores.size(); i++) {
+                    mGateScores.set(i, false);
+                }
+                invalidate();
+                mRandomNumber = mRandomGenerator.nextInt(1000);
+            }
+        });
+    }
+
+    public void updateScore(String score){
+        mScoreBoardText = score;
+    }
+
+    public void updateTime(String time){
+        mTimeBoardText = time;
+    }
+
+    public void updateObjective(String objective){
+        mObjectiveBoardText = objective;
+    }
 }

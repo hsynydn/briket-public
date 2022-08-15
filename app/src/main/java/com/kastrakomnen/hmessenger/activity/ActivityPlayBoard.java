@@ -45,8 +45,6 @@ public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitC
 
     /* Views belongs to this activity */
     private PlayBoardView playBoardView;
-    private TextView textViewScoreContent;
-    private TextView textViewObjective;
 
     private FragmentPause fragmentPause;
     private FragmentOptions fragmentOptions;
@@ -78,9 +76,6 @@ public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitC
         playBoardView = findViewById(R.id.view_playground);
 
         playBoardView.create(19, 9);
-
-        textViewScoreContent = findViewById(R.id.tv_score_content);
-        textViewObjective = findViewById(R.id.tv_objective);
 
         /* Game will become a bridge between commands logic and visual */
         game = new Game(this);
@@ -327,6 +322,7 @@ public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitC
         }else{
             throw new IllegalArgumentException("DisplayData.Status unknown");
         }
+        
     }
 
     @Override
@@ -337,13 +333,13 @@ public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitC
 
     @Override
     public void updateObjective(int objective) {
-        textViewObjective.setText(Integer.toString(objective));
+        playBoardView.updateObjective(Integer.toString(objective));
         publish();
     }
 
     @Override
     public void setScore(int score) {
-        textViewScoreContent.setText(Integer.toString(score));
+        playBoardView.updateScore(Integer.toString(score));
         publish();
     }
 

@@ -322,7 +322,7 @@ public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitC
         }else{
             throw new IllegalArgumentException("DisplayData.Status unknown");
         }
-        
+
     }
 
     @Override
@@ -340,6 +340,12 @@ public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitC
     @Override
     public void setScore(int score) {
         playBoardView.updateScore(Integer.toString(score));
+        publish();
+    }
+
+    @Override
+    public void popUp(DisplayData.PopUpEvent popUpEvent) {
+        playBoardView.popUp(popUpEvent);
         publish();
     }
 

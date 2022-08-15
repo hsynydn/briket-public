@@ -49,4 +49,6 @@ public interface DisplayUnitController extends Publisher {
     void gainScore(ArrayList<DisplayData.Score> scores);
     void updateObjective(int objective);
     void setScore(int score);
+
+    void popUp(DisplayData.PopUpEvent popUpEvent);
 }

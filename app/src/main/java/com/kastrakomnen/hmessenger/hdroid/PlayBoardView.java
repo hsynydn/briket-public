@@ -38,6 +38,9 @@ public class PlayBoardView extends View {
     private ArrayList<Boolean>  mGateScores;
     private ArrayList<String>   mTextScores;
     private ValueAnimator       mAnimatorScore;
+    private ValueAnimator       mAnimatorEvent;
+    private Boolean             mGateCombo;
+    private String              mTextCombo;
     private Paint               mPaintScore;
 
     private int     mScreenHeightPixel;
@@ -49,6 +52,7 @@ public class PlayBoardView extends View {
     private Paint mPaintBoardBackground;
     private Paint mPaintTimeBoard;
     private Paint mPaintScoreBoard;
+    private Paint mPaintPopup;
 
     private Drawable mDrawableBrickRed;
     private Drawable mDrawableBrickGreen;
@@ -98,6 +102,14 @@ public class PlayBoardView extends View {
     private int     mBoardWidth;
     private int     mBoardHeight;
 
+    private Rect    mRectPopup;
+    private int     mPopupLeft;
+    private int     mPopupTop;
+    private int     mPopupWidth;
+    private int     mPopupHeight;
+    private Rect    mRectPopupText;
+    private String  mPopUpText;
+
     public PlayBoardView(Context context) {
         super(context);
         onInit(context);
@@ -128,13 +140,16 @@ public class PlayBoardView extends View {
         mRectScoreBoardText     = new Rect();
         mRectObjectiveBoardText = new Rect();
         mRectObjectiveBoard     = new Rect();
+        mRectPopupText          = new Rect();
 
         mGateScores             = new ArrayList<>();
+        mGateCombo              = false;
         mTextScores             = new ArrayList<>();
 
         mScoreBoardText = "0";
         mTimeBoardText = "00:00";
         mObjectiveBoardText = "0";
+        mPopUpText = "Combo";
 
         loadPaints();
         loadDrawables();
@@ -227,6 +242,22 @@ public class PlayBoardView extends View {
                         mPaintScore);
             }
         }
+
+        /* ****************************
+         * Draw Combo Pop Ups
+         */
+        if (mGateCombo){
+            if (!mAnimatorEvent.isRunning()){
+                mAnimatorEvent.start();
+            }
+
+            mPaintPopup.getTextBounds(mPopUpText, 0, mPopUpText.length(), mRectPopupText);
+            canvas.drawText(
+                    mPopUpText,
+                    mRectPopup.left + mPopupWidth/2 - mRectPopupText.exactCenterX(),
+                    mRectPopup.top + mPopupHeight/2 - mRectPopupText.exactCenterY(),
+                    mPaintPopup);
+        }
     }
 
     public void create(int height, int width) {
@@ -290,6 +321,12 @@ public class PlayBoardView extends View {
         mScoreBoardLeft = (mScreenWidthPixel - mScoreBoardWidth) / 2;
         mScoreBoardTop = (mScreenHeightPixel /2 - mBoardHeight /2) - mScoreBoardHeight - mTimeBoardHeight;
         mRectScoreBoard = new Rect(mScoreBoardLeft, mScoreBoardTop, mScoreBoardLeft + mScoreBoardWidth, mScoreBoardTop + mScoreBoardHeight);
+
+        mPopupWidth = mRectBoard.width();
+        mPopupHeight = mRectBoard.height()/4;
+        mPopupLeft = mRectBoard.left;
+        mPopupTop = mRectBoard.top + mBoardHeight/2 - mPopupHeight/2;
+        mRectPopup = new Rect(mRectBoard.left, mPopupTop, mRectBoard.right, mPopupTop + mPopupHeight);
 
         int objectiveIconDimension = 40;
         mObjectiveBoardLeft = mRectScoreBoard.right + 100;
@@ -406,6 +443,13 @@ public class PlayBoardView extends View {
         mPaintScore.setStrokeWidth(4);
         mPaintScore.setTextSize(0);
 
+        mPaintPopup = new Paint();
+        mPaintPopup.setAntiAlias(true);
+        mPaintPopup.setStyle(Paint.Style.FILL_AND_STROKE);
+        mPaintPopup.setColor(0xff993399);
+        mPaintPopup.setStrokeWidth(4);
+        mPaintPopup.setTextSize(0);
+
         mPaintEmpty = new Paint();
         mPaintEmpty.setAntiAlias(true);
         mPaintEmpty.setStyle(Paint.Style.STROKE);
@@ -449,6 +493,26 @@ public class PlayBoardView extends View {
                 mRandomNumber = mRandomGenerator.nextInt(1000);
             }
         });
+
+        mAnimatorEvent = ValueAnimator.ofInt(0, 120);
+        mAnimatorEvent.setDuration(1000);
+        mAnimatorEvent.setInterpolator(new BounceInterpolator());
+        mAnimatorEvent.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                mPaintPopup.setTextSize((Integer) valueAnimator.getAnimatedValue());
+                invalidate();
+            }
+        });
+
+        mAnimatorEvent.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                mGateCombo = false;
+                invalidate();
+            }
+        });
     }
 
     public void updateScore(String score){
@@ -461,5 +525,9 @@ public class PlayBoardView extends View {
 
     public void updateObjective(String objective){
         mObjectiveBoardText = objective;
+    }
+
+    public void popUp(DisplayData.PopUpEvent popUpEvent){
+        mGateCombo = true;
     }
 }

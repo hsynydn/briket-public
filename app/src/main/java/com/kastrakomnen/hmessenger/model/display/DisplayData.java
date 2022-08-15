@@ -48,4 +48,12 @@ public class DisplayData {
             this.stageStatus = stageStatus;
         }
     }
+
+    public enum PopUpEvent{
+        COMBOx2,
+        COMBOx3,
+        COMBOx4,
+        COMBOx5,
+        STAR_LINE_UP
+    }
 }

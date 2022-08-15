@@ -402,6 +402,22 @@ public class Board {
 
             this.updateVisibleBoard();
 
+            int combo = list2Delete.size();
+
+            switch (combo){
+                case 2:
+                    displayUnitController.popUp(DisplayData.PopUpEvent.COMBOx2);
+                    break;
+                case 3:
+                    displayUnitController.popUp(DisplayData.PopUpEvent.COMBOx3);
+                    break;
+                case 4:
+                    displayUnitController.popUp(DisplayData.PopUpEvent.COMBOx4);
+                    break;
+                case 5:
+                    displayUnitController.popUp(DisplayData.PopUpEvent.COMBOx5);
+                    break;
+            }
             displayUnitController.refresh(visibleBoard);
             displayUnitController.gainScore(scores);
             displayUnitController.setScore(score);

@@ -5,66 +5,101 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="3"
+    android:weightSum="10"
     tools:context=".activity.FragmentPreferencesDropDown">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:background="#662D91"
         android:backgroundTint="#662D91">
 
-        <ImageButton
-            android:id="@+id/imageButton"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <TextView
+            android:id="@+id/tv_music"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Music"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/imageView4"
+            app:layout_constraintEnd_toEndOf="@+id/imageView4"
+            app:layout_constraintStart_toStartOf="@+id/imageView4" />
+
+        <ImageView
+            android:id="@+id/imageView4"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:background="@drawable/ic_green_briket"
+            android:src="@drawable/ic_fuscia_briket"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView9"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/imageButton2"
+        <ImageView
+            android:id="@+id/imageView9"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:background="@drawable/ic_blue_briket"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton"
+            android:src="@drawable/ic_blue_briket"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/imageButton"
-            app:layout_constraintTop_toTopOf="@+id/imageButton" />
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView"
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/chip4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MUSIC"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView6"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton"
-            app:layout_constraintStart_toStartOf="@+id/imageButton"
-            app:layout_constraintTop_toTopOf="@+id/textView6" />
+            android:background="@android:color/transparent"
+            android:backgroundTint="@android:color/transparent"
+            android:checked="true"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+            app:layout_constraintEnd_toEndOf="@+id/imageView4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/imageView4"
+            app:layout_constraintTop_toTopOf="@+id/imageView4"
+            android:theme="@style/ThemeOverlay.MySwitchCompat"
+            />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/chip5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView9"
+            app:layout_constraintEnd_toEndOf="@+id/imageView9"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/imageView9"
+            app:layout_constraintTop_toTopOf="@+id/imageView9"
+            android:theme="@style/ThemeOverlay.MySwitchCompat"
+            />
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SOUND"
+            android:text="Sound"
             android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton2"
-            app:layout_constraintStart_toStartOf="@+id/imageButton2"
-            tools:layout_editor_absoluteY="59dp" />
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageView9"
+            app:layout_constraintEnd_toEndOf="@+id/imageView9"
+            app:layout_constraintStart_toStartOf="@+id/imageView9" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="8"
         android:id="@+id/fragment_preferences_drop_down_cancel_button"
         android:background="@android:color/transparent"/>
 

@@ -75,6 +75,7 @@ public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitC
 
         /* Game will become a bridge between commands logic and visual */
         game = new Game(this);
+        BriketContext.getInstance().getCurrentStage().resetWinConditions();
         game.loadStage(BriketContext.getInstance().getCurrentStage());
 
         BotBehaviour botBehaviour = new BotBehaviour(500, 500);

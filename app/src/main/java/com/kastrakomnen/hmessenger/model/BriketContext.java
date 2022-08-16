@@ -7,9 +7,17 @@ import android.media.SoundPool;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.kastrakomnen.hmessenger.R;
 import com.kastrakomnen.hmessenger.db.BriketDatabase;
 import com.kastrakomnen.hmessenger.db.entity.FormationEntity;
@@ -38,6 +46,8 @@ public class BriketContext implements GameStatCollector.ScoreListener, GameStatC
 
     public Music music = new Music();
     public Sound sound = new Sound();
+
+    public InterstitialAd mInterstitialAd;
 
     private BriketContext(){
         stages = new ArrayList<>();

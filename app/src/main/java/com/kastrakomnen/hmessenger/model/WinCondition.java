@@ -37,4 +37,8 @@ public class WinCondition {
 
         return false;
     }
+
+    public void reset(){
+        numberOfObjectiveCompleted=0;
+    }
 }

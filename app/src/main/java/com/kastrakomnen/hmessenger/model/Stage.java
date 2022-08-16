@@ -63,6 +63,12 @@ public class Stage {
         this.winConditions = winConditions;
     }
 
+    public void resetWinConditions(){
+        for (WinCondition winCondition : winConditions) {
+            winCondition.reset();
+        }
+    }
+
     public ArrayList<FormationType> getFormationTypes(){
         return formationTypes;
     }

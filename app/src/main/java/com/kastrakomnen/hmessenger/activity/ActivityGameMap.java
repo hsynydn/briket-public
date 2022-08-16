@@ -103,7 +103,8 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
 
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.layout_game_map, new FragmentOptions());
+                    fragmentTransaction.setCustomAnimations(R.anim.drop_down, R.anim.pull_up, R.anim.pull_up, R.anim.pull_up);
+                    fragmentTransaction.replace(R.id.layout_game_map, new FragmentPreferencesDropDown());
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
                 }

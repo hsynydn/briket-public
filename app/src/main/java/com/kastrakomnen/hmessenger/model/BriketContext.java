@@ -4,9 +4,8 @@ import android.content.Context;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
+import android.os.AsyncTask;
 import android.util.Log;
-
-import androidx.core.app.NavUtils;
 
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
@@ -37,13 +36,15 @@ public class BriketContext implements GameStatCollector.ScoreListener, GameStatC
 
     private Stage currentStage;
 
-    public final Music MUSIC = new Music();
-    public final Sound SOUND = new Sound();
+    public Music music = new Music();
+    public Sound sound = new Sound();
 
     private BriketContext(){
         stages = new ArrayList<>();
         preferences = new Preferences();
         gameStatistics = new GameStatistics();
+        music = new Music();
+        sound = new Sound();
     }
 
     public static BriketContext getInstance() {
@@ -55,8 +56,8 @@ public class BriketContext implements GameStatCollector.ScoreListener, GameStatC
     }
 
     public void initializeSound(Context context){
-        SOUND.load(context);
-        MUSIC.load(context);
+        sound.load(context);
+        music.load(context);
     }
 
     public void initializeDatabase(Context context){
@@ -115,6 +116,32 @@ public class BriketContext implements GameStatCollector.ScoreListener, GameStatC
     public void reinitializeDatabase(Context context){
         stages.clear();
         initializeDatabase(context);
+    }
+
+    public void commitDatabase(Context context){
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                BriketDatabase db = BriketDatabase.getInstance(context);
+
+                PreferencesEntity preferencesEntity = new PreferencesEntity();
+                preferencesEntity.id = db.getPreferencesDAO().getPreferences().get(0).id;
+
+                if (preferences.isMusic()){
+                    preferencesEntity.music = 1;
+                }else{
+                    preferencesEntity.music = 0;
+                }
+
+                if (preferences.isSound()){
+                    preferencesEntity.sound = 1;
+                }else{
+                    preferencesEntity.sound = 0;
+                }
+
+                db.getPreferencesDAO().update(preferencesEntity);
+            }
+        });
     }
 
     public void initializeAdMob(Context context){
@@ -177,14 +204,21 @@ public class BriketContext implements GameStatCollector.ScoreListener, GameStatC
 
         public MediaPlayer game_play;
 
-        private boolean isOn = true;
+        private boolean isOn;
 
         public Music(){
+            isOn = false;
         }
 
         public void load(Context context){
             game_play = MediaPlayer.create(context, R.raw.music_game_play);
             game_play.setLooping(true);
+
+            if (BriketContext.getInstance().preferences.isMusic()){
+                setOn();
+            }else {
+                setOff();
+            }
         }
 
         public void setOn(){
@@ -224,7 +258,7 @@ public class BriketContext implements GameStatCollector.ScoreListener, GameStatC
 
         public Sound(){
 
-            this.isOn = true;
+            this.isOn = false;
 
             this.soundPool = new SoundPool.Builder()
                     .setMaxStreams(6)
@@ -238,6 +272,12 @@ public class BriketContext implements GameStatCollector.ScoreListener, GameStatC
 
         public void load(Context context){
             lineup = this.soundPool.load(context, R.raw.music_line_destroy, 1);
+
+            if (BriketContext.getInstance().preferences.isSound()){
+                setOn();
+            }else {
+                setOff();
+            }
         }
 
         public void setOn(){

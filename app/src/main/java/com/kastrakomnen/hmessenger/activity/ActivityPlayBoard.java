@@ -197,7 +197,7 @@ public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitC
         if (game.getGameState() == GameState.PRE_START){
             Log.d(TAG, "onStart called");
             game.start();
-            BriketContext.getInstance().MUSIC.play(BriketContext.getInstance().MUSIC.game_play);
+            BriketContext.getInstance().music.play(BriketContext.getInstance().music.game_play);
         }
     }
 
@@ -209,7 +209,7 @@ public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitC
             Log.d(TAG, "onResume called");
             game.resume();
             game.enableInputs();
-            BriketContext.getInstance().MUSIC.resume(BriketContext.getInstance().MUSIC.game_play);
+            BriketContext.getInstance().music.resume(BriketContext.getInstance().music.game_play);
         }else{
             Log.d(TAG, "onResume not called called");
         }
@@ -225,7 +225,7 @@ public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitC
         if (game.getGameState() == GameState.START || game.getGameState() == GameState.RESUME){
             game.pause();
 
-            BriketContext.getInstance().MUSIC.pause(BriketContext.getInstance().MUSIC.game_play);
+            BriketContext.getInstance().music.pause(BriketContext.getInstance().music.game_play);
 
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -241,7 +241,7 @@ public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitC
         Log.d(TAG, "onDestroy called");
         super.onDestroy();
         game.stop();
-        BriketContext.getInstance().MUSIC.stop(BriketContext.getInstance().MUSIC.game_play);
+        BriketContext.getInstance().music.stop(BriketContext.getInstance().music.game_play);
     }
 
     @Override

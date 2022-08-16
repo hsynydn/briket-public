@@ -5,9 +5,7 @@ public class Preferences {
     private boolean music;
     private boolean sound;
 
-    Preferences(){
-
-    }
+    Preferences(){}
 
     public void setMusic(boolean music) {
         this.music = music;

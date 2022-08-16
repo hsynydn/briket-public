@@ -33,11 +33,13 @@ public class FragmentPreferencesDropDown extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b){
-                    BriketContext.getInstance().MUSIC.setOn();
+                    BriketContext.getInstance().music.setOn();
                     BriketContext.getInstance().getPreferences().setMusic(true);
+                    BriketContext.getInstance().commitDatabase(getContext());
                 }else{
-                    BriketContext.getInstance().MUSIC.setOff();
+                    BriketContext.getInstance().music.setOff();
                     BriketContext.getInstance().getPreferences().setMusic(false);
+                    BriketContext.getInstance().commitDatabase(getContext());
                 }
             }
         });
@@ -49,11 +51,13 @@ public class FragmentPreferencesDropDown extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b){
-                    BriketContext.getInstance().SOUND.setOn();
+                    BriketContext.getInstance().sound.setOn();
                     BriketContext.getInstance().getPreferences().setSound(true);
+                    BriketContext.getInstance().commitDatabase(getContext());
                 }else{
-                    BriketContext.getInstance().SOUND.setOff();
+                    BriketContext.getInstance().sound.setOff();
                     BriketContext.getInstance().getPreferences().setSound(false);
+                    BriketContext.getInstance().commitDatabase(getContext());
                 }
             }
         });

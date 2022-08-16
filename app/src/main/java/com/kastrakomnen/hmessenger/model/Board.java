@@ -428,7 +428,7 @@ public class Board {
             displayUnitController.updateObjective(objective);
 
             if (combo > 0) {
-                BriketContext.getInstance().SOUND.play(BriketContext.getInstance().SOUND.lineup);
+                BriketContext.getInstance().sound.play(BriketContext.getInstance().sound.lineup);
             }
 
             activeSet = null;

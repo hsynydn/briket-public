@@ -15,9 +15,9 @@
 
         <ImageView
             android:id="@+id/imageView8"
-            android:layout_width="400dp"
-            android:layout_height="400dp"
-            android:src="@drawable/ic_fragment_background"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:background="@drawable/ic_game_over"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

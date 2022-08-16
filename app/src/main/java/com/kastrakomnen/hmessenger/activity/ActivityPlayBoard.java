@@ -307,12 +307,14 @@ public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitC
             Log.d(TAG, "Game ended");
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.setCustomAnimations(R.anim.from_left, R.anim.to_right, R.anim.from_left, R.anim.to_right);
             fragmentTransaction.replace(R.id.fragment_container, FragmentGameOverSummary.class, null);
             fragmentTransaction.commit();
         }else if(status.stageStatus == StageStatus.GAME_OVER_SUCCESS){
             Log.d(TAG, "Game ended");
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.setCustomAnimations(R.anim.from_left, R.anim.to_right, R.anim.from_left, R.anim.to_right);
             fragmentTransaction.replace(R.id.fragment_container, FragmentGameOverSuccess.class, null);
             fragmentTransaction.commit();
         }else{

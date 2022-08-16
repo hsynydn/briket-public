@@ -97,9 +97,9 @@ public class BriketContext implements GameStatCollector.ScoreListener, GameStatC
                 );
             }
             stage.setWinConditions(winConditions);
-
+            stage.setId(dbStage.id);
             stage.setLocked(dbStage.isLocked == 1);
-
+            stage.setCompleted(dbStage.isCompleted == 1);
             stage.setBrief(dbStage.summary);
             stage.setIndex(dbStage.idx);
             stage.setHighScore(dbStage.highScore);
@@ -110,17 +110,8 @@ public class BriketContext implements GameStatCollector.ScoreListener, GameStatC
         }
 
         List<PreferencesEntity> preferencesEntities = db.getPreferencesDAO().getPreferences();
-        if (preferencesEntities.get(0).music == 1){
-            preferences.setMusic(true);
-        }else{
-            preferences.setMusic(false);
-        }
-
-        if (preferencesEntities.get(0).sound == 1){
-            preferences.setSound(true);
-        }else{
-            preferences.setSound(false);
-        }
+        preferences.setMusic(preferencesEntities.get(0).music == 1);
+        preferences.setSound(preferencesEntities.get(0).sound == 1);
     }
 
     public void reinitializeDatabase(Context context){
@@ -137,19 +128,28 @@ public class BriketContext implements GameStatCollector.ScoreListener, GameStatC
                 PreferencesEntity preferencesEntity = new PreferencesEntity();
                 preferencesEntity.id = db.getPreferencesDAO().getPreferences().get(0).id;
 
-                if (preferences.isMusic()){
-                    preferencesEntity.music = 1;
-                }else{
-                    preferencesEntity.music = 0;
-                }
-
-                if (preferences.isSound()){
-                    preferencesEntity.sound = 1;
-                }else{
-                    preferencesEntity.sound = 0;
-                }
+                preferencesEntity.music = preferences.isMusic() ? 1 : 0;
+                preferencesEntity.sound = preferences.isSound() ? 1 : 0;
 
                 db.getPreferencesDAO().update(preferencesEntity);
+
+                StageEntity stageEntity = db.getStageDAO().getStageByID(currentStage.getId());
+                stageEntity.highScore = currentStage.getHighScore();
+                stageEntity.isCompleted = currentStage.isCompleted() ? 1 : 0;
+                stageEntity.isLocked = currentStage.isLocked() ? 1 : 0;
+
+                db.getStageDAO().update(stageEntity);
+
+                for (int i = 0; i < stages.size() - 1; i++) {
+                    if (stages.get(i).isCompleted() && stages.get(i + 1).isLocked()){
+                        stages.get(i + 1).setLocked(false);
+
+                        StageEntity tmp = db.getStageDAO().getStageByID(stages.get(i + 1).getId());
+                        tmp.isLocked = stages.get(i + 1).isLocked() ? 1 : 0;
+
+                        db.getStageDAO().update(tmp);
+                    }
+                }
             }
         });
     }

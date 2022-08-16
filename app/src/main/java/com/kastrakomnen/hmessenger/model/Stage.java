@@ -8,6 +8,10 @@ import java.util.ArrayList;
 public class Stage {
 
     /**
+     * A number unique for every stage*/
+    private int id;
+
+    /**
      * A number indicates an orders in stages*/
     private int index;
 
@@ -46,6 +50,18 @@ public class Stage {
     /**
      * Indicates whether this stage can be played */
     private boolean isLocked;
+
+    /**
+     * Indicates whether this stage can be played */
+    private boolean isCompleted;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public DistributionType getDistributionType(){
         return distributionType;
@@ -99,6 +115,14 @@ public class Stage {
 
     public boolean isLocked() {
         return isLocked;
+    }
+
+    public void setCompleted(boolean completed) {
+        isCompleted = completed;
+    }
+
+    public boolean isCompleted() {
+        return isCompleted;
     }
 
     public void setBrief(String brief) {

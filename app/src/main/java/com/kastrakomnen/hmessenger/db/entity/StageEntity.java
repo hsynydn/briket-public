@@ -33,6 +33,10 @@ public class StageEntity {
 
     @ColumnInfo(defaultValue = "1") @NonNull
     public int isLocked;
+
+    @ColumnInfo(defaultValue = "0") @NonNull
+    public int isCompleted;
+
     public String summary;
 
     public int botBehaviour;

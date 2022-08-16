@@ -27,6 +27,9 @@ public interface StageDAO {
     @Query("SELECT * FROM Stage")
     public List<StageEntity> getStages();
 
+    @Query("SELECT * FROM Stage WHERE id==:stageID")
+    public StageEntity getStageByID(int stageID);
+
     @Query("SELECT Formation.* FROM StageFormation INNER JOIN Formation On StageFormation.stageID==:stageID AND StageFormation.formationID=Formation.id")
     public List<FormationEntity> getFormations(int stageID);
 

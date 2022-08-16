@@ -309,6 +309,8 @@ public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitC
     @Override
     public void end(DisplayData.Status status) {
 
+        BriketContext.getInstance().commitDatabase(this);
+
         if (status.stageStatus == StageStatus.GAME_OVER_FAIL){
             Log.d(TAG, "Game ended");
             FragmentManager fragmentManager = getSupportFragmentManager();

@@ -396,32 +396,40 @@ public class Board {
                 }
             }
 
-            gameStatCollector.setCombo(list2Delete.size());
+            int combo = list2Delete.size();
+
+            if (combo >= 2){
+                gameStatCollector.setCombo(combo);
+
+                switch (combo){
+                    case 2:
+                        displayUnitController.popUp(DisplayData.PopUpEvent.COMBOx2);
+                        break;
+                    case 3:
+                        displayUnitController.popUp(DisplayData.PopUpEvent.COMBOx3);
+                        break;
+                    case 4:
+                        displayUnitController.popUp(DisplayData.PopUpEvent.COMBOx4);
+                        break;
+                    case 5:
+                        displayUnitController.popUp(DisplayData.PopUpEvent.COMBOx5);
+                        break;
+                }
+            }
+
             gameStatCollector.setScore(score);
             gameStatCollector.setTime(0);
 
             this.updateVisibleBoard();
 
-            int combo = list2Delete.size();
-
-            switch (combo){
-                case 2:
-                    displayUnitController.popUp(DisplayData.PopUpEvent.COMBOx2);
-                    break;
-                case 3:
-                    displayUnitController.popUp(DisplayData.PopUpEvent.COMBOx3);
-                    break;
-                case 4:
-                    displayUnitController.popUp(DisplayData.PopUpEvent.COMBOx4);
-                    break;
-                case 5:
-                    displayUnitController.popUp(DisplayData.PopUpEvent.COMBOx5);
-                    break;
-            }
             displayUnitController.refresh(visibleBoard);
             displayUnitController.gainScore(scores);
             displayUnitController.setScore(score);
             displayUnitController.updateObjective(objective);
+
+            if (combo > 0) {
+                BriketContext.getInstance().SOUND.play(BriketContext.getInstance().SOUND.lineup);
+            }
 
             activeSet = null;
             return false;

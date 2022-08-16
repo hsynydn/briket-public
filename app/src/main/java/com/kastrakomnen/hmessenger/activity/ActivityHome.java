@@ -101,6 +101,7 @@ public class ActivityHome extends AppCompatActivity {
             public void run() {
                 Log.d(TAG, "BriketContext.loading started");
                 BriketContext.getInstance().initializeDatabase(ActivityHome.this);
+                BriketContext.getInstance().initializeSound(ActivityHome.this);
                 BriketContext.getInstance().initializeAdMob(ActivityHome.this);
                 BriketContext.getInstance().initializeGooglePlayServices(ActivityHome.this);
                 Log.d(TAG, "BriketContext.loading finished");

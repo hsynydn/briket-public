@@ -1,6 +1,9 @@
 package com.kastrakomnen.hmessenger.model;
 
 import android.content.Context;
+import android.media.AudioAttributes;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.util.Log;
 
 import androidx.core.app.NavUtils;
@@ -8,6 +11,7 @@ import androidx.core.app.NavUtils;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.kastrakomnen.hmessenger.R;
 import com.kastrakomnen.hmessenger.db.BriketDatabase;
 import com.kastrakomnen.hmessenger.db.entity.FormationEntity;
 import com.kastrakomnen.hmessenger.db.entity.PreferencesEntity;
@@ -33,6 +37,9 @@ public class BriketContext implements GameStatCollector.ScoreListener, GameStatC
 
     private Stage currentStage;
 
+    public final Music MUSIC = new Music();
+    public final Sound SOUND = new Sound();
+
     private BriketContext(){
         stages = new ArrayList<>();
         preferences = new Preferences();
@@ -45,6 +52,11 @@ public class BriketContext implements GameStatCollector.ScoreListener, GameStatC
         }
 
         return instance;
+    }
+
+    public void initializeSound(Context context){
+        SOUND.load(context);
+        MUSIC.load(context);
     }
 
     public void initializeDatabase(Context context){
@@ -159,5 +171,85 @@ public class BriketContext implements GameStatCollector.ScoreListener, GameStatC
     @Override
     public void onTimeEvent(int time) {
         gameStatistics.setElapsedTime(time);
+    }
+
+    public class Music{
+
+        public MediaPlayer game_play;
+
+        private boolean isOn = true;
+
+        public Music(){
+        }
+
+        public void load(Context context){
+            game_play = MediaPlayer.create(context, R.raw.music_game_play);
+            game_play.setLooping(true);
+        }
+
+        public void setOn(){
+            isOn = true;
+        }
+
+        public void setOff(){
+            isOn = false;
+        }
+
+        public void play(MediaPlayer mediaPlayer){
+            if (isOn) {
+                mediaPlayer.start();
+            }
+        }
+
+        public void pause(MediaPlayer mediaPlayer){
+            mediaPlayer.pause();
+        }
+
+        public void resume(MediaPlayer mediaPlayer){
+            if (isOn) mediaPlayer.start();
+        }
+
+        public void stop(MediaPlayer mediaPlayer){
+            mediaPlayer.pause();
+        }
+    }
+
+    public class Sound{
+
+        private boolean isOn;
+        private SoundPool soundPool;
+
+        /* Sound IDs */
+        public int lineup;
+
+        public Sound(){
+
+            this.isOn = true;
+
+            this.soundPool = new SoundPool.Builder()
+                    .setMaxStreams(6)
+                    .setAudioAttributes(new AudioAttributes.Builder()
+                            .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+                            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                            .build()
+                    )
+                    .build();
+        }
+
+        public void load(Context context){
+            lineup = this.soundPool.load(context, R.raw.music_line_destroy, 1);
+        }
+
+        public void setOn(){
+            isOn = true;
+        }
+
+        public void setOff(){
+            isOn = false;
+        }
+
+        public void play(int sound){
+            if (isOn) soundPool.play(sound, 1f, 1f, 0, 0, 1f);
+        }
     }
 }

@@ -35,8 +35,8 @@
 
         <ImageView
             android:id="@+id/imageView4"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@drawable/ic_fuscia_briket"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -47,8 +47,8 @@
 
         <ImageView
             android:id="@+id/imageView9"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@drawable/ic_blue_briket"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -57,32 +57,30 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/chip4"
+            android:id="@+id/fragment_preferences_drop_down_switch_music"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:backgroundTint="@android:color/transparent"
-            android:checked="true"
+            android:thumb="@drawable/switch_thumb"
             app:layout_constraintBottom_toBottomOf="@+id/imageView4"
             app:layout_constraintEnd_toEndOf="@+id/imageView4"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/imageView4"
             app:layout_constraintTop_toTopOf="@+id/imageView4"
-            android:theme="@style/ThemeOverlay.MySwitchCompat"
-            />
+            app:track="@drawable/switch_track_blue" />
 
         <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/chip5"
+            android:id="@+id/fragment_preferences_drop_down_switch_sound"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
+            android:thumb="@drawable/switch_thumb"
             app:layout_constraintBottom_toBottomOf="@+id/imageView9"
             app:layout_constraintEnd_toEndOf="@+id/imageView9"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/imageView9"
             app:layout_constraintTop_toTopOf="@+id/imageView9"
-            android:theme="@style/ThemeOverlay.MySwitchCompat"
-            />
+            app:track="@drawable/switch_track_red" />
 
         <TextView
             android:id="@+id/textView6"

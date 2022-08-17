@@ -15,12 +15,14 @@ import com.kastrakomnen.hmessenger.model.BriketContext;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 public class ProgressCardAdapter extends RecyclerView.Adapter<ProgressCardAdapter.ViewHolder> {
 
     private ItemClickListener itemClickListener;
 
-    List<ProgressCard> progressCards;
+    private List<ProgressCard> progressCards;
+    private final Random random = new Random();
 
     public ProgressCardAdapter(List<ProgressCard> progressCards){
         this.progressCards = progressCards;
@@ -81,6 +83,7 @@ public class ProgressCardAdapter extends RecyclerView.Adapter<ProgressCardAdapte
 
             holder.setItemClickListener(null);
         }else{
+
             holder.box.setImageResource(R.drawable.ic_fuscia_briket);
 
             if (progressCard.getEarnStar() == 0){

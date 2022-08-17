@@ -11,8 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kastrakomnen.hmessenger.R;
+import com.kastrakomnen.hmessenger.model.BriketContext;
 
 import java.util.List;
+import java.util.Locale;
 
 public class ProgressCardAdapter extends RecyclerView.Adapter<ProgressCardAdapter.ViewHolder> {
 
@@ -43,7 +45,25 @@ public class ProgressCardAdapter extends RecyclerView.Adapter<ProgressCardAdapte
         // Fill data in here
         ProgressCard progressCard = progressCards.get(position);
 
-        holder.tv_chapter_no.setText(Integer.toString(progressCard.getIndex()));
+        holder.tv_chapter_no.setText(
+                String.format(
+                        Locale.getDefault(),
+                        "%s",
+                        BriketContext.getInstance().getStages().get(position).getIndex()
+                )
+        );
+
+        holder.tv_stage_name.setText(
+                BriketContext.getInstance().getStages().get(position).getName()
+        );
+
+        holder.tv_hi_score.setText(
+                String.format(
+                        Locale.getDefault(),
+                        "%s",
+                        BriketContext.getInstance().getStages().get(position).getHighScore()
+                )
+        );
 
         if (progressCard.isLocked()){
 
@@ -97,6 +117,7 @@ public class ProgressCardAdapter extends RecyclerView.Adapter<ProgressCardAdapte
         ImageView star3;
 
         TextView tv_chapter_no;
+        TextView tv_stage_name;
         TextView tv_hi_score;
         TextView tv_hi_score_title;
 
@@ -111,6 +132,7 @@ public class ProgressCardAdapter extends RecyclerView.Adapter<ProgressCardAdapte
             star2       = itemView.findViewById(R.id.iv_star_2);
             star3       = itemView.findViewById(R.id.iv_star_3);
             tv_chapter_no = itemView.findViewById(R.id.tv_chapter_no);
+            tv_stage_name = itemView.findViewById(R.id.tv_stage_name);
             tv_hi_score   = itemView.findViewById(R.id.tv_hi_score);
             tv_hi_score_title   = itemView.findViewById(R.id.tv_high_score_title);
         }

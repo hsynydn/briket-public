@@ -13,6 +13,10 @@ public class Stage {
     private int id;
 
     /**
+     * A human readable name for the stage */
+    private String name;
+
+    /**
      * A number indicates an orders in stages*/
     private int index;
 
@@ -72,6 +76,14 @@ public class Stage {
 
     public int getId() {
         return id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public DistributionType getDistributionType(){

@@ -84,6 +84,7 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
             progressCard.setLocked(stage.isLocked());
             progressCard.setHighScore(stage.getHighScore());
             progressCard.setIndex(stage.getIndex());
+            progressCard.setName(stage.getName());
 
             progressCardList.add(progressCard);
         }

@@ -113,6 +113,7 @@ public class BriketContext implements GameStatCollector.ScoreListener, GameStatC
 
             stage.setWinConditions(winConditions);
             stage.setId(dbStage.id);
+            stage.setName(dbStage.name);
             stage.setLocked(dbStage.isLocked == 1);
             stage.setCompleted(dbStage.isCompleted == 1);
             stage.setBrief(dbStage.summary);

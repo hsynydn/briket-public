@@ -73,7 +73,7 @@
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="@+id/iv_box"
         app:layout_constraintStart_toStartOf="@+id/iv_box"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_stage_name" />
 
     <TextView
         android:id="@+id/tv_high_score_title"
@@ -87,7 +87,7 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_star_3" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tv_stage_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/amarante"

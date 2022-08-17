@@ -361,18 +361,15 @@ public class PlayBoardView extends View {
 
     public void refresh(ArrayList<ArrayList<Brick>> board) {
 
-        for (ArrayList<Drawable> row : mDrawableBoardObjects) {
-            for (int i = 0; i < row.size(); i++) {
-                row.set(i, mDrawableEmptyRegion);
-            }
-        }
-
         for (int i = 0; i < board.size(); i++) {
             for (int j = 0; j < board.get(i).size(); j++) {
 
                 Brick brick = board.get(i).get(j);
 
-                if (brick == null) continue;
+                if (brick == null) {
+                    mDrawableBoardObjects.get(i).set(j, mDrawableEmptyRegion);
+                    continue;
+                };
 
                 if (brick.getBrickType() == BrickType.NORMAL){
                     switch (brick.getSet().getSetType()){

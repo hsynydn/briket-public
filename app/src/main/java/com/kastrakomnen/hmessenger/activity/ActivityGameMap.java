@@ -46,6 +46,10 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
     private AdView adView;
     private Animation logoBreathingAnimation;
 
+    private RecyclerView recyclerView;
+    private List<ProgressCard> progressCardList;
+    private ProgressCardAdapter progressCardAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,25 +79,6 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
 
         this.logoBreathingAnimation = AnimationUtils.loadAnimation(this, R.anim.breathing);
         findViewById(R.id.game_map_iv_logo).setAnimation(logoBreathingAnimation);
-
-        RecyclerView recyclerView = findViewById(R.id.rv_progress_cards);
-
-        List<ProgressCard> progressCardList = new ArrayList<>();
-        for (Stage stage : BriketContext.getInstance().getStages()) {
-            ProgressCard progressCard = new ProgressCard();
-            progressCard.setLocked(stage.isLocked());
-            progressCard.setHighScore(stage.getHighScore());
-            progressCard.setIndex(stage.getIndex());
-            progressCard.setName(stage.getName());
-
-            progressCardList.add(progressCard);
-        }
-
-        ProgressCardAdapter progressCardAdapter = new ProgressCardAdapter(progressCardList);
-        progressCardAdapter.setClickListener(this);
-
-        recyclerView.setAdapter(progressCardAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
         findViewById(R.id.iv_settings).setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -138,6 +123,8 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
     protected void onResume() {
         super.onResume();
 
+        Log.d(TAG, "onResume");
+
         AdRequest adRequest = new AdRequest.Builder().build();
 
         InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712", adRequest,
@@ -161,5 +148,22 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
 
         adView = findViewById(R.id.adView);
         adView.loadAd(adRequest);
+
+        recyclerView = findViewById(R.id.rv_progress_cards);
+        progressCardList = new ArrayList<>();
+        progressCardAdapter = new ProgressCardAdapter(progressCardList);
+        progressCardAdapter.setClickListener(this);
+        recyclerView.setAdapter(progressCardAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        for (Stage stage : BriketContext.getInstance().getStages()) {
+            ProgressCard progressCard = new ProgressCard();
+            progressCard.setLocked(stage.isLocked());
+            progressCard.setHighScore(stage.getHighScore());
+            progressCard.setIndex(stage.getIndex());
+            progressCard.setName(stage.getName());
+
+            progressCardList.add(progressCard);
+        }
     }
 }

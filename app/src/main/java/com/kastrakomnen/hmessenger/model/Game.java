@@ -302,7 +302,6 @@ public class Game implements GameInputListener, Subscriber, GameStatCollector.Wi
             this.disableInputs();
             stop();
             displayUnitController.end(new DisplayData.Status(StageStatus.GAME_OVER_SUCCESS));
-            BriketContext.getInstance().getCurrentStage().setCompleted(true);
         }
     }
 }

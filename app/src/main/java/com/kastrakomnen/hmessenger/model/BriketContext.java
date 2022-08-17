@@ -154,6 +154,7 @@ public class BriketContext implements GameStatCollector.ScoreListener, GameStatC
                 stageEntity.highScore = currentStage.getHighScore();
                 stageEntity.isCompleted = currentStage.isCompleted() ? 1 : 0;
                 stageEntity.isLocked = currentStage.isLocked() ? 1 : 0;
+                stageEntity.highScore = currentStage.getHighScore();
 
                 db.getStageDAO().update(stageEntity);
 
@@ -203,6 +204,7 @@ public class BriketContext implements GameStatCollector.ScoreListener, GameStatC
     @Override
     public void onScoreEvent(int score) {
         gameStatistics.setScore(score);
+        currentStage.setScore(score);
     }
 
     @Override

@@ -26,11 +26,12 @@ import com.kastrakomnen.hmessenger.model.Subscriber;
 import com.kastrakomnen.hmessenger.model.display.DisplayData;
 import com.kastrakomnen.hmessenger.model.display.DisplayUnitController;
 import com.kastrakomnen.hmessenger.model.set.Brick;
+import com.kastrakomnen.hmessenger.model.stat.GameStatCollector;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitController{
+public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitController {
 
     private static final String TAG = "{PlayScreen}";
 
@@ -309,9 +310,14 @@ public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitC
     @Override
     public void end(DisplayData.Status status) {
 
-        BriketContext.getInstance().commitDatabase(this);
+        if (BriketContext.getInstance().getCurrentStage().getScore() > BriketContext.getInstance().getCurrentStage().getHighScore()){
+            BriketContext.getInstance().getCurrentStage().setHighScore(BriketContext.getInstance().getCurrentStage().getScore());
+        }
 
         if (status.stageStatus == StageStatus.GAME_OVER_FAIL){
+
+            BriketContext.getInstance().commitDatabase(this);
+
             Log.d(TAG, "Game ended");
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -319,6 +325,9 @@ public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitC
             fragmentTransaction.replace(R.id.fragment_container, FragmentGameOverSummary.class, null);
             fragmentTransaction.commit();
         }else if(status.stageStatus == StageStatus.GAME_OVER_SUCCESS){
+            BriketContext.getInstance().getCurrentStage().setCompleted(true);
+            BriketContext.getInstance().commitDatabase(this);
+
             Log.d(TAG, "Game ended");
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

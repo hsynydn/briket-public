@@ -23,7 +23,10 @@ import com.kastrakomnen.hmessenger.db.BriketDatabase;
 import com.kastrakomnen.hmessenger.db.entity.FormationEntity;
 import com.kastrakomnen.hmessenger.db.entity.PreferencesEntity;
 import com.kastrakomnen.hmessenger.db.entity.StageEntity;
+import com.kastrakomnen.hmessenger.db.entity.intermediate.AgentIntermediateData;
 import com.kastrakomnen.hmessenger.db.entity.intermediate.WinConditionIntermediateData;
+import com.kastrakomnen.hmessenger.model.set.Agent;
+import com.kastrakomnen.hmessenger.model.set.BrickType;
 import com.kastrakomnen.hmessenger.model.set.FormationType;
 import com.kastrakomnen.hmessenger.model.stat.DistributionType;
 import com.kastrakomnen.hmessenger.model.stat.GameStatCollector;
@@ -96,6 +99,18 @@ public class BriketContext implements GameStatCollector.ScoreListener, GameStatC
                                 winCondition.numberOfObjective)
                 );
             }
+
+            /* Set Up Agents */
+            ArrayList<Agent> agents = new ArrayList<>();
+            for (AgentIntermediateData agentIntermediateData: db.getStageDAO().getAgents(dbStage.id)) {
+                agents.add(
+                        new Agent(
+                                BrickType.valueOf(agentIntermediateData.agentType),
+                                DistributionType.valueOf(agentIntermediateData.distributionType)
+                        )
+                );
+            }
+
             stage.setWinConditions(winConditions);
             stage.setId(dbStage.id);
             stage.setLocked(dbStage.isLocked == 1);
@@ -105,6 +120,7 @@ public class BriketContext implements GameStatCollector.ScoreListener, GameStatC
             stage.setHighScore(dbStage.highScore);
             stage.setScore(dbStage.lastScore);
             stage.setDistributionType(DistributionType.UNIFORM);
+            stage.setAgents(agents);
 
             stages.add(stage);
         }

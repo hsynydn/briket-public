@@ -5,6 +5,7 @@ import android.util.Log;
 import com.kastrakomnen.hmessenger.model.display.DisplayData;
 import com.kastrakomnen.hmessenger.model.display.DisplayUnitController;
 import com.kastrakomnen.hmessenger.model.policy.PolicyChecker;
+import com.kastrakomnen.hmessenger.model.set.Agent;
 import com.kastrakomnen.hmessenger.model.set.BrickType;
 import com.kastrakomnen.hmessenger.model.set.FormationType;
 import com.kastrakomnen.hmessenger.model.set.Set;
@@ -82,15 +83,17 @@ public class Game implements GameInputListener, Subscriber, GameStatCollector.Wi
                 new SetBuilder()
         );
 
-        setModifiers.add(
-                new PApplier<>(
-                        new Distribution<Boolean>(
-                                DistributionTableBuilder.build(DistributionType.PROB_40, null),
-                                DistributionTableBuilder.BOOLEAN
-                        ),
-                        setModifierFactory.createProduct(BrickType.STAR)
-                )
-        );
+        for (Agent agent : stage.getAgents()) {
+            setModifiers.add(
+                    new PApplier<>(
+                            new Distribution<Boolean>(
+                                    DistributionTableBuilder.build(agent.getDistributionType(), null),
+                                    DistributionTableBuilder.BOOLEAN
+                            ),
+                            setModifierFactory.createProduct(agent.getBrickType())
+                    )
+            );
+        }
     }
 
     public void start(){

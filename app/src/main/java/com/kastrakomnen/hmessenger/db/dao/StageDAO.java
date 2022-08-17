@@ -8,6 +8,7 @@ import androidx.room.Update;
 
 import com.kastrakomnen.hmessenger.db.entity.FormationEntity;
 import com.kastrakomnen.hmessenger.db.entity.StageEntity;
+import com.kastrakomnen.hmessenger.db.entity.intermediate.AgentIntermediateData;
 import com.kastrakomnen.hmessenger.db.entity.intermediate.WinConditionIntermediateData;
 
 import java.util.List;
@@ -35,4 +36,7 @@ public interface StageDAO {
 
     @Query("SELECT WinCondition.name AS winConditionName, WinConditionDetail.timeBound, WinConditionDetail.numberOfObjective FROM StageWithWinConditionDetails, WinConditionDetail, WinCondition WHERE StageWithWinConditionDetails.stageID=:stageID AND WinConditionDetail.winConditionID=WinCondition.id")
     public List<WinConditionIntermediateData> getWinConditionDetails(int stageID);
+
+    @Query("SELECT Distribution.name AS distributionType, Agent.name AS agentType FROM StageAgent INNER JOIN Agent ON StageAgent.stageID=:stageID AND StageAgent.agentID==Agent.id INNER JOIN Distribution ON StageAgent.distributionID==Distribution.id")
+    public List<AgentIntermediateData> getAgents(int stageID);
 }

@@ -1,5 +1,6 @@
 package com.kastrakomnen.hmessenger.model;
 
+import com.kastrakomnen.hmessenger.model.set.Agent;
 import com.kastrakomnen.hmessenger.model.set.FormationType;
 import com.kastrakomnen.hmessenger.model.stat.DistributionType;
 
@@ -54,6 +55,16 @@ public class Stage {
     /**
      * Indicates whether this stage can be played */
     private boolean isCompleted;
+
+    private ArrayList<Agent> agents;
+
+    public void setAgents(ArrayList<Agent> agents) {
+        this.agents = agents;
+    }
+
+    public ArrayList<Agent> getAgents() {
+        return agents;
+    }
 
     public void setId(int id) {
         this.id = id;

@@ -44,8 +44,8 @@ public class BriketContext implements GameStatCollector.ScoreListener, GameStatC
 
     private Stage currentStage;
 
-    public Music music = new Music();
-    public Sound sound = new Sound();
+    public Music music;
+    public Sound sound;
 
     public InterstitialAd mInterstitialAd;
 

@@ -82,15 +82,11 @@ public class Game implements GameInputListener, Subscriber, GameStatCollector.Wi
                 new SetBuilder()
         );
 
-        ArrayList<Boolean> booleans = new ArrayList<>();
-        booleans.add(true);
-        booleans.add(false);
-
         setModifiers.add(
                 new PApplier<>(
                         new Distribution<Boolean>(
                                 DistributionTableBuilder.build(DistributionType.PROB_40, null),
-                                booleans
+                                DistributionTableBuilder.BOOLEAN
                         ),
                         setModifierFactory.createProduct(BrickType.STAR)
                 )

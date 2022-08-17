@@ -1,8 +1,11 @@
 package com.kastrakomnen.hmessenger.model.stat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class DistributionTableBuilder {
+
+    public static final ArrayList<Boolean> BOOLEAN = new ArrayList<>(Arrays.asList(true, false));
 
     public static ArrayList<Integer> build(DistributionType distributionType, Integer partition){
 

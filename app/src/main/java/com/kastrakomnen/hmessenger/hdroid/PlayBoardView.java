@@ -377,9 +377,12 @@ public class PlayBoardView extends View {
                             mDrawableBoardObjects.get(i).set(j, mDrawableBrickBlue);
                             break;
                         case LINE:
+                        case LINE3:
                             mDrawableBoardObjects.get(i).set(j, mDrawableBrickOrange);
                             break;
                         case T:
+                        case DIAG2:
+                        case DIAG3:
                             mDrawableBoardObjects.get(i).set(j, mDrawableBrickGreen);
                             break;
                         case J:
@@ -387,6 +390,7 @@ public class PlayBoardView extends View {
                             mDrawableBoardObjects.get(i).set(j, mDrawableBrickRed);
                             break;
                         case L:
+                        case L3:
                             mDrawableBoardObjects.get(i).set(j, mDrawableBrickPink);
                             break;
                     }

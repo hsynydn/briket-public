@@ -3,8 +3,12 @@ package com.kastrakomnen.hmessenger.model.set;
 public enum SetType {
     BOX,
     L,
+    L3,
     J,
     T,
     LINE,
-    Z
+    LINE3,
+    Z,
+    DIAG2,
+    DIAG3
 }

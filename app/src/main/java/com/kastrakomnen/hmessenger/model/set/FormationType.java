@@ -25,6 +25,10 @@ public enum FormationType {
     LINE3_CW90(1),
     LINE3_CW180(1),
     LINE3_CW270(1),
+    LINE5_CW0(1),
+    LINE5_CW90(1),
+    LINE5_CW180(1),
+    LINE5_CW270(1),
     Z_CW0(1),
     Z_CW90(1),
     Z_CW180(1),
@@ -40,7 +44,15 @@ public enum FormationType {
     DIAG3_CW0(1),
     DIAG3_CW90(1),
     DIAG3_CW180(1),
-    DIAG3_CW270(1)
+    DIAG3_CW270(1),
+    MILL_CW0(1),
+    MILL_CW90(1),
+    MILL_CW180(1),
+    MILL_CW270(1),
+    HALF_MILL_CW0(1),
+    HALF_MILL_CW90(1),
+    HALF_MILL_CW180(1),
+    HALF_MILL_CW270(1)
     ;
 
     private int formationToughness;

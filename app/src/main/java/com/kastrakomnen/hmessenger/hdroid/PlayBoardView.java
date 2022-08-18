@@ -374,10 +374,13 @@ public class PlayBoardView extends View {
                 if (brick.getBrickType() == BrickType.NORMAL){
                     switch (brick.getSet().getSetType()){
                         case BOX:
+                        case MILL:
+                        case HALF_MILL:
                             mDrawableBoardObjects.get(i).set(j, mDrawableBrickBlue);
                             break;
                         case LINE:
                         case LINE3:
+                        case LINE5:
                             mDrawableBoardObjects.get(i).set(j, mDrawableBrickOrange);
                             break;
                         case T:

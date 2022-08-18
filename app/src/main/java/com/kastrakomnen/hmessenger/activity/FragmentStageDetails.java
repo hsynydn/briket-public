@@ -1,10 +1,12 @@
 package com.kastrakomnen.hmessenger.activity;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -13,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
 import com.google.android.gms.ads.AdError;
@@ -27,8 +30,19 @@ import com.kastrakomnen.hmessenger.model.BriketContext;
 public class FragmentStageDetails extends Fragment {
 
     private static final String TAG = "{FragmentStageDetails}";
+    private int screenWidth;
+    private int screenHeight;
 
-//    public InterstitialAd mInterstitialAd;
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        screenWidth = getContext().getResources().getDisplayMetrics().widthPixels;
+        screenHeight = getContext().getResources().getDisplayMetrics().heightPixels;
+
+        Log.d(TAG, Integer.toString(screenHeight));
+        Log.d(TAG, Integer.toString(screenWidth));
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,17 +53,33 @@ public class FragmentStageDetails extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        getView().findViewById(R.id.sd_button_ok).setVisibility(View.INVISIBLE);
+        ConstraintLayout constraintLayout = getView().findViewById(R.id.fragment_stage_details_background_layout);
 
-        getView().findViewById(R.id.sd_button_back).setOnTouchListener(new View.OnTouchListener() {
+        ViewGroup.LayoutParams layoutParams = constraintLayout.getLayoutParams();
+        layoutParams.height = screenWidth;
+        layoutParams.width = screenWidth;
+        constraintLayout.setLayoutParams(layoutParams);
+
+        ImageButton okButton = getView().findViewById(R.id.sd_button_ok);
+        okButton.setVisibility(View.INVISIBLE);
+        ViewGroup.LayoutParams okButtonLayoutParams = okButton.getLayoutParams();
+        okButtonLayoutParams.height = screenWidth / 3;
+        okButtonLayoutParams.width = screenWidth / 3;
+        okButton.setLayoutParams(okButtonLayoutParams);
+
+        ImageButton cancelButton = getView().findViewById(R.id.sd_button_back);
+        ViewGroup.LayoutParams cancelButtonLayoutParams = cancelButton.getLayoutParams();
+        cancelButtonLayoutParams.height = screenWidth / 6;
+        cancelButtonLayoutParams.width = screenWidth / 6;
+        cancelButton.setLayoutParams(cancelButtonLayoutParams);
+
+        cancelButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.quit_button_pressed));
-                }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
                     ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.quit_button_unpressed));
-
+                }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.quit_button_pressed));
                     getParentFragmentManager().popBackStack();
                 }
 
@@ -57,13 +87,13 @@ public class FragmentStageDetails extends Fragment {
             }
         });
 
-        getView().findViewById(R.id.sd_button_ok).setOnTouchListener(new View.OnTouchListener() {
+        okButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.play_button_pressed));
-                }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
                     ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.play_button_unpressed));
+                }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.play_button_pressed));
 
                     Intent intent = new Intent(getActivity(), ActivityPlayBoard.class);
                     startActivity(intent);

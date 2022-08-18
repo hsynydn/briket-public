@@ -5,7 +5,7 @@
     android:id="@+id/root_layout_game_map"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_game_map_background">
+    android:background="#F7ECDE">
 
     <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
     <!--        android:id="@+id/layout_fragment_options"-->

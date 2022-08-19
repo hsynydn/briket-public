@@ -15,6 +15,7 @@ public interface DisplayUnitController extends Publisher {
     void move(DisplayData.Brick brick, Position from, Position to);
 
     void refresh(ArrayList<ArrayList<Brick>> board);
+    void refreshWitchAnimation(ArrayList<ArrayList<Brick>> board, ArrayList<DisplayData.DeletionAnimation> deletionAnimations);
 
     void move(
             ArrayList<DisplayData.Brick> brickArrayList,

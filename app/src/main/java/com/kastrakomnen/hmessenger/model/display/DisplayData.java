@@ -41,6 +41,14 @@ public class DisplayData {
         }
     }
 
+    public static class DeletionAnimation{
+        public int at;
+
+        public DeletionAnimation(int at){
+            this.at = at;
+        }
+    }
+
     public static class Status{
         public StageStatus stageStatus;
 

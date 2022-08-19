@@ -325,6 +325,7 @@ public class Board {
                 }
             }
 
+            ArrayList<DisplayData.DeletionAnimation> deletionAnimations = new ArrayList<>();
             ArrayList<DisplayData.Score> scores = new ArrayList<>();
             for (Triple<BoardEvent, Integer, ArrayList<Position>> triple :  list2Delete) {
 
@@ -345,6 +346,7 @@ public class Board {
                         }
                         board.remove((int)triple.component2());
                         scores.add(new DisplayData.Score(triple.component2() - invisibleHeight, 12 * totalToughness));
+                        deletionAnimations.add(new DisplayData.DeletionAnimation(triple.component2() - invisibleHeight));
                         score+=12 * totalToughness;
 
                         newRow = new ArrayList<>();
@@ -366,6 +368,7 @@ public class Board {
                         }
                         board.remove((int)triple.component2());
                         scores.add(new DisplayData.Score(triple.component2() - invisibleHeight, 12 * totalToughness));
+                        deletionAnimations.add(new DisplayData.DeletionAnimation(triple.component2() - invisibleHeight));
                         score+=12 * totalToughness;
 
                         newRow = new ArrayList<>();
@@ -390,6 +393,7 @@ public class Board {
                         }
 
                         scores.add(new DisplayData.Score(triple.component3().get(0).getY() - invisibleHeight, 12 * totalToughness));
+                        deletionAnimations.add(new DisplayData.DeletionAnimation(triple.component2() - invisibleHeight));
                         score+=12 * totalToughness;
 
                         break;
@@ -422,7 +426,7 @@ public class Board {
 
             this.updateVisibleBoard();
 
-            displayUnitController.refresh(visibleBoard);
+            displayUnitController.refreshWitchAnimation(visibleBoard, deletionAnimations);
             displayUnitController.gainScore(scores);
             displayUnitController.setScore(score);
             displayUnitController.updateObjective(objective);

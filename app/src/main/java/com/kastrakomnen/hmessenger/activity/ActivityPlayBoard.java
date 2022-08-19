@@ -268,6 +268,12 @@ public class ActivityPlayBoard extends AppCompatActivity implements DisplayUnitC
     }
 
     @Override
+    public void refreshWitchAnimation(ArrayList<ArrayList<Brick>> board, ArrayList<DisplayData.DeletionAnimation> deletionAnimations) {
+        playBoardView.refreshWithAnimation(board, deletionAnimations);
+        publish();
+    }
+
+    @Override
     public void move(ArrayList<DisplayData.Brick> brickArrayList, ArrayList<Position> fromPositions, ArrayList<Position> toPositions) {
 
     }

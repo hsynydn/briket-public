@@ -8,11 +8,15 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.BounceInterpolator;
+import android.view.animation.OvershootInterpolator;
 
 import androidx.annotation.Nullable;
+import androidx.interpolator.view.animation.FastOutLinearInInterpolator;
 
 import com.kastrakomnen.hmessenger.R;
 import com.kastrakomnen.hmessenger.model.set.Brick;
@@ -31,6 +35,8 @@ public class PlayBoardView extends View {
 
     private ArrayList<ArrayList<Rect>> mRectBoardObjects;
     private ArrayList<ArrayList<Drawable>> mDrawableBoardObjects;
+    private ArrayList<ArrayList<Rect>> mRectBoardAnimationObjects;
+    private ArrayList<Boolean> mGateAnimations;
 
     private Random mRandomGenerator;
     private int mRandomNumber;
@@ -136,6 +142,9 @@ public class PlayBoardView extends View {
         mRectBoardObjects       = new ArrayList<>();
         mDrawableBoardObjects   = new ArrayList<>();
 
+        mRectBoardAnimationObjects = new ArrayList<>();
+        mGateAnimations = new ArrayList<>();
+
         mRectTimeBoardText      = new Rect();
         mRectScoreBoardText     = new Rect();
         mRectObjectiveBoardText = new Rect();
@@ -227,6 +236,18 @@ public class PlayBoardView extends View {
         }
 
         /* ****************************
+         * Draw Brick Animations
+         */
+        for (int i = 0; i < mGateAnimations.size(); i++) {
+            if(mGateAnimations.get(i)){
+                for (int j=0; j < mDrawableBoardObjects.get(i).size(); j++){
+                    mDrawableBoardObjects.get(i).get(j).setBounds(mRectBoardAnimationObjects.get(i).get(j));
+                    mDrawableBoardObjects.get(i).get(j).draw(canvas);
+                }
+            }
+        }
+
+        /* ****************************
          * Draw Score Pop Ups
          */
         for (int i = 0; i < mGateScores.size(); i++) {
@@ -269,6 +290,7 @@ public class PlayBoardView extends View {
 
         for (int i = 0; i < height; i++) {
             mRectBoardObjects.add(new ArrayList<>());
+            mRectBoardAnimationObjects.add(new ArrayList<>());
         }
 
         for (int i = 0; i < height; i++) {
@@ -290,9 +312,10 @@ public class PlayBoardView extends View {
         int top     = top_base;
         int bottom  = top + mBoardSquareDimension;
 
-        for (ArrayList<Rect> row : mRectBoardObjects) {
+        for (int k=0; k < mRow; k++ ) {
             for (int i = 0; i < width; i++) {
-                row.add(new Rect(left, top, right, bottom));
+                mRectBoardObjects.get(k).add(new Rect(left, top, right, bottom));
+                mRectBoardAnimationObjects.get(k).add(new Rect(left, top, right, bottom));
                 left = right;
                 right += mBoardSquareDimension;
             }
@@ -307,6 +330,10 @@ public class PlayBoardView extends View {
             for (int i = 0; i < width; i++) {
                 row.add(mDrawableEmptyRegion);
             }
+        }
+
+        for (int i = 0; i < mRow; i++) {
+            mGateAnimations.add(false);
         }
 
         for (int i = 0; i < height; i++) {
@@ -406,6 +433,77 @@ public class PlayBoardView extends View {
         }
 
         invalidate();
+    }
+
+    public void refreshWithAnimation(ArrayList<ArrayList<Brick>> board, ArrayList<DisplayData.DeletionAnimation> deletionAnimations) {
+
+        for (DisplayData.DeletionAnimation a : deletionAnimations) {
+            mGateAnimations.set(a.at, true);
+        }
+
+        ValueAnimator animator = ValueAnimator.ofInt(mBoardSquareDimension/2, 0);
+        animator.setDuration(500);
+        animator.setInterpolator(new BounceInterpolator());
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                for (DisplayData.DeletionAnimation deletionAnimation : deletionAnimations) {
+                    for (int i = 0; i < mColumn; i++) {
+
+                        mRectBoardAnimationObjects.get(deletionAnimation.at).get(i).right
+                                =
+                                mRectBoard.left + (i+1)*mBoardSquareDimension - mBoardSquareDimension/2 +
+                                        (Integer)valueAnimator.getAnimatedValue();
+                        mRectBoardAnimationObjects.get(deletionAnimation.at).get(i).left
+                                =
+                                mRectBoard.left + i*mBoardSquareDimension + mBoardSquareDimension/2 -
+                                        (Integer)valueAnimator.getAnimatedValue();
+
+                        mRectBoardAnimationObjects.get(deletionAnimation.at).get(i).bottom
+                                =
+                                mRectBoard.top + (deletionAnimation.at+1)*mBoardSquareDimension - mBoardSquareDimension/2 +
+                                        (Integer)valueAnimator.getAnimatedValue();
+                        mRectBoardAnimationObjects.get(deletionAnimation.at).get(i).top
+                                =
+                                mRectBoard.top + (deletionAnimation.at)*mBoardSquareDimension + mBoardSquareDimension/2 -
+                                        (Integer)valueAnimator.getAnimatedValue();
+                    }
+                }
+
+                invalidate();
+            }
+        });
+
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+
+                for (DisplayData.DeletionAnimation deletionAnimation : deletionAnimations) {
+                    for (int i = 0; i < mColumn; i++) {
+                        mRectBoardAnimationObjects.get(deletionAnimation.at).get(i).right = mRectBoard.left + (i+1)*mBoardSquareDimension;
+                        mRectBoardAnimationObjects.get(deletionAnimation.at).get(i).left = mRectBoard.left + i*mBoardSquareDimension;
+                        mRectBoardAnimationObjects.get(deletionAnimation.at).get(i).bottom = mRectBoard.top + (deletionAnimation.at+1)*mBoardSquareDimension;
+                        mRectBoardAnimationObjects.get(deletionAnimation.at).get(i).top = mRectBoard.top + (deletionAnimation.at)*mBoardSquareDimension;
+                    }
+                }
+
+                for (DisplayData.DeletionAnimation a : deletionAnimations) {
+                    mGateAnimations.set(a.at, false);
+                }
+
+                refresh(board);
+            }
+        });
+
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                animator.start();
+            }
+        });
+
     }
 
     public void popUpScore(ArrayList<DisplayData.Score> scores) {

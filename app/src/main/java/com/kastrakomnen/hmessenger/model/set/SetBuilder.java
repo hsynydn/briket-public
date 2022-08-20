@@ -45,6 +45,15 @@ public class SetBuilder implements PApplierFunction<FormationType, Set> {
     private static final ArrayList<Integer> t_cw180_brick_indexer;
     private static final ArrayList<Integer> t_cw270_brick_indexer;
 
+    private static final Formation t_long_cw0;
+    private static final Formation t_long_cw90;
+    private static final Formation t_long_cw180;
+    private static final Formation t_long_cw270;
+    private static final ArrayList<Integer> t_long_cw0_brick_indexer;
+    private static final ArrayList<Integer> t_long_cw90_brick_indexer;
+    private static final ArrayList<Integer> t_long_cw180_brick_indexer;
+    private static final ArrayList<Integer> t_long_cw270_brick_indexer;
+
     private static final Formation line_cw0;
     private static final Formation line_cw90;
     private static final Formation line_cw180;
@@ -53,6 +62,15 @@ public class SetBuilder implements PApplierFunction<FormationType, Set> {
     private static final ArrayList<Integer> line_cw90_brick_indexer;
     private static final ArrayList<Integer> line_cw180_brick_indexer;
     private static final ArrayList<Integer> line_cw270_brick_indexer;
+
+    private static final Formation line2_cw0;
+    private static final Formation line2_cw90;
+    private static final Formation line2_cw180;
+    private static final Formation line2_cw270;
+    private static final ArrayList<Integer> line2_cw0_brick_indexer;
+    private static final ArrayList<Integer> line2_cw90_brick_indexer;
+    private static final ArrayList<Integer> line2_cw180_brick_indexer;
+    private static final ArrayList<Integer> line2_cw270_brick_indexer;
 
     private static final Formation line3_cw0;
     private static final Formation line3_cw90;
@@ -125,6 +143,51 @@ public class SetBuilder implements PApplierFunction<FormationType, Set> {
     private static final ArrayList<Integer> half_mill_cw90_brick_indexer;
     private static final ArrayList<Integer> half_mill_cw180_brick_indexer;
     private static final ArrayList<Integer> half_mill_cw270_brick_indexer;
+
+    private static final Formation mill_compact_empty_cw0;
+    private static final Formation mill_compact_empty_cw90;
+    private static final Formation mill_compact_empty_cw180;
+    private static final Formation mill_compact_empty_cw270;
+    private static final ArrayList<Integer> mill_compact_empty_cw0_brick_indexer;
+    private static final ArrayList<Integer> mill_compact_empty_cw90_brick_indexer;
+    private static final ArrayList<Integer> mill_compact_empty_cw180_brick_indexer;
+    private static final ArrayList<Integer> mill_compact_empty_cw270_brick_indexer;
+
+    private static final Formation mill_compact_cw0;
+    private static final Formation mill_compact_cw90;
+    private static final Formation mill_compact_cw180;
+    private static final Formation mill_compact_cw270;
+    private static final ArrayList<Integer> mill_compact_cw0_brick_indexer;
+    private static final ArrayList<Integer> mill_compact_cw90_brick_indexer;
+    private static final ArrayList<Integer> mill_compact_cw180_brick_indexer;
+    private static final ArrayList<Integer> mill_compact_cw270_brick_indexer;
+
+    private static final Formation double_separate_cw0;
+    private static final Formation double_separate_cw90;
+    private static final Formation double_separate_cw180;
+    private static final Formation double_separate_cw270;
+    private static final ArrayList<Integer> double_separate_cw0_brick_indexer;
+    private static final ArrayList<Integer> double_separate_cw90_brick_indexer;
+    private static final ArrayList<Integer> double_separate_cw180_brick_indexer;
+    private static final ArrayList<Integer> double_separate_cw270_brick_indexer;
+
+    private static final Formation single_cw0;
+    private static final Formation single_cw90;
+    private static final Formation single_cw180;
+    private static final Formation single_cw270;
+    private static final ArrayList<Integer> single_cw0_brick_indexer;
+    private static final ArrayList<Integer> single_cw90_brick_indexer;
+    private static final ArrayList<Integer> single_cw180_brick_indexer;
+    private static final ArrayList<Integer> single_cw270_brick_indexer;
+
+    private static final Formation s_cw0;
+    private static final Formation s_cw90;
+    private static final Formation s_cw180;
+    private static final Formation s_cw270;
+    private static final ArrayList<Integer> s_cw0_brick_indexer;
+    private static final ArrayList<Integer> s_cw90_brick_indexer;
+    private static final ArrayList<Integer> s_cw180_brick_indexer;
+    private static final ArrayList<Integer> s_cw270_brick_indexer;
 
     static {
 
@@ -260,6 +323,43 @@ public class SetBuilder implements PApplierFunction<FormationType, Set> {
                 Arrays.asList(2, 1, 3, 0)
         );
 
+        /* T LONG INIT */
+
+        t_long_cw0 = new Formation(
+                new ArrayList<>(Arrays.asList(
+                        new RelativePosition(-1, -1),
+                        new RelativePosition(0, -1),
+                        new RelativePosition(1, -1),
+                        new RelativePosition(0, 0),
+                        new RelativePosition(0, 1)
+                ))
+        );
+
+        t_long_cw90 = FormationTransformer.transform(RotateType.CW90, t_long_cw0);
+        t_long_cw180 = FormationTransformer.transform(RotateType.CW180, t_long_cw0);
+        t_long_cw270 = FormationTransformer.transform(RotateType.CW270, t_long_cw0);
+
+        t_long_cw0.setFormationType(FormationType.T_LONG_CW0);
+        t_long_cw90.setFormationType(FormationType.T_LONG_CW90);
+        t_long_cw180.setFormationType(FormationType.T_LONG_CW180);
+        t_long_cw270.setFormationType(FormationType.T_LONG_CW270);
+
+        t_long_cw0_brick_indexer = new ArrayList<Integer>(
+                Arrays.asList(0, 1, 2, 3, 4)
+        );
+
+        t_long_cw90_brick_indexer = new ArrayList<>(
+                Arrays.asList(0, 4, 3, 1, 2)
+        );
+
+        t_long_cw180_brick_indexer = new ArrayList<>(
+                Arrays.asList(4, 3, 2, 1, 0)
+        );
+
+        t_long_cw270_brick_indexer = new ArrayList<>(
+                Arrays.asList(2, 1, 3, 4, 0)
+        );
+
         /* LINE INIT */
 
         line_cw0 = new Formation(
@@ -294,6 +394,40 @@ public class SetBuilder implements PApplierFunction<FormationType, Set> {
 
         line_cw270_brick_indexer = new ArrayList<>(
                 Arrays.asList(3, 2, 1, 0)
+        );
+
+        /* LINE 2 INIT */
+
+        line2_cw0 = new Formation(
+                new ArrayList<>(Arrays.asList(
+                        new RelativePosition(0, 0),
+                        new RelativePosition(1, 0)
+                ))
+        );
+
+        line2_cw90 = FormationTransformer.transform(RotateType.CW90, line2_cw0);
+        line2_cw180 = FormationTransformer.transform(RotateType.CW180, line2_cw0);
+        line2_cw270 = FormationTransformer.transform(RotateType.CW270, line2_cw0);
+
+        line2_cw0.setFormationType(FormationType.LINE2_CW0);
+        line2_cw90.setFormationType(FormationType.LINE2_CW90);
+        line2_cw180.setFormationType(FormationType.LINE2_CW180);
+        line2_cw270.setFormationType(FormationType.LINE2_CW270);
+
+        line2_cw0_brick_indexer = new ArrayList<Integer>(
+                Arrays.asList(0, 1)
+        );
+
+        line2_cw90_brick_indexer = new ArrayList<>(
+                Arrays.asList(0, 1)
+        );
+
+        line2_cw180_brick_indexer = new ArrayList<>(
+                Arrays.asList(1, 0)
+        );
+
+        line2_cw270_brick_indexer = new ArrayList<>(
+                Arrays.asList(1, 0)
         );
 
         /* LINE3 INIT */
@@ -580,6 +714,182 @@ public class SetBuilder implements PApplierFunction<FormationType, Set> {
 
         half_mill_cw270_brick_indexer = new ArrayList<>(
                 Arrays.asList(1, 2, 0, 3)
+        );
+
+        /* MILL COMPACT EMPTY INIT */
+
+        mill_compact_empty_cw0 = new Formation(
+                new ArrayList<>(Arrays.asList(
+                        new RelativePosition(0, -1),
+                        new RelativePosition(-1, 0),
+                        new RelativePosition(1, 0),
+                        new RelativePosition(0, 1)
+                ))
+        );
+
+        mill_compact_empty_cw90 = FormationTransformer.transform(RotateType.CW90, mill_compact_empty_cw0);
+        mill_compact_empty_cw180 = FormationTransformer.transform(RotateType.CW180, mill_compact_empty_cw0);
+        mill_compact_empty_cw270 = FormationTransformer.transform(RotateType.CW270, mill_compact_empty_cw0);
+
+        mill_compact_empty_cw0.setFormationType(FormationType.MILL_COMPACT_EMPTY_CW0);
+        mill_compact_empty_cw90.setFormationType(FormationType.MILL_COMPACT_EMPTY_CW90);
+        mill_compact_empty_cw180.setFormationType(FormationType.MILL_COMPACT_EMPTY_CW180);
+        mill_compact_empty_cw270.setFormationType(FormationType.MILL_COMPACT_EMPTY_CW270);
+
+        mill_compact_empty_cw0_brick_indexer = new ArrayList<Integer>(
+                Arrays.asList(0, 1, 2, 3)
+        );
+
+        mill_compact_empty_cw90_brick_indexer = new ArrayList<>(
+                Arrays.asList(1, 3, 0, 2)
+        );
+
+        mill_compact_empty_cw180_brick_indexer = new ArrayList<>(
+                Arrays.asList(3, 2, 1, 0)
+        );
+
+        mill_compact_empty_cw270_brick_indexer = new ArrayList<>(
+                Arrays.asList(2, 0, 3, 1)
+        );
+
+        /* MILL COMPACT INIT */
+
+        mill_compact_cw0 = new Formation(
+                new ArrayList<>(Arrays.asList(
+                        new RelativePosition(0, -1),
+                        new RelativePosition(-1, 0),
+                        new RelativePosition(0, 0),
+                        new RelativePosition(1, 0),
+                        new RelativePosition(0, 1)
+                ))
+        );
+
+        mill_compact_cw90 = FormationTransformer.transform(RotateType.CW90, mill_compact_cw0);
+        mill_compact_cw180 = FormationTransformer.transform(RotateType.CW180, mill_compact_cw0);
+        mill_compact_cw270 = FormationTransformer.transform(RotateType.CW270, mill_compact_cw0);
+
+        mill_compact_cw0.setFormationType(FormationType.MILL_COMPACT_CW0);
+        mill_compact_cw90.setFormationType(FormationType.MILL_COMPACT_CW90);
+        mill_compact_cw180.setFormationType(FormationType.MILL_COMPACT_CW180);
+        mill_compact_cw270.setFormationType(FormationType.MILL_COMPACT_CW270);
+
+        mill_compact_cw0_brick_indexer = new ArrayList<Integer>(
+                Arrays.asList(0, 1, 2, 3, 5)
+        );
+
+        mill_compact_cw90_brick_indexer = new ArrayList<>(
+                Arrays.asList(1, 4, 2, 0, 3)
+        );
+
+        mill_compact_cw180_brick_indexer = new ArrayList<>(
+                Arrays.asList(4, 3, 2, 1, 0)
+        );
+
+        mill_compact_cw270_brick_indexer = new ArrayList<>(
+                Arrays.asList(3, 0, 2, 4, 1)
+        );
+
+        /* DOUBLE SEPARATE INIT */
+
+        double_separate_cw0 = new Formation(
+                new ArrayList<>(Arrays.asList(
+                        new RelativePosition(-1, 0),
+                        new RelativePosition(1, 0)
+                ))
+        );
+
+        double_separate_cw90 = FormationTransformer.transform(RotateType.CW90, double_separate_cw0);
+        double_separate_cw180 = FormationTransformer.transform(RotateType.CW180, double_separate_cw0);
+        double_separate_cw270 = FormationTransformer.transform(RotateType.CW270, double_separate_cw0);
+
+        double_separate_cw0.setFormationType(FormationType.DOUBLE_SEPARATE_CW0);
+        double_separate_cw90.setFormationType(FormationType.DOUBLE_SEPARATE_CW90);
+        double_separate_cw180.setFormationType(FormationType.DOUBLE_SEPARATE_CW180);
+        double_separate_cw270.setFormationType(FormationType.DOUBLE_SEPARATE_CW270);
+
+        double_separate_cw0_brick_indexer = new ArrayList<Integer>(
+                Arrays.asList(0, 1)
+        );
+
+        double_separate_cw90_brick_indexer = new ArrayList<>(
+                Arrays.asList(0, 1)
+        );
+
+        double_separate_cw180_brick_indexer = new ArrayList<>(
+                Arrays.asList(1, 0)
+        );
+
+        double_separate_cw270_brick_indexer = new ArrayList<>(
+                Arrays.asList(1, 0)
+        );
+
+        /* SINGLE INIT */
+
+        single_cw0 = new Formation(
+                new ArrayList<>(Arrays.asList(
+                        new RelativePosition(0, 0)
+                ))
+        );
+
+        single_cw90 = FormationTransformer.transform(RotateType.CW90, single_cw0);
+        single_cw180 = FormationTransformer.transform(RotateType.CW180, single_cw0);
+        single_cw270 = FormationTransformer.transform(RotateType.CW270, single_cw0);
+
+        single_cw0.setFormationType(FormationType.SINGLE_CW0);
+        single_cw90.setFormationType(FormationType.SINGLE_CW90);
+        single_cw180.setFormationType(FormationType.SINGLE_CW180);
+        single_cw270.setFormationType(FormationType.SINGLE_CW270);
+
+        single_cw0_brick_indexer = new ArrayList<Integer>(
+                Arrays.asList(0)
+        );
+
+        single_cw90_brick_indexer = new ArrayList<>(
+                Arrays.asList(0)
+        );
+
+        single_cw180_brick_indexer = new ArrayList<>(
+                Arrays.asList(1)
+        );
+
+        single_cw270_brick_indexer = new ArrayList<>(
+                Arrays.asList(1)
+        );
+
+        /* S INIT */
+
+        s_cw0 = new Formation(
+                new ArrayList<>(Arrays.asList(
+                        new RelativePosition(0, 0),
+                        new RelativePosition(1, 0),
+                        new RelativePosition(-1, 1),
+                        new RelativePosition(0, 1)
+                ))
+        );
+
+        s_cw90 = FormationTransformer.transform(RotateType.CW90, s_cw0);
+        s_cw180 = FormationTransformer.transform(RotateType.CW180, s_cw0);
+        s_cw270 = FormationTransformer.transform(RotateType.CW270, s_cw0);
+
+        s_cw0.setFormationType(FormationType.S_CW0);
+        s_cw90.setFormationType(FormationType.S_CW90);
+        s_cw180.setFormationType(FormationType.S_CW180);
+        s_cw270.setFormationType(FormationType.S_CW270);
+
+        s_cw0_brick_indexer = new ArrayList<Integer>(
+                Arrays.asList(0, 1, 2, 3)
+        );
+
+        s_cw90_brick_indexer = new ArrayList<>(
+                Arrays.asList(2, 3, 0, 1)
+        );
+
+        s_cw180_brick_indexer = new ArrayList<>(
+                Arrays.asList(3, 2, 1, 0)
+        );
+
+        s_cw270_brick_indexer = new ArrayList<>(
+                Arrays.asList(1, 0, 3, 2)
         );
 
     }
@@ -988,6 +1298,106 @@ public class SetBuilder implements PApplierFunction<FormationType, Set> {
                 }
 
                 break;
+            case T_LONG_CW0:
+                set.insert(t_long_cw0);
+                set.setDefaultFormation();
+                set.insert(t_long_cw90);
+                set.insert(t_long_cw180);
+                set.insert(t_long_cw270);
+
+                set.insert(t_long_cw0_brick_indexer);
+                set.insert(t_long_cw90_brick_indexer);
+                set.insert(t_long_cw180_brick_indexer);
+                set.insert(t_long_cw270_brick_indexer);
+
+                set.setSetType(SetType.T_LONG);
+
+                for (int i = 0; i < 5; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+            case T_LONG_CW90:
+                set.insert(t_long_cw0);
+                set.insert(t_long_cw90);
+                set.setDefaultFormation();
+                set.insert(t_long_cw180);
+                set.insert(t_long_cw270);
+
+                set.insert(t_long_cw0_brick_indexer);
+                set.insert(t_long_cw90_brick_indexer);
+                set.insert(t_long_cw180_brick_indexer);
+                set.insert(t_long_cw270_brick_indexer);
+
+                set.setSetType(SetType.T_LONG);
+
+                for (int i = 0; i < 5; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+            case T_LONG_CW180:
+                set.insert(t_long_cw0);
+                set.insert(t_long_cw90);
+                set.insert(t_long_cw180);
+                set.setDefaultFormation();
+                set.insert(t_long_cw270);
+
+                set.insert(t_long_cw0_brick_indexer);
+                set.insert(t_long_cw90_brick_indexer);
+                set.insert(t_long_cw180_brick_indexer);
+                set.insert(t_long_cw270_brick_indexer);
+
+                set.setSetType(SetType.T_LONG);
+
+                for (int i = 0; i < 5; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+            case T_LONG_CW270:
+                set.insert(t_long_cw0);
+                set.insert(t_long_cw90);
+                set.insert(t_long_cw180);
+                set.insert(t_long_cw270);
+                set.setDefaultFormation();
+
+                set.insert(t_long_cw0_brick_indexer);
+                set.insert(t_long_cw90_brick_indexer);
+                set.insert(t_long_cw180_brick_indexer);
+                set.insert(t_long_cw270_brick_indexer);
+
+                set.setSetType(SetType.T_LONG);
+
+                for (int i = 0; i < 5; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
             case LINE_CW0:
                 set.insert(line_cw0);
                 set.setDefaultFormation();
@@ -1078,6 +1488,107 @@ public class SetBuilder implements PApplierFunction<FormationType, Set> {
                 set.setSetType(SetType.LINE);
 
                 for (int i = 0; i < 4; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+
+            case LINE2_CW0:
+                set.insert(line2_cw0);
+                set.setDefaultFormation();
+                set.insert(line2_cw90);
+                set.insert(line2_cw180);
+                set.insert(line2_cw270);
+
+                set.insert(line2_cw0_brick_indexer);
+                set.insert(line2_cw90_brick_indexer);
+                set.insert(line2_cw180_brick_indexer);
+                set.insert(line2_cw270_brick_indexer);
+
+                set.setSetType(SetType.LINE2);
+
+                for (int i = 0; i < 2; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+            case LINE2_CW90:
+                set.insert(line2_cw0);
+                set.insert(line2_cw90);
+                set.setDefaultFormation();
+                set.insert(line2_cw180);
+                set.insert(line2_cw270);
+
+                set.insert(line2_cw0_brick_indexer);
+                set.insert(line2_cw90_brick_indexer);
+                set.insert(line2_cw180_brick_indexer);
+                set.insert(line2_cw270_brick_indexer);
+
+                set.setSetType(SetType.LINE2);
+
+                for (int i = 0; i < 2; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+            case LINE2_CW180:
+                set.insert(line2_cw0);
+                set.insert(line2_cw90);
+                set.insert(line2_cw180);
+                set.setDefaultFormation();
+                set.insert(line2_cw270);
+
+                set.insert(line2_cw0_brick_indexer);
+                set.insert(line2_cw90_brick_indexer);
+                set.insert(line2_cw180_brick_indexer);
+                set.insert(line2_cw270_brick_indexer);
+
+                set.setSetType(SetType.LINE2);
+
+                for (int i = 0; i < 2; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+            case LINE2_CW270:
+                set.insert(line2_cw0);
+                set.insert(line2_cw90);
+                set.insert(line2_cw180);
+                set.insert(line2_cw270);
+                set.setDefaultFormation();
+
+                set.insert(line2_cw0_brick_indexer);
+                set.insert(line2_cw90_brick_indexer);
+                set.insert(line2_cw180_brick_indexer);
+                set.insert(line2_cw270_brick_indexer);
+
+                set.setSetType(SetType.LINE2);
+
+                for (int i = 0; i < 2; i++) {
                     Brick brick = new Brick();
                     brick.setBrickState(BrickState.LIVE);
                     brick.setSet(set);
@@ -1877,6 +2388,511 @@ public class SetBuilder implements PApplierFunction<FormationType, Set> {
                 set.insert(half_mill_cw270_brick_indexer);
 
                 set.setSetType(SetType.HALF_MILL);
+
+                for (int i = 0; i < 4; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+
+            case MILL_COMPACT_EMPTY_CW0:
+                set.insert(mill_compact_empty_cw0);
+                set.setDefaultFormation();
+                set.insert(mill_compact_empty_cw90);
+                set.insert(mill_compact_empty_cw180);
+                set.insert(mill_compact_empty_cw270);
+
+                set.insert(mill_compact_empty_cw0_brick_indexer);
+                set.insert(mill_compact_empty_cw90_brick_indexer);
+                set.insert(mill_compact_empty_cw180_brick_indexer);
+                set.insert(mill_compact_empty_cw270_brick_indexer);
+
+                set.setSetType(SetType.MILL_COMPACT_EMPTY);
+
+                for (int i = 0; i < 4; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+            case MILL_COMPACT_EMPTY_CW90:
+                set.insert(mill_compact_empty_cw0);
+                set.insert(mill_compact_empty_cw90);
+                set.setDefaultFormation();
+                set.insert(mill_compact_empty_cw180);
+                set.insert(mill_compact_empty_cw270);
+
+                set.insert(mill_compact_empty_cw0_brick_indexer);
+                set.insert(mill_compact_empty_cw90_brick_indexer);
+                set.insert(mill_compact_empty_cw180_brick_indexer);
+                set.insert(mill_compact_empty_cw270_brick_indexer);
+
+                set.setSetType(SetType.MILL_COMPACT_EMPTY);
+
+                for (int i = 0; i < 4; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+            case MILL_COMPACT_EMPTY_CW180:
+                set.insert(mill_compact_empty_cw0);
+                set.insert(mill_compact_empty_cw90);
+                set.insert(mill_compact_empty_cw180);
+                set.setDefaultFormation();
+                set.insert(mill_compact_empty_cw270);
+
+                set.insert(mill_compact_empty_cw0_brick_indexer);
+                set.insert(mill_compact_empty_cw90_brick_indexer);
+                set.insert(mill_compact_empty_cw180_brick_indexer);
+                set.insert(mill_compact_empty_cw270_brick_indexer);
+
+                set.setSetType(SetType.MILL_COMPACT_EMPTY);
+
+                for (int i = 0; i < 4; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+            case MILL_COMPACT_EMPTY_CW270:
+                set.insert(mill_compact_empty_cw0);
+                set.insert(mill_compact_empty_cw90);
+                set.insert(mill_compact_empty_cw180);
+                set.insert(mill_compact_empty_cw270);
+                set.setDefaultFormation();
+
+                set.insert(mill_compact_empty_cw0_brick_indexer);
+                set.insert(mill_compact_empty_cw90_brick_indexer);
+                set.insert(mill_compact_empty_cw180_brick_indexer);
+                set.insert(mill_compact_empty_cw270_brick_indexer);
+
+                set.setSetType(SetType.MILL_COMPACT_EMPTY);
+
+                for (int i = 0; i < 4; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+
+            case MILL_COMPACT_CW0:
+                set.insert(mill_compact_cw0);
+                set.setDefaultFormation();
+                set.insert(mill_compact_cw90);
+                set.insert(mill_compact_cw180);
+                set.insert(mill_compact_cw270);
+
+                set.insert(mill_compact_cw0_brick_indexer);
+                set.insert(mill_compact_cw90_brick_indexer);
+                set.insert(mill_compact_cw180_brick_indexer);
+                set.insert(mill_compact_cw270_brick_indexer);
+
+                set.setSetType(SetType.MILL_COMPACT);
+
+                for (int i = 0; i < 5; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+            case MILL_COMPACT_CW90:
+                set.insert(mill_compact_cw0);
+                set.insert(mill_compact_cw90);
+                set.setDefaultFormation();
+                set.insert(mill_compact_cw180);
+                set.insert(mill_compact_cw270);
+
+                set.insert(mill_compact_cw0_brick_indexer);
+                set.insert(mill_compact_cw90_brick_indexer);
+                set.insert(mill_compact_cw180_brick_indexer);
+                set.insert(mill_compact_cw270_brick_indexer);
+
+                set.setSetType(SetType.MILL_COMPACT);
+
+                for (int i = 0; i < 5; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+            case MILL_COMPACT_CW180:
+                set.insert(mill_compact_cw0);
+                set.insert(mill_compact_cw90);
+                set.insert(mill_compact_cw180);
+                set.setDefaultFormation();
+                set.insert(mill_compact_cw270);
+
+                set.insert(mill_compact_cw0_brick_indexer);
+                set.insert(mill_compact_cw90_brick_indexer);
+                set.insert(mill_compact_cw180_brick_indexer);
+                set.insert(mill_compact_cw270_brick_indexer);
+
+                set.setSetType(SetType.MILL_COMPACT);
+
+                for (int i = 0; i < 5; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+            case MILL_COMPACT_CW270:
+                set.insert(mill_compact_cw0);
+                set.insert(mill_compact_cw90);
+                set.insert(mill_compact_cw180);
+                set.insert(mill_compact_cw270);
+                set.setDefaultFormation();
+
+                set.insert(mill_compact_cw0_brick_indexer);
+                set.insert(mill_compact_cw90_brick_indexer);
+                set.insert(mill_compact_cw180_brick_indexer);
+                set.insert(mill_compact_cw270_brick_indexer);
+
+                set.setSetType(SetType.MILL_COMPACT);
+
+                for (int i = 0; i < 5; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+
+            case DOUBLE_SEPARATE_CW0:
+                set.insert(double_separate_cw0);
+                set.setDefaultFormation();
+                set.insert(double_separate_cw90);
+                set.insert(double_separate_cw180);
+                set.insert(double_separate_cw270);
+
+                set.insert(double_separate_cw0_brick_indexer);
+                set.insert(double_separate_cw90_brick_indexer);
+                set.insert(double_separate_cw180_brick_indexer);
+                set.insert(double_separate_cw270_brick_indexer);
+
+                set.setSetType(SetType.DOUBLE_SEPARATE);
+
+                for (int i = 0; i < 2; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+            case DOUBLE_SEPARATE_CW90:
+                set.insert(double_separate_cw0);
+                set.insert(double_separate_cw90);
+                set.setDefaultFormation();
+                set.insert(double_separate_cw180);
+                set.insert(double_separate_cw270);
+
+                set.insert(double_separate_cw0_brick_indexer);
+                set.insert(double_separate_cw90_brick_indexer);
+                set.insert(double_separate_cw180_brick_indexer);
+                set.insert(double_separate_cw270_brick_indexer);
+
+                set.setSetType(SetType.DOUBLE_SEPARATE);
+
+                for (int i = 0; i < 2; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+            case DOUBLE_SEPARATE_CW180:
+                set.insert(double_separate_cw0);
+                set.insert(double_separate_cw90);
+                set.insert(double_separate_cw180);
+                set.setDefaultFormation();
+                set.insert(double_separate_cw270);
+
+                set.insert(double_separate_cw0_brick_indexer);
+                set.insert(double_separate_cw90_brick_indexer);
+                set.insert(double_separate_cw180_brick_indexer);
+                set.insert(double_separate_cw270_brick_indexer);
+
+                set.setSetType(SetType.DOUBLE_SEPARATE);
+
+                for (int i = 0; i < 2; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+            case DOUBLE_SEPARATE_CW270:
+                set.insert(double_separate_cw0);
+                set.insert(double_separate_cw90);
+                set.insert(double_separate_cw180);
+                set.insert(double_separate_cw270);
+                set.setDefaultFormation();
+
+                set.insert(double_separate_cw0_brick_indexer);
+                set.insert(double_separate_cw90_brick_indexer);
+                set.insert(double_separate_cw180_brick_indexer);
+                set.insert(double_separate_cw270_brick_indexer);
+
+                set.setSetType(SetType.DOUBLE_SEPARATE);
+
+                for (int i = 0; i < 2; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+
+            case SINGLE_CW0:
+                set.insert(single_cw0);
+                set.setDefaultFormation();
+                set.insert(single_cw90);
+                set.insert(single_cw180);
+                set.insert(single_cw270);
+
+                set.insert(single_cw0_brick_indexer);
+                set.insert(single_cw90_brick_indexer);
+                set.insert(single_cw180_brick_indexer);
+                set.insert(single_cw270_brick_indexer);
+
+                set.setSetType(SetType.SINGLE);
+
+                for (int i = 0; i < 1; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+            case SINGLE_CW90:
+                set.insert(single_cw0);
+                set.insert(single_cw90);
+                set.setDefaultFormation();
+                set.insert(single_cw180);
+                set.insert(single_cw270);
+
+                set.insert(single_cw0_brick_indexer);
+                set.insert(single_cw90_brick_indexer);
+                set.insert(single_cw180_brick_indexer);
+                set.insert(single_cw270_brick_indexer);
+
+                set.setSetType(SetType.SINGLE);
+
+                for (int i = 0; i < 1; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+            case SINGLE_CW180:
+                set.insert(single_cw0);
+                set.insert(single_cw90);
+                set.insert(single_cw180);
+                set.setDefaultFormation();
+                set.insert(single_cw270);
+
+                set.insert(single_cw0_brick_indexer);
+                set.insert(single_cw90_brick_indexer);
+                set.insert(single_cw180_brick_indexer);
+                set.insert(single_cw270_brick_indexer);
+
+                set.setSetType(SetType.SINGLE);
+
+                for (int i = 0; i < 1; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+            case SINGLE_CW270:
+                set.insert(single_cw0);
+                set.insert(single_cw90);
+                set.insert(single_cw180);
+                set.insert(single_cw270);
+                set.setDefaultFormation();
+
+                set.insert(single_cw0_brick_indexer);
+                set.insert(single_cw90_brick_indexer);
+                set.insert(single_cw180_brick_indexer);
+                set.insert(single_cw270_brick_indexer);
+
+                set.setSetType(SetType.SINGLE);
+
+                for (int i = 0; i < 1; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+
+            case S_CW0:
+                set.insert(s_cw0);
+                set.setDefaultFormation();
+                set.insert(s_cw90);
+                set.insert(s_cw180);
+                set.insert(s_cw270);
+
+                set.insert(s_cw0_brick_indexer);
+                set.insert(s_cw90_brick_indexer);
+                set.insert(s_cw180_brick_indexer);
+                set.insert(s_cw270_brick_indexer);
+
+                set.setSetType(SetType.S);
+
+                for (int i = 0; i < 4; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+            case S_CW90:
+                set.insert(s_cw0);
+                set.insert(s_cw90);
+                set.setDefaultFormation();
+                set.insert(s_cw180);
+                set.insert(s_cw270);
+
+                set.insert(s_cw0_brick_indexer);
+                set.insert(s_cw90_brick_indexer);
+                set.insert(s_cw180_brick_indexer);
+                set.insert(s_cw270_brick_indexer);
+
+                set.setSetType(SetType.S);
+
+                for (int i = 0; i < 4; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+            case S_CW180:
+                set.insert(s_cw0);
+                set.insert(s_cw90);
+                set.insert(s_cw180);
+                set.setDefaultFormation();
+                set.insert(s_cw270);
+
+                set.insert(s_cw0_brick_indexer);
+                set.insert(s_cw90_brick_indexer);
+                set.insert(s_cw180_brick_indexer);
+                set.insert(s_cw270_brick_indexer);
+
+                set.setSetType(SetType.S);
+
+                for (int i = 0; i < 4; i++) {
+                    Brick brick = new Brick();
+                    brick.setBrickState(BrickState.LIVE);
+                    brick.setSet(set);
+                    brick.setRelativePosition(set.getCurrentFormation().getForm().get(i));
+                    brick.setBrickType(BrickType.NORMAL);
+
+                    set.insert(brick);
+                }
+
+                break;
+            case S_CW270:
+                set.insert(s_cw0);
+                set.insert(s_cw90);
+                set.insert(s_cw180);
+                set.insert(s_cw270);
+                set.setDefaultFormation();
+
+                set.insert(s_cw0_brick_indexer);
+                set.insert(s_cw90_brick_indexer);
+                set.insert(s_cw180_brick_indexer);
+                set.insert(s_cw270_brick_indexer);
+
+                set.setSetType(SetType.S);
 
                 for (int i = 0; i < 4; i++) {
                     Brick brick = new Brick();

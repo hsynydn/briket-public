@@ -403,6 +403,13 @@ public class PlayBoardView extends View {
                         case BOX:
                         case MILL:
                         case HALF_MILL:
+                        case T_LONG:
+                        case DOUBLE_SEPARATE:
+                        case SINGLE:
+                        case MILL_COMPACT_EMPTY:
+                        case MILL_COMPACT:
+                        case LINE2:
+                        case S:
                             mDrawableBoardObjects.get(i).set(j, mDrawableBrickBlue);
                             break;
                         case LINE:

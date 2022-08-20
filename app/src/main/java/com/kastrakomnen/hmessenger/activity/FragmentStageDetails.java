@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TableRow;
 
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
@@ -26,6 +28,10 @@ import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.kastrakomnen.hmessenger.R;
 import com.kastrakomnen.hmessenger.model.BriketContext;
+import com.kastrakomnen.hmessenger.model.set.Agent;
+import com.kastrakomnen.hmessenger.model.set.FormationType;
+
+import java.util.ArrayList;
 
 public class FragmentStageDetails extends Fragment {
 
@@ -53,12 +59,19 @@ public class FragmentStageDetails extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-//        ConstraintLayout constraintLayout = getView().findViewById(R.id.fragment_stage_details_background_layout);
-//
-//        ViewGroup.LayoutParams layoutParams = constraintLayout.getLayoutParams();
-//        layoutParams.height = screenWidth;
-//        layoutParams.width = screenWidth;
-//        constraintLayout.setLayoutParams(layoutParams);
+        ArrayList<ImageView> patternLocations = new ArrayList<>();
+        patternLocations.add(getView().findViewById(R.id.pattern_location_1));
+        patternLocations.add(getView().findViewById(R.id.pattern_location_2));
+        patternLocations.add(getView().findViewById(R.id.pattern_location_3));
+        patternLocations.add(getView().findViewById(R.id.pattern_location_4));
+        patternLocations.add(getView().findViewById(R.id.pattern_location_5));
+        patternLocations.add(getView().findViewById(R.id.pattern_location_6));
+        patternLocations.add(getView().findViewById(R.id.pattern_location_7));
+        patternLocations.add(getView().findViewById(R.id.pattern_location_8));
+        patternLocations.add(getView().findViewById(R.id.pattern_location_9));
+
+        // This table row may not include any item
+        TableRow tableRow3 = getView().findViewById(R.id.pattern_location_row_3);
 
         ImageButton okButton = getView().findViewById(R.id.sd_button_ok);
         okButton.setVisibility(View.INVISIBLE);
@@ -103,6 +116,165 @@ public class FragmentStageDetails extends Fragment {
                 return true;
             }
         });
+
+        boolean flag_BOX = false;
+        boolean flag_L = false;
+        boolean flag_L3 = false;
+        boolean flag_DIAG3 = false;
+        boolean flag_LINE3 = false;
+        boolean flag_DIAG2 = false;
+        boolean flag_LINE = false;
+        boolean flag_LINE5 = false;
+        boolean flag_HALF_MILL = false;
+        boolean flag_MILL = false;
+        boolean flag_T = false;
+        boolean flag_Z = false;
+        boolean flag_RL = false;
+
+        int i = 0;
+        for (FormationType formationType : BriketContext.getInstance().getCurrentStage().getFormationTypes()) {
+
+            // TODO Remove this check after database arrangment
+            if (i == 6) break;
+
+           switch (formationType){
+               case BOX_CW0:
+               case BOX_CW90:
+               case BOX_CW180:
+               case BOX_CW270:
+                   if (flag_BOX) break; else flag_BOX = true;
+                   patternLocations.get(i).setImageResource(R.mipmap.box_green);
+                   i++;
+                   break;
+               case L_CW0:
+               case L_CW90:
+               case L_CW180:
+               case L_CW270:
+                   if (flag_L) break; else flag_L = true;
+                   patternLocations.get(i).setImageResource(R.mipmap.l4_fushia);
+                   i++;
+                   break;
+               case L3_CW0:
+               case L3_CW90:
+               case L3_CW180:
+               case L3_CW270:
+                   if (flag_L3) break; else flag_L3 = true;
+                   patternLocations.get(i).setImageResource(R.mipmap.l3_fushia);
+                   i++;
+                   break;
+               case DIAG2_CW0:
+               case DIAG2_CW90:
+               case DIAG2_CW180:
+               case DIAG2_CW270:
+                   if (flag_DIAG2) break; else flag_DIAG2 = true;
+                   patternLocations.get(i).setImageResource(R.mipmap.diag2_green);
+                   i++;
+                   break;
+               case DIAG3_CW0:
+               case DIAG3_CW90:
+               case DIAG3_CW180:
+               case DIAG3_CW270:
+                   if (flag_DIAG3) break; else flag_DIAG3 = true;
+                   patternLocations.get(i).setImageResource(R.mipmap.diag3_green);
+                   i++;
+                   break;
+               case LINE3_CW0:
+               case LINE3_CW90:
+               case LINE3_CW180:
+               case LINE3_CW270:
+                   if (flag_LINE3) break; else flag_LINE3 = true;
+                   patternLocations.get(i).setImageResource(R.mipmap.line3_orange);
+                   i++;
+                   break;
+               case LINE_CW0:
+               case LINE_CW90:
+               case LINE_CW180:
+               case LINE_CW270:
+                   if (flag_LINE) break; else flag_LINE = true;
+                   patternLocations.get(i).setImageResource(R.mipmap.line4_fushia);
+                   i++;
+                   break;
+               case LINE5_CW0:
+               case LINE5_CW90:
+               case LINE5_CW180:
+               case LINE5_CW270:
+                   if (flag_LINE5) break; else flag_LINE5 = true;
+                   patternLocations.get(i).setImageResource(R.mipmap.line5_orange);
+                   i++;
+                   break;
+               case HALF_MILL_CW0:
+               case HALF_MILL_CW90:
+               case HALF_MILL_CW180:
+               case HALF_MILL_CW270:
+                   if (flag_HALF_MILL) break; else flag_HALF_MILL = true;
+                   patternLocations.get(i).setImageResource(R.mipmap.half_mill_fushia);
+                   i++;
+                   break;
+               case MILL_CW0:
+               case MILL_CW90:
+               case MILL_CW180:
+               case MILL_CW270:
+                   if (flag_MILL) break; else flag_MILL = true;
+                   patternLocations.get(i).setImageResource(R.mipmap.mill_green);
+                   i++;
+                   break;
+               case T_CW0:
+               case T_CW90:
+               case T_CW180:
+               case T_CW270:
+                   if (flag_T) break; else flag_T = true;
+                   patternLocations.get(i).setImageResource(R.mipmap.t_blue);
+                   i++;
+                   break;
+               case Z_CW0:
+               case Z_CW90:
+               case Z_CW180:
+               case Z_CW270:
+                   if (flag_Z) break; else flag_Z = true;
+                   patternLocations.get(i).setImageResource(R.mipmap.z_orange);
+                   i++;
+                   break;
+               case RL_CW0:
+               case RL_CW90:
+               case RL_CW180:
+               case RL_CW270:
+                   if (flag_RL) break; else flag_RL = true;
+                   patternLocations.get(i).setImageResource(R.mipmap.pattern_location_empty);
+                   i++;
+                   break;
+               default:
+                   Log.e(TAG, "Not implemented {" + formationType.toString() + "}");
+           }
+        }
+
+        ArrayList<Agent> agents = BriketContext.getInstance().getCurrentStage().getAgents();
+
+        if (agents.isEmpty()){
+            ((ViewGroup)tableRow3.getParent()).removeView(tableRow3);
+        }else{
+            int j = 7;
+            for (Agent agent : agents) {
+
+                // TODO Remove this check after database arrangment
+                if (j == 9) break;
+
+                switch (agent.getBrickType()) {
+                    case COIN:
+                        patternLocations.get(j).setImageResource(R.mipmap.pattern_location_empty);
+                        break;
+                    case LINER:
+                        patternLocations.get(j).setImageResource(R.mipmap.pattern_location_empty);
+                        break;
+                    case DIAMOND:
+                        patternLocations.get(j).setImageResource(R.mipmap.pattern_location_empty);
+                        break;
+                    case STAR:
+                        patternLocations.get(j).setImageResource(R.mipmap.star_brick);
+                        break;
+                }
+                j++;
+            }
+        }
 
         if (BriketContext.getInstance().mInterstitialAd != null) {
 

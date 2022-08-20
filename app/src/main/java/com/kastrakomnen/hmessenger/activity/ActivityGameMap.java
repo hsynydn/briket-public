@@ -112,6 +112,7 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
         });
 
         BriketContext.getInstance().setCurrentStage(position);
+        Log.d(TAG, "Current Stage index : " + position);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.fragment_fade_enter, R.anim.fragment_fade_exit);

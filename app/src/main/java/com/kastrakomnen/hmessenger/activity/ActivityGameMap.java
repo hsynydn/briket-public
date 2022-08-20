@@ -1,12 +1,15 @@
 package com.kastrakomnen.hmessenger.activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -97,6 +100,26 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
                     fragmentTransaction.commit();
                 }
                 return true;
+            }
+        });
+
+        findViewById(R.id.activity_game_map_exit_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog alertDialog = new AlertDialog.Builder(ActivityGameMap.this)
+                        .setTitle("Quit Game")
+                        .setMessage("Are you sure?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Intent intent = new Intent(Intent.ACTION_MAIN);
+                                intent.addCategory(Intent.CATEGORY_HOME);
+                                finishAffinity();
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
             }
         });
     }

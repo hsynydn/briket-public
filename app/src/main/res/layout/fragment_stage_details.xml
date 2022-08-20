@@ -5,60 +5,82 @@
     android:id="@+id/root_layout_stage_details"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CC2B2222"
+    android:background="#FFFFFF"
     android:backgroundTintMode="src_atop"
     android:clickable="true"
     tools:context=".activity.FragmentStageDetails">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/fragment_stage_details_background_layout"
-        android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:background="@mipmap/stage_details"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/game_map_iv_logo"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_logo" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Destroy 30 Lines"
-                android:textColor="#4C4343"
-                android:textSize="48sp" />
-        </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_logo_text" />
 
     <ImageButton
         android:id="@+id/sd_button_back"
-        android:layout_width="50dp"
+        android:layout_width="200dp"
         android:layout_height="50dp"
-        android:background="@drawable/quit_button_pressed"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_stage_details_background_layout"
+        android:layout_marginBottom="16dp"
+        android:background="@mipmap/stage_details_cancel_unpressed"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/fragment_stage_details_background_layout" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/sd_button_ok"
-        android:layout_width="150dp"
-        android:layout_height="147dp"
-        android:background="@drawable/play_button_pressed"
-        app:layout_constraintBottom_toBottomOf="@+id/fragment_stage_details_background_layout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_stage_details_background_layout" />
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:background="@mipmap/stage_details_play_unpressed"
+        app:layout_constraintBottom_toTopOf="@+id/sd_button_back"
+        app:layout_constraintEnd_toEndOf="@+id/sd_button_back"
+        app:layout_constraintStart_toStartOf="@+id/sd_button_back" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CANCEL"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/sd_button_back"
+        app:layout_constraintEnd_toEndOf="@+id/sd_button_back"
+        app:layout_constraintStart_toStartOf="@+id/sd_button_back"
+        app:layout_constraintTop_toTopOf="@+id/sd_button_back" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PLAY"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/sd_button_ok"
+        app:layout_constraintEnd_toEndOf="@+id/sd_button_ok"
+        app:layout_constraintStart_toStartOf="@+id/sd_button_ok"
+        app:layout_constraintTop_toTopOf="@+id/sd_button_ok" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        tools:layout_editor_absoluteX="203dp"
+        tools:layout_editor_absoluteY="197dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -128,23 +128,23 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
 
         AdRequest adRequest = new AdRequest.Builder().build();
 
-//        InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712", adRequest,
-//                new InterstitialAdLoadCallback() {
-//                    @Override
-//                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-//                        // The mInterstitialAd reference will be null until
-//                        // an ad is loaded.
-//                        BriketContext.getInstance().mInterstitialAd = interstitialAd;
-//                        Log.i(TAG, "onAdLoaded");
-//                    }
-//
-//                    @Override
-//                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-//                        // Handle the error
-//                        Log.d(TAG, loadAdError.toString());
-//                        BriketContext.getInstance().mInterstitialAd = null;
-//                    }
-//                });
+        InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712", adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        // The mInterstitialAd reference will be null until
+                        // an ad is loaded.
+                        BriketContext.getInstance().mInterstitialAd = interstitialAd;
+                        Log.i(TAG, "onAdLoaded");
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error
+                        Log.d(TAG, loadAdError.toString());
+                        BriketContext.getInstance().mInterstitialAd = null;
+                    }
+                });
 
 
         adView = findViewById(R.id.adView);

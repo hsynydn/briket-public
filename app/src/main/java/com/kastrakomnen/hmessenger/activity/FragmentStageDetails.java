@@ -53,33 +53,33 @@ public class FragmentStageDetails extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ConstraintLayout constraintLayout = getView().findViewById(R.id.fragment_stage_details_background_layout);
-
-        ViewGroup.LayoutParams layoutParams = constraintLayout.getLayoutParams();
-        layoutParams.height = screenWidth;
-        layoutParams.width = screenWidth;
-        constraintLayout.setLayoutParams(layoutParams);
+//        ConstraintLayout constraintLayout = getView().findViewById(R.id.fragment_stage_details_background_layout);
+//
+//        ViewGroup.LayoutParams layoutParams = constraintLayout.getLayoutParams();
+//        layoutParams.height = screenWidth;
+//        layoutParams.width = screenWidth;
+//        constraintLayout.setLayoutParams(layoutParams);
 
         ImageButton okButton = getView().findViewById(R.id.sd_button_ok);
         okButton.setVisibility(View.INVISIBLE);
         ViewGroup.LayoutParams okButtonLayoutParams = okButton.getLayoutParams();
-        okButtonLayoutParams.height = screenWidth / 3;
-        okButtonLayoutParams.width = screenWidth / 3;
+        okButtonLayoutParams.height = 4 * screenWidth / 24;
+        okButtonLayoutParams.width = 4 * screenWidth / 6;
         okButton.setLayoutParams(okButtonLayoutParams);
 
         ImageButton cancelButton = getView().findViewById(R.id.sd_button_back);
         ViewGroup.LayoutParams cancelButtonLayoutParams = cancelButton.getLayoutParams();
-        cancelButtonLayoutParams.height = screenWidth / 6;
-        cancelButtonLayoutParams.width = screenWidth / 6;
+        cancelButtonLayoutParams.height = 3 * screenWidth / 24;
+        cancelButtonLayoutParams.width = 3 * screenWidth / 6;
         cancelButton.setLayoutParams(cancelButtonLayoutParams);
 
         cancelButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.quit_button_unpressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.mipmap.stage_details_cancel_pressed));
                 }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.quit_button_pressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.mipmap.stage_details_cancel_unpressed));
                     getParentFragmentManager().popBackStack();
                 }
 
@@ -91,9 +91,9 @@ public class FragmentStageDetails extends Fragment {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.play_button_unpressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.mipmap.stage_details_play_pressed));
                 }else if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-                    ((ImageButton)view).setBackground(getResources().getDrawable(R.drawable.play_button_pressed));
+                    ((ImageButton)view).setBackground(getResources().getDrawable(R.mipmap.stage_details_play_unpressed));
 
                     Intent intent = new Intent(getActivity(), ActivityPlayBoard.class);
                     startActivity(intent);

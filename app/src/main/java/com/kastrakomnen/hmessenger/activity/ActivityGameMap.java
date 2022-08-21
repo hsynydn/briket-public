@@ -173,7 +173,10 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
         recyclerView.setAdapter(progressCardAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
+        int indexOfLastAvailable = 0;
         for (Stage stage : BriketContext.getInstance().getStages()) {
+            if (!stage.isLocked()) indexOfLastAvailable++;
+
             ProgressCard progressCard = new ProgressCard();
             progressCard.setLocked(stage.isLocked());
             progressCard.setHighScore(stage.getHighScore());
@@ -181,6 +184,12 @@ public class ActivityGameMap extends AppCompatActivity implements ItemClickListe
             progressCard.setName(stage.getName());
 
             progressCardList.add(progressCard);
+        }
+
+        if (indexOfLastAvailable > 1) {
+            recyclerView.scrollToPosition(indexOfLastAvailable - 2);
+        }else{
+            recyclerView.scrollToPosition(indexOfLastAvailable);
         }
     }
 }

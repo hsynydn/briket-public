@@ -131,6 +131,14 @@ public class FragmentStageDetails extends Fragment {
         boolean flag_Z = false;
         boolean flag_RL = false;
 
+        boolean flag_S = false;
+        boolean flag_T_LONG = false;
+        boolean flag_MILL_COMPACT = false;
+        boolean flag_MILL_COMPACT_EMPTY = false;
+        boolean flag_LINE2 = false;
+        boolean flag_SINGLE = false;
+        boolean flag_DOUBLE_SEPARATION = false;
+
         int i = 0;
         for (FormationType formationType : BriketContext.getInstance().getCurrentStage().getFormationTypes()) {
 
@@ -239,7 +247,55 @@ public class FragmentStageDetails extends Fragment {
                case RL_CW180:
                case RL_CW270:
                    if (flag_RL) break; else flag_RL = true;
-                   patternLocations.get(i).setImageResource(R.mipmap.pattern_location_empty);
+                   patternLocations.get(i).setImageResource(R.mipmap.empty);
+                   i++;
+                   break;
+               case S_CW0:
+               case S_CW90:
+               case S_CW180:
+               case S_CW270:
+                   if (flag_S) break; else flag_S = true;
+                   patternLocations.get(i).setImageResource(R.mipmap.s_orange);
+                   i++;
+                   break;
+               case T_LONG_CW0:
+               case T_LONG_CW90:
+               case T_LONG_CW180:
+               case T_LONG_CW270:
+                   if (flag_T_LONG) break; else flag_T_LONG = true;
+                   patternLocations.get(i).setImageResource(R.mipmap.t_long_orange);
+                   i++;
+                   break;
+               case MILL_COMPACT_CW0:
+               case MILL_COMPACT_CW90:
+               case MILL_COMPACT_CW180:
+               case MILL_COMPACT_CW270:
+                   if (flag_MILL_COMPACT) break; else flag_MILL_COMPACT = true;
+                   patternLocations.get(i).setImageResource(R.mipmap.mill_compact_blue);
+                   i++;
+                   break;
+               case MILL_COMPACT_EMPTY_CW0:
+               case MILL_COMPACT_EMPTY_CW90:
+               case MILL_COMPACT_EMPTY_CW180:
+               case MILL_COMPACT_EMPTY_CW270:
+                   if (flag_MILL_COMPACT_EMPTY) break; else flag_MILL_COMPACT_EMPTY = true;
+                   patternLocations.get(i).setImageResource(R.mipmap.mill_compact_empty_blue);
+                   i++;
+                   break;
+               case SINGLE_CW0:
+               case SINGLE_CW90:
+               case SINGLE_CW180:
+               case SINGLE_CW270:
+                   if (flag_SINGLE) break; else flag_SINGLE = true;
+                   patternLocations.get(i).setImageResource(R.mipmap.single_orange);
+                   i++;
+                   break;
+               case DOUBLE_SEPARATE_CW0:
+               case DOUBLE_SEPARATE_CW90:
+               case DOUBLE_SEPARATE_CW180:
+               case DOUBLE_SEPARATE_CW270:
+                   if (flag_DOUBLE_SEPARATION) break; else flag_DOUBLE_SEPARATION = true;
+                   patternLocations.get(i).setImageResource(R.mipmap.double_separate_green);
                    i++;
                    break;
                default:
@@ -260,13 +316,13 @@ public class FragmentStageDetails extends Fragment {
 
                 switch (agent.getBrickType()) {
                     case COIN:
-                        patternLocations.get(j).setImageResource(R.mipmap.pattern_location_empty);
+                        patternLocations.get(j).setImageResource(R.mipmap.empty);
                         break;
                     case LINER:
-                        patternLocations.get(j).setImageResource(R.mipmap.pattern_location_empty);
+                        patternLocations.get(j).setImageResource(R.mipmap.empty);
                         break;
                     case DIAMOND:
-                        patternLocations.get(j).setImageResource(R.mipmap.pattern_location_empty);
+                        patternLocations.get(j).setImageResource(R.mipmap.empty);
                         break;
                     case STAR:
                         patternLocations.get(j).setImageResource(R.mipmap.star_brick);

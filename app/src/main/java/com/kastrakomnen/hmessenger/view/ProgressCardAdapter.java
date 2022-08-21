@@ -38,8 +38,7 @@ public class ProgressCardAdapter extends RecyclerView.Adapter<ProgressCardAdapte
         View progress_card = inflater.inflate(R.layout.layout_progress_card, parent, false);
 
         // Return a new holder instance
-        ViewHolder viewHolder = new ViewHolder(progress_card);
-        return viewHolder;
+        return new ViewHolder(progress_card);
     }
 
     @Override
@@ -97,7 +96,9 @@ public class ProgressCardAdapter extends RecyclerView.Adapter<ProgressCardAdapte
                 holder.star2.setImageResource(R.drawable.star_dead);
             }
 
-            holder.tv_hi_score.setText(Integer.toString(progressCard.getHighScore()));
+            /* How the info will look */
+            holder.tv_hi_score.setVisibility(View.VISIBLE);
+            holder.tv_hi_score_title.setVisibility(View.VISIBLE);
 
             holder.setItemClickListener(itemClickListener);
         }

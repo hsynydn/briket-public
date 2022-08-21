@@ -247,7 +247,7 @@ public class FragmentStageDetails extends Fragment {
                case RL_CW180:
                case RL_CW270:
                    if (flag_RL) break; else flag_RL = true;
-                   patternLocations.get(i).setImageResource(R.mipmap.empty);
+                   patternLocations.get(i).setImageResource(R.mipmap.rl_blue);
                    i++;
                    break;
                case S_CW0:
@@ -316,13 +316,13 @@ public class FragmentStageDetails extends Fragment {
 
                 switch (agent.getBrickType()) {
                     case COIN:
-                        patternLocations.get(j).setImageResource(R.mipmap.empty);
+                        patternLocations.get(j).setImageResource(R.mipmap.pattern_empty);
                         break;
                     case LINER:
-                        patternLocations.get(j).setImageResource(R.mipmap.empty);
+                        patternLocations.get(j).setImageResource(R.mipmap.pattern_empty);
                         break;
                     case DIAMOND:
-                        patternLocations.get(j).setImageResource(R.mipmap.empty);
+                        patternLocations.get(j).setImageResource(R.mipmap.pattern_empty);
                         break;
                     case STAR:
                         patternLocations.get(j).setImageResource(R.mipmap.star_brick);

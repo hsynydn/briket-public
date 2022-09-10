@@ -1,7 +1,12 @@
 package com.kastrakomnen.hmessenger.view;
 
+import android.content.res.Resources;
+import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
+import android.opengl.GLUtils;
+
+import com.kastrakomnen.hmessenger.R;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

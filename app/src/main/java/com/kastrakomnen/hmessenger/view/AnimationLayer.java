@@ -21,7 +21,7 @@ public class AnimationLayer extends GLSurfaceView {
         getHolder().setFormat(PixelFormat.TRANSLUCENT);
         setZOrderOnTop(true);
 
-        animationLayerRenderer = new AnimationLayerRenderer();
+        animationLayerRenderer = new AnimationLayerRenderer(context);
 
         // Set the Renderer for drawing on the GLSurfaceView
         setRenderer(animationLayerRenderer);
@@ -44,13 +44,13 @@ public class AnimationLayer extends GLSurfaceView {
         getHolder().setFormat(PixelFormat.TRANSLUCENT);
         setZOrderOnTop(true);
 
-        animationLayerRenderer = new AnimationLayerRenderer();
+        animationLayerRenderer = new AnimationLayerRenderer(context);
 
         // Set the Renderer for drawing on the GLSurfaceView
         setRenderer(animationLayerRenderer);
 
         // Render the view only when there is a change in the drawing data
         // Requires requestRender call explicitly
-        setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+//        setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
     }
 }

@@ -1,5 +1,9 @@
 package com.kastrakomnen.hmessenger.view;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.opengl.GLSurfaceView;
 
 import javax.microedition.khronos.egl.EGLConfig;
@@ -7,19 +11,21 @@ import javax.microedition.khronos.opengles.GL10;
 
 import android.opengl.GLES20;
 import android.opengl.Matrix;
-import android.os.SystemClock;
+import android.view.WindowManager;
+
+import com.kastrakomnen.hmessenger.R;
 
 import java.util.Random;
 
 public class AnimationLayerRenderer implements GLSurfaceView.Renderer {
 
+    private Rectangle mRectangle;
     private Triangle mTriangle;
-
-    private Triangle mTriangleBundle[];
 
     private final float[] vPMatrix          = new float[16];
     private final float[] projectionMatrix  = new float[16];
     private final float[] viewMatrix        = new float[16];
+    private final float[] scaleMatrix       = new float[16];
     private final float[] rotationMatrix    = new float[16];
     private final float[] translationMatrix = new float[16];
     private final float[] tmp = new float[16];
@@ -30,17 +36,31 @@ public class AnimationLayerRenderer implements GLSurfaceView.Renderer {
 
     private Random random = new Random();
 
+    private Context context;
+
+    private Bitmap bitmap;
+
+    public AnimationLayerRenderer(Context context){
+        this.context = context;
+    }
+
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
         // Set the background frame color
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
+//        Drawable drawable = context.getDrawable(R.drawable.ic_blue_briket);
+//        bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+//
+////        final BitmapFactory.Options options = new BitmapFactory.Options();
+////        options.inScaled = false;
+////        bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_blue_briket, options);
+//
+//        if (bitmap == null){
+//            throw new NullPointerException("");
+//        }
+
+//        mRectangle = new Rectangle(bitmap);
         mTriangle = new Triangle();
-        mTriangleBundle = new Triangle[NUMBER_OF_TRIANGLE];
-
-        for (int i=0; i<NUMBER_OF_TRIANGLE; i++) {
-            mTriangleBundle[i] = new Triangle();
-        }
-
     }
 
     public void onDrawFrame(GL10 unused) {
@@ -59,42 +79,21 @@ public class AnimationLayerRenderer implements GLSurfaceView.Renderer {
         // Calculate the projection and view transformation
         Matrix.multiplyMM(vPMatrix, 0, projectionMatrix, 0, viewMatrix, 0);
 
-        for (int i=0; i<mTriangleBundle.length/4; i++) {
-            float x = (float) Math.sqrt(Math.pow(r,2) - Math.pow(random.nextFloat()*map_ratio, 2));
-            float y = (float) Math.sqrt(Math.pow(r,2) - Math.pow(x, 2));
-            Matrix.setIdentityM(translationMatrix, 0);
-            Matrix.translateM(translationMatrix, 0, x, y, 0);
-            Matrix.multiplyMM(scratch, 0, vPMatrix, 0, translationMatrix, 0);
-            mTriangleBundle[i].draw(scratch);
-        }
+        Matrix.setIdentityM(scaleMatrix, 0);
+        Matrix.scaleM(scaleMatrix, 0, 0.4f, 0.4f, 0.4f);
+        Matrix.multiplyMM(scratch, 0, vPMatrix, 0, scaleMatrix, 0);
 
-        for (int i=mTriangleBundle.length/4; i<2*mTriangleBundle.length/4; i++) {
-            float x = (float) Math.sqrt(Math.pow(r,2) - Math.pow(random.nextFloat()*map_ratio, 2));
-            float y = (float) Math.sqrt(Math.pow(r,2) - Math.pow(x, 2));
-            Matrix.setIdentityM(translationMatrix, 0);
-            Matrix.translateM(translationMatrix, 0, x, -1*y, 0);
-            Matrix.multiplyMM(scratch, 0, vPMatrix, 0, translationMatrix, 0);
-            mTriangleBundle[i].draw(scratch);
-        }
+//        for (int i=0; i<mTriangleBundle.length/4; i++) {
+//            float x = (float) Math.sqrt(Math.pow(r,2) - Math.pow(random.nextFloat()*map_ratio, 2));
+//            float y = (float) Math.sqrt(Math.pow(r,2) - Math.pow(x, 2));
+//            Matrix.setIdentityM(translationMatrix, 0);
+//            Matrix.translateM(translationMatrix, 0, x, y, 0);
+//            Matrix.multiplyMM(scratch, 0, vPMatrix, 0, translationMatrix, 0);
+//            mTriangleBundle[i].draw(scratch);
+//        }
 
-        for (int i=2*mTriangleBundle.length/4; i<3*mTriangleBundle.length/4; i++) {
-            float x = (float) Math.sqrt(Math.pow(r,2) - Math.pow(random.nextFloat()*map_ratio, 2));
-            float y = (float) Math.sqrt(Math.pow(r,2) - Math.pow(x, 2));
-            Matrix.setIdentityM(translationMatrix, 0);
-            Matrix.translateM(translationMatrix, 0, -1*x, -1*y, 0);
-            Matrix.multiplyMM(scratch, 0, vPMatrix, 0, translationMatrix, 0);
-            mTriangleBundle[i].draw(scratch);
-        }
-
-        for (int i=3*mTriangleBundle.length/4; i<mTriangleBundle.length; i++) {
-            float x = (float) Math.sqrt(Math.pow(r,2) - Math.pow(random.nextFloat()*map_ratio, 2));
-            float y = (float) Math.sqrt(Math.pow(r,2) - Math.pow(x, 2));
-            Matrix.setIdentityM(translationMatrix, 0);
-            Matrix.translateM(translationMatrix, 0, -1*x, y, 0);
-            Matrix.multiplyMM(scratch, 0, vPMatrix, 0, translationMatrix, 0);
-            mTriangleBundle[i].draw(scratch);
-        }
-
+//        mRectangle.draw(scratch);
+        mTriangle.draw(scratch);
     }
 
     public void onSurfaceChanged(GL10 unused, int width, int height) {
@@ -119,4 +118,6 @@ public class AnimationLayerRenderer implements GLSurfaceView.Renderer {
 
         return shader;
     }
+
+
 }

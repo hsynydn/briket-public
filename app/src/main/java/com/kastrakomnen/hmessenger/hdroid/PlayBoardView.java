@@ -12,11 +12,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.animation.BounceInterpolator;
-import android.view.animation.OvershootInterpolator;
 
 import androidx.annotation.Nullable;
-import androidx.interpolator.view.animation.FastOutLinearInInterpolator;
 
 import com.kastrakomnen.hmessenger.R;
 import com.kastrakomnen.hmessenger.model.set.Brick;
@@ -450,7 +447,6 @@ public class PlayBoardView extends View {
 
         ValueAnimator animator = ValueAnimator.ofInt(mBoardSquareDimension/2, 0);
         animator.setDuration(500);
-        animator.setInterpolator(new BounceInterpolator());
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -582,7 +578,6 @@ public class PlayBoardView extends View {
     private void loadAnimators() {
         mAnimatorScore = ValueAnimator.ofInt(0, 75);
         mAnimatorScore.setDuration(700);
-        mAnimatorScore.setInterpolator(new BounceInterpolator());
         mAnimatorScore.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -605,7 +600,6 @@ public class PlayBoardView extends View {
 
         mAnimatorEvent = ValueAnimator.ofInt(0, 120);
         mAnimatorEvent.setDuration(1000);
-        mAnimatorEvent.setInterpolator(new BounceInterpolator());
         mAnimatorEvent.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {

@@ -8,7 +8,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
-public class Rectangle {
+public class RectangleWireframe {
 
     private FloatBuffer vertexBuffer;
     private ByteBuffer  indexBuffer;
@@ -16,15 +16,12 @@ public class Rectangle {
 
     private final String vertexShaderCode =
             "#version 200 es" +
-            "layout(location = 0) in vec4 a_Position;" +
-            "layout(location = 1) in vec2 a_TexCoordinate;" +
-            "uniform mat4 uMVPMatrix;" +
-            "out vec2 v_TexCoordinate;" +
-            "void main()" +
-            "{" +
-            "    gl_Position = uMVPMatrix * a_Position;" +
-            "    v_TexCoordinate = a_TexCoordinate;" +
-            "}"
+                    "layout(location = 0) in vec4 a_Position;" +
+                    "uniform mat4 uMVPMatrix;" +
+                    "void main()" +
+                    "{" +
+                    "    gl_Position = uMVPMatrix * a_Position;" +
+                    "}"
             ;
 
     // Use to access and set the view transformation
@@ -32,14 +29,13 @@ public class Rectangle {
 
     private final String fragmentShaderCode =
             "#version 200 es" +
-            "precision mediump float;" +
-            "in vec2 v_TexCoordinate;" +
-            "layout(location = 0) out vec4 gl_FragColor;" +
-            "uniform sampler2D u_Texture;" +
-            "void main()" +
-            "{" +
-            "    gl_FragColor = texture(u_Texture, v_TexCoordinate);" +
-            "}"
+                    "precision mediump float;" +
+                    "layout(location = 0) out vec4 gl_FragColor;" +
+                    "uniform vec4 vColor;" +
+                    "void main()" +
+                    "{" +
+                    "    gl_FragColor = vColor;" +
+                    "}"
             ;
 
     private final int mProgram;
@@ -49,37 +45,22 @@ public class Rectangle {
 
     static float[] vertices = {
             -1.0f,  1.0f, 0.0f, /* top-left     */
-             1.0f,  1.0f, 0.0f, /* bottom-left  */
-             1.0f, -1.0f, 0.0f, /* top-right    */
+            1.0f,  1.0f, 0.0f, /* bottom-left  */
+            1.0f, -1.0f, 0.0f, /* top-right    */
             -1.0f, -1.0f, 0.0f, /* bottom-right */
-    };
-
-    static float[] textureCoordinateData  = {
-            0.0f, 0.0f,
-            1.0f, 0.0f,
-            1.0f, 1.0f,
-            0.0f, 1.0f
     };
 
     static final byte[] indices = {0, 1, 2, 0, 2, 3};
 
-    private Bitmap bitmap;
-
     private int positionHandle;
-    private int textureCoordinateHandle;
 
     private final int           vertexCount = vertices.length / COORDS_PER_VERTEX;
     private final int           vertexStride = COORDS_PER_VERTEX * 4; // 4 bytes per vertex
-    private final FloatBuffer   mTextureCoordinates;
-    private int                 mTextureUniformHandle;
-    private int                 mTextureCoordinateHandle;
-    private final int           mTextureCoordinateDataSize = 2;
-    private int                 mTextureDataHandle;
 
-    public Rectangle(Bitmap bitmap) {
+    private int                 colorHandle;
+    private float[]             color = { 1.0f, 0.6f, 0.2f, 1.0f };
 
-        this.bitmap = bitmap;
-
+    public RectangleWireframe() {
         /* **
          * Create a byte buffer object for vertices (Number of vertex * Float Size in Byte)
          * Use the device hardware's native byte order
@@ -97,10 +78,6 @@ public class Rectangle {
         this.indexBuffer.put(indices);
         this.indexBuffer.position(0);
 
-        mTextureCoordinates = ByteBuffer.allocateDirect(textureCoordinateData.length * Float.BYTES)
-                .order(ByteOrder.nativeOrder()).asFloatBuffer();
-        mTextureCoordinates.put(textureCoordinateData).position(0);
-
         /* *****
          * CREATE SHADER PROGRAMS
          */
@@ -115,32 +92,6 @@ public class Rectangle {
         GLES20.glBindAttribLocation(mProgram, 1, "a_TexCoordinate");
         /* *****
          * END CREATE SHADER PROGRAMS
-         */
-
-
-        /* *****
-         * TEXTURES
-         */
-
-        // Generate one texture pointer...
-        int[] textureHandles = new int[1];
-        GLES20.glGenTextures(1, textureHandles, 0);
-        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureHandles[0]);
-        GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
-        GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);
-        GLUtils.texImage2D(
-                GLES20.GL_TEXTURE_2D, // texture target
-                0, // mipmap level
-                bitmap,
-                0 // border, ignored
-        );
-        mTextureDataHandle = GLES20.glGetUniformLocation(mProgram, "u_Texture");
-        GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
-        GLES20.glUniform1i(mTextureDataHandle, 0);
-        bitmap.recycle();
-
-        /* *****
-         * END TEXTURES
          */
 
         // add the vertex shader to program
@@ -160,23 +111,13 @@ public class Rectangle {
         GLES20.glEnableVertexAttribArray(positionHandle);
         GLES20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX, GLES20.GL_FLOAT, false, vertexStride, vertexBuffer);
 
-        mTextureCoordinateHandle = GLES20.glGetAttribLocation(mProgram, "a_TexCoordinate");
-        mTextureCoordinates.position(0);
-        GLES20.glEnableVertexAttribArray(mTextureCoordinateHandle);
-        GLES20.glVertexAttribPointer(
-                mTextureCoordinateHandle,
-                mTextureCoordinateDataSize,
-                GLES20.GL_FLOAT,
-                false,
-                8,
-                mTextureCoordinates
-        );
+        colorHandle = GLES20.glGetUniformLocation(mProgram, "vColor");
+        GLES20.glUniform4fv(colorHandle, 1, color, 0);
 
         vPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");
         GLES20.glUniformMatrix4fv(vPMatrixHandle, 1, false, mvpMatrix, 0);
 
         GLES20.glDrawElements(GLES20.GL_TRIANGLES, indices.length, GLES20.GL_UNSIGNED_BYTE, indexBuffer);
-
-        GLES20.glDisableVertexAttribArray(positionHandle);
+//        GLES20.glDisableVertexAttribArray(positionHandle);
     }
 }

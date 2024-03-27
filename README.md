@@ -1,5 +1,5 @@
 This is a tetris like Android mobile game, which has episodes to accomplish.
-The game is published on Google Play Store.
+The game is published on [Google Play Store](https://play.google.com/store/apps/details?id=com.kastrakomnen.hmessenger).
 
 <div style="display: flex;">
   <img src="https://play-lh.googleusercontent.com/XgfWEwFNg9NV65v2_ZyL922sB6KT1tCnrxKPxqOsZH34_UpudhOb-EpRr366MEj45eHl=w2560-h1440-rw" width="25%"/>
